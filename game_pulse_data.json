@@ -1,0 +1,187 @@
+[
+  {
+    "id": 1734195523575,
+    "name": "game",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": "sci-fi",
+    "releaseYear": "2024",
+    "platform": "xbox",
+    "store": "epic",
+    "price": "25",
+    "details": "asabxcxcx",
+    "links": "https://store.steampowered.com/app/221100/DayZ/"
+  },
+  {
+    "id": 1734195541886,
+    "name": "game",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": "",
+    "releaseYear": "",
+    "platform": "",
+    "store": "",
+    "price": "",
+    "details": "",
+    "links": ""
+  },
+  {
+    "id": 1734196100222,
+    "name": "game",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": "action",
+    "releaseYear": "",
+    "platform": "xbox",
+    "store": "steam",
+    "price": "12",
+    "details": "saazxc",
+    "links": "https://store.steampowered.com/app/221100/DayZ/"
+  },
+  {
+    "id": 1734196708917,
+    "name": "sa",
+    "image": "/api/placeholder/200/300",
+    "genre": [
+      "horror"
+    ],
+    "releaseYear": "",
+    "platform": [],
+    "store": [],
+    "price": "",
+    "details": "",
+    "links": ""
+  },
+  {
+    "id": 1734198055700,
+    "name": "game",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": [],
+    "releaseYear": "2024",
+    "platform": [
+      "xbox"
+    ],
+    "store": [
+      "gog"
+    ],
+    "price": "121",
+    "details": "a",
+    "links": "https://store.steampowered.com/app/221100/DayZ/"
+  },
+  {
+    "id": 1734198316629,
+    "name": "Dayz",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": [],
+    "releaseYear": "2024",
+    "platform": [],
+    "store": [],
+    "price": "14",
+    "details": "phpoh",
+    "links": "https://store.steampowered.com/app/221100/DayZ/"
+  },
+  {
+    "id": 1734199348860,
+    "name": "Dayz",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": [
+      "sci-fi",
+      "co-op",
+      "rpg",
+      "strategy"
+    ],
+    "releaseYear": "2024",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation",
+      "nintendo",
+      "mobile"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "gog"
+    ],
+    "price": "40",
+    "details": "blbipp;n",
+    "links": "https://store.steampowered.com/app/221100/DayZ/"
+  },
+  {
+    "id": 1734215888238,
+    "name": "game",
+    "image": "/api/placeholder/200/300",
+    "genre": [],
+    "releaseYear": "",
+    "platform": [],
+    "store": [],
+    "price": "",
+    "details": "",
+    "links": ""
+  },
+  {
+    "id": 1734216528310,
+    "name": "sa",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": [],
+    "releaseYear": "",
+    "platform": [],
+    "store": [],
+    "price": "",
+    "details": "",
+    "links": ""
+  },
+  {
+    "id": 1734216558030,
+    "name": "Dayz",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": [
+      "action",
+      "horror",
+      "rpg"
+    ],
+    "releaseYear": "2024",
+    "platform": [
+      "pc",
+      "xbox"
+    ],
+    "store": [
+      "steam",
+      "epic"
+    ],
+    "price": "12",
+    "details": "as gfg",
+    "links": "https://store.steampowered.com/app/221100/DayZ/"
+  },
+  {
+    "id": 1734216703054,
+    "name": "Dayz",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": [
+      "sci-fi",
+      "shooter",
+      "co-op"
+    ],
+    "releaseYear": "2024",
+    "platform": [
+      "pc",
+      "xbox"
+    ],
+    "store": [
+      "steam",
+      "epic"
+    ],
+    "price": "12",
+    "details": "sa",
+    "links": "https://store.steampowered.com/app/221100/DayZ/"
+  },
+  {
+    "id": 1734216794229,
+    "name": "sa",
+    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "genre": [],
+    "releaseYear": "",
+    "platform": [],
+    "store": [],
+    "price": "",
+    "details": "",
+    "links": ""
+  }
+]
