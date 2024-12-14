@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f3f3;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .app-container {
+            display: flex;
+            height: 100vh;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .sidebar {
+            width: 350px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-right: 1px solid #e0e0e0;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .sidebar-header h1 {
+            color: #007bff;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .input-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .input-group input, 
+        .input-group select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .priority-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .priority-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .priority-label input {
+            margin-right: 5px;
+        }
+
+        .file-input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+
+        .file-input-label {
+            display: flex;
+            align-items: center;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .file-input-label input[type="file"] {
+            display: none;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .add-btn:hover {
+            background-color: #218838;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: white;
+            overflow-y: auto;
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+        }
+
+        .tab {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            position: relative; /* For absolute positioning of count */
+        }
+
+        .tab.active {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .task-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .task-card {
+  border: 1px solid #e8e8e8; /* Lighter border */
+  border-radius: 10px;
+  padding: 20px; 
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: box-shadow 0.3s;
+  background-color: #f8f8f8; 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
+}
+
+        .task-card.priority {
+            border-left: 5px solid #dc3545;
+            background-color: #fff3f3;
+        }
+
+        .task-card.routine {
+            background-color: #f0f7ff;
+            border: 1px solid #b8daff;
+        }
+
+        .task-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .task-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .task-details {
+            flex-grow: 1;
+        }
+
+        .task-name {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .task-tags {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            background-color: #f1f1f1;
+            color: #333;
+        }
+
+        .tag-todo {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .tag-routine {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .tag-priority {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .routine-details {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .routine-schedule {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+        .homepage-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .homepage-modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .homepage-modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .homepage-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .homepage-btn-primary {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .homepage-btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .homepage-btn-secondary {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .homepage-btn-secondary:hover {
+            background-color: #545b62;
+        }
+        .task-creation-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .task-creation-content {
+  background-color: white;
+  max-width: 600px; 
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 30px;
+  border-radius: 12px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+        .advanced-input-group {
+            margin-bottom: 15px;
+        }
+
+        .subtask-list {
+  margin-top: 12px;
+  padding: 10px;
+  border: 1px solid #f0f0f0;
+  border-radius: 5px;
+  background-color: #f9f9f9; 
+}
+
+        .subtask-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .subtask-input {
+            flex-grow: 1;
+            margin-right: 10px;
+        }
+
+        .color-selector {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .color-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .color-option.selected {
+            border-color: #007bff;
+        }
+
+        .task-card.custom-color {
+            border-left: 5px solid;
+        }
+
+        /* New reminder styles */
+        .reminder-tag {
+  background-color: #f7b801; 
+  color: #333;
+}
+
+        .task-card .reminder-details {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h1>Task Manager</h1>
+            </div>
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="taskName">Task Name</label>
+                    <input type="text" id="taskName" placeholder="Enter task name" required>
+                </div>
+                <div class="input-group">
+                    <label for="taskType">Task Type</label>
+                    <select id="taskType">
+                        <option value="todo">TODO</option>
+                        <option value="routine">Routine</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Priority</label>
+                    <div class="priority-group">
+                        <label class="priority-label">
+                            <input type="checkbox" id="priorityTask">
+                            High Priority
+                        </label>
+                    </div>
+                </div>
+                <div class="input-group" id="routineDetails" style="display: none;">
+                    <label for="routineFrequency">Routine Frequency</label>
+                    <select id="routineFrequency">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="taskImageUrl">Image URL</label>
+                    <div class="file-input-wrapper">
+                        <input type="text" id="taskImageUrl" placeholder="Enter image URL or upload">
+                        <label class="file-input-label">
+                            <input type="file" id="taskImageFile" accept="image/*">
+                            <i class="fas fa-upload"></i> Upload
+                        </label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="taskDate">Due Date</label>
+                    <input type="date" id="taskDate">
+                </div>
+                <button class="add-btn" id="addTaskButton">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="tabs">
+                <div class="tab active" data-type="all">All Tasks</div>
+                <div class="tab" data-type="todo">TODO</div>
+                <div class="tab" data-type="routine">Routine</div>
+                <div class="tab" data-type="priority">Priority</div>
+            </div>
+            <div id="taskList" class="task-list"></div>
+        </div>
+    </div>
+    <div id="homepageModal" class="homepage-modal">
+        <div class="homepage-modal-content">
+            <h2>Set as Homepage</h2>
+            <p>Would you like to set this Task Manager as your browser's default homepage?</p>
+            <div class="homepage-modal-buttons">
+                <button id="setHomepageBtn" class="homepage-btn homepage-btn-primary">Yes, Set Homepage</button>
+                <button id="dismissHomepageBtn" class="homepage-btn homepage-btn-secondary">No, Thanks</button>
+            </div>
+        </div>
+    </div>
+    <div id="taskCreationModal" class="task-creation-modal">
+        <div class="task-creation-content">
+            <h2>Create Advanced Task</h2>
+            <div class="advanced-input-group">
+                <label for="advancedTaskName">Task Name</label>
+                <input type="text" id="advancedTaskName" required>
+            </div>
+            
+            <div class="advanced-input-group">
+                <label for="advancedTaskType">Task Type</label>
+                <select id="advancedTaskType">
+                    <option value="todo">TODO</option>
+                    <option value="routine">Routine</option>
+                    <option value="project">Project</option>
+                </select>
+            </div>
+
+            <div class="advanced-input-group">
+                <label>Priority</label>
+                <div class="priority-group">
+                    <label class="priority-label">
+                        <input type="radio" name="priority" value="low"> Low
+                    </label>
+                    <label class="priority-label">
+                        <input type="radio" name="priority" value="medium"> Medium
+                    </label>
+                    <label class="priority-label">
+                        <input type="radio" name="priority" value="high"> High
+                    </label>
+                </div>
+            </div>
+
+            <div class="advanced-input-group">
+                <label>Color Tag</label>
+                <div class="color-selector">
+                    <div class="color-option" style="background-color: #007bff;" data-color="#007bff"></div>
+                    <div class="color-option" style="background-color: #28a745;" data-color="#28a745"></div>
+                    <div class="color-option" style="background-color: #dc3545;" data-color="#dc3545"></div>
+                    <div class="color-option" style="background-color: #ffc107;" data-color="#ffc107"></div>
+                    <div class="color-option" style="background-color: #6f42c1;" data-color="#6f42c1"></div>
+                </div>
+            </div>
+
+            <div class="advanced-input-group">
+                <label for="taskDateTime">Date and Time</label>
+                <input type="datetime-local" id="taskDateTime">
+            </div>
+
+            <div class="advanced-input-group">
+                <label>Reminders</label>
+                <div>
+                    <label>
+                        <input type="checkbox" id="emailReminder"> Email Reminder
+                    </label>
+                    <label>
+                        <input type="checkbox" id="desktopNotification"> Desktop Notification
+                    </label>
+                </div>
+            </div>
+
+            <div class="advanced-input-group">
+                <label>Subtasks</label>
+                <div id="subtaskContainer" class="subtask-list">
+                    <div class="subtask-item">
+                        <input type="text" class="subtask-input" placeholder="Enter subtask">
+                        <button class="btn btn-danger">Remove</button>
+                    </div>
+                </div>
+                <button id="addSubtaskBtn" class="btn btn-secondary">Add Subtask</button>
+            </div>
+
+            <div class="advanced-input-group">
+                <label for="taskNotes">Additional Notes</label>
+                <textarea id="taskNotes" rows="3"></textarea>
+            </div>
+
+            <div class="advanced-input-group">
+                <button id="saveAdvancedTask" class="btn btn-primary">Save Task</button>
+                <button id="cancelAdvancedTask" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        class EnhancedTaskManager {
+    constructor() {
+        // Retrieve tasks from localStorage with more robust parsing
+        try {
+            this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+        } catch (error) {
+            console.error('Error parsing tasks from localStorage:', error);
+            this.tasks = [];
+        }
+        
+        // DOM Element References
+        this.initializeElements();
+        
+        // Setup event listeners
+        this.setupEventListeners();
+
+        // Setup advanced task creation events
+        this.setupAdvancedTaskEvents();
+
+        // Initial render of tasks
+        this.renderTasks('all');
+    }
+
+    initializeElements() {
+        // Basic Task Creation Elements
+        this.taskList = document.getElementById('taskList');
+        this.taskNameInput = document.getElementById('taskName');
+        this.taskTypeSelect = document.getElementById('taskType');
+        this.priorityCheckbox = document.getElementById('priorityTask');
+        this.routineDetailsSection = document.getElementById('routineDetails');
+        this.routineFrequencySelect = document.getElementById('routineFrequency');
+        this.taskImageUrlInput = document.getElementById('taskImageUrl');
+        this.taskImageFileInput = document.getElementById('taskImageFile');
+        this.taskDateInput = document.getElementById('taskDate');
+        this.addTaskButton = document.getElementById('addTaskButton');
+
+        // Advanced Task Modal Elements
+        this.taskCreationModal = document.getElementById('taskCreationModal');
+        this.advancedTaskNameInput = document.getElementById('advancedTaskName');
+        this.advancedTaskTypeSelect = document.getElementById('advancedTaskType');
+        this.colorOptions = document.querySelectorAll('.color-option');
+        this.taskDateTimeInput = document.getElementById('taskDateTime');
+        this.subtaskContainer = document.getElementById('subtaskContainer');
+        this.addSubtaskBtn = document.getElementById('addSubtaskBtn');
+        this.saveAdvancedTaskBtn = document.getElementById('saveAdvancedTask');
+        this.cancelAdvancedTaskBtn = document.getElementById('cancelAdvancedTask');
+    }
+
+    setupEventListeners() {
+        // Task type change listener
+        this.taskTypeSelect.addEventListener('change', () => {
+            this.routineDetailsSection.style.display = 
+                this.taskTypeSelect.value === 'routine' ? 'block' : 'none';
+        });
+
+        // File upload handler
+        this.taskImageFileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    this.taskImageUrlInput.value = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Tab filter event listeners
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (event) => {
+                // Remove active class from all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                event.target.classList.add('active');
+                
+                // Filter tasks based on tab
+                this.renderTasks(event.target.dataset.type);
+            });
+        });
+
+        // Add task button event listener
+        this.addTaskButton.addEventListener('click', () => this.addTask());
+    }
+
+    setupAdvancedTaskEvents() {
+        // Color selection
+        this.colorOptions.forEach(option => {
+            option.addEventListener('click', () => {
+                this.colorOptions.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
+
+        // Add subtask
+        this.addSubtaskBtn.addEventListener('click', () => this.addSubtask());
+
+        // Save advanced task
+        this.saveAdvancedTaskBtn.addEventListener('click', () => this.saveAdvancedTask());
+
+        // Cancel task creation
+        this.cancelAdvancedTaskBtn.addEventListener('click', () => this.closeTaskCreationModal());
+    }
+
+    addSubtask() {
+        const subtaskItem = document.createElement('div');
+        subtaskItem.className = 'subtask-item';
+        subtaskItem.innerHTML = `
+            <input type="text" class="subtask-input" placeholder="Enter subtask">
+            <button class="btn btn-danger">Remove</button>
+        `;
+        
+        // Remove subtask functionality
+        subtaskItem.querySelector('button').addEventListener('click', () => {
+            subtaskItem.remove();
+        });
+
+        this.subtaskContainer.appendChild(subtaskItem);
+    }
+
+    saveAdvancedTask() {
+        const taskName = this.advancedTaskNameInput.value.trim();
+        if (!taskName) {
+            alert('Please enter a task name');
+            return;
+        }
+
+        // Collect subtasks
+        const subtasks = Array.from(this.subtaskContainer.querySelectorAll('.subtask-input'))
+            .map(input => input.value.trim())
+            .filter(subtask => subtask !== '');
+
+        // Get selected color
+        const selectedColorOption = document.querySelector('.color-option.selected');
+        const taskColor = selectedColorOption ? selectedColorOption.dataset.color : null;
+
+        // Create task object with advanced details
+        const task = {
+            id: Date.now(),
+            name: taskName,
+            type: this.advancedTaskTypeSelect.value,
+            priority: document.querySelector('input[name="priority"]:checked')?.value || 'low',
+            color: taskColor,
+            dateTime: this.taskDateTimeInput.value,
+            subtasks: subtasks,
+            notes: document.getElementById('taskNotes').value.trim(),
+            reminders: {
+                email: document.getElementById('emailReminder').checked,
+                desktop: document.getElementById('desktopNotification').checked
+            },
+            status: 'pending' // Added status tracking
+        };
+
+        // Add task to tasks array
+        this.tasks.push(task);
+
+        // Save and render
+        this.saveTasks();
+        this.renderTasks('all');
+
+        // Close modal
+        this.closeTaskCreationModal();
+    }
+
+    renderTasks(filterType = 'all') {
+        // Clear existing task list
+        this.taskList.innerHTML = '';
+
+        // Filter tasks based on selected tab
+        let filteredTasks = this.tasks;
+        switch(filterType) {
+            case 'todo':
+                filteredTasks = this.tasks.filter(task => task.type === 'todo');
+                break;
+            case 'routine':
+                filteredTasks = this.tasks.filter(task => task.type === 'routine');
+                break;
+            case 'priority':
+                filteredTasks = this.tasks.filter(task => task.priority === 'high');
+                break;
+            default:
+                filteredTasks = this.tasks;
+        }
+
+        // Sort tasks (priority first, then by date)
+        filteredTasks.sort((a, b) => {
+            // Sort by priority (high first)
+            const priorityOrder = {'high': 3, 'medium': 2, 'low': 1};
+            const priorityComparison = (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
+            if (priorityComparison !== 0) return priorityComparison;
+
+            // Then sort by date if priority is the same
+            return new Date(a.dateTime || 0) - new Date(b.dateTime || 0);
+        });
+
+        // Render each task
+        filteredTasks.forEach(task => {
+            try {
+                const taskCard = document.createElement('div');
+                taskCard.className = `task-card ${task.priority === 'high' ? 'priority' : ''} ${task.type}`;
+                
+                // Add image if exists
+                if (task.image) {
+                            const img = document.createElement('img');
+                            img.src = task.image;
+                            img.className = 'task-image';
+                            taskCard.appendChild(img);
+                        }
+                // Custom color border
+                if (task.color) {
+                    taskCard.style.borderLeftColor = task.color;
+                }
+
+                // Task details section
+                const details = document.createElement('div');
+                details.className = 'task-details';
+
+                // Task name
+                const nameEl = document.createElement('div');
+                nameEl.className = 'task-name';
+                nameEl.textContent = task.name;
+                details.appendChild(nameEl);
+
+                // Task tags
+                const tagsEl = document.createElement('div');
+                tagsEl.className = 'task-tags';
+
+                // Type tag
+                const typeTag = document.createElement('span');
+                typeTag.className = `tag tag-${task.type}`;
+                typeTag.textContent = (task.type || 'TODO').toUpperCase();
+                tagsEl.appendChild(typeTag);
+
+                // Priority tag
+                const priorityTag = document.createElement('span');
+                priorityTag.className = `tag ${task.priority === 'high' ? 'tag-priority' : ''}`;
+                priorityTag.textContent = task.priority.toUpperCase();
+                tagsEl.appendChild(priorityTag);
+
+                // Date/Time tag
+                if (task.dateTime) {
+        const dateTag = document.createElement('span');
+        dateTag.className = 'tag';
+        const formattedDate = new Date(task.dateTime);
+        if (formattedDate.getDate() !== new Date().getDate()) {
+          dateTag.textContent = formattedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        } else {
+          dateTag.textContent = formattedDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+        }
+        tagsEl.appendChild(dateTag);
+      }
+
+      details.appendChild(tagsEl);
+
+                // Subtasks rendering
+                if (task.subtasks && task.subtasks.length > 0) {
+        const subtasksEl = document.createElement('div');
+        subtasksEl.className = 'subtasks';
+        subtasksEl.innerHTML = `<strong>Subtasks:</strong>`;
+        const subtaskList = document.createElement('ul');
+        subtaskList.className = 'subtask-list';
+        subtasksEl.appendChild(subtaskList);
+        task.subtasks.forEach(subtask => {
+          const subtaskItem = document.createElement('li');
+          subtaskItem.textContent = subtask;
+          subtaskList.appendChild(subtaskItem);
+        });
+        details.appendChild(subtasksEl);
+      }
+
+                // Notes rendering
+                if (task.notes) {
+                    const notesEl = document.createElement('div');
+                    notesEl.className = 'task-notes';
+                    notesEl.innerHTML = `<strong>Notes:</strong> ${task.notes}`;
+                    details.appendChild(notesEl);
+                }
+
+                // Reminders tag
+                if (task.reminders && (task.reminders.email || task.reminders.desktop)) {
+                    const reminderTag = document.createElement('span');
+                    reminderTag.className = 'tag reminder-tag';
+                    reminderTag.textContent = 'Reminder Set';
+                    tagsEl.appendChild(reminderTag);
+                }
+
+                taskCard.appendChild(details);
+
+                // Delete button
+                const deleteBtn = document.createElement('button');
+                deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                deleteBtn.className = 'delete-btn';
+                deleteBtn.onclick = () => this.deleteTask(task.id);
+                taskCard.appendChild(deleteBtn);
+
+                // Status toggle button
+                const statusBtn = document.createElement('button');
+                statusBtn.innerHTML = task.status === 'completed' ? '✓ Completed' : 'Mark Complete';
+                statusBtn.className = `status-btn ${task.status === 'completed' ? 'completed' : ''}`;
+                statusBtn.onclick = () => this.toggleTaskStatus(task.id);
+                taskCard.appendChild(statusBtn);
+
+                this.taskList.appendChild(taskCard);
+            } catch (error) {
+                console.error('Error rendering task:', task, error);
+            }
+        });
+    }
+
+    toggleTaskStatus(taskId) {
+        const taskIndex = this.tasks.findIndex(task => task.id === taskId);
+        if (taskIndex !== -1) {
+            this.tasks[taskIndex].status = 
+                this.tasks[taskIndex].status === 'completed' ? 'pending' : 'completed';
+            this.saveTasks();
+            this.renderTasks(document.querySelector('.tab.active').dataset.type);
+        }
+    }
+
+    addTask() {
+        // Get input values
+        const taskName = this.taskNameInput.value.trim();
+        const taskType = this.taskTypeSelect.value;
+        const isPriority = this.priorityCheckbox.checked;
+        const routineFrequency = this.routineFrequencySelect.value;
+        const taskImageUrl = this.taskImageUrlInput.value.trim();
+        const taskDate = this.taskDateInput.value;
+
+        // Validate task name
+        if (!taskName) {
+            alert('Please enter a task name.');
+            return;
+        }
+
+        // Create task object
+        const task = {
+            id: Date.now(),
+            name: taskName,
+            type: taskType || 'todo',
+            priority: isPriority ? 'high' : 'low',
+            routineFrequency: taskType === 'routine' ? routineFrequency : null,
+            image: taskImageUrl,
+            dateTime: taskDate ? new Date(taskDate).toISOString() : null,
+            status: 'pending',
+            subtasks: [], // Empty subtasks for basic tasks
+            notes: '' // Empty notes for basic tasks
+        };
+
+        // Add task to tasks array
+        this.tasks.push(task);
+
+        // Save tasks to localStorage
+        this.saveTasks();
+
+        // Render tasks (maintaining current filter)
+        const activeTab = document.querySelector('.tab.active').dataset.type;
+        this.renderTasks(activeTab);
+
+        // Clear input fields
+        this.clearInputs();
+    }
+
+    saveTasks() {
+        try {
+            localStorage.setItem('tasks', JSON.stringify(this.tasks));
+        } catch (error) {
+            console.error('Error saving tasks to localStorage:', error);
+        }
+    }
+
+    deleteTask(taskId) {
+        // Remove task from tasks array
+        this.tasks = this.tasks.filter(task => task.id !== taskId);
+
+        // Save updated tasks
+        this.saveTasks();
+
+        // Re-render tasks (maintaining current filter)
+        const activeTab = document.querySelector('.tab.active').dataset.type;
+        this.renderTasks(activeTab);
+    }
+
+    clearInputs() {
+        // Reset all input fields
+        this.taskNameInput.value = '';
+        this.taskTypeSelect.value = 'todo';
+        this.priorityCheckbox.checked = false;
+        this.routineDetailsSection.style.display = 'none';
+        this.routineFrequencySelect.value = 'daily';
+        this.taskImageUrlInput.value = '';
+        this.taskDateInput.value = '';
+        this.taskImageFileInput.value = '';
+    }
+
+    closeTaskCreationModal() {
+        this.taskCreationModal.style.display = 'none';
+    }
+
+    showTaskCreationModal() {
+        // Reset modal
+        this.advancedTaskNameInput.value = '';
+        this.advancedTaskTypeSelect.value = 'todo';
+        document.querySelector('input[name="priority"][value="low"]').checked = true;
+        this.colorOptions.forEach(opt => opt.classList.remove('selected'));
+        this.taskDateTimeInput.value = '';
+        this.subtaskContainer.innerHTML = `
+            <div class="subtask-item">
+                <input type="text" class="subtask-input" placeholder="Enter subtask">
+                <button class="btn btn-danger">Remove</button>
+            </div>
+        `;
+        document.getElementById('taskNotes').value = '';
+        document.getElementById('emailReminder').checked = false;
+        document.getElementById('desktopNotification').checked = false;
+
+        // Show modal
+        this.taskCreationModal.style.display = 'flex';
+    }
+}
+
+        // Initialize Task Manager when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskManager = new EnhancedTaskManager();
+
+            // Add a button to open advanced task creation
+            const addAdvancedTaskBtn = document.createElement('button');
+            addAdvancedTaskBtn.innerHTML = '<i class="fas fa-plus-circle"></i> Advanced Task';
+            addAdvancedTaskBtn.className = 'add-btn';
+            addAdvancedTaskBtn.style.marginTop = '10px';
+            addAdvancedTaskBtn.addEventListener('click', () => taskManager.showTaskCreationModal());
+            
+            // Add the button to the sidebar
+            document.querySelector('.sidebar').appendChild(addAdvancedTaskBtn);
+        });
+        
+        class HomepageManager {
+            constructor() {
+                this.modal = document.getElementById('homepageModal');
+                this.setHomepageBtn = document.getElementById('setHomepageBtn');
+                this.dismissHomepageBtn = document.getElementById('dismissHomepageBtn');
+
+                this.init();
+            }
+
+            init() {
+                // Check if homepage is already set
+                if (this.isHomepageSet()) {
+                    return;
+                }
+
+                // Check if user has previously dismissed the prompt
+                if (this.hasUserDismissedPrompt()) {
+                    return;
+                }
+
+                // Show homepage setting modal
+                this.showModal();
+
+                // Setup event listeners
+                this.setHomepageBtn.addEventListener('click', () => this.setHomepage());
+                this.dismissHomepageBtn.addEventListener('click', () => this.dismissPrompt());
+            }
+
+            isHomepageSet() {
+                // This is a simplified check and might need browser-specific adjustments
+                try {
+                    return localStorage.getItem('isHomepageSet') === 'true';
+                } catch (error) {
+                    console.error('Error checking homepage status:', error);
+                    return false;
+                }
+            }
+
+            hasUserDismissedPrompt() {
+                try {
+                    return localStorage.getItem('homepagePromptDismissed') === 'true';
+                } catch (error) {
+                    console.error('Error checking prompt dismissal:', error);
+                    return false;
+                }
+            }
+
+            showModal() {
+                this.modal.style.display = 'flex';
+            }
+
+            setHomepage() {
+                try {
+                    // Note: This is a hint to the browser. Actual homepage setting 
+                    // requires browser-specific methods or user manual settings
+                    localStorage.setItem('isHomepageSet', 'true');
+                    this.modal.style.display = 'none';
+                    alert('This hint has been saved. You may need to set the homepage manually in your browser settings.');
+                } catch (error) {
+                    console.error('Error setting homepage:', error);
+                    alert('Could not set homepage. Please set it manually in your browser settings.');
+                }
+            }
+
+            dismissPrompt() {
+                try {
+                    localStorage.setItem('homepagePromptDismissed', 'true');
+                    this.modal.style.display = 'none';
+                } catch (error) {
+                    console.error('Error dismissing homepage prompt:', error);
+                }
+            }
+        }
+
+        // Initialize Task Manager and Homepage Manager when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                window.taskManager = new TaskManager();
+                window.homepageManager = new HomepageManager();
+            } catch (error) {
+                console.error('Error initializing managers:', error);
+            }
+        });
+    </script>
+</body>
+</html>
