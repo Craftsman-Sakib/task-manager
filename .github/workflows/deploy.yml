@@ -10,7 +10,25 @@ permissions:
   contents: read
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build project
+        run: |
+          # Add your build commands here
+          echo "Building project..."
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: ./path-to-your-build-output # Replace with the path to your build output
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
