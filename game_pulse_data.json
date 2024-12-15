@@ -58,26 +58,15 @@
     "links": ""
   },
   {
-    "id": 1734254587680,
-    "name": "Dayz",
-    "image": "https://e7.pngegg.com/pngimages/501/1001/png-clipart-god-of-war-kratos-god-of-war-iii-god-of-war-ascension-god-of-war-origins-collection-god-of-war-file-game-video-game.png",
-    "genre": [
-      "sci-fi",
-      "action",
-      "horror",
-      "strategy"
-    ],
+    "id": 1734254823488,
+    "name": "game",
+    "image": "https://example.com/image.jpg",
+    "genre": [],
     "releaseYear": "",
-    "platform": [
-      "xbox",
-      "playstation"
-    ],
-    "store": [
-      "epic",
-      "gog"
-    ],
-    "price": "57",
-    "details": "pop",
-    "links": "https://store.steampowered.com/app/221100/DayZ/"
+    "platform": [],
+    "store": [],
+    "price": "",
+    "details": "",
+    "links": ""
   }
 ]
