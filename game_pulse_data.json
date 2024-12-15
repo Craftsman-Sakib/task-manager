@@ -1,32 +1,5 @@
 [
   {
-    "id": 1734199348860,
-    "name": "Dayz",
-    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
-    "genre": [
-      "sci-fi",
-      "co-op",
-      "rpg",
-      "strategy"
-    ],
-    "releaseYear": "2024",
-    "platform": [
-      "pc",
-      "xbox",
-      "playstation",
-      "nintendo",
-      "mobile"
-    ],
-    "store": [
-      "steam",
-      "epic",
-      "gog"
-    ],
-    "price": "40",
-    "details": "blbipp;n",
-    "links": "https://store.steampowered.com/app/221100/DayZ/"
-  },
-  {
     "id": 1734216703054,
     "name": "Dayz",
     "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
@@ -64,18 +37,6 @@
     "id": 1734249440372,
     "name": "karma",
     "image": "https://th.bing.com/th/id/R.c76402184f15c79d12d4a3fbada2d3c0?rik=cpQxECBNW64a6A&pid=ImgRaw&r=0",
-    "genre": [],
-    "releaseYear": "",
-    "platform": [],
-    "store": [],
-    "price": "",
-    "details": "",
-    "links": ""
-  },
-  {
-    "id": 1734249777652,
-    "name": "game",
-    "image": "https://editors.dexerto.com/wp-content/uploads/2021/09/09/new-game-releases-survival-fps.jpg",
     "genre": [],
     "releaseYear": "",
     "platform": [],
