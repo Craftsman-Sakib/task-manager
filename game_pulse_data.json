@@ -58,18 +58,6 @@
     "links": ""
   },
   {
-    "id": 1734254823488,
-    "name": "game",
-    "image": "https://example.com/image.jpg",
-    "genre": [],
-    "releaseYear": "",
-    "platform": [],
-    "store": [],
-    "price": "",
-    "details": "",
-    "links": ""
-  },
-  {
     "id": 1734255605815,
     "name": "road rush",
     "image": "/api/placeholder/200/300",
