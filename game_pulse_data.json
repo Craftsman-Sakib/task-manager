@@ -1,60 +1,36 @@
 [
   {
-    "id": 1734216703054,
-    "name": "Dayz",
-    "image": "https://th.bing.com/th/id/R.3f5b4504258104d69dfff9c36e57dad2?rik=KSQmCUumlAzIPQ&pid=ImgRaw&r=0",
+    "id": 1734276985215,
+    "name": "path of exile 2",
+    "image": "https://gumlet.assettype.com/afkgaming/2023-07/af63aaf5-2332-46c5-b78c-f227986f2536/PoE_2.jpg?compress=true&dpr=1&w=1200",
     "genre": [
       "sci-fi",
-      "shooter",
-      "co-op"
+      "action",
+      "horror"
     ],
-    "releaseYear": "2024",
+    "releaseDate": "",
+    "releaseYear": "",
     "platform": [
       "pc",
       "xbox"
     ],
     "store": [
       "steam",
-      "epic"
+      "gog"
     ],
-    "price": "12",
-    "details": "sa",
-    "links": "https://store.steampowered.com/app/221100/DayZ/"
-  },
-  {
-    "id": 1734247963677,
-    "name": "karma",
-    "image": "https://e7.pngegg.com/pngimages/501/1001/png-clipart-god-of-war-kratos-god-of-war-iii-god-of-war-ascension-god-of-war-origins-collection-god-of-war-file-game-video-game.png",
-    "genre": [],
-    "releaseYear": "",
-    "platform": [],
-    "store": [],
-    "price": "",
-    "details": "",
-    "links": ""
-  },
-  {
-    "id": 1734249440372,
-    "name": "karma",
-    "image": "https://th.bing.com/th/id/R.c76402184f15c79d12d4a3fbada2d3c0?rik=cpQxECBNW64a6A&pid=ImgRaw&r=0",
-    "genre": [],
-    "releaseYear": "",
-    "platform": [],
-    "store": [],
-    "price": "",
-    "details": "",
-    "links": ""
-  },
-  {
-    "id": 1734250033532,
-    "name": "gaming",
-    "image": "https://editors.dexerto.com/wp-content/uploads/2021/09/09/new-game-releases-survival-fps.jpg",
-    "genre": [],
-    "releaseYear": "",
-    "platform": [],
-    "store": [],
-    "price": "",
-    "details": "",
-    "links": ""
+    "price": "25",
+    "details": "Path of Exile 2 is a next generation free-to-play Action RPG from Grinding Gear Games, featuring co-op for up to six players. Set years after the original Path of Exile, you will return to the dark world of Wraeclast and seek to end the corruption that is spreading.",
+    "modLinks": "https://www.nexusmods.com/pathofexile2",
+    "extraImages": [
+      "https://th.bing.com/th/id/OIP.XnUuZ28NO_qynsCUSGB2MAAAAA?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/OIP.Smo3C_nV1gDp_zLyOI9UgwAAAA?w=440&h=247&rs=1&pid=ImgDetMain"
+    ],
+    "videoLinks": [
+      "https://www.youtube.com/watch?v=5wTGnENfCPM"
+    ],
+    "trailerLinks": [
+      "https://www.youtube.com/watch?v=KhhNhpOln64"
+    ],
+    "isFavorite": false
   }
 ]
