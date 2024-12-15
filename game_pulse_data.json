@@ -1,36 +1,25 @@
 [
   {
-    "id": 1734276985215,
-    "name": "path of exile 2",
-    "image": "https://gumlet.assettype.com/afkgaming/2023-07/af63aaf5-2332-46c5-b78c-f227986f2536/PoE_2.jpg?compress=true&dpr=1&w=1200",
-    "genre": [
-      "sci-fi",
-      "action",
-      "horror"
-    ],
-    "releaseDate": "",
-    "releaseYear": "",
+    "id": 1734277487596,
+    "name": "Dayz",
+    "image": "https://e7.pngegg.com/pngimages/501/1001/png-clipart-god-of-war-kratos-god-of-war-iii-god-of-war-ascension-god-of-war-origins-collection-god-of-war-file-game-video-game.png",
+    "genre": [],
+    "releaseDate": "2024-12-19",
+    "releaseYear": "2024",
     "platform": [
       "pc",
       "xbox"
     ],
     "store": [
       "steam",
-      "gog"
+      "epic"
     ],
-    "price": "25",
-    "details": "Path of Exile 2 is a next generation free-to-play Action RPG from Grinding Gear Games, featuring co-op for up to six players. Set years after the original Path of Exile, you will return to the dark world of Wraeclast and seek to end the corruption that is spreading.",
-    "modLinks": "https://www.nexusmods.com/pathofexile2",
-    "extraImages": [
-      "https://th.bing.com/th/id/OIP.XnUuZ28NO_qynsCUSGB2MAAAAA?rs=1&pid=ImgDetMain",
-      "https://th.bing.com/th/id/OIP.Smo3C_nV1gDp_zLyOI9UgwAAAA?w=440&h=247&rs=1&pid=ImgDetMain"
-    ],
-    "videoLinks": [
-      "https://www.youtube.com/watch?v=5wTGnENfCPM"
-    ],
-    "trailerLinks": [
-      "https://www.youtube.com/watch?v=KhhNhpOln64"
-    ],
+    "price": "50",
+    "details": "",
+    "modLinks": "",
+    "extraImages": [],
+    "videoLinks": [],
+    "trailerLinks": [],
     "isFavorite": false
   }
 ]
