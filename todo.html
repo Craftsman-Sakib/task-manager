@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,17 +22,16 @@
 
         .app-container {
             display: flex;
-            height: 100vh;
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            /* Ensure children are laid out horizontally */
+            position: relative;
         }
 
+        /* Navigation panel fixed to the left */
         .navigation-panel {
             position: fixed;
             top: 0;
-            left: 0;
+            right: 0;
+            /* Place it on the right side */
             width: 60px;
             height: 100vh;
             background-color: #f8f9fa;
@@ -39,7 +39,8 @@
             flex-direction: column;
             align-items: center;
             padding-top: 20px;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+            /* Shadow on the left side */
             z-index: 1000;
             transition: width 0.3s ease;
         }
@@ -85,7 +86,7 @@
             transition: margin-left 0.3s ease;
         }
 
-        .navigation-panel:hover + .main-content {
+        .navigation-panel:hover+.main-content {
             margin-left: 200px;
         }
 
@@ -139,7 +140,7 @@
             color: #555;
         }
 
-        .input-group input, 
+        .input-group input,
         .input-group select {
             padding: 10px;
             border: 1px solid #ddd;
@@ -217,7 +218,8 @@
             transition: background-color 0.3s;
             border-top-left-radius: 4px;
             border-top-right-radius: 4px;
-            position: relative; /* For absolute positioning of count */
+            position: relative;
+            /* For absolute positioning of count */
         }
 
         .tab.active {
@@ -232,16 +234,17 @@
         }
 
         .task-card {
-  border: 1px solid #e8e8e8; /* Lighter border */
-  border-radius: 10px;
-  padding: 20px; 
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  transition: box-shadow 0.3s;
-  background-color: #f8f8f8; 
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08); 
-}
+            border: 1px solid #e8e8e8;
+            /* Lighter border */
+            border-radius: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: box-shadow 0.3s;
+            background-color: #f8f8f8;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+        }
 
         .task-card.priority {
             border-left: 5px solid #dc3545;
@@ -254,7 +257,7 @@
         }
 
         .task-card:hover {
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .task-image {
@@ -331,13 +334,14 @@
         .delete-btn:hover {
             background-color: #c82333;
         }
+
         .homepage-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             display: none;
             justify-content: center;
             align-items: center;
@@ -350,7 +354,7 @@
             border-radius: 8px;
             text-align: center;
             max-width: 400px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .homepage-modal-buttons {
@@ -385,13 +389,14 @@
         .homepage-btn-secondary:hover {
             background-color: #545b62;
         }
+
         .task-creation-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0, 0, 0, 0.5);
             display: none;
             justify-content: center;
             align-items: center;
@@ -399,26 +404,26 @@
         }
 
         .task-creation-content {
-  background-color: white;
-  max-width: 600px; 
-  max-height: 90vh;
-  overflow-y: auto;
-  padding: 30px;
-  border-radius: 12px; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
+            background-color: white;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
 
         .advanced-input-group {
             margin-bottom: 15px;
         }
 
         .subtask-list {
-  margin-top: 12px;
-  padding: 10px;
-  border: 1px solid #f0f0f0;
-  border-radius: 5px;
-  background-color: #f9f9f9; 
-}
+            margin-top: 12px;
+            padding: 10px;
+            border: 1px solid #f0f0f0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
 
         .subtask-item {
             display: flex;
@@ -455,9 +460,9 @@
 
         /* New reminder styles */
         .reminder-tag {
-  background-color: #f7b801; 
-  color: #333;
-}
+            background-color: #f7b801;
+            color: #333;
+        }
 
         .task-card .reminder-details {
             font-size: 12px;
@@ -466,10 +471,11 @@
         }
     </style>
 </head>
+
 <body>
     <div class="app-container">
-         <!-- Navigation Panel -->
-         <div class="navigation-panel">
+        <!-- Navigation Panel -->
+        <div class="navigation-panel">
             <a href="todo.html" class="nav-item active">
                 <i class="fas fa-tasks"></i>
                 <span>Task Manager</span>
@@ -570,7 +576,7 @@
                 <label for="advancedTaskName">Task Name</label>
                 <input type="text" id="advancedTaskName" required>
             </div>
-            
+
             <div class="advanced-input-group">
                 <label for="advancedTaskType">Task Type</label>
                 <select id="advancedTaskType">
@@ -647,425 +653,425 @@
     </div>
     <script>
         class EnhancedTaskManager {
-    constructor() {
-        // Retrieve tasks from localStorage with more robust parsing
-        try {
-            this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-        } catch (error) {
-            console.error('Error parsing tasks from localStorage:', error);
-            this.tasks = [];
-        }
-        
-        // DOM Element References
-        this.initializeElements();
-        
-        // Setup event listeners
-        this.setupEventListeners();
+            constructor() {
+                // Retrieve tasks from localStorage with more robust parsing
+                try {
+                    this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+                } catch (error) {
+                    console.error('Error parsing tasks from localStorage:', error);
+                    this.tasks = [];
+                }
 
-        // Setup advanced task creation events
-        this.setupAdvancedTaskEvents();
+                // DOM Element References
+                this.initializeElements();
 
-        // Initial render of tasks
-        this.renderTasks('all');
-    }
+                // Setup event listeners
+                this.setupEventListeners();
 
-    initializeElements() {
-        // Basic Task Creation Elements
-        this.taskList = document.getElementById('taskList');
-        this.taskNameInput = document.getElementById('taskName');
-        this.taskTypeSelect = document.getElementById('taskType');
-        this.priorityCheckbox = document.getElementById('priorityTask');
-        this.routineDetailsSection = document.getElementById('routineDetails');
-        this.routineFrequencySelect = document.getElementById('routineFrequency');
-        this.taskImageUrlInput = document.getElementById('taskImageUrl');
-        this.taskImageFileInput = document.getElementById('taskImageFile');
-        this.taskDateInput = document.getElementById('taskDate');
-        this.addTaskButton = document.getElementById('addTaskButton');
+                // Setup advanced task creation events
+                this.setupAdvancedTaskEvents();
 
-        // Advanced Task Modal Elements
-        this.taskCreationModal = document.getElementById('taskCreationModal');
-        this.advancedTaskNameInput = document.getElementById('advancedTaskName');
-        this.advancedTaskTypeSelect = document.getElementById('advancedTaskType');
-        this.colorOptions = document.querySelectorAll('.color-option');
-        this.taskDateTimeInput = document.getElementById('taskDateTime');
-        this.subtaskContainer = document.getElementById('subtaskContainer');
-        this.addSubtaskBtn = document.getElementById('addSubtaskBtn');
-        this.saveAdvancedTaskBtn = document.getElementById('saveAdvancedTask');
-        this.cancelAdvancedTaskBtn = document.getElementById('cancelAdvancedTask');
-    }
-
-    setupEventListeners() {
-        // Task type change listener
-        this.taskTypeSelect.addEventListener('change', () => {
-            this.routineDetailsSection.style.display = 
-                this.taskTypeSelect.value === 'routine' ? 'block' : 'none';
-        });
-
-        // File upload handler
-        this.taskImageFileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    this.taskImageUrlInput.value = e.target.result;
-                };
-                reader.readAsDataURL(file);
+                // Initial render of tasks
+                this.renderTasks('all');
             }
-        });
 
-        // Tab filter event listeners
-        const tabs = document.querySelectorAll('.tab');
-        tabs.forEach(tab => {
-            tab.addEventListener('click', (event) => {
-                // Remove active class from all tabs
-                tabs.forEach(t => t.classList.remove('active'));
-                
-                // Add active class to clicked tab
-                event.target.classList.add('active');
-                
-                // Filter tasks based on tab
-                this.renderTasks(event.target.dataset.type);
-            });
-        });
+            initializeElements() {
+                // Basic Task Creation Elements
+                this.taskList = document.getElementById('taskList');
+                this.taskNameInput = document.getElementById('taskName');
+                this.taskTypeSelect = document.getElementById('taskType');
+                this.priorityCheckbox = document.getElementById('priorityTask');
+                this.routineDetailsSection = document.getElementById('routineDetails');
+                this.routineFrequencySelect = document.getElementById('routineFrequency');
+                this.taskImageUrlInput = document.getElementById('taskImageUrl');
+                this.taskImageFileInput = document.getElementById('taskImageFile');
+                this.taskDateInput = document.getElementById('taskDate');
+                this.addTaskButton = document.getElementById('addTaskButton');
 
-        // Add task button event listener
-        this.addTaskButton.addEventListener('click', () => this.addTask());
-    }
+                // Advanced Task Modal Elements
+                this.taskCreationModal = document.getElementById('taskCreationModal');
+                this.advancedTaskNameInput = document.getElementById('advancedTaskName');
+                this.advancedTaskTypeSelect = document.getElementById('advancedTaskType');
+                this.colorOptions = document.querySelectorAll('.color-option');
+                this.taskDateTimeInput = document.getElementById('taskDateTime');
+                this.subtaskContainer = document.getElementById('subtaskContainer');
+                this.addSubtaskBtn = document.getElementById('addSubtaskBtn');
+                this.saveAdvancedTaskBtn = document.getElementById('saveAdvancedTask');
+                this.cancelAdvancedTaskBtn = document.getElementById('cancelAdvancedTask');
+            }
 
-    setupAdvancedTaskEvents() {
-        // Color selection
-        this.colorOptions.forEach(option => {
-            option.addEventListener('click', () => {
-                this.colorOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-            });
-        });
+            setupEventListeners() {
+                // Task type change listener
+                this.taskTypeSelect.addEventListener('change', () => {
+                    this.routineDetailsSection.style.display =
+                        this.taskTypeSelect.value === 'routine' ? 'block' : 'none';
+                });
 
-        // Add subtask
-        this.addSubtaskBtn.addEventListener('click', () => this.addSubtask());
+                // File upload handler
+                this.taskImageFileInput.addEventListener('change', (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            this.taskImageUrlInput.value = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
 
-        // Save advanced task
-        this.saveAdvancedTaskBtn.addEventListener('click', () => this.saveAdvancedTask());
+                // Tab filter event listeners
+                const tabs = document.querySelectorAll('.tab');
+                tabs.forEach(tab => {
+                    tab.addEventListener('click', (event) => {
+                        // Remove active class from all tabs
+                        tabs.forEach(t => t.classList.remove('active'));
 
-        // Cancel task creation
-        this.cancelAdvancedTaskBtn.addEventListener('click', () => this.closeTaskCreationModal());
-    }
+                        // Add active class to clicked tab
+                        event.target.classList.add('active');
 
-    addSubtask() {
-        const subtaskItem = document.createElement('div');
-        subtaskItem.className = 'subtask-item';
-        subtaskItem.innerHTML = `
+                        // Filter tasks based on tab
+                        this.renderTasks(event.target.dataset.type);
+                    });
+                });
+
+                // Add task button event listener
+                this.addTaskButton.addEventListener('click', () => this.addTask());
+            }
+
+            setupAdvancedTaskEvents() {
+                // Color selection
+                this.colorOptions.forEach(option => {
+                    option.addEventListener('click', () => {
+                        this.colorOptions.forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                    });
+                });
+
+                // Add subtask
+                this.addSubtaskBtn.addEventListener('click', () => this.addSubtask());
+
+                // Save advanced task
+                this.saveAdvancedTaskBtn.addEventListener('click', () => this.saveAdvancedTask());
+
+                // Cancel task creation
+                this.cancelAdvancedTaskBtn.addEventListener('click', () => this.closeTaskCreationModal());
+            }
+
+            addSubtask() {
+                const subtaskItem = document.createElement('div');
+                subtaskItem.className = 'subtask-item';
+                subtaskItem.innerHTML = `
             <input type="text" class="subtask-input" placeholder="Enter subtask">
             <button class="btn btn-danger">Remove</button>
         `;
-        
-        // Remove subtask functionality
-        subtaskItem.querySelector('button').addEventListener('click', () => {
-            subtaskItem.remove();
-        });
 
-        this.subtaskContainer.appendChild(subtaskItem);
-    }
+                // Remove subtask functionality
+                subtaskItem.querySelector('button').addEventListener('click', () => {
+                    subtaskItem.remove();
+                });
 
-    saveAdvancedTask() {
-        const taskName = this.advancedTaskNameInput.value.trim();
-        if (!taskName) {
-            alert('Please enter a task name');
-            return;
-        }
+                this.subtaskContainer.appendChild(subtaskItem);
+            }
 
-        // Collect subtasks
-        const subtasks = Array.from(this.subtaskContainer.querySelectorAll('.subtask-input'))
-            .map(input => input.value.trim())
-            .filter(subtask => subtask !== '');
+            saveAdvancedTask() {
+                const taskName = this.advancedTaskNameInput.value.trim();
+                if (!taskName) {
+                    alert('Please enter a task name');
+                    return;
+                }
 
-        // Get selected color
-        const selectedColorOption = document.querySelector('.color-option.selected');
-        const taskColor = selectedColorOption ? selectedColorOption.dataset.color : null;
+                // Collect subtasks
+                const subtasks = Array.from(this.subtaskContainer.querySelectorAll('.subtask-input'))
+                    .map(input => input.value.trim())
+                    .filter(subtask => subtask !== '');
 
-        // Create task object with advanced details
-        const task = {
-            id: Date.now(),
-            name: taskName,
-            type: this.advancedTaskTypeSelect.value,
-            priority: document.querySelector('input[name="priority"]:checked')?.value || 'low',
-            color: taskColor,
-            dateTime: this.taskDateTimeInput.value,
-            subtasks: subtasks,
-            notes: document.getElementById('taskNotes').value.trim(),
-            reminders: {
-                email: document.getElementById('emailReminder').checked,
-                desktop: document.getElementById('desktopNotification').checked
-            },
-            status: 'pending' // Added status tracking
-        };
+                // Get selected color
+                const selectedColorOption = document.querySelector('.color-option.selected');
+                const taskColor = selectedColorOption ? selectedColorOption.dataset.color : null;
 
-        // Add task to tasks array
-        this.tasks.push(task);
+                // Create task object with advanced details
+                const task = {
+                    id: Date.now(),
+                    name: taskName,
+                    type: this.advancedTaskTypeSelect.value,
+                    priority: document.querySelector('input[name="priority"]:checked')?.value || 'low',
+                    color: taskColor,
+                    dateTime: this.taskDateTimeInput.value,
+                    subtasks: subtasks,
+                    notes: document.getElementById('taskNotes').value.trim(),
+                    reminders: {
+                        email: document.getElementById('emailReminder').checked,
+                        desktop: document.getElementById('desktopNotification').checked
+                    },
+                    status: 'pending' // Added status tracking
+                };
 
-        // Save and render
-        this.saveTasks();
-        this.renderTasks('all');
+                // Add task to tasks array
+                this.tasks.push(task);
 
-        // Close modal
-        this.closeTaskCreationModal();
-    }
+                // Save and render
+                this.saveTasks();
+                this.renderTasks('all');
 
-    renderTasks(filterType = 'all') {
-        // Clear existing task list
-        this.taskList.innerHTML = '';
+                // Close modal
+                this.closeTaskCreationModal();
+            }
 
-        // Filter tasks based on selected tab
-        let filteredTasks = this.tasks;
-        switch(filterType) {
-            case 'todo':
-                filteredTasks = this.tasks.filter(task => task.type === 'todo');
-                break;
-            case 'routine':
-                filteredTasks = this.tasks.filter(task => task.type === 'routine');
-                break;
-            case 'priority':
-                filteredTasks = this.tasks.filter(task => task.priority === 'high');
-                break;
-            default:
-                filteredTasks = this.tasks;
-        }
+            renderTasks(filterType = 'all') {
+                // Clear existing task list
+                this.taskList.innerHTML = '';
 
-        // Sort tasks (priority first, then by date)
-        filteredTasks.sort((a, b) => {
-            // Sort by priority (high first)
-            const priorityOrder = {'high': 3, 'medium': 2, 'low': 1};
-            const priorityComparison = (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
-            if (priorityComparison !== 0) return priorityComparison;
+                // Filter tasks based on selected tab
+                let filteredTasks = this.tasks;
+                switch (filterType) {
+                    case 'todo':
+                        filteredTasks = this.tasks.filter(task => task.type === 'todo');
+                        break;
+                    case 'routine':
+                        filteredTasks = this.tasks.filter(task => task.type === 'routine');
+                        break;
+                    case 'priority':
+                        filteredTasks = this.tasks.filter(task => task.priority === 'high');
+                        break;
+                    default:
+                        filteredTasks = this.tasks;
+                }
 
-            // Then sort by date if priority is the same
-            return new Date(a.dateTime || 0) - new Date(b.dateTime || 0);
-        });
+                // Sort tasks (priority first, then by date)
+                filteredTasks.sort((a, b) => {
+                    // Sort by priority (high first)
+                    const priorityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
+                    const priorityComparison = (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
+                    if (priorityComparison !== 0) return priorityComparison;
 
-        // Render each task
-        filteredTasks.forEach(task => {
-            try {
-                const taskCard = document.createElement('div');
-                taskCard.className = `task-card ${task.priority === 'high' ? 'priority' : ''} ${task.type}`;
-                
-                // Add image if exists
-                if (task.image) {
+                    // Then sort by date if priority is the same
+                    return new Date(a.dateTime || 0) - new Date(b.dateTime || 0);
+                });
+
+                // Render each task
+                filteredTasks.forEach(task => {
+                    try {
+                        const taskCard = document.createElement('div');
+                        taskCard.className = `task-card ${task.priority === 'high' ? 'priority' : ''} ${task.type}`;
+
+                        // Add image if exists
+                        if (task.image) {
                             const img = document.createElement('img');
                             img.src = task.image;
                             img.className = 'task-image';
                             taskCard.appendChild(img);
                         }
-                // Custom color border
-                if (task.color) {
-                    taskCard.style.borderLeftColor = task.color;
-                }
+                        // Custom color border
+                        if (task.color) {
+                            taskCard.style.borderLeftColor = task.color;
+                        }
 
-                // Task details section
-                const details = document.createElement('div');
-                details.className = 'task-details';
+                        // Task details section
+                        const details = document.createElement('div');
+                        details.className = 'task-details';
 
-                // Task name
-                const nameEl = document.createElement('div');
-                nameEl.className = 'task-name';
-                nameEl.textContent = task.name;
-                details.appendChild(nameEl);
+                        // Task name
+                        const nameEl = document.createElement('div');
+                        nameEl.className = 'task-name';
+                        nameEl.textContent = task.name;
+                        details.appendChild(nameEl);
 
-                // Task tags
-                const tagsEl = document.createElement('div');
-                tagsEl.className = 'task-tags';
+                        // Task tags
+                        const tagsEl = document.createElement('div');
+                        tagsEl.className = 'task-tags';
 
-                // Type tag
-                const typeTag = document.createElement('span');
-                typeTag.className = `tag tag-${task.type}`;
-                typeTag.textContent = (task.type || 'TODO').toUpperCase();
-                tagsEl.appendChild(typeTag);
+                        // Type tag
+                        const typeTag = document.createElement('span');
+                        typeTag.className = `tag tag-${task.type}`;
+                        typeTag.textContent = (task.type || 'TODO').toUpperCase();
+                        tagsEl.appendChild(typeTag);
 
-                // Priority tag
-                const priorityTag = document.createElement('span');
-                priorityTag.className = `tag ${task.priority === 'high' ? 'tag-priority' : ''}`;
-                priorityTag.textContent = task.priority.toUpperCase();
-                tagsEl.appendChild(priorityTag);
+                        // Priority tag
+                        const priorityTag = document.createElement('span');
+                        priorityTag.className = `tag ${task.priority === 'high' ? 'tag-priority' : ''}`;
+                        priorityTag.textContent = task.priority.toUpperCase();
+                        tagsEl.appendChild(priorityTag);
 
-                // Date/Time tag
-                if (task.dateTime) {
-        const dateTag = document.createElement('span');
-        dateTag.className = 'tag';
-        const formattedDate = new Date(task.dateTime);
-        if (formattedDate.getDate() !== new Date().getDate()) {
-          dateTag.textContent = formattedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        } else {
-          dateTag.textContent = formattedDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-        }
-        tagsEl.appendChild(dateTag);
-      }
+                        // Date/Time tag
+                        if (task.dateTime) {
+                            const dateTag = document.createElement('span');
+                            dateTag.className = 'tag';
+                            const formattedDate = new Date(task.dateTime);
+                            if (formattedDate.getDate() !== new Date().getDate()) {
+                                dateTag.textContent = formattedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+                            } else {
+                                dateTag.textContent = formattedDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                            }
+                            tagsEl.appendChild(dateTag);
+                        }
 
-      details.appendChild(tagsEl);
+                        details.appendChild(tagsEl);
 
-                // Subtasks rendering
-                if (task.subtasks && task.subtasks.length > 0) {
-        const subtasksEl = document.createElement('div');
-        subtasksEl.className = 'subtasks';
-        subtasksEl.innerHTML = `<strong>Subtasks:</strong>`;
-        const subtaskList = document.createElement('ul');
-        subtaskList.className = 'subtask-list';
-        subtasksEl.appendChild(subtaskList);
-        task.subtasks.forEach(subtask => {
-          const subtaskItem = document.createElement('li');
-          subtaskItem.textContent = subtask;
-          subtaskList.appendChild(subtaskItem);
-        });
-        details.appendChild(subtasksEl);
-      }
+                        // Subtasks rendering
+                        if (task.subtasks && task.subtasks.length > 0) {
+                            const subtasksEl = document.createElement('div');
+                            subtasksEl.className = 'subtasks';
+                            subtasksEl.innerHTML = `<strong>Subtasks:</strong>`;
+                            const subtaskList = document.createElement('ul');
+                            subtaskList.className = 'subtask-list';
+                            subtasksEl.appendChild(subtaskList);
+                            task.subtasks.forEach(subtask => {
+                                const subtaskItem = document.createElement('li');
+                                subtaskItem.textContent = subtask;
+                                subtaskList.appendChild(subtaskItem);
+                            });
+                            details.appendChild(subtasksEl);
+                        }
 
-                // Notes rendering
-                if (task.notes) {
-                    const notesEl = document.createElement('div');
-                    notesEl.className = 'task-notes';
-                    notesEl.innerHTML = `<strong>Notes:</strong> ${task.notes}`;
-                    details.appendChild(notesEl);
-                }
+                        // Notes rendering
+                        if (task.notes) {
+                            const notesEl = document.createElement('div');
+                            notesEl.className = 'task-notes';
+                            notesEl.innerHTML = `<strong>Notes:</strong> ${task.notes}`;
+                            details.appendChild(notesEl);
+                        }
 
-                // Reminders tag
-                if (task.reminders && (task.reminders.email || task.reminders.desktop)) {
-                    const reminderTag = document.createElement('span');
-                    reminderTag.className = 'tag reminder-tag';
-                    reminderTag.textContent = 'Reminder Set';
-                    tagsEl.appendChild(reminderTag);
-                }
+                        // Reminders tag
+                        if (task.reminders && (task.reminders.email || task.reminders.desktop)) {
+                            const reminderTag = document.createElement('span');
+                            reminderTag.className = 'tag reminder-tag';
+                            reminderTag.textContent = 'Reminder Set';
+                            tagsEl.appendChild(reminderTag);
+                        }
 
-                taskCard.appendChild(details);
+                        taskCard.appendChild(details);
 
-                // Delete button
-                const deleteBtn = document.createElement('button');
-                deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-                deleteBtn.className = 'delete-btn';
-                deleteBtn.onclick = () => this.deleteTask(task.id);
-                taskCard.appendChild(deleteBtn);
+                        // Delete button
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                        deleteBtn.className = 'delete-btn';
+                        deleteBtn.onclick = () => this.deleteTask(task.id);
+                        taskCard.appendChild(deleteBtn);
 
-                // Status toggle button
-                const statusBtn = document.createElement('button');
-                statusBtn.innerHTML = task.status === 'completed' ? '✓ Completed' : 'Mark Complete';
-                statusBtn.className = `status-btn ${task.status === 'completed' ? 'completed' : ''}`;
-                statusBtn.onclick = () => this.toggleTaskStatus(task.id);
-                taskCard.appendChild(statusBtn);
+                        // Status toggle button
+                        const statusBtn = document.createElement('button');
+                        statusBtn.innerHTML = task.status === 'completed' ? '✓ Completed' : 'Mark Complete';
+                        statusBtn.className = `status-btn ${task.status === 'completed' ? 'completed' : ''}`;
+                        statusBtn.onclick = () => this.toggleTaskStatus(task.id);
+                        taskCard.appendChild(statusBtn);
 
-                this.taskList.appendChild(taskCard);
-            } catch (error) {
-                console.error('Error rendering task:', task, error);
+                        this.taskList.appendChild(taskCard);
+                    } catch (error) {
+                        console.error('Error rendering task:', task, error);
+                    }
+                });
             }
-        });
-    }
 
-    toggleTaskStatus(taskId) {
-        const taskIndex = this.tasks.findIndex(task => task.id === taskId);
-        if (taskIndex !== -1) {
-            this.tasks[taskIndex].status = 
-                this.tasks[taskIndex].status === 'completed' ? 'pending' : 'completed';
-            this.saveTasks();
-            this.renderTasks(document.querySelector('.tab.active').dataset.type);
-        }
-    }
+            toggleTaskStatus(taskId) {
+                const taskIndex = this.tasks.findIndex(task => task.id === taskId);
+                if (taskIndex !== -1) {
+                    this.tasks[taskIndex].status =
+                        this.tasks[taskIndex].status === 'completed' ? 'pending' : 'completed';
+                    this.saveTasks();
+                    this.renderTasks(document.querySelector('.tab.active').dataset.type);
+                }
+            }
 
-    addTask() {
-        // Get input values
-        const taskName = this.taskNameInput.value.trim();
-        const taskType = this.taskTypeSelect.value;
-        const isPriority = this.priorityCheckbox.checked;
-        const routineFrequency = this.routineFrequencySelect.value;
-        const taskImageUrl = this.taskImageUrlInput.value.trim();
-        const taskDate = this.taskDateInput.value;
+            addTask() {
+                // Get input values
+                const taskName = this.taskNameInput.value.trim();
+                const taskType = this.taskTypeSelect.value;
+                const isPriority = this.priorityCheckbox.checked;
+                const routineFrequency = this.routineFrequencySelect.value;
+                const taskImageUrl = this.taskImageUrlInput.value.trim();
+                const taskDate = this.taskDateInput.value;
 
-        // Validate task name
-        if (!taskName) {
-            alert('Please enter a task name.');
-            return;
-        }
+                // Validate task name
+                if (!taskName) {
+                    alert('Please enter a task name.');
+                    return;
+                }
 
-        // Create task object
-        const task = {
-            id: Date.now(),
-            name: taskName,
-            type: taskType || 'todo',
-            priority: isPriority ? 'high' : 'low',
-            routineFrequency: taskType === 'routine' ? routineFrequency : null,
-            image: taskImageUrl,
-            dateTime: taskDate ? new Date(taskDate).toISOString() : null,
-            status: 'pending',
-            subtasks: [], // Empty subtasks for basic tasks
-            notes: '' // Empty notes for basic tasks
-        };
+                // Create task object
+                const task = {
+                    id: Date.now(),
+                    name: taskName,
+                    type: taskType || 'todo',
+                    priority: isPriority ? 'high' : 'low',
+                    routineFrequency: taskType === 'routine' ? routineFrequency : null,
+                    image: taskImageUrl,
+                    dateTime: taskDate ? new Date(taskDate).toISOString() : null,
+                    status: 'pending',
+                    subtasks: [], // Empty subtasks for basic tasks
+                    notes: '' // Empty notes for basic tasks
+                };
 
-        // Add task to tasks array
-        this.tasks.push(task);
+                // Add task to tasks array
+                this.tasks.push(task);
 
-        // Save tasks to localStorage
-        this.saveTasks();
+                // Save tasks to localStorage
+                this.saveTasks();
 
-        // Render tasks (maintaining current filter)
-        const activeTab = document.querySelector('.tab.active').dataset.type;
-        this.renderTasks(activeTab);
+                // Render tasks (maintaining current filter)
+                const activeTab = document.querySelector('.tab.active').dataset.type;
+                this.renderTasks(activeTab);
 
-        // Clear input fields
-        this.clearInputs();
-    }
+                // Clear input fields
+                this.clearInputs();
+            }
 
-    saveTasks() {
-        try {
-            localStorage.setItem('tasks', JSON.stringify(this.tasks));
-        } catch (error) {
-            console.error('Error saving tasks to localStorage:', error);
-        }
-    }
+            saveTasks() {
+                try {
+                    localStorage.setItem('tasks', JSON.stringify(this.tasks));
+                } catch (error) {
+                    console.error('Error saving tasks to localStorage:', error);
+                }
+            }
 
-    deleteTask(taskId) {
-        // Remove task from tasks array
-        this.tasks = this.tasks.filter(task => task.id !== taskId);
+            deleteTask(taskId) {
+                // Remove task from tasks array
+                this.tasks = this.tasks.filter(task => task.id !== taskId);
 
-        // Save updated tasks
-        this.saveTasks();
+                // Save updated tasks
+                this.saveTasks();
 
-        // Re-render tasks (maintaining current filter)
-        const activeTab = document.querySelector('.tab.active').dataset.type;
-        this.renderTasks(activeTab);
-    }
+                // Re-render tasks (maintaining current filter)
+                const activeTab = document.querySelector('.tab.active').dataset.type;
+                this.renderTasks(activeTab);
+            }
 
-    clearInputs() {
-        // Reset all input fields
-        this.taskNameInput.value = '';
-        this.taskTypeSelect.value = 'todo';
-        this.priorityCheckbox.checked = false;
-        this.routineDetailsSection.style.display = 'none';
-        this.routineFrequencySelect.value = 'daily';
-        this.taskImageUrlInput.value = '';
-        this.taskDateInput.value = '';
-        this.taskImageFileInput.value = '';
-    }
+            clearInputs() {
+                // Reset all input fields
+                this.taskNameInput.value = '';
+                this.taskTypeSelect.value = 'todo';
+                this.priorityCheckbox.checked = false;
+                this.routineDetailsSection.style.display = 'none';
+                this.routineFrequencySelect.value = 'daily';
+                this.taskImageUrlInput.value = '';
+                this.taskDateInput.value = '';
+                this.taskImageFileInput.value = '';
+            }
 
-    closeTaskCreationModal() {
-        this.taskCreationModal.style.display = 'none';
-    }
+            closeTaskCreationModal() {
+                this.taskCreationModal.style.display = 'none';
+            }
 
-    showTaskCreationModal() {
-        // Reset modal
-        this.advancedTaskNameInput.value = '';
-        this.advancedTaskTypeSelect.value = 'todo';
-        document.querySelector('input[name="priority"][value="low"]').checked = true;
-        this.colorOptions.forEach(opt => opt.classList.remove('selected'));
-        this.taskDateTimeInput.value = '';
-        this.subtaskContainer.innerHTML = `
+            showTaskCreationModal() {
+                // Reset modal
+                this.advancedTaskNameInput.value = '';
+                this.advancedTaskTypeSelect.value = 'todo';
+                document.querySelector('input[name="priority"][value="low"]').checked = true;
+                this.colorOptions.forEach(opt => opt.classList.remove('selected'));
+                this.taskDateTimeInput.value = '';
+                this.subtaskContainer.innerHTML = `
             <div class="subtask-item">
                 <input type="text" class="subtask-input" placeholder="Enter subtask">
                 <button class="btn btn-danger">Remove</button>
             </div>
         `;
-        document.getElementById('taskNotes').value = '';
-        document.getElementById('emailReminder').checked = false;
-        document.getElementById('desktopNotification').checked = false;
+                document.getElementById('taskNotes').value = '';
+                document.getElementById('emailReminder').checked = false;
+                document.getElementById('desktopNotification').checked = false;
 
-        // Show modal
-        this.taskCreationModal.style.display = 'flex';
-    }
-}
+                // Show modal
+                this.taskCreationModal.style.display = 'flex';
+            }
+        }
 
         // Initialize Task Manager when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
@@ -1086,11 +1092,11 @@
             addAdvancedTaskBtn.className = 'add-btn';
             addAdvancedTaskBtn.style.marginTop = '10px';
             addAdvancedTaskBtn.addEventListener('click', () => taskManager.showTaskCreationModal());
-            
+
             // Add the button to the sidebar
             document.querySelector('.sidebar').appendChild(addAdvancedTaskBtn);
         });
-        
+
         class HomepageManager {
             constructor() {
                 this.modal = document.getElementById('homepageModal');
@@ -1176,4 +1182,5 @@
         });
     </script>
 </body>
+
 </html>
