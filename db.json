@@ -1,0 +1,10 @@
+{
+    "games": [
+        {
+            "id": 1,
+            "name": "Example Game",
+            "genre": ["action", "sci-fi"],
+            ...
+        }
+    ]
+}
