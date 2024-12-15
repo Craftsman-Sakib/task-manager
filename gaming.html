@@ -622,31 +622,60 @@
             } catch (error) {
                 console.error('Detailed fetch error:', error);
                 games = [];
-                // Optional: render some default games or show an error message
+                alert('Failed to load games. Please check the data source.');
             }
         }
 
         // Function to update the remote JSON file
         async function updateRemoteGames() {
             try {
-                // In a real-world scenario, you'd use GitHub API or a backend service
-                // This is a placeholder for demonstration
-                const response = await fetch('https://api.github.com/repos/Craftsman-Sakib/task-manager/contents/game_pulse_data.json', {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': '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',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: 'Update game data',
-                        content: btoa(JSON.stringify(games, null, 2)),
-                        // You'd need to get the current file's SHA for updating
-                        // sha: currentFileSHA
-                    })
-                });
+                // IMPORTANT: Replace with your actual GitHub Personal Access Token
+                const githubToken = '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';
+                const owner = 'Craftsman-Sakib';
+                const repo = 'task-manager';
+                const path = 'game_pulse_data.json';
 
-                if (!response.ok) {
-                    throw new Error('Failed to update remote games');
+                // First, get the current file's SHA
+                const getFileResponse = await fetch(
+                    `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
+                    {
+                        headers: {
+                            'Authorization': `token ${githubToken}`,
+                            'Accept': 'application/vnd.github.v3+json'
+                        }
+                    }
+                );
+
+                if (!getFileResponse.ok) {
+                    throw new Error('Failed to retrieve file information');
+                }
+
+                const fileInfo = await getFileResponse.json();
+
+                // Prepare the updated content
+                const updatedContent = btoa(JSON.stringify(games, null, 2));
+
+                // Update the file
+                const updateResponse = await fetch(
+                    `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `token ${githubToken}`,
+                            'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: 'Update game data',
+                            content: updatedContent,
+                            sha: fileInfo.sha  // Include the current file's SHA
+                        })
+                    }
+                );
+
+                if (!updateResponse.ok) {
+                    const errorBody = await updateResponse.text();
+                    throw new Error(`Failed to update remote games: ${errorBody}`);
                 }
 
                 console.log('Games updated successfully');
@@ -655,6 +684,7 @@
                 alert('Failed to update game list. Please try again.');
             }
         }
+
         // Function to save games to local storage and generate JSON file
         function saveGames() {
             localStorage.setItem('games', JSON.stringify(games));
@@ -861,23 +891,25 @@
 
             // Create a function to render tags with a specific type and icon
             function renderTagGroup(items, type, icon) {
-                if (!items || items.length === 0) return '';
+                // Ensure items is an array
+                const safeItems = Array.isArray(items) ? items : (items ? [items] : []);
 
-                // Limit to 2 visible tags, add a counter for overflow
-                const visibleItems = items.slice(0, 2);
-                const overflowCount = items.length > 2 ? items.length - 2 : 0;
+                if (safeItems.length === 0) return '';
+
+                const visibleItems = safeItems.slice(0, 2);
+                const overflowCount = safeItems.length > 2 ? safeItems.length - 2 : 0;
 
                 return `
-            <div class="tag-group" data-type="${type}">
-                <div class="tag-group-icon">
-                    <i class="fas ${icon}"></i>
-                </div>
-                <div class="tag-group-tags">
-                    ${visibleItems.map(item => `<span class="game-tag">${item}</span>`).join('')}
-                    ${overflowCount > 0 ? `<span class="tag-overflow">+${overflowCount}</span>` : ''}
-                </div>
+        <div class="tag-group" data-type="${type}">
+            <div class="tag-group-icon">
+                <i class="fas ${icon}"></i>
             </div>
-        `;
+            <div class="tag-group-tags">
+                ${visibleItems.map(item => `<span class="game-tag">${item}</span>`).join('')}
+                ${overflowCount > 0 ? `<span class="tag-overflow">+${overflowCount}</span>` : ''}
+            </div>
+        </div>
+    `;
             }
 
             gameCard.innerHTML = `
@@ -1060,5 +1092,4 @@
         });
     </script>
 </body>
-
 </html>
