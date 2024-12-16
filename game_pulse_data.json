@@ -39,7 +39,7 @@
   {
     "id": 1734330569710,
     "name": "Ballionaire",
-    "image": "",
+    "image": "https://gpstatic.com/acache/74/02/1/us/t620x300-afd3b9fdbbbd7cbbb3046121ecdf973b.jpg",
     "genre": [],
     "releaseYear": "",
     "platform": [
@@ -50,6 +50,6 @@
     ],
     "price": "5.25",
     "details": "Ballionaire is a physics-driven roguelike game full of kinetic chaos, developed by newobject and published by Raw Fury. Key Features:Bonk Your Way to Victory: Drop a ball to bonk triggers, earn money, and spawn more balls. Draft new triggers each round to increase the chaos and your earnings2.Satisfy the Elders' Monetary Demands: Each run, survive by paying tribute to three Elders who introduce devious game-changing tribulations2.\n\nMaster Multiple Boards: Highly varied game boards require fresh theorycrafting. Boards include themes like the Pyramid, Danger Wheel, and Pinball table2.125+ Triggers, 50+ Boons: Use various triggers and boons to create unique strategies. Examples include spawning eggs with a Chicken, cutting coins in half with an Axe, and feeding a Whale until it blows every ball back out2.\n\nPlay in a Sandbox: Experiment in the Laballatory to hone your theory-crafting before a run, make a meme, or build an impossibly busted board2.Mod Support on Day One: Create your own triggers and bring them to life with Ballionaire's Lua-based custom content API2.",
-    "links": ""
+    "links": "https://rawfury.com/games/ballionaire/"
   }
 ]
