@@ -69,5 +69,24 @@
     "price": "13.49",
     "details": "Among Ashes features a unique concept where you play a horror game called \"Night Call\" within the main game. This adds layers to the horror experience.",
     "links": "https://store.steampowered.com/app/2430900/Among_Ashes/"
+  },
+  {
+    "id": 1734338128081,
+    "name": "MiSide",
+    "image": "https://th.bing.com/th/id/OIP.1tJUGhZbsCBguOkLyLGb3wHaEK?rs=1&pid=ImgDetMain",
+    "genre": [
+      "horror"
+    ],
+    "releaseDate": "2024-12-11",
+    "releaseYear": "2024",
+    "platform": [
+      "pc"
+    ],
+    "store": [
+      "steam"
+    ],
+    "price": "6.29",
+    "details": "The game revolves around a protagonist who is mysteriously drawn into a mobile simulation game. Players navigate this surreal world, interacting with various characters and uncovering hidden secrets",
+    "links": "https://aihasto.itch.io/miside"
   }
 ]
