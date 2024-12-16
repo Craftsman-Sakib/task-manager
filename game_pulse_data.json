@@ -88,5 +88,28 @@
     "price": "6.29",
     "details": "The game revolves around a protagonist who is mysteriously drawn into a mobile simulation game. Players navigate this surreal world",
     "links": "https://aihasto.itch.io/miside"
+  },
+  {
+    "id": 1734339212520,
+    "name": "path of exile 2",
+    "image": "https://th.bing.com/th/id/OIP.OgqslLNkN7WWBFPcXu342wHaHa?rs=1&pid=ImgDetMain",
+    "genre": [
+      "action",
+      "rpg"
+    ],
+    "releaseDate": "2025-05-01",
+    "releaseYear": "2025",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic"
+    ],
+    "price": "0.00",
+    "details": "can you tell me about poe? which platform is this game available? which store its available\nPath of Exile (PoE) is a popular online action RPG developed by Grinding Gear Games. The game is set in a dark fantasy world and offers deep character customization, a vast skill tree, and engaging gameplay.",
+    "links": "https://pathofexile2.com/"
   }
 ]
