@@ -49,7 +49,25 @@
       "steam"
     ],
     "price": "5.25",
-    "details": "Bonk Your Way to Victory: Drop a ball to bonk triggers, earn money, and spawn more balls. Draft new triggers each round to increase the chaos and your earnings",
+    "details": "",
     "links": "https://rawfury.com/games/ballionaire/"
+  },
+  {
+    "id": 1734334169972,
+    "name": "among ashes",
+    "image": "https://th.bing.com/th/id/OIP.hdSIsL7MHmJcJTt4yK5HBwHaHa?rs=1&pid=ImgDetMain",
+    "genre": [
+      "horror"
+    ],
+    "releaseYear": "2024",
+    "platform": [
+      "pc"
+    ],
+    "store": [
+      "steam"
+    ],
+    "price": "13.49",
+    "details": "Among Ashes features a unique concept where you play a horror game called \"Night Call\" within the main game. This adds layers to the horror experience.",
+    "links": "https://store.steampowered.com/app/2430900/Among_Ashes/"
   }
 ]
