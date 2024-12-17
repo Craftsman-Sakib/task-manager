@@ -111,5 +111,18 @@
     "price": "0.00",
     "details": "Path of Exile (PoE) is a popular online action RPG developed by Grinding Gear Games. The game is set in a dark fantasy world and offers deep character customization, a vast skill tree, and engaging gameplay.",
     "links": "https://pathofexile2.com/"
+  },
+  {
+    "id": 1734440419874,
+    "name": "drama",
+    "image": "/api/placeholder/200/300",
+    "genre": [],
+    "releaseDate": "",
+    "releaseYear": "",
+    "platform": [],
+    "store": [],
+    "price": "",
+    "details": "",
+    "links": ""
   }
 ]
