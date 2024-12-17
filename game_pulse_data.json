@@ -111,23 +111,5 @@
     "price": "0.00",
     "details": "Path of Exile (PoE) is a popular online action RPG developed by Grinding Gear Games. The game is set in a dark fantasy world and offers deep character customization, a vast skill tree, and engaging gameplay.",
     "links": "https://pathofexile2.com/"
-  },
-  {
-    "id": 1734440759081,
-    "name": "Dayz",
-    "image": "https://th.bing.com/th/id/OIP.F5yyGaLlzgsWyk8YT329tQAAAA?rs=1&pid=ImgDetMain",
-    "genre": [
-      "sci-fi",
-      "action"
-    ],
-    "releaseDate": "",
-    "releaseYear": "",
-    "platform": [],
-    "store": [
-      "steam"
-    ],
-    "price": "12",
-    "details": "sa",
-    "links": "https://rawfury.com/games/ballionaire/"
   }
 ]
