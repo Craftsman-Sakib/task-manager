@@ -113,16 +113,21 @@
     "links": "https://pathofexile2.com/"
   },
   {
-    "id": 1734440419874,
-    "name": "drama",
-    "image": "/api/placeholder/200/300",
-    "genre": [],
+    "id": 1734440759081,
+    "name": "Dayz",
+    "image": "https://th.bing.com/th/id/OIP.F5yyGaLlzgsWyk8YT329tQAAAA?rs=1&pid=ImgDetMain",
+    "genre": [
+      "sci-fi",
+      "action"
+    ],
     "releaseDate": "",
     "releaseYear": "",
     "platform": [],
-    "store": [],
-    "price": "",
-    "details": "",
-    "links": ""
+    "store": [
+      "steam"
+    ],
+    "price": "12",
+    "details": "sa",
+    "links": "https://rawfury.com/games/ballionaire/"
   }
 ]
