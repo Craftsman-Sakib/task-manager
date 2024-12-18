@@ -195,7 +195,11 @@
     "id": 1734546760140,
     "name": "Elden Ring",
     "image": "https://www.trustedreviews.com/wp-content/uploads/sites/54/2021/11/Elden-Ring-Key-Art-e1637061164566.jpg",
-    "extraImages": [],
+    "extraImages": [
+      "https://th.bing.com/th/id/OIP.khyQri_WJBCUZyVvKHVWWwHaEV?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/R.73510f7f8a0d8e5bebb8e59f8e29876c?rik=dJ%2bre1QS2bd19w&pid=ImgRaw&r=0",
+      "https://th.bing.com/th/id/OIP.QM5RYUj_gT8KcNKo5oxpOAHaEK?w=960&h=540&rs=1&pid=ImgDetMain"
+    ],
     "genre": [
       "action",
       "co-op",
@@ -216,7 +220,7 @@
     ],
     "modLinks": [],
     "trailerLink": "https://www.youtube.com/watch?v=E3Huy2cdih0",
-    "price": "59",
+    "price": "59.99",
     "details": "GAME\n",
     "links": "https://store.steampowered.com/app/1245620/ELDEN_RING/"
   }
