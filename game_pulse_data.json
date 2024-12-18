@@ -190,5 +190,34 @@
     "price": "52.49",
     "details": "In Civilization VII, you build and lead an empire through distinct Ages of human history. Each Age offers unique civilizations, resources, and gameplay systems. You can choose legendary leaders with unique abilities and customize their attributes to reinforce or pivot your strategy as you progress through the Ages.",
     "links": "https://civilization.2k.com/civ-vii/en-GB/"
+  },
+  {
+    "id": 1734546760140,
+    "name": "Elden Ring",
+    "image": "https://www.trustedreviews.com/wp-content/uploads/sites/54/2021/11/Elden-Ring-Key-Art-e1637061164566.jpg",
+    "extraImages": [],
+    "genre": [
+      "action",
+      "co-op",
+      "rpg",
+      "Fantasy"
+    ],
+    "releaseDate": "2022-02-25",
+    "releaseYear": "2022",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "gog"
+    ],
+    "modLinks": [],
+    "trailerLink": "https://www.youtube.com/watch?v=E3Huy2cdih0",
+    "price": "59",
+    "details": "GAME\n",
+    "links": "https://store.steampowered.com/app/1245620/ELDEN_RING/"
   }
 ]
