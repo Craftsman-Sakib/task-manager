@@ -129,5 +129,33 @@
     "extraImages": [
       "https://th.bing.com/th/id/OIP.QJYdN9RWVcQPtxGEu_2GogHaEK?rs=1&pid=ImgDetMain"
     ]
+  },
+  {
+    "id": 1734526997618,
+    "name": "Delta Force",
+    "image": "https://th.bing.com/th/id/OIP.UANJ-A2SU46jZIDhYLImmgHaEK?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://th.bing.com/th/id/OIF.Jw8nmyJQRHOMnsUlHPDt4w?rs=1&pid=ImgDetMain",
+      "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/12/delta-force-tidal-surge-bundle-trailer-thumb-cropped.jpg"
+    ],
+    "genre": [
+      "action",
+      "shooter"
+    ],
+    "releaseDate": "2025-01-20",
+    "releaseYear": "2025",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic"
+    ],
+    "modLinks": [],
+    "price": "",
+    "details": "The new Delta Force game is making a comeback after 15 years.\nThe game features large-scale PvP battles and an extraction mode where players compete for gear and cash. It also includes a remaster of the 2003 campaign, Delta Force: Black Hawk Down",
+    "links": "https://www.playdeltaforce.com/en/index.html"
   }
 ]
