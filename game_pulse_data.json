@@ -157,5 +157,38 @@
     "price": "",
     "details": "The new Delta Force game is making a comeback after 15 years.\nThe game features large-scale PvP battles and an extraction mode where players compete for gear and cash. It also includes a remaster of the 2003 campaign, Delta Force: Black Hawk Down",
     "links": "https://www.playdeltaforce.com/en/index.html"
+  },
+  {
+    "id": 1734531251257,
+    "name": "Sid Meier's Civilization VII",
+    "image": "https://th.bing.com/th/id/OIP.mH7TglS0YG_cJPZE1MZTJAHaEK?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://thecinemaholic.com/wp-content/uploads/2019/11/ss_436c984ad31cc7e05ade014e47181487ba5f0590.1920x1080.jpg",
+      "https://cdn.mos.cms.futurecdn.net/3tzZLdh8yFdBmcxwCfRBYS.jpg",
+      "https://www.pcgamesn.com/wp-content/sites/pcgamesn/2021/08/civilization-7-job-ad-2.jpg"
+    ],
+    "genre": [
+      "strategy",
+      "turn-based strategy"
+    ],
+    "releaseDate": "2025-02-11",
+    "releaseYear": "2025",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation",
+      "nintendo"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store",
+      "2K store"
+    ],
+    "modLinks": [],
+    "trailerLink": "https://www.youtube.com/watch?v=kK_JrrP9m2U",
+    "price": "0",
+    "details": "In Civilization VII, you build and lead an empire through distinct Ages of human history. Each Age offers unique civilizations, resources, and gameplay systems. You can choose legendary leaders with unique abilities and customize their attributes to reinforce or pivot your strategy as you progress through the Ages.",
+    "links": "https://civilization.2k.com/civ-vii/en-GB/"
   }
 ]
