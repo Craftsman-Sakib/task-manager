@@ -262,5 +262,44 @@
     "price": 0,
     "details": "Marvel Rivals is a 6v6 player-versus-player, third-person hero shooter. The game features a lineup of 33 characters from Marvel Comics and offers cross-play across all platforms. It includes destructible environments and various game modes such as Convoy, Domination, and Convergence",
     "links": "https://www.marvelrivals.com/"
+  },
+  {
+    "id": 1734724948935,
+    "name": "Grand Theft Auto IV",
+    "image": "https://vignette.wikia.nocookie.net/es.gta/images/d/de/Grand_Theft_Auto_IV.JPG/revision/latest?cb=20080911024224",
+    "extraImages": [
+      "https://th.bing.com/th/id/OIP.6RPUgnnd6ZcORPq4xWaK3AHaEK?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/R.af8d838223828f703445305cae222324?rik=5HpoIq7PHFdEtQ&riu=http%3a%2f%2fwww.unseen64.net%2fwp-content%2fuploads%2f2008%2f05%2f3907_gta_iv.jpg&ehk=HqoNCn%2fmo9cA9hT4aTFB7329E2lHDI0sB%2f%2fiRFHnQE8%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1",
+      "https://th.bing.com/th/id/R.01369d2c5b119a29e502be960cef2fc4?rik=EJy7y%2fyul14bNg&riu=http%3a%2f%2f3.bp.blogspot.com%2f-Ad2x9yhhWBg%2fT6tH10NSXWI%2fAAAAAAAAAVA%2fmQCLk2M0zDY%2fs1600%2fGTA%2b4%2bfree%2bDownload.jpg&ehk=mwI1XVb9nrfodZAcuTh6ibXU1H2wmhq7ezDidLn2KYc%3d&risl=&pid=ImgRaw&r=0"
+    ],
+    "genre": [
+      "action",
+      "action-adventure"
+    ],
+    "releaseDate": "2008-12-02",
+    "betaDate": "",
+    "earlyAccessDate": "",
+    "developer": "Rockstar North",
+    "publisher": "Rockstar Games",
+    "releaseYear": "2008",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store",
+      "Rockstar Store"
+    ],
+    "modLinks": [
+      "https://www.gtainside.com/en/gta4/mods/",
+      "https://www.nexusmods.com/gta4"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=M80K51DosFo",
+    "price": 4.49,
+    "details": "Grand Theft Auto IV is the sixth main entry in the Grand Theft Auto series. The game is set in the fictional Liberty City, based on New York City, and follows the story of Eastern European war veteran Niko Bellic as he tries to escape his past while under pressure from high-profile criminals. The game features an open-world design, allowing players to freely roam Liberty City, which consists of three main islands and the neighboring state of Alderney.\nThe game includes both single-player and multiplayer modes, with the latter allowing up to 32 players to engage in cooperative and competitive gameplay.Two expansion packs, \"The Lost and Damned\" and \"The Ballad of Gay Tony,\" were later released, featuring new plots interconnected with the main storyline.",
+    "links": "https://www.rockstargames.com/games/IV"
   }
 ]
