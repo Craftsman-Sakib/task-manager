@@ -223,5 +223,44 @@
     "price": "59.99",
     "details": "GAME\n",
     "links": "https://store.steampowered.com/app/1245620/ELDEN_RING/"
+  },
+  {
+    "id": 1734694641552,
+    "name": "Marvel Rivals",
+    "image": "https://upload.wikimedia.org/wikipedia/ru/thumb/d/d4/Marvel_Rivals.jpg/274px-Marvel_Rivals.jpg",
+    "extraImages": [
+      "https://gamingbolt.com/wp-content/uploads/2024/04/marvel-rivals-image-4.jpg",
+      "https://www.play3.de/wp-content/uploads/2024/03/Marvel-Rivals-Artwork.jpg",
+      "https://th.bing.com/th/id/OIF.Fom9GjGFNExQ8CZ9DtFHvA?rs=1&pid=ImgDetMain"
+    ],
+    "genre": [
+      "Hero Shotter",
+      "Multiplayer",
+      "Superhero"
+    ],
+    "releaseDate": "2024-12-06",
+    "betaDate": "2024-07-23",
+    "earlyAccessDate": "",
+    "developer": "NetEase Games",
+    "publisher": "NetEase Games",
+    "releaseYear": "2024",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "xbox-store",
+      "playstation-store"
+    ],
+    "modLinks": [
+      "https://www.nexusmods.com/marvelrivals"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=-b0veB7q9P4",
+    "price": 0,
+    "details": "Marvel Rivals is a 6v6 player-versus-player, third-person hero shooter. The game features a lineup of 33 characters from Marvel Comics and offers cross-play across all platforms. It includes destructible environments and various game modes such as Convoy, Domination, and Convergence",
+    "links": "https://www.marvelrivals.com/"
   }
 ]
