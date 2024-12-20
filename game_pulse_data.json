@@ -262,5 +262,21 @@
     "price": 0,
     "details": "Marvel Rivals is a 6v6 player-versus-player, third-person hero shooter. The game features a lineup of 33 characters from Marvel Comics and offers cross-play across all platforms. It includes destructible environments and various game modes such as Convoy, Domination, and Convergence",
     "links": "https://www.marvelrivals.com/"
+  },
+  {
+    "id": 1734723830079,
+    "name": "Grand Theft Auto IV",
+    "image": "https://th.bing.com/th/id/OIP.5sPvKG8boTl_vlmpBTjKpgHaJP?rs=1&pid=ImgDetMain",
+    "extraImages": [],
+    "genre": [],
+    "releaseDate": "",
+    "releaseYear": "",
+    "platform": [],
+    "store": [],
+    "modLinks": [],
+    "trailerLink": "",
+    "price": "0",
+    "details": "",
+    "links": ""
   }
 ]
