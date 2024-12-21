@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Pulse - Gaming News & Tracker</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* CSS Styles */
         :root {
             --bg-dark: #121212;
             --card-bg: #1e1e2e;
@@ -32,15 +34,35 @@
 
         .app-container {
             display: grid;
-            grid-template-columns: 250px 1fr 350px;
+            grid-template-columns: 250px 1fr;
             min-height: 100vh;
         }
 
         /* Sidebar */
         .sidebar {
+            overflow-y: auto;
             background-color: var(--card-bg);
             padding: 20px;
             border-right: 1px solid rgba(255, 255, 255, 0.1);
+            max-height: 100vh;
+            position: sticky;
+            top: 0;
+            height: 100%;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) rgba(106, 90, 205, 0.2);
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(106, 90, 205, 0.1);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 4px;
         }
 
         .sidebar-toggle {
@@ -85,13 +107,52 @@
         }
 
         /* Game List */
-        .game-list {
+        .game-list-container {
             background-color: var(--bg-dark);
             padding: 20px;
             overflow-y: auto;
+            position: relative;
+        }
+
+        .game-list-container .search-bar {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .game-list-container .search-input {
+            flex-grow: 1;
+            padding: 8px;
+            margin-right: 10px;
+            background-color: rgba(30, 30, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-radius: 5px;
+        }
+
+        .game-list-container .search-icon {
+            cursor: pointer;
+            color: var(--accent-color);
+        }
+
+        .game-list {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 20px;
+        }
+
+        /* Game List Container Scrollbar */
+        .game-list-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .game-list-container::-webkit-scrollbar-track {
+            background: rgba(106, 90, 205, 0.1);
+        }
+
+        .game-list-container::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            border-radius: 4px;
         }
 
         .game-card {
@@ -102,7 +163,6 @@
             flex-direction: column;
             position: relative;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            height: 400px;
             overflow: hidden;
         }
 
@@ -112,6 +172,87 @@
             object-fit: cover;
             border-radius: 10px;
             margin-bottom: 10px;
+            position: relative;
+        }
+
+        /* Style for the 'UPCOMING' overlay */
+        .game-card-image .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            /* Semi-transparent black */
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-radius: 10px;
+            /* Match the border radius of the image */
+            opacity: 0;
+            /* Hidden by default */
+            transition: opacity 0.3s ease;
+            /* Smooth transition for hover effect */
+            z-index: 5;
+        }
+
+        /* Style for 'NEW' overlay */
+        .game-card-image .overlay.new {
+            background-color: rgba(0, 150, 255, 0.7);
+            /* Blueish color */
+        }
+
+        /* Style for 'UPCOMING' overlay */
+        .game-card-image .overlay.upcoming {
+            background-color: rgba(0, 255, 0, 0.7);
+            /* Greenish color */
+        }
+
+        /* Show overlay on hover */
+        .game-card:hover .game-card-image .overlay {
+            opacity: 1;
+        }
+
+        .game-card-image::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+        }
+
+        .game-card-image.upcoming::before {
+            content: "UPCOMING";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 255, 0, 0.7);
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .game-card-image.new::before {
+            content: "NEW";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 255, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            display: block;
         }
 
         .game-card-content {
@@ -137,26 +278,33 @@
 
         .game-card-tags {
             display: flex;
-            gap: 10px;
+            flex-wrap: wrap;
+            gap: 5px;
             margin-bottom: 10px;
+            font-size: 0.8rem;
+            /* Smaller font size */
         }
 
         .game-tag {
             background-color: rgba(106, 90, 205, 0.2);
             color: var(--accent-color);
-            padding: 3px 8px;
-            border-radius: 20px;
-            font-size: 0.7rem;
+            padding: 2px 6px;
+            /* Reduced padding */
+            border-radius: 15px;
+            /* Slightly more rounded */
         }
 
         .game-card-actions {
             display: flex;
             gap: 10px;
             margin-top: auto;
+            align-items: center;
+            justify-content: space-between;
+            /* Changed to space-between */
         }
 
         .btn {
-            padding: 8px 12px;
+            padding: 5px 10px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -164,17 +312,31 @@
             align-items: center;
             gap: 5px;
             font-size: 0.8rem;
+            justify-content: center;
+            /* Make all buttons the same height */
+            min-height: 32px;
+        }
+
+        .btn i {
+            line-height: 1;
         }
 
         .btn-details {
             background-color: var(--accent-color);
             color: white;
+            flex: 1 0 auto;
         }
 
-        .btn-favorite {
+        .btn-favorite,
+        .btn-wishlist {
             background-color: transparent;
             border: 2px solid var(--accent-color);
             color: var(--accent-color);
+            /* Remove flex-grow to prevent stretching */
+            /* flex-grow: 0;  Removed flex-grow */
+            padding: 5px;
+            /* Adjust padding to give smaller height and fit icon+text*/
+            line-height: 1;
         }
 
         .btn-favorite.active {
@@ -182,12 +344,79 @@
             color: white;
         }
 
-        /* Add Game Section */
         .add-game-section {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            width: 90%;
+            max-width: 600px;
             background-color: var(--card-bg);
             padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            pointer-events: none;
             overflow-y: auto;
-            position: relative;
+            max-height: 90vh;
+        }
+
+        .add-game-section.active {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Overlay for the Add New Game Section */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
+        .close-add-game {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .add-game-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
+
+        .add-game-button:hover {
+            background-color: var(--hover-color);
         }
 
         .add-game-form {
@@ -206,15 +435,110 @@
             border-radius: 5px;
         }
 
-        .add-game-toggle {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--accent-color);
-            color: white;
+        /* Styles for the Release Date Group */
+        .release-date-group {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
             padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .release-date-group h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .release-date-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .release-date-item i {
+            color: var(--accent-color);
+        }
+
+        .release-date-input {
+            background-color: rgba(30, 30, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
             border-radius: 5px;
-            cursor: pointer;
+            padding: 5px;
+            flex-grow: 1;
+        }
+
+        /* Early Access Release Date */
+        .early-access-group {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .early-access-group h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .early-access-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .early-access-input {
+            background-color: rgba(30, 30, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        /* Beta Release Group Styling */
+        .beta-release-group {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .beta-release-group h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .beta-release-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+
+        .beta-release-item i {
+            color: var(--accent-color);
+        }
+
+        .beta-release-input {
+            background-color: rgba(30, 30, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        /* Developer and Publisher Styles */
+        .developer-publisher-group {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .developer-publisher-group h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
         }
 
         @media (max-width: 1200px) {
@@ -222,32 +546,27 @@
                 grid-template-columns: 1fr;
             }
 
-            .sidebar-toggle,
-            .add-game-toggle {
+            .sidebar-toggle {
                 display: block;
             }
 
-            .sidebar,
-            .add-game-section {
+            .sidebar {
                 position: fixed;
                 top: 0;
                 height: 100vh;
                 z-index: 1000;
                 transition: right 0.3s ease;
+                overflow-y: auto;
+                /* Maintain scroll functionality in mobile view */
             }
 
             .sidebar {
-                right: -350px;
-                width: 350px;
+                right: -250px;
+                /* Adjusted width for sidebar */
+                width: 250px;
             }
 
-            .add-game-section {
-                right: -350px;
-                width: 350px;
-            }
-
-            .sidebar.active,
-            .add-game-section.active {
+            .sidebar.active {
                 right: 0;
             }
         }
@@ -270,29 +589,34 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            /* Ensure the modal is above other elements */
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
         }
 
         .game-details-modal.active {
             display: flex;
-            opacity: 1;
         }
 
+        /* Styles for the game details modal content */
         .game-details-content {
             background-color: var(--card-bg);
             border-radius: 15px;
             max-width: 600px;
             width: 90%;
             max-height: 80vh;
-            overflow-y: auto;
             padding: 20px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        /* Hide the scrollbar in the game details modal */
+        .game-details-content::-webkit-scrollbar {
+            width: 0;
+            height: 0;
         }
 
         .game-details-header {
@@ -314,9 +638,10 @@
             background: none;
             border: none;
             color: var(--text-primary);
-            font-size: 2rem;
+            font-size: 1.5rem;
             cursor: pointer;
             transition: color 0.3s ease;
+            padding: 0;
         }
 
         .close-details:hover {
@@ -352,6 +677,31 @@
 
         .game-details-item span {
             flex-grow: 1;
+        }
+
+        /* Developer and Publisher Styling */
+        .dev-publisher-container {
+            display: flex;
+            flex-direction: column;
+            /* Changed for better clarity */
+            gap: 5px;
+            /* Reduced gap */
+            font-size: 0.9rem;
+        }
+
+        .developer-name,
+        .publisher-name {
+            background-color: rgba(106, 90, 205, 0.2);
+            color: var(--accent-color);
+            padding: 3px 8px;
+            border-radius: 15px;
+        }
+
+        .dev-label,
+        .publisher-label {
+            font-weight: bold;
+            /* Make labels bold */
+            color: var(--text-primary);
         }
 
         .multi-select-container {
@@ -423,7 +773,7 @@
         .game-card-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 5px;
             margin-bottom: 10px;
         }
 
@@ -482,8 +832,585 @@
             background-color: rgba(255, 165, 0, 0.2);
         }
 
+        .tag-group[data-type="mod"] .tag-group-icon {
+            background-color: rgba(255, 0, 255, 0.2);
+        }
+
         .tag-group[data-type="year"] .tag-group-icon {
             background-color: rgba(0, 0, 255, 0.2);
+        }
+
+        .delete-button {
+            background-color: rgba(255, 0, 0, 0.1);
+            /* Light red background */
+            color: #ff4d4d;
+            /* Red text color */
+            border: 2px solid #ff4d4d;
+            /* Red border */
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            /* Same padding as other buttons */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Same height as other buttons */
+            min-height: 32px;
+        }
+
+        .delete-button:hover {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .btn,
+        .delete-button {
+            white-space: nowrap;
+        }
+
+        /* Delete Confirmation Modal */
+        .delete-confirm-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1500;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .delete-confirm-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .delete-confirm-content {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .delete-confirm-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .delete-confirm-actions button {
+            flex-grow: 1;
+            margin: 0 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .delete-confirm-cancel {
+            background-color: var(--text-secondary);
+            color: var(--bg-dark);
+        }
+
+        .delete-confirm-delete {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        .additional-images-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .additional-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .price-tag {
+            background-color: rgba(0, 128, 0, 0.2);
+            /* Green background for price */
+            color: #00ff00;
+            /* Bright green text */
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .free-tag {
+            background-color: rgba(0, 0, 255, 0.2);
+            /* Blue background for free */
+            color: #007bff;
+            /* Bright blue text */
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .game-card {
+                flex-direction: column;
+                /* Stack elements vertically */
+            }
+
+            .game-card-image {
+                width: 100%;
+                /* Full width */
+                height: 200px;
+                /* Adjust height as needed */
+            }
+        }
+
+        /* YouTube trailer modal styles */
+        .youtube-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2100;
+            /* Higher than other modals and details modal */
+            display: none;
+        }
+
+        .youtube-modal-content {
+            background: #000;
+            padding:             20px;
+            border-radius: 10px;
+            position: relative;
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .youtube-modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .youtube-iframe {
+            width: 853px;
+            /* YouTube responsive width */
+            height: 480px;
+            /* YouTube responsive height */
+        }
+
+        /* Responsive design for YouTube modal */
+        @media (max-width: 768px) {
+            .youtube-iframe {
+                width: 100%;
+                height: auto;
+            }
+
+            .youtube-modal-content {
+                padding: 10px;
+            }
+        }
+
+        /* Year and Month Filter Styles */
+        .year-month-filter {
+            margin-bottom: 20px;
+        }
+
+        .year-month-filter h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .year-filter-list,
+        .month-filter-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .year-filter-item,
+        .month-filter-item {
+            background-color: rgba(106, 90, 205, 0.2);
+            color: var(--accent-color);
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .year-filter-item:hover,
+        .month-filter-item:hover {
+            background-color: rgba(106, 90, 205, 0.4);
+        }
+
+        .year-filter-item.active,
+        .month-filter-item.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .month-filter-list {
+            display: none;
+            /* Hide by default */
+        }
+
+        .year-filter-item.active .month-filter-list {
+            display: flex;
+            /* Show when year is active */
+        }
+
+        .year-filter-item .month-filter-list {
+            margin-left: 0;
+            margin-top: 10px;
+            gap: 5px;
+            /* Adjust as needed */
+        }
+
+        /* Image Popup Styles */
+        .image-popup {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            /* Ensure it's on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            text-align: center;
+        }
+
+        .image-popup.visible {
+            display: flex;
+            /* Use flexbox to center the image */
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+        }
+
+        .image-popup img {
+            max-width: 80%;
+            max-height: 80%;
+            border: 4px solid var(--card-bg);
+            /* Add a border to the image */
+        }
+
+        /* Image Popup Button Styles */
+        .image-popup .close-btn,
+        .image-popup .prev-btn,
+        .image-popup .next-btn {
+            position: absolute;
+            top: 50%;
+            /* Align the vertical center of the buttons to the vertical center of the screen */
+            transform: translateY(-50%);
+            /* Offset the button by half its height to truly center it */
+            color: white;
+            font-size: 25px;
+            /* Adjust as needed */
+            cursor: pointer;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px 15px;
+            /* Add some padding */
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+            z-index: 3001;
+            /* Ensure buttons are above the image */
+            width: 45px;
+            /* Fixed width for the circular button */
+            height: 45px;
+            /* Fixed height for the circular button */
+            text-align: center;
+            /* Center the icon inside the button */
+            line-height: 45px;
+            /* Adjust if necessary to vertically center the icon */
+            display: flex;
+            /* Use flexbox for centering */
+            align-items: center;
+            /* Center vertically */
+            justify-content: center;
+            /* Center horizontally */
+        }
+
+        .image-popup .close-btn:hover,
+        .image-popup .prev-btn:hover,
+        .image-popup .next-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .image-popup .close-btn {
+            right: 20px;
+            /* Position close button top-right */
+            top: 20px;
+            /* Position close button top-right */
+            transform: none;
+            /* No need to transform */
+        }
+
+        .image-popup .prev-btn {
+            left: 20px;
+            /* Position on the left side of the image */
+        }
+
+        .image-popup .next-btn {
+            right: 20px;
+            /* Position on the right side of the image */
+        }
+
+        /* Details header style to show game name and game image*/
+        .details-title-image-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            background-color: rgba(106, 90, 205, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .details-game-image {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .details-game-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .trailer-link {
+            color: var(--accent-color);
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .trailer-link:hover {
+            color: var(--hover-color);
+        }
+
+        /* New DLC Container Styles */
+        .dlc-container {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .dlc-container h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .dlc-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .dlc-item {
+            background-color: rgba(106, 90, 205, 0.1);
+            border: 1px solid rgba(106, 90, 205, 0.2);
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .dlc-item strong {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .dlc-item span {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+
+        /* Improved DLC Input Field Styles in Add Game Form */
+        .dlc-list-container {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .dlc-list-container h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .dlc-item {
+            display: grid;
+            /* Use grid layout */
+            grid-template-columns: repeat(4, 1fr);
+            /* 4 columns for name, date, price, and image link */
+            gap: 10px;
+            /* Space between grid items */
+            align-items: center;
+            /* Vertically align items */
+            margin-bottom: 5px;
+        }
+
+        .dlc-input {
+            background-color: rgba(30, 30, 46, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border-radius: 5px;
+            padding: 5px;
+            width: 100%;
+        }
+
+        /* Style for remove button */
+        .dlc-item button {
+            background-color: rgba(255, 0, 0, 0.1);
+            color: #ff4d4d;
+            border: 2px solid #ff4d4d;
+            transition: all 0.3s ease;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            grid-column: span 4;
+            justify-self: end;
+        }
+
+        .dlc-item button:hover {
+            background-color: #ff4d4d;
+            color: white;
+        }
+
+        /* Style for the input field labels */
+        .dlc-item label {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        /* Wishlist and Favorite Styling */
+        .game-card .wishlist-fav-container {
+            display: flex;
+            gap: 5px;
+        }
+
+        .game-card .btn-wishlist,
+        .game-card .btn-favorite {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            line-height: 1;
+        }
+
+        .game-card .btn-wishlist.active,
+        .game-card .btn-favorite.active {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .game-card .btn-wishlist i,
+        .game-card .btn-favorite i {
+            pointer-events: none;
+        }
+
+        /* Updated styles for the right-aligned Add New Game button */
+        .add-game-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            /* Ensure it stays above other elements */
+            transition: background-color 0.3s ease;
+        }
+
+        .add-game-button:hover {
+            background-color: var(--hover-color);
+        }
+
+        .add-game-button i {
+            font-size: 1.5rem;
+        }
+
+        .favorite-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .favorite-icon i {
+            color: white;
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .favorite-icon:hover {
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .favorite-icon.active {
+            color: #ff4d4d;
+        }
+
+        .favorite-icon.active i {
+            color: #ff4d4d;
+        }
+
+        .game-card-image-container {
+            position: relative;
         }
     </style>
 </head>
@@ -505,35 +1432,60 @@
                     <li data-genre="horror">Horror Games</li>
                     <li data-genre="shooter">Shooter Games</li>
                     <li data-genre="co-op">Co-Op Games</li>
+                    <li data-genre="upcoming">Upcoming Games</li>
+                    <li data-genre="free">Free Games</li>
                 </ul>
             </div>
+            <!-- Free Games Section in the left side which will show which games are free -->
             <div class="sidebar-section">
-                <h3>Release Years</h3>
-                <ul id="year-filter-list">
-                    <li data-year="all" class="active">All Years</li>
-                    <li data-year="2024">2024</li>
-                    <li data-year="2023">2023</li>
-                    <li data-year="2022">2022</li>
-                    <li data-year="2021">2021</li>
+                <h3>Free Games</h3>
+                <ul id="free-games-list">
+                    <!-- Free games will be dynamically added here -->
+                </ul>
+            </div>
+            <!-- Wishlisted Games Section -->
+            <div class="sidebar-section">
+                <h3>Wishlisted Games</h3>
+                <ul id="wishlisted-games-list">
+                    <!-- Wishlisted games will be dynamically added here -->
+                </ul>
+            </div>
+            <div class="sidebar-section year-month-filter">
+                <h3>Release Year & Month</h3>
+                <ul class="year-filter-list" id="year-filter-list">
+                    <!-- Years will be dynamically added here -->
                 </ul>
             </div>
         </div>
 
         <!-- Game List -->
-        <div class="game-list" id="game-list">
-            <!-- Game cards will be dynamically added here -->
+        <!-- Game List Container -->
+        <div class="game-list-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" id="game-search" placeholder="Search games...">
+                <i class="fas fa-search search-icon" onclick="searchGames()"></i>
+            </div>
+            <div class="game-list" id="game-list">
+                <!-- Game cards will be dynamically added here -->
+            </div>
         </div>
+        <!-- Add New Game Button -->
+        <button class="add-game-button" onclick="toggleAddGameSection()">
+            <i class="fas fa-plus"></i>
+        </button>
+
+        <!-- Overlay -->
+        <div class="overlay" onclick="toggleAddGameSection()"></div>
 
         <!-- Add Game Section -->
         <div class="add-game-section">
-            <div class="add-game-toggle" onclick="toggleAddGameSection()">
-                <i class="fas fa-times"></i>
-            </div>
+            <button class="close-add-game" onclick="toggleAddGameSection()"><i class="fas fa-times"></i></button>
             <h2>Add New Game</h2>
             <form class="add-game-form" id="add-game-form">
                 <input type="text" placeholder="Game Name" id="game-name" required>
                 <input type="url" placeholder="Game Image URL" id="game-image">
-
+                <!-- Secondary Images URLs -->
+                <textarea placeholder="Extra Image URLs (comma separated)" id="extra-image-urls" rows="2"></textarea>
                 <!-- Multi-select for Genres -->
                 <div class="multi-select-container">
                     <div class="multi-select-tags" id="genre-tags"></div>
@@ -546,10 +1498,58 @@
                         <label><input type="checkbox" value="co-op"> Co-Op</label>
                         <label><input type="checkbox" value="rpg"> RPG</label>
                         <label><input type="checkbox" value="strategy"> Strategy</label>
+                        <!-- Text Input for Custom Genre -->
+                        <input type="text" placeholder="Add Custom Genre" id="custom-genre-input"
+                            style="margin-top: 5px; width: calc(100% - 12px); padding: 8px; border: 1px solid #a0a0a0; border-radius: 4px;">
+                        <button type="button" onclick="addCustomGenre()"
+                            style="margin-top: 5px; padding: 8px 10px; background-color: #6a5acd; color: white; border: none; border-radius: 4px; cursor: pointer;">Add
+                            Genre</button>
+
                     </div>
                 </div>
 
-                <input type="date" placeholder="Release Date" id="game-release-date">
+                <!-- Release Date Input Group -->
+                <div class="release-date-group">
+                    <h4>Release Date</h4>
+                    <div class="release-date-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-release-date"
+                            class="release-date-input" oninput="formatAnyDate(this)">
+                        <input type="date" id="game-release-date-calendar" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Beta Release Date Input Group -->
+                <div class="beta-release-group">
+                    <h4>Beta Release Date (Optional)</h4>
+                    <div class="beta-release-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-beta-date"
+                            class="beta-release-input" oninput="formatAnyDate(this)">
+                        <input type="date" id="game-beta-date-calendar" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Early Access Release Date Input Group -->
+                <div class="early-access-group">
+                    <h4>Early Access Release Date (Optional)</h4>
+                    <div class="early-access-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-early-access-date"
+                            class="early-access-input" oninput="formatAnyDate(this)">
+                        <input type="date" id="game-early-access-date-calendar" style="display: none;">
+                    </div>
+                </div>
+                <!-- Developer & Publisher -->
+                <div class="developer-publisher-group">
+                    <h4>Developer & Publisher (Optional)</h4>
+                    <div>
+                        <input type="text" placeholder="Developer" id="game-developer">
+                    </div>
+                    <div>
+                        <input type="text" placeholder="Publisher" id="game-publisher">
+                    </div>
+                </div>
 
                 <!-- Multi-select for Platforms -->
                 <div class="multi-select-container">
@@ -561,6 +1561,12 @@
                         <label><input type="checkbox" value="playstation"> PlayStation</label>
                         <label><input type="checkbox" value="nintendo"> Nintendo</label>
                         <label><input type="checkbox" value="mobile"> Mobile</label>
+                        <!-- Text Input for Custom Platform -->
+                        <input type="text" placeholder="Add Custom Platform" id="custom-platform-input"
+                            style="margin-top: 5px; width: calc(100% - 12px); padding: 8px; border: 1px solid #a0a0a0; border-radius: 4px;">
+                        <button type="button" onclick="addCustomPlatform()"
+                            style="margin-top: 5px; padding: 8px 10px; background-color: #6a5acd; color: white; border: none; border-radius: 4px; cursor: pointer;">Add
+                            Platform</button>
                     </div>
                 </div>
 
@@ -574,12 +1580,57 @@
                         <label><input type="checkbox" value="gog"> GOG</label>
                         <label><input type="checkbox" value="xbox-store"> Xbox Store</label>
                         <label><input type="checkbox" value="playstation-store"> PlayStation Store</label>
+                        <label><input type="checkbox" value="itchio"> Itch.io</label>
+                        <!-- Text Input for Custom Store -->
+                        <input type="text" placeholder="Add Custom Store" id="custom-store-input"
+                            style="margin-top: 5px; width: calc(100% - 12px); padding: 8px; border: 1px solid #a0a0a0; border-radius: 4px;">
+                        <button type="button" onclick="addCustomStore()"
+                            style="margin-top: 5px; padding: 8px 10px; background-color: #6a5acd; color: white; border: none; border-radius: 4px; cursor: pointer;">Add
+                            Store </button>
                     </div>
                 </div>
-
-                <input type="number" placeholder="Price" id="game-price" step="0.01">
+                <!-- Multi-select for Mod Links -->
+                <div class="multi-select-container">
+                    <div class="multi-select-tags" id="mod-tags"></div>
+                    <input type="text" placeholder="Select Mods" id="mod-input" readonly>
+                    <div class="multi-select-dropdown" id="mod-dropdown">
+                        <input type="text" placeholder="Add Mod links (comma separated)" id="custom-mod-input"
+                            style="margin-top: 5px; width: calc(100% - 12px); padding: 8px; border: 1px solid #a0a0a0; border-radius: 4px;">
+                        <button type="button" onclick="addCustomModLinks()"
+                            style="margin-top: 5px; padding: 8px 10px; background-color: #6a5acd; color: white; border: none; border-radius: 4px; cursor: pointer;">Add
+                            Mod Link</button>
+                    </div>
+                </div>
+                <!-- Subscription Services Multi-select -->
+                <div class="multi-select-container">
+                    <div class="multi-select-tags" id="subscription-tags"></div>
+                    <input type="text" placeholder="Select Subscription Services" id="subscription-input" readonly>
+                    <div class="multi-select-dropdown" id="subscription-dropdown">
+                        <label><input type="checkbox" value="xbox-game-pass"> Xbox Game Pass</label>
+                        <label><input type="checkbox" value="playstation-plus"> PlayStation Plus</label>
+                        <label><input type="checkbox" value="ubisoft-plus"> Ubisoft+</label>
+                        <!-- Add more options here as needed -->
+                        <input type="text" placeholder="Add Custom Subscription" id="custom-subscription-input"
+                            style="margin-top: 5px; width: calc(100% - 12px); padding: 8px; border: 1px solid #a0a0a0; border-radius: 4px;">
+                        <button type="button" onclick="addCustomSubscription()"
+                            style="margin-top: 5px; padding: 8px 10px; background-color: #6a5acd; color: white; border: none; border-radius: 4px; cursor: pointer;">Add
+                            Subscription</button>
+                    </div>
+                </div>
+                <!-- DLC and Expansion Information -->
+                <div class="dlc-list-container">
+                    <h4>DLCs and Expansions (Optional)</h4>
+                    <div id="dlc-list">
+                        <!-- DLC items will be added here -->
+                    </div>
+                    <button type="button" onclick="addNewDlc()" class="add-dlc-button">Add DLC/Expansion</button>
+                </div>
+                <!-- Input for Trailer Link -->
+                <input type="url" placeholder="Game Trailer Link" id="game-trailer-link">
+                <!-- Changed the ID and Allow decimal numbers in price input -->
+                <input type="number" placeholder="Price (0 for Free)" id="game-price" step="0.01" value="0" min="0">
                 <textarea placeholder="Game Details" id="game-details" rows="4"></textarea>
-                <input type="url" placeholder="Extra Links" id="game-links">
+                <input type="url" placeholder="More Details Links" id="game-links">
                 <button type="submit" class="btn btn-details">Add Game</button>
             </form>
         </div>
@@ -589,9 +1640,55 @@
         </div>
     </div>
 
+    <!-- Game Details Modal -->
+    <div class="game-details-modal" id="game-details-modal">
+        <div class="game-details-content" id="game-details-content">
+            <!-- Content will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <!-- Image Popup -->
+    <div class="image-popup">
+        <span class="close-btn">×</span>
+        <span class="prev-btn">❮</span>
+        <img src="" alt="Image">
+        <span class="next-btn">❯</span>
+    </div>
+
+    <!-- YouTube Trailer Modal -->
+    <div class="youtube-modal" id="youtube-modal">
+        <div class="youtube-modal-content">
+            <span class="youtube-modal-close" onclick="closeYouTubeModal()">×</span>
+            <iframe id="youtube-iframe" class="youtube-iframe" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class="delete-confirm-modal" id="delete-confirm-modal">
+        <div class="delete-confirm-content">
+            <h3>Confirm Delete</h3>
+            <p>Are you sure you want to delete this game?</p>
+            <div class="delete-confirm-actions">
+                <button class="delete-confirm-cancel" onclick="cancelDelete()">Cancel</button>
+                <button class="delete-confirm-delete" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Store added games with local storage and JSON export
+        let gameToDelete = null;
+
         let games = [];
+        // Initialize search input globally
+        const searchInput = document.getElementById('game-search');
+        let activeGenre = 'all';
+        let activeYear = 'all';
+        let activeMonth = null; // Variable to track the active month
+        // Define an object to store years and their respective months
+        let yearsAndMonths = {};
+
+        // Array to store DLC data for each game
+        let gameDlcData = {};
 
         async function fetchGames() {
             try {
@@ -614,7 +1711,13 @@
 
                 if (Array.isArray(data)) {
                     games = data;
+                    // Populate the years and months
+                    populateYearsAndMonths();
                     renderAllGames();
+                    filterAndSearchGames();
+                    populateFreeGamesList();
+                    populateWishlistedGames();
+                    populateFavoriteGames();
                 } else {
                     console.error('Fetched data is not an array:', data);
                     games = [];
@@ -622,7 +1725,7 @@
             } catch (error) {
                 console.error('Detailed fetch error:', error);
                 games = [];
-                alert('Failed to load games. Please check the data source.');
+                alert('Failed to load games. Please check the data source or format.');
             }
         }
 
@@ -630,7 +1733,7 @@
         async function updateRemoteGames() {
             try {
                 // IMPORTANT: Replace with your actual GitHub Personal Access Token
-                const githubToken = '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';
+                const githubToken = '';
                 const owner = 'Craftsman-Sakib';
                 const repo = 'task-manager';
                 const path = 'game_pulse_data.json';
@@ -697,6 +1800,35 @@
             link.download = 'game_pulse_data.json';
             link.click();
         }
+
+        function populateYearsAndMonths() {
+            // Reset the object
+            yearsAndMonths = {};
+
+            // Populate the object based on the fetched games
+            games.forEach(game => {
+                // Assuming releaseDate is a string that can be parsed by new Date()
+                const releaseDate = game.releaseDate ? new Date(game.releaseDate) : null;
+                if (releaseDate) {
+                    const year = releaseDate.getFullYear();
+                    const month = releaseDate.getMonth();
+
+                    if (!yearsAndMonths[year]) {
+                        yearsAndMonths[year] = new Set();
+                    }
+                    yearsAndMonths[year].add(month);
+                }
+            });
+
+            // Convert Sets to Arrays
+            for (const year in yearsAndMonths) {
+                yearsAndMonths[year] = Array.from(yearsAndMonths[year]);
+            }
+
+            // Update the filter lists
+            renderYearFilterList();
+        }
+
         // Multi-select functionality
         function setupMultiSelect(inputId, dropdownId, tagsId) {
             const input = document.getElementById(inputId);
@@ -735,9 +1867,9 @@
                 tag.className = 'multi-select-tag';
                 tag.id = tagId;
                 tag.innerHTML = `
-                ${value}
-                <span class="remove-tag" onclick="removeTag('${tagId}', '${value}')">&times;</span>
-            `;
+                            ${value}
+                            <span class="remove-tag" onclick="removeTag('${tagId}', '${value}')">×</span>
+                        `;
                 tagsContainer.appendChild(tag);
             } else {
                 // Remove tag
@@ -761,6 +1893,121 @@
                 checkbox.checked = false;
             }
         }
+        function addCustomGenre() {
+            const customGenreInput = document.getElementById('custom-genre-input');
+            const customGenre = customGenreInput.value.trim();
+            if (customGenre) {
+                const dropdown = document.getElementById('genre-dropdown');
+                const label = document.createElement('label');
+                label.innerHTML = `<input type="checkbox" value="${customGenre}"> ${customGenre}`;
+                dropdown.appendChild(label);
+
+                // Add event listener to new checkbox
+                const checkbox = label.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', () => {
+                    updateTags(checkbox, document.getElementById('genre-tags'));
+                });
+                customGenreInput.value = '';
+            }
+        }
+
+        function addCustomPlatform() {
+            const customPlatformInput = document.getElementById('custom-platform-input');
+            const customPlatform = customPlatformInput.value.trim();
+            if (customPlatform) {
+                const dropdown = document.getElementById('platform-dropdown');
+                const label = document.createElement('label');
+                label.innerHTML = `<input type="checkbox" value="${customPlatform}"> ${customPlatform}`;
+                dropdown.appendChild(label);
+
+                // Add event listener to new checkbox
+                const checkbox = label.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', () => {
+                    updateTags(checkbox, document.getElementById('platform-tags'));
+                });
+                customPlatformInput.value = '';
+            }
+        }
+
+        function addCustomStore() {
+            const customStoreInput = document.getElementById('custom-store-input');
+            const customStore = customStoreInput.value.trim();
+            if (customStore) {
+                const dropdown = document.getElementById('store-dropdown');
+                const label = document.createElement('label');
+                label.innerHTML = `<input type="checkbox" value="${customStore}"> ${customStore}`;
+                dropdown.appendChild(label);
+
+                // Add event listener to new checkbox
+                const checkbox = label.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', () => {
+                    updateTags(checkbox, document.getElementById('store-tags'));
+                });
+                customStoreInput.value = '';
+            }
+        }
+        function addCustomModLinks() {
+            const customModInput = document.getElementById('custom-mod-input');
+            const customModLinks = customModInput.value.split(',').map(link => link.trim()).filter(Boolean);
+
+            if (customModLinks.length > 0) {
+                const dropdown = document.getElementById('mod-dropdown');
+                customModLinks.forEach(modLink => {
+                    const label = document.createElement('label');
+                    label.innerHTML = `<input type="checkbox" value="${modLink}"> ${modLink}`;
+                    dropdown.appendChild(label);
+                    // Add event listener to new checkbox
+                    const checkbox = label.querySelector('input[type="checkbox"]');
+                    checkbox.addEventListener('change', () => {
+                        updateTags(checkbox, document.getElementById('mod-tags'));
+                    });
+                });
+                customModInput.value = '';
+            }
+        }
+        function addCustomSubscription() {
+            const customSubscriptionInput = document.getElementById('custom-subscription-input');
+            const customSubscription = customSubscriptionInput.value.trim();
+
+            if (customSubscription) {
+                const dropdown = document.getElementById('subscription-dropdown');
+                const label = document.createElement('label');
+                label.innerHTML = `<input type="checkbox" value="${customSubscription}"> ${customSubscription}`;
+                dropdown.appendChild(label);
+
+                // Add event listener to new checkbox
+                const checkbox = label.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('change', () => {
+                    updateTags(checkbox, document.getElementById('subscription-tags'));
+                });
+                customSubscriptionInput.value = '';
+            }
+        }
+
+        // New function to add DLC items dynamically
+        function addNewDlc() {
+            const dlcList = document.getElementById('dlc-list');
+            const newDlcItem = document.createElement('div');
+            newDlcItem.className = 'dlc-item';
+            newDlcItem.innerHTML = `
+                <label for="dlc-name">Name:</label>
+                <input type="text" id="dlc-name" placeholder="DLC Name" class="dlc-input" data-field="name">
+                <label for="dlc-release-date">Release Date:</label>
+                <input type="text" id="dlc-release-date" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" class="dlc-input" data-field="releaseDate" oninput="formatAnyDate(this)">
+                <label for="dlc-price">Price:</label>
+                <input type="number" id="dlc-price" placeholder="Price (0 for Free)" class="dlc-input" data-field="price" step="0.01" value="0" min="0">
+                <label for="dlc-image">Image Link:</label>
+                <input type="url" id="dlc-image" placeholder="DLC Image URL" class="dlc-input" data-field="image">
+                <button type="button" onclick="removeDlcItem(this)">Remove</button>
+            `;
+            dlcList.appendChild(newDlcItem);
+        }
+
+        // New function to remove DLC items
+        function removeDlcItem(button) {
+            const dlcItem = button.parentNode;
+            dlcItem.remove();
+        }
 
         document.getElementById('add-game-form').addEventListener('submit', async function (event) {
             event.preventDefault();
@@ -770,16 +2017,38 @@
                 const checkboxes = document.querySelectorAll(`#${dropdownId} input[type="checkbox"]:checked`);
                 return Array.from(checkboxes).map(cb => cb.value);
             }
+            // Updated function to get DLC data
+            function getDlcData() {
+                const dlcItems = document.querySelectorAll('#dlc-list .dlc-item');
+                return Array.from(dlcItems).map(item => {
+                    const dlc = {};
+                    item.querySelectorAll('.dlc-input').forEach(input => {
+                        const field = input.dataset.field;
+                        dlc[field] = input.type === 'number' ? parseFloat(input.value) : input.value;
+                    });
+                    return dlc;
+                });
+            }
 
             const gameName = document.getElementById('game-name').value;
             const gameImage = document.getElementById('game-image').value || '/api/placeholder/200/300';
+            const extraImageUrlsText = document.getElementById('extra-image-urls').value;
+            const extraImageUrls = extraImageUrlsText ? extraImageUrlsText.split(',').map(url => url.trim()).filter(Boolean) : [];
             const gameGenre = getMultiSelectValues('genre-dropdown');
             const gameReleaseDate = document.getElementById('game-release-date').value;
+            const gameBetaDate = document.getElementById('game-beta-date').value; // Added beta date
+            const gameEarlyAccessDate = document.getElementById('game-early-access-date').value; // Added early access date
+            const gameDeveloper = document.getElementById('game-developer').value;
+            const gamePublisher = document.getElementById('game-publisher').value;
             const gamePlatform = getMultiSelectValues('platform-dropdown');
             const gameStore = getMultiSelectValues('store-dropdown');
-            const gamePrice = document.getElementById('game-price').value;
+            const gameModLinks = getMultiSelectValues('mod-dropdown');
+            const gameSubscriptions = getMultiSelectValues('subscription-dropdown');
+            const gameTrailerLink = document.getElementById('game-trailer-link').value;
+            const gamePrice = parseFloat(document.getElementById('game-price').value);
             const gameDetails = document.getElementById('game-details').value;
             const gameLinks = document.getElementById('game-links').value;
+            const gameDlc = getDlcData();
 
             // Extract release year
             const releaseYear = gameReleaseDate ? new Date(gameReleaseDate).getFullYear().toString() : '';
@@ -789,13 +2058,23 @@
                 id: Date.now(),
                 name: gameName,
                 image: gameImage,
+                extraImages: extraImageUrls,
                 genre: gameGenre,
+                releaseDate: gameReleaseDate,
+                betaDate: gameBetaDate,
+                earlyAccessDate: gameEarlyAccessDate,
+                developer: gameDeveloper,
+                publisher: gamePublisher,
                 releaseYear: releaseYear,
                 platform: gamePlatform,
                 store: gameStore,
+                modLinks: gameModLinks,
+                subscriptions: gameSubscriptions,
+                trailerLink: gameTrailerLink, // Added for trailer
                 price: gamePrice,
                 details: gameDetails,
-                links: gameLinks
+                links: gameLinks,
+                dlc: gameDlc
             };
 
             // Add to games array
@@ -815,6 +2094,9 @@
             document.getElementById('genre-tags').innerHTML = '';
             document.getElementById('platform-tags').innerHTML = '';
             document.getElementById('store-tags').innerHTML = '';
+            document.getElementById('mod-tags').innerHTML = '';
+            document.getElementById('subscription-tags').innerHTML = '';
+            document.getElementById('dlc-list').innerHTML = '';
         });
 
         // Function to render all games
@@ -832,8 +2114,25 @@
             setupMultiSelect('genre-input', 'genre-dropdown', 'genre-tags');
             setupMultiSelect('platform-input', 'platform-dropdown', 'platform-tags');
             setupMultiSelect('store-input', 'store-dropdown', 'store-tags');
-        });
+            setupMultiSelect('mod-input', 'mod-dropdown', 'mod-tags');
+            setupMultiSelect('subscription-input', 'subscription-dropdown', 'subscription-tags');
 
+            // Add event listener to the search input
+            searchInput.addEventListener('input', filterAndSearchGames);
+            // Add event listeners to genre and year filter lists
+            document.getElementById('genre-filter-list').addEventListener('click', filterAndSearchGames);
+            document.getElementById('year-filter-list').addEventListener('click', filterAndSearchGames);
+            // Initially, render all games or apply any default filters you want
+            renderAllGames();
+
+            // Add event listeners to image popup controls
+            document.querySelector('.image-popup .close-btn').addEventListener('click', closeImagePopup);
+            document.querySelector('.image-popup .prev-btn').addEventListener('click', showPreviousImage);
+            document.querySelector('.image-popup .next-btn').addEventListener('click', showNextImage);
+
+            // Add event listeners to date input fields
+            addDateInputListeners();
+        });
 
         // Optional: Add export functionality for manual backup
         function exportGames() {
@@ -869,10 +2168,60 @@
         function formatFullDate(dateString) {
             if (!dateString) return 'Release date not specified';
 
+            // Regular expressions for different date formats
+            const fullDateRegex = /^\d{4}-\d{2}-\d{2}$/; // YYYY-MM-DD
+            const monthYearRegex = /^\d{4}-\d{2}$/; // YYYY-MM
+            const yearRegex = /^\d{4}$/; // YYYY
+            const dateTimeRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/; // YYYY-MM-DDTHH:MM
+
+            const date = new Date(dateString);
+
+            if (dateTimeRegex.test(dateString)) {
+                // Format for YYYY-MM-DDTHH:MM
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: '2-digit',
+                    hour12: true
+                };
+                return date.toLocaleDateString('en-US', options);
+            } else if (fullDateRegex.test(dateString)) {
+                // Format for YYYY-MM-DD
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+                return date.toLocaleDateString('en-US', options);
+            } else if (monthYearRegex.test(dateString)) {
+                // Format for YYYY-MM
+                const options = {
+                    year: 'numeric',
+                    month: 'long'
+                };
+                return date.toLocaleDateString('en-US', options);
+            } else if (yearRegex.test(dateString)) {
+                // Format for YYYY
+                const options = {
+                    year: 'numeric'
+                };
+                return date.toLocaleDateString('en-US', options);
+            } else {
+                return 'Invalid date format';
+            }
+        }
+
+        // Function to format only the date part
+        function formatDate(dateString) {
+            if (!dateString) return 'Date not specified';
+
             try {
                 const date = new Date(dateString);
                 const options = {
-                    weekday: 'long',
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric'
@@ -883,213 +2232,1011 @@
             }
         }
 
+        // placing this function outside of the renderGameCard function
+        function determineGameStatus(releaseDateString) {
+            if (!releaseDateString) return '';
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const releaseDate = new Date(releaseDateString);
+            releaseDate.setHours(0, 0, 0, 0);
+
+            if (releaseDate > today) {
+                return 'upcoming';
+            } else if (releaseDate.toDateString() === today.toDateString()) {
+                return 'new';
+            }
+
+            return '';
+        }
+        function renderDlcSection(dlc) {
+            if (!dlc || dlc.length === 0) return '';
+
+            const dlcHtml = dlc.map(item => `
+                <div class="dlc-item">
+                    <strong>${item.name}</strong>
+                    <span>Release Date: ${formatDate(item.releaseDate)}</span>
+                    <span>Price: ${item.price == 0 ? 'Free' : '$' + parseFloat(item.price).toFixed(2)}</span>
+                    ${item.image ? `<img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-top: 5px;">` : ''}
+                </div>
+            `).join('');
+
+            return `
+                <div class="dlc-container">
+                    <h4>DLCs and Expansions</h4>
+                    <div class="dlc-list">${dlcHtml}</div>
+                </div>
+            `;
+        }
+
+        // Function to populate the wishlisted games list in the sidebar
+        function populateWishlistedGames() {
+            const wishlistedGamesList = document.getElementById('wishlisted-games-list');
+            wishlistedGamesList.innerHTML = ''; // Clear existing list
+
+            const wishlistedGamesIds = JSON.parse(localStorage.getItem('wishlistedGames')) || [];
+            const wishlistedGames = games.filter(game => wishlistedGamesIds.includes(game.id));
+
+            if (wishlistedGames.length === 0) {
+                const emptyMessage = document.createElement('li');
+                emptyMessage.textContent = "No wishlisted games yet!";
+                wishlistedGamesList.appendChild(emptyMessage);
+                return;
+            }
+
+            wishlistedGames.forEach(game => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
+                ${game.name}
+                `;
+                listItem.addEventListener('click', () => {
+                    // Trigger the details button of the corresponding game card
+                    const gameCard = Array.from(document.querySelectorAll(`.game-card`)).find(card => {
+                        const titleElement = card.querySelector('.game-card-title');
+                        return titleElement && titleElement.textContent === game.name;
+                    });
+                    if (gameCard) {
+                        const detailsButton = gameCard.querySelector('.btn-details');
+                        if (detailsButton) {
+                            openGameDetails(detailsButton, game.id);
+                        }
+                    }
+                });
+                wishlistedGamesList.appendChild(listItem);
+            });
+        }
+        // Modify renderGameCard to include price display and wishlist button
         function renderGameCard(game) {
             const gameCard = document.createElement('div');
             gameCard.className = 'game-card';
             gameCard.dataset.genres = Array.isArray(game.genre) ? game.genre.join(',') : game.genre;
             gameCard.dataset.year = game.releaseYear;
+            gameCard.dataset.releaseDate = game.releaseDate; // Store the release date in dataset
 
-            // Create a function to render tags with a specific type and icon
+            // Check if release date exists before accessing its properties
+            const releaseDate = game.releaseDate ? new Date(game.releaseDate) : null;
+
+            // Now we set 'activeMonth' in our data attribute if 'releaseDate' exists
+            if (releaseDate) {
+                gameCard.dataset.month = releaseDate.getMonth();
+            }
+
+            const gameStatus = determineGameStatus(game.releaseDate);
+
+            function getPriceTag(price) {
+                const numericPrice = isNaN(parseFloat(price)) ? 0 : parseFloat(price);
+                return numericPrice === 0 ? '<span class="free-tag">FREE</span>' : `<span class="price-tag">$${numericPrice.toFixed(2)}</span>`;
+            }
+
             function renderTagGroup(items, type, icon) {
-                // Ensure items is an array
                 const safeItems = Array.isArray(items) ? items : (items ? [items] : []);
-
                 if (safeItems.length === 0) return '';
 
                 const visibleItems = safeItems.slice(0, 2);
                 const overflowCount = safeItems.length > 2 ? safeItems.length - 2 : 0;
 
                 return `
-        <div class="tag-group" data-type="${type}">
-            <div class="tag-group-icon">
-                <i class="fas ${icon}"></i>
-            </div>
-            <div class="tag-group-tags">
-                ${visibleItems.map(item => `<span class="game-tag">${item}</span>`).join('')}
-                ${overflowCount > 0 ? `<span class="tag-overflow">+${overflowCount}</span>` : ''}
-            </div>
-        </div>
-    `;
+                    <div class="tag-group" data-type="${type}">
+                    <div class="tag-group-icon">
+                        <i class="fas ${icon}"></i>
+                    </div>
+                    <div class="tag-group-tags">
+                        ${visibleItems.map(item => `<span class="game-tag">${item}</span>`).join('')}
+                        ${overflowCount > 0 ? `<span class="tag-overflow">+${overflowCount}</span>` : ''}
+                    </div>
+                    </div>
+                    `;
+            }
+
+            // Create overlay element
+            let overlayClass = '';
+            if (gameStatus === 'new') {
+                overlayClass = 'new';
+            } else if (gameStatus === 'upcoming') {
+                overlayClass = 'upcoming';
+            }
+            const overlay = overlayClass ? `<div class="overlay ${overlayClass}">${gameStatus.toUpperCase()}</div>` : '';
+
+            // Create a div for the favorite icon
+            const favoriteIcon = document.createElement('div');
+            favoriteIcon.className = 'favorite-icon';
+            favoriteIcon.innerHTML = '<i class="fas fa-heart"></i>';
+            favoriteIcon.dataset.gameId = game.id; // Set game ID for reference
+
+            // Toggle favorite status on click
+            favoriteIcon.addEventListener('click', function (event) {
+                event.stopPropagation(); // Prevent triggering other click events
+                toggleFavorite(this, game.id);
+            });
+
+            // Set active class if game is favorited
+            if (game.isFavorite) {
+                favoriteIcon.classList.add('active');
             }
 
             gameCard.innerHTML = `
+                <div class="game-card-image-container">
         <img src="${game.image}" alt="${game.name}" class="game-card-image">
-        <div class="game-card-content">
-            <div class="game-card-header">
+        ${overlay}
+        <div class="favorite-icon" onclick="toggleFavorite(this, ${game.id})">
+            <i class="fas fa-heart"></i>
+        </div>
+    </div>
+                <div class="game-card-content">
+                <div class="game-card-header">
                 <h2 class="game-card-title">${game.name}</h2>
-            </div>
-            <div class="game-card-tags">
+                ${getPriceTag(game.price)}
+                </div>
+                <div class="game-card-tags">
                 ${renderTagGroup(game.genre, 'genre', 'fa-tags')}
                 ${renderTagGroup(game.platform, 'platform', 'fa-desktop')}
                 ${renderTagGroup(game.store, 'store', 'fa-shopping-cart')}
+                ${renderTagGroup(game.modLinks, 'mod', 'fa-link')}
+                ${renderTagGroup(game.subscriptions, 'subscription', 'fa-credit-card')}
                 ${game.releaseYear ? `
                 <div class="tag-group" data-type="year">
-                    <div class="tag-group-icon">
-                        <i class="fas fa-calendar"></i>
-                    </div>
-                    <div class="tag-group-tags">
-                        <span class="game-tag">${game.releaseYear}</span>
-                    </div>
+                <div class="tag-group-icon">
+                    <i class="fas fa-calendar"></i>
+                </div>
+                <div class="tag-group-tags">
+                    <span class="game-tag">${formatFullDate(game.releaseDate)}</span>
+                </div>
                 </div>` : ''}
-            </div>
-            <div class="game-details-modal">
-                <div class="game-details-content">
-                    <div class="game-details-header">
-                        <h3>Game Details</h3>
-                        <button class="close-details">&times;</button>
-                    </div>
-                    <div class="game-details-grid">
-                        ${createDetailItem('fa-calendar', 'Release Date', formatFullDate(game.releaseDate))}
-                        ${createDetailItem('fa-tags', 'Genres', game.genre)}
-                        ${createDetailItem('fa-desktop', 'Platforms', game.platform)}
-                        ${createDetailItem('fa-shopping-cart', 'Stores', game.store || 'Not available')}
-                        ${createDetailItem('fa-dollar-sign', 'Price', game.price ? `$${game.price}` : 'Not listed')}
-                        ${game.links ? `
-                            <div class="game-details-item">
-                                <i class="fas fa-link"></i>
-                                <span>More Info: <a href="${game.links}" target="_blank">External Link</a></span>
-                            </div>` : ''}
-                        ${createDetailItem('fa-info-circle', 'Description', game.details)}
+                </div>
+                <div class="game-card-actions">
+                    <button class="btn btn-details" onclick="openGameDetails(this, ${game.id})">
+                        <i class="fas fa-info-circle"></i> Details
+                    </button>
+                    <div class="wishlist-fav-container">
+                    ${gameStatus === 'upcoming' ? `
+                        <button class="btn btn-wishlist ${game.isWishlisted ? 'active' : ''}" onclick="toggleWishlist(this, ${game.id})">
+                            <i class="fas fa-heart"></i> ${game.isWishlisted ? 'Wishlisted' : 'Wishlist'}
+                        </button>` : ''}
                     </div>
                 </div>
-            </div>
-            
-            <div class="game-card-actions">
-                <button class="btn btn-details" onclick="openGameDetails(this)">
-                    <i class="fas fa-info-circle"></i> Details
-                </button>
-                <button class="btn btn-favorite" onclick="toggleFavorite(this)">
-                    <i class="fas fa-heart"></i> Favorite
-                </button>
-            </div>
-        </div>
-    `;
-
-            // Restore the createDetailItem function which was missing
-            function createDetailItem(icon, label, value) {
-                if (!value || (Array.isArray(value) && value.length === 0)) {
-                    return '';
-                }
-
-                const displayValue = Array.isArray(value) ? value.join(', ') : value;
-                return `
-            <div class="game-details-item">
-                <i class="fas ${icon}"></i>
-                <span>${label}: ${displayValue}</span>
-            </div>
-        `;
-            }
+                </div>
+                `;
+            const actionsDiv = gameCard.querySelector('.game-card-actions');
+            const deleteButton = document.createElement('button');
+            deleteButton.className = 'btn delete-button';
+            deleteButton.innerHTML = `<i class="fas fa-trash"></i> Delete`;
+            deleteButton.onclick = () => initiateGameDelete(game.id);
+            actionsDiv.appendChild(deleteButton);
             document.getElementById('game-list').appendChild(gameCard);
         }
+        // Append the modal to the body, not inside the game card
 
-        function openGameDetails(button) {
-            const gameCard = button.closest('.game-card');
-            const detailsModal = gameCard.querySelector('.game-details-modal');
-            detailsModal.classList.add('active');
+        function createDetailItem(icon, label, value) {
+            if (!value || (Array.isArray(value) && value.length === 0)) {
+                return '';
+            }
 
-            // Add event listener to close button
-            const closeButton = detailsModal.querySelector('.close-details');
-            closeButton.addEventListener('click', () => {
-                detailsModal.classList.remove('active');
-            });
-
-            // Close modal when clicking outside
-            detailsModal.addEventListener('click', (e) => {
-                if (e.target === detailsModal) {
-                    detailsModal.classList.remove('active');
-                }
-            });
+            const displayValue = Array.isArray(value) ? value.join(', ') : value;
+            return `
+                <div class="game-details-item">
+                <i class="fas ${icon}"></i>
+                <span>${label}: ${displayValue}</span>
+                </div>
+                `;
         }
 
-        function toggleFavorite(button) {
-            button.classList.toggle('active');
-            const gameCard = button.closest('.game-card');
-            const gameName = gameCard.querySelector('.game-card-title').textContent;
-            const gameImage = gameCard.querySelector('.game-card-image').src;
-            const favoriteList = document.getElementById('favorite-games-list');
+        // Function to initiate delete process
+        function initiateGameDelete(gameId) {
+            // Find the game in the games array
+            gameToDelete = games.find(g => g.id === gameId);
 
-            if (button.classList.contains('active')) {
-                const favoriteItem = document.createElement('li');
-                favoriteItem.innerHTML = `
-                    <img src="${gameImage}" alt="${gameName}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
-                    ${gameName}
-                `;
-                favoriteList.appendChild(favoriteItem);
-            } else {
-                const favoriteItems = favoriteList.getElementsByTagName('li');
-                for (let item of favoriteItems) {
-                    if (item.textContent.includes(gameName)) {
-                        favoriteList.removeChild(item);
-                        break;
+            if (gameToDelete) {
+                // Show delete confirmation modal
+                const deleteModal = document.getElementById('delete-confirm-modal');
+                deleteModal.classList.add('active');
+
+                // Close modal when clicking outside
+                deleteModal.addEventListener('click', (e) => {
+                    if (e.target === deleteModal) {
+                        cancelDelete();
                     }
+                });
+            }
+        }
+
+        // Cancel delete operation
+        function cancelDelete() {
+            const deleteModal = document.getElementById('delete-confirm-modal');
+            deleteModal.classList.remove('active');
+            gameToDelete = null;
+        }
+
+        // Confirm and execute delete
+        async function confirmDelete() {
+            if (gameToDelete) {
+                try {
+                    // Remove game from games array
+                    games = games.filter(g => g.id !== gameToDelete.id);
+
+                    // Update remote games
+                    await updateRemoteGames();
+
+                    // Re-render game list
+                    renderAllGames();
+
+                    // Close the delete confirmation modal
+                    const deleteModal = document.getElementById('delete-confirm-modal');
+                    deleteModal.classList.remove('active');
+                    // Reset gameToDelete
+                    gameToDelete = null;
+
+                    // Optional: Show a success message
+                    alert('Game deleted successfully');
+                } catch (error) {
+                    console.error('Delete failed:', error);
+                    alert('Failed to delete the game. Please try again.');
                 }
             }
         }
 
-        function toggleSidebar() {
-            document.querySelector('.sidebar').classList.toggle('active');
+        // YouTube modal functions
+        function openYouTubeModal(trailerLink) {
+            const youtubeModal = document.getElementById('youtube-modal');
+            const youtubeIframe = document.getElementById('youtube-iframe');
+            const videoId = getYouTubeVideoId(trailerLink);
+
+            if (videoId) {
+                youtubeIframe.src = `https://www.youtube.com/embed/${videoId}`;
+                youtubeModal.style.display = 'flex';
+            } else {
+                alert('Invalid YouTube link');
+            }
         }
 
-        function toggleAddGameSection() {
-            const addGameSection = document.querySelector('.add-game-section');
-            addGameSection.classList.toggle('active');
-        }
-        // Genre and Year Filtering
-        document.getElementById('genre-filter-list').addEventListener('click', function (event) {
-            // Remove active class from all genre filters
-            document.querySelectorAll('#genre-filter-list li').forEach(li => li.classList.remove('active'));
-
-            // Add active class to clicked filter
-            event.target.classList.add('active');
-
-            // Get selected genre
-            const selectedGenre = event.target.dataset.genre;
-            filterGames(selectedGenre, getCurrentYearFilter());
-        });
-
-        document.getElementById('year-filter-list').addEventListener('click', function (event) {
-            // Remove active class from all year filters
-            document.querySelectorAll('#year-filter-list li').forEach(li => li.classList.remove('active'));
-
-            // Add active class to clicked filter
-            event.target.classList.add('active');
-
-            // Get selected year
-            const selectedYear = event.target.dataset.year;
-            filterGames(getCurrentGenreFilter(), selectedYear);
-        });
-
-        function getCurrentGenreFilter() {
-            const activeGenreFilter = document.querySelector('#genre-filter-list li.active');
-            return activeGenreFilter ? activeGenreFilter.dataset.genre : 'all';
+        function closeYouTubeModal() {
+            document.getElementById('youtube-modal').style.display = 'none';
+            document.getElementById('youtube-iframe').src = '';
         }
 
-        function getCurrentYearFilter() {
-            const activeYearFilter = document.querySelector('#year-filter-list li.active');
-            return activeYearFilter ? activeYearFilter.dataset.year : 'all';
+        function getYouTubeVideoId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+
+            if (match && match[2].length === 11) {
+                return match[2];
+            } else {
+                return null;
+            }
         }
 
-        function filterGames(genre, year) {
-            const gameCards = document.querySelectorAll('.game-card');
+        // Image handling functions
+        let currentGameImages = [];
+        let currentImageIndex = 0;
 
-            gameCards.forEach(card => {
-                const matchesGenre = genre === 'all' || card.dataset.genres.split(',').includes(genre);
-                const matchesYear = year === 'all' || card.dataset.year === year;
+        // Function to open image in popup
+        function openImageInPopup(imageSrc, containerElement) {
+            const popup = document.querySelector('.image-popup');
+            const popupImage = popup.querySelector('img');
 
-                if (matchesGenre && matchesYear) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
+            // Get all images from the current game's additional images container
+            currentGameImages = Array.from(containerElement.querySelectorAll('img')).map(img => img.src);
+            currentImageIndex = currentGameImages.indexOf(imageSrc);
+
+            popupImage.src = imageSrc;
+            popup.classList.add('visible');
+        }
+
+        // Function to close the image popup
+        function closeImagePopup() {
+            const popup = document.querySelector('.image-popup');
+            popup.classList.remove('visible');
+        }
+
+        // Function to show the next image
+        function showNextImage() {
+            if (currentGameImages.length > 1) {
+                currentImageIndex = (currentImageIndex + 1) % currentGameImages.length;
+                const popup = document.querySelector('.image-popup');
+                const popupImage = popup.querySelector('img');
+                popupImage.src = currentGameImages[currentImageIndex];
+            }
+        }
+
+        // Function to show the previous image
+        function showPreviousImage() {
+            if (currentGameImages.length > 1) {
+                currentImageIndex = (currentImageIndex - 1 + currentGameImages.length) % currentGameImages.length;
+                const popup = document.querySelector('.image-popup');
+                const popupImage = popup.querySelector('img');
+                popupImage.src = currentGameImages[currentImageIndex];
+            }
+        }
+
+        // Get the current game card outside of openGameDetails
+        let currentDetailsCard = null;
+
+        function openGameDetails(button, gameId) {
+            // Find the game with the given ID
+            const game = games.find(g => g.id === gameId);
+            if (!game) return;
+
+            // Get the modal and its content element
+            const modal = document.getElementById('game-details-modal');
+            const modalContent = document.getElementById('game-details-content');
+
+            // Clear existing content
+            modalContent.innerHTML = '';
+
+            // Construct the modal content dynamically
+            modalContent.innerHTML = `
+                <div class="game-details-header">
+                    <h3>Game Details</h3>
+                    <button class="close-details" onclick="closeGameDetails()">×</button>
+                </div>
+                <div class="details-title-image-section">
+                    <img src="${game.image}" alt="${game.name}" class="details-game-image">
+                    <div>
+                        <h4 class="details-game-title">${game.name}</h4>
+                        <div class="dev-publisher-container">
+                            ${game.developer ? `<span class="dev-label">Developer:</span> <span class="developer-name">${game.developer}</span>` : ''}
+                            ${game.publisher ? `<span class="publisher-label">Publisher:</span> <span class="publisher-name">${game.publisher}</span>` : ''}
+                        </div>
+                    </div>
+                </div>
+                <div class="game-details-grid">
+                    ${createDetailItem('fa-calendar', 'Release Date', formatFullDate(game.releaseDate))}
+                    ${game.betaDate ? createDetailItem('fa-calendar-alt', 'Beta Release', formatFullDate(game.betaDate)) : ''}
+                    ${game.earlyAccessDate ? createDetailItem('fa-calendar-check', 'Early Access Date', formatFullDate(game.earlyAccessDate)) : ''}
+                    ${createDetailItem('fa-tags', 'Genres', game.genre)}
+                    ${createDetailItem('fa-desktop', 'Platforms', game.platform)}
+                    ${createDetailItem('fa-shopping-cart', 'Stores', game.store || 'Not available')}
+                    ${createDetailItem('fa-credit-card', 'Subscriptions', game.subscriptions)}
+                    ${game.modLinks && game.modLinks.length > 0 ? `
+                        <div class="game-details-item">
+                            <i class="fas fa-link"></i>
+                            <span>Mod Links: 
+                                ${game.modLinks.map(link => `<a href="${link}" target="_blank">${link}</a>`).join(', ')}
+                            </span>
+                        </div>` : ''}
+                    ${game.trailerLink ? `
+                        <div class="game-details-item" onclick="openYouTubeModal('${game.trailerLink}')">
+                            <i class="fas fa-video"></i>
+                            <span class="trailer-link">Trailer: Watch Trailer</span>
+                        </div>` : ''}
+                    ${createDetailItem('fa-dollar-sign', 'Price', game.price ? (isNaN(parseFloat(game.price)) || parseFloat(game.price) === 0 ? 'Free' : `$${parseFloat(game.price).toFixed(2)}`) : 'Free')}
+                    ${renderDlcSection(game.dlc)}
+                    ${game.links ? `
+                        <div class="game-details-item">
+                            <i class="fas fa-link"></i>
+                            <span>More Info: <a href="${game.links}" target="_blank">External Link</a></span>
+                        </div>` : ''}
+                    ${game.extraImages && game.extraImages.length > 0 ? `
+                        <div class="game-details-item">
+                            <i class="fas fa-images"></i>
+                            <span>
+                                Additional Images
+                                <div class="additional-images-container">
+                                    ${game.extraImages.map(imageUrl =>
+                `<img src="${imageUrl}" alt="Additional" class="additional-image" onclick="openImageInPopup('${imageUrl}', this.closest('.additional-images-container'))">`
+            ).join('')}
+                                </div>
+                            </span>
+                        </div>` : ''}
+                    ${createDetailItem('fa-info-circle', 'Description', game.details)}
+                </div>
+            `;
+
+            // Show the modal
+            modal.classList.add('active');
+            // Add event listener for closing the modal when clicking outside
+            modal.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    closeGameDetails();
                 }
             });
         }
-        // Add multiple select functionality to dropdowns
-        document.querySelectorAll('select[multiple]').forEach(select => {
-            select.addEventListener('click', function (e) {
-                e.preventDefault();
-                this.focus();
+
+function closeGameDetails() {
+    const modal = document.getElementById('game-details-modal');
+    modal.classList.remove('active');
+}
+
+// Updated toggleFavorite function with local storage handling
+function toggleFavorite(button, gameId) {
+    const game = games.find(g => g.id === gameId);
+    if (!game) return;
+
+    // Find the game card where the heart icon was clicked
+    const gameCard = button.closest('.game-card');
+
+    // Find the favorite button within that game card
+    const favoriteButton = gameCard.querySelector('.btn-favorite');
+
+    // Update the game's isFavorite status
+    game.isFavorite = !game.isFavorite;
+
+    // Update the heart icon on the game card
+    const heartIcon = gameCard.querySelector('.favorite-icon i');
+    if (game.isFavorite) {
+        heartIcon.classList.add('active');
+    } else {
+        heartIcon.classList.remove('active');
+    }
+
+    // Update the favorite button in the game card's action section
+    if (favoriteButton) {
+        favoriteButton.classList.toggle('active', game.isFavorite);
+        favoriteButton.innerHTML = `<i class="fas fa-heart"></i> ${game.isFavorite ? 'Favorite' : 'Add Favorite'}`;
+    }
+
+    // Update favorite status in local storage
+    let favoriteGames = JSON.parse(localStorage.getItem('favoriteGames')) || [];
+    if (game.isFavorite) {
+        if (!favoriteGames.some(favGame => favGame.id === gameId)) {
+            favoriteGames.push(game);
+        }
+    } else {
+        favoriteGames = favoriteGames.filter(favGame => favGame.id !== gameId);
+    }
+
+    localStorage.setItem('favoriteGames', JSON.stringify(favoriteGames));
+    populateFavoriteGames();
+    filterAndSearchGames();
+}
+
+// Function to populate the favorite games list in the sidebar
+function populateFavoriteGames() {
+    const favoriteGamesList = document.getElementById('favorite-games-list');
+    favoriteGamesList.innerHTML = '';
+
+    const favoriteGamesIds = JSON.parse(localStorage.getItem('favoriteGames')) || [];
+    const favoriteGames = games.filter(game => favoriteGamesIds.includes(game.id));
+
+    if (favoriteGames.length === 0) {
+        const emptyMessage = document.createElement('li');
+        emptyMessage.textContent = "No favorite games yet!";
+        favoriteGamesList.appendChild(emptyMessage);
+        return;
+    }
+
+    favoriteGames.forEach(game => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
+            ${game.name}
+        `;
+        listItem.addEventListener('click', () => {
+            // Trigger the details button of the corresponding game card
+            const gameCard = Array.from(document.querySelectorAll(`.game-card`)).find(card => {
+                const titleElement = card.querySelector('.game-card-title');
+                return titleElement && titleElement.textContent === game.name;
             });
+            if (gameCard) {
+                const detailsButton = gameCard.querySelector('.btn-details');
+                if (detailsButton) {
+                    openGameDetails(detailsButton, game.id);
+                }
+            }
         });
-    </script>
+        favoriteGamesList.appendChild(listItem);
+    });
+}
+
+// Function to populate the wishlisted games list in the sidebar
+function populateWishlistedGames() {
+    const wishlistedGamesList = document.getElementById('wishlisted-games-list');
+    wishlistedGamesList.innerHTML = ''; // Clear existing list
+
+    const wishlistedGamesIds = JSON.parse(localStorage.getItem('wishlistedGames')) || [];
+    const wishlistedGames = games.filter(game => wishlistedGamesIds.includes(game.id));
+
+    if (wishlistedGames.length === 0) {
+        const emptyMessage = document.createElement('li');
+        emptyMessage.textContent = "No wishlisted games yet!";
+        wishlistedGamesList.appendChild(emptyMessage);
+        return;
+    }
+
+    wishlistedGames.forEach(game => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+    <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
+    ${game.name}
+`;
+        listItem.addEventListener('click', () => {
+            // Trigger the details button of the corresponding game card
+            const gameCard = Array.from(document.querySelectorAll(`.game-card`)).find(card => {
+                const titleElement = card.querySelector('.game-card-title');
+                return titleElement && titleElement.textContent === game.name;
+            });
+            if (gameCard) {
+                const detailsButton = gameCard.querySelector('.btn-details');
+                if (detailsButton) {
+                    openGameDetails(detailsButton, game.id);
+                }
+            }
+        });
+        wishlistedGamesList.appendChild(listItem);
+    });
+}
+
+function toggleSidebar() {
+    document.querySelector('.sidebar').classList.toggle('active');
+}
+
+function toggleAddGameSection() {
+    const addGameSection = document.querySelector('.add-game-section');
+    const overlay = document.querySelector('.overlay');
+    addGameSection.classList.toggle('active');
+    overlay.classList.toggle('active');
+}
+
+function determineGameStatus(releaseDateString) {
+    if (!releaseDateString) return '';
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const releaseDate = new Date(releaseDateString);
+    releaseDate.setHours(0, 0, 0, 0);
+
+    if (releaseDate > today) {
+        return 'upcoming';
+    } else if (releaseDate.toDateString() === today.toDateString()) {
+        return 'new';
+    }
+
+    return '';
+}
+
+// Updated filterAndSearchGames function to include month filtering and upcoming logic
+function filterAndSearchGames() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const gameCards = document.querySelectorAll('.game-card');
+
+    // Sort upcoming games by release date
+    const upcomingGames = Array.from(gameCards).filter(card => {
+        const gameStatus = determineGameStatus(card.dataset.releaseDate);
+        return gameStatus === 'upcoming';
+    }).sort((a, b) => {
+        const dateA = new Date(a.dataset.releaseDate);
+        const dateB = new Date(b.dataset.releaseDate);
+        return dateA - dateB;
+    });
+
+    // Process non-upcoming games
+    gameCards.forEach(card => {
+        const gameStatus = determineGameStatus(card.dataset.releaseDate);
+        const isFavorite = games.find(g => g.name === card.querySelector('.game-card-title').textContent).isFavorite || false;
+
+        const matchesGenre = activeGenre === 'all' ||
+            card.dataset.genres.split(',').includes(activeGenre) ||
+            (activeGenre === 'upcoming' && gameStatus === 'upcoming') ||
+            (activeGenre === 'free' && parseFloat(card.querySelector('.game-card-header span')?.textContent.replace(/[^0-9.-]+/g, "")) === 0);
+        const matchesYear = activeYear === 'all' || card.dataset.year === activeYear;
+        const matchesMonth = activeMonth === null || card.dataset.month == activeMonth;
+        const matchesSearchTerm = gameMatchesSearchTerm(card, searchTerm);
+        const matchesFavorites = document.getElementById('genre-filter-list').querySelector('[data-genre="favorites"]')?.classList.contains('active') ? isFavorite : true;
+
+        if (matchesGenre && matchesYear && matchesMonth && matchesSearchTerm && matchesFavorites) {
+            if (gameStatus !== 'upcoming') {
+                card.style.display = 'flex';
+            }
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    // Append upcoming games to the game list, maintaining their sorted order
+    const gameList = document.getElementById('game-list');
+    upcomingGames.forEach(card => {
+        if (card.style.display !== 'none') {
+            gameList.appendChild(card);
+        }
+    });
+}
+
+function renderYearFilterList() {
+    const yearFilterList = document.getElementById('year-filter-list');
+    yearFilterList.innerHTML = '';
+
+    const sortedYears = Object.keys(yearsAndMonths).sort((a, b) => b - a);
+
+    sortedYears.forEach(year => {
+        const yearItem = document.createElement('li');
+        yearItem.classList.add('year-filter-item');
+        yearItem.textContent = year;
+        yearItem.dataset.year = year;
+
+        yearItem.addEventListener('click', function (event) {
+            // Prevent event bubbling to avoid triggering the document click event
+            event.stopPropagation();
+
+            // Remove active class from previously active year
+            document.querySelectorAll('.year-filter-item.active').forEach(y => y.classList.remove('active'));
+
+            // Toggle active class for clicked year
+            this.classList.add('active');
+            activeYear = this.dataset.year;
+            filterAndSearchGames();
+
+            // Remove the active month when the year changes
+            activeMonth = null;
+
+            // Close the month filter list for other years
+            document.querySelectorAll('.month-filter-list').forEach(list => {
+                if (list.dataset.year !== year) {
+                    list.style.display = 'none';
+                }
+            });
+
+            // Toggle visibility of month list for the clicked year
+            const monthList = this.querySelector('.month-filter-list');
+            if (monthList) {
+                monthList.style.display = monthList.style.display === 'flex' ? 'none' : 'flex';
+            }
+
+            // Prevent the click event from immediately closing the dropdown
+            event.stopPropagation();
+        });
+
+        const monthFilterList = document.createElement('ul');
+        monthFilterList.classList.add('month-filter-list');
+        monthFilterList.dataset.year = year; // Add a data attribute for the year
+
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        yearsAndMonths[year].forEach(monthIndex => {
+            const monthItem = document.createElement('li');
+            monthItem.classList.add('month-filter-item');
+            monthItem.textContent = months[monthIndex];
+            monthItem.dataset.month = monthIndex;
+
+            monthItem.addEventListener('click', function (event) {
+                // Prevent event bubbling to the year filter item
+                event.stopPropagation();
+
+                // Remove active class from previously active month
+                document.querySelectorAll('.month-filter-item.active').forEach(m => m.classList.remove('active'));
+
+                // Toggle active class for clicked month
+                this.classList.add('active');
+                activeMonth = this.dataset.month; // Update activeMonth with dataset.month
+                filterAndSearchGames();
+
+                // Prevent event bubbling to avoid triggering the document click event
+                event.stopPropagation();
+            });
+
+            monthFilterList.appendChild(monthItem);
+        });
+
+        yearItem.appendChild(monthFilterList);
+        yearFilterList.appendChild(yearItem);
+    });
+    // Add a click event to the document to close month filter lists when clicking outside
+    document.addEventListener('click', () => {
+        document.querySelectorAll('.month-filter-list').forEach(list => list.style.display = 'none');
+        document.querySelectorAll('.year-filter-item').forEach(y => y.classList.remove('active'));
+    });
+}
+
+// Call this function after populating yearsAndMonths
+renderYearFilterList();
+
+// Add event listener for the genre filter list
+document.getElementById('genre-filter-list').addEventListener('click', function (event) {
+    // Set active genre
+    activeGenre = event.target.dataset.genre;
+
+    // Handle the 'Favorites' filter separately
+    if (activeGenre === 'favorites') {
+        // No need to update games here, `filterAndSearchGames` will handle it based on the active state of the filter
+        document.querySelectorAll('#genre-filter-list li').forEach(li => li.classList.remove('active'));
+        event.target.classList.add('active');
+    } else {
+        // Remove active class from all genre filters including 'Favorites'
+        document.querySelectorAll('#genre-filter-list li').forEach(li => li.classList.remove('active'));
+        // Add active class to clicked filter
+        event.target.classList.add('active');
+        // Reset activeYear and activeMonth when selecting any category in genre
+        activeYear = 'all';
+        activeMonth = null;
+    }
+
+    // if free game is selected then call  populateFreeGamesList
+    if (activeGenre === 'free') {
+        populateFreeGamesList();
+    }
+
+    filterAndSearchGames();
+    document.querySelectorAll('.additional-image').forEach(image => {
+        image.addEventListener('click', () => {
+            const container = image.closest('.additional-images-container');
+            const imageSrc = image.src;
+            openImageInPopup(imageSrc, image);
+        });
+    });
+});
+
+function gameMatchesSearchTerm(card, searchTerm) {
+    const title = card.querySelector('.game-card-title').textContent.toLowerCase();
+    const tags = Array.from(card.querySelectorAll('.game-tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+    let price = '';
+    const priceElement = card.querySelector('.game-card-header span');
+    if (priceElement) {
+        const priceValue = priceElement.textContent;
+        const numericPrice = isNaN(parseFloat(priceValue)) ? 0 : parseFloat(priceValue);
+        price = numericPrice === 0 ? 'free' : numericPrice.toFixed(2);
+        price = price.toLowerCase();
+    }
+
+    return title.includes(searchTerm) || tags.includes(searchTerm) || price.includes(searchTerm);
+}
+
+function searchGames() {
+    filterAndSearchGames();
+}
+
+// Reset all filters
+function resetFilters() {
+    // Reset active genre and year
+    activeGenre = 'all';
+    activeYear = 'all';
+    activeMonth = null;
+
+    // Reset genre filter list
+    document.querySelectorAll('#genre-filter-list li').forEach(li => li.classList.remove('active'));
+    document.querySelector('#genre-filter-list li[data-genre="all"]').classList.add('active');
+
+    // Reset year filter list
+    document.querySelectorAll('#year-filter-list li').forEach(li => li.classList.remove('active'));
+    document.querySelector('#year-filter-list li[data-year="all"]').classList.add('active');
+
+    // Clear the search input
+    document.getElementById('game-search').value = '';
+
+    // Re-render all games to clear filters
+    renderAllGames();
+}
+
+// Populate Free Games List
+function populateFreeGamesList() {
+    const freeGamesList = document.getElementById('free-games-list');
+    freeGamesList.innerHTML = '';
+
+    const freeGames = games.filter(game => game.price == 0).sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+    const latestFreeGames = freeGames.slice(0, 3);
+
+    latestFreeGames.forEach(game => {
+        const listItem = document.createElement('li');
+
+        // Add an image to the list item
+        const gameImage = document.createElement('img');
+        gameImage.src = game.image;
+        gameImage.alt = game.name;
+        gameImage.style.width = '50px';
+        gameImage.style.marginRight = '10px';
+        gameImage.style.borderRadius = '5px';
+        listItem.appendChild(gameImage);
+        listItem.appendChild(document.createTextNode(game.name));
+        listItem.addEventListener('click', () => {
+            activeGenre = 'free';
+
+            // Reset activeYear and activeMonth when selecting any category in genre
+            activeYear = 'all';
+            activeMonth = null;
+
+            filterAndSearchGames();
+            document.querySelectorAll('#genre-filter-list li').forEach(li => li.classList.remove('active'));
+            document.querySelector('#genre-filter-list li[data-genre="free"]').classList.add('active');
+        });
+
+        freeGamesList.appendChild(listItem);
+    });
+}
+
+// Function to format any date format - this should be placed outside oninput function
+function formatAnyDate(inputField) {
+    let value = inputField.value.trim();
+
+    // Regular expressions for different date formats
+    const fullDateRegex = /^\d{4}-\d{2}-\d{2}$/; // YYYY-MM-DD
+    const monthYearRegex = /^\d{4}-\d{2}$/; // YYYY-MM
+    const yearRegex = /^\d{4}$/; // YYYY
+    const dateTimeRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/; // YYYY-MM-DDTHH:MM
+
+    // Check if the input matches any of the date/time formats and format accordingly
+    if (dateTimeRegex.test(value)) {
+        // Format for YYYY-MM-DDTHH:MM
+        const date = new Date(value);
+        inputField.value = date.toISOString().slice(0, 16); // ISO format up to minutes
+    } else if (fullDateRegex.test(value)) {
+        // Format for YYYY-MM-DD
+        const date = new Date(value);
+        inputField.value = date.toISOString().slice(0, 10); // ISO format YYYY-MM-DD
+    } else if (monthYearRegex.test(value)) {
+        // Format for YYYY-MM
+        const year = value.split('-')[0];
+        const month = value.split('-')[1];
+        inputField.value = `${year}-${month}`;
+    } else if (yearRegex.test(value)) {
+        // Format for YYYY
+        const year = value;
+        inputField.value = `${year}`;
+    } else {
+        // For invalid formats, you can clear the input or leave it as is
+        // inputField.value = ''; // Uncomment to clear invalid input
+    }
+}
+
+// Function to add event listeners to date input fields
+function addDateInputListeners() {
+    const releaseDateInput = document.getElementById('game-release-date');
+    const betaDateInput = document.getElementById('game-beta-date');
+    const earlyAccessDateInput = document.getElementById('game-early-access-date');
+    const releaseDateCalendar = document.getElementById('game-release-date-calendar');
+    const betaDateCalendar = document.getElementById('game-beta-date-calendar');
+    const earlyAccessDateCalendar = document.getElementById('game-early-access-date-calendar');
+
+    releaseDateInput.addEventListener('click', () => {
+        releaseDateCalendar.style.display = 'block';
+        releaseDateCalendar.focus();
+    });
+
+    betaDateInput.addEventListener('click', () => {
+        betaDateCalendar.style.display = 'block';
+        betaDateCalendar.focus();
+    });
+
+    earlyAccessDateInput.addEventListener('click', () => {
+        earlyAccessDateCalendar.style.display = 'block';
+        earlyAccessDateCalendar.focus();
+    });
+
+    releaseDateCalendar.addEventListener('change', () => {
+        releaseDateInput.value = formatAnyDate(releaseDateCalendar);
+        releaseDateCalendar.style.display = 'none';
+    });
+
+    betaDateCalendar.addEventListener('change', () => {
+        betaDateInput.value = formatAnyDate(betaDateCalendar);
+        betaDateCalendar.style.display = 'none';
+    });
+
+    earlyAccessDateCalendar.addEventListener('change', () => {
+        earlyAccessDateInput.value = formatAnyDate(earlyAccessDateCalendar);
+        earlyAccessDateCalendar.style.display = 'none';
+    });
+
+    // Prevent modal from closing when clicking inside the calendar input
+    releaseDateCalendar.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    betaDateCalendar.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    earlyAccessDateCalendar.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+}
+
+// Add multiple select functionality to dropdowns
+document.querySelectorAll('select[multiple]').forEach(select => {
+    select.addEventListener('click', function (e) {
+        e.stopPropagation(); // Changed from e.preventDefault() to e.stopPropagation()
+        this.focus();
+    });
+});
+
+// Function to manage favorite games in local storage
+function toggleFavorite(button, gameId) {
+    const game = games.find(g => g.id === gameId);
+    if (!game) return;
+
+    let favoriteGames = JSON.parse(localStorage.getItem('favoriteGames')) || [];
+    const isFavorite = favoriteGames.includes(gameId);
+
+    // Toggle the isFavorite status of the game
+    game.isFavorite = !game.isFavorite;
+
+    if (!isFavorite) {
+        favoriteGames.push(gameId);
+        button.classList.add('active'); // Update the icon on the game card
+
+    } else {
+        favoriteGames = favoriteGames.filter(id => id !== gameId);
+        button.classList.remove('active'); // Update the icon on the game card
+
+    }
+
+    localStorage.setItem('favoriteGames', JSON.stringify(favoriteGames));
+    populateFavoriteGames();
+    filterAndSearchGames();
+}
+
+// Function to populate the favorite games list in the sidebar
+function populateFavoriteGames() {
+    const favoriteGamesList = document.getElementById('favorite-games-list');
+    favoriteGamesList.innerHTML = '';
+
+    const favoriteGamesIds = JSON.parse(localStorage.getItem('favoriteGames')) || [];
+    const favoriteGames = games.filter(game => favoriteGamesIds.includes(game.id));
+
+    if (favoriteGames.length === 0) {
+        const emptyMessage = document.createElement('li');
+        emptyMessage.textContent = "No favorite games yet!";
+        favoriteGamesList.appendChild(emptyMessage);
+        return;
+    }
+
+    favoriteGames.forEach(game => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+            <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
+            ${game.name}
+        `;
+        listItem.addEventListener('click', () => {
+            // Trigger the details button of the corresponding game card
+            const gameCard = Array.from(document.querySelectorAll(`.game-card`)).find(card => {
+                const titleElement = card.querySelector('.game-card-title');
+                return titleElement && titleElement.textContent === game.name;
+            });
+            if (gameCard) {
+                const detailsButton = gameCard.querySelector('.btn-details');
+                if (detailsButton) {
+                    openGameDetails(detailsButton, game.id);
+                }
+            }
+        });
+        favoriteGamesList.appendChild(listItem);
+    });
+}
+
+
+
+// Function to manage wishlisted games in local storage
+function toggleWishlist(button, gameId) {
+    const game = games.find(g => g.id === gameId);
+    if (!game) return;
+
+    let wishlistedGames = JSON.parse(localStorage.getItem('wishlistedGames')) || [];
+    const isWishlisted = wishlistedGames.includes(gameId);
+
+    if (!isWishlisted) {
+        wishlistedGames.push(gameId);
+        game.isWishlisted = true;
+        button.classList.add('active');
+        button.innerHTML = `<i class="fas fa-heart"></i> Wishlisted`;
+    } else {
+        wishlistedGames = wishlistedGames.filter(id => id !== gameId);
+        game.isWishlisted = false;
+        button.classList.remove('active');
+        button.innerHTML = `<i class="fas fa-heart"></i> Wishlist`;
+    }
+
+    localStorage.setItem('wishlistedGames', JSON.stringify(wishlistedGames));
+    populateWishlistedGames(); // Update the UI
+}
+</script>
 </body>
+
 </html>
