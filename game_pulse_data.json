@@ -70,8 +70,7 @@
     ],
     "price": "13.49",
     "details": "Among Ashes features a unique concept where you play a horror game called \"Night Call\" within the main game. This adds layers to the horror experience.",
-    "links": "https://store.steampowered.com/app/2430900/Among_Ashes/",
-    "isWishlisted": true
+    "links": "https://store.steampowered.com/app/2430900/Among_Ashes/"
   },
   {
     "id": 1734338128081,
@@ -90,7 +89,8 @@
     ],
     "price": "6.29",
     "details": "The game revolves around a protagonist who is mysteriously drawn into a mobile simulation game. Players navigate this surreal world",
-    "links": "https://aihasto.itch.io/miside"
+    "links": "https://aihasto.itch.io/miside",
+    "isWishlisted": true
   },
   {
     "id": 1734339212520,
