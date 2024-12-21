@@ -52,7 +52,7 @@
     "price": "5.25",
     "details": "",
     "links": "https://rawfury.com/games/ballionaire/",
-    "isWishlisted": true
+    "isWishlisted": false
   },
   {
     "id": 1734334169972,
@@ -70,7 +70,8 @@
     ],
     "price": "13.49",
     "details": "Among Ashes features a unique concept where you play a horror game called \"Night Call\" within the main game. This adds layers to the horror experience.",
-    "links": "https://store.steampowered.com/app/2430900/Among_Ashes/"
+    "links": "https://store.steampowered.com/app/2430900/Among_Ashes/",
+    "isWishlisted": true
   },
   {
     "id": 1734338128081,
