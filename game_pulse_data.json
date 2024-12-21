@@ -301,5 +301,39 @@
     "price": 4.49,
     "details": "Grand Theft Auto IV is the sixth main entry in the Grand Theft Auto series. The game is set in the fictional Liberty City, based on New York City, and follows the story of Eastern European war veteran Niko Bellic as he tries to escape his past while under pressure from high-profile criminals. The game features an open-world design, allowing players to freely roam Liberty City, which consists of three main islands and the neighboring state of Alderney.\nThe game includes both single-player and multiplayer modes, with the latter allowing up to 32 players to engage in cooperative and competitive gameplay.Two expansion packs, \"The Lost and Damned\" and \"The Ballad of Gay Tony,\" were later released, featuring new plots interconnected with the main storyline.",
     "links": "https://www.rockstargames.com/games/IV"
+  },
+  {
+    "id": 1734785900522,
+    "name": "Splitgate 2",
+    "image": "https://image.api.playstation.com/vulcan/ap/rnd/202209/1607/iUILmr1aK9O3kdAxU4PaR7E4.jpg",
+    "extraImages": [],
+    "genre": [
+      "shooter",
+      "first-person"
+    ],
+    "releaseDate": "2025-01-01",
+    "betaDate": "",
+    "earlyAccessDate": "2024-08-21",
+    "developer": "1047 Games",
+    "publisher": "1047 Games",
+    "releaseYear": "2025",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "xbox-store",
+      "playstation-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=zncj59QzZIM",
+    "price": 0,
+    "details": "Splitgate 2 is a 4v4 competitive multiplayer game that combines fast-paced portal gunplay with objective-based game modes. Players can teleport across the map to outsmart opponents, customize weapons, and master portaling skills. The game features three factions: Aeros, Meridian, and Sabrask, each with unique abilities.",
+    "links": "https://www.splitgate.com/",
+    "dlc": []
   }
 ]
