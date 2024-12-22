@@ -617,5 +617,43 @@
     "details": "\"Ambulance Life: A Paramedic Simulator\" is an upcoming simulation game that immerses players in the life of a paramedic, emphasizing emergency response and patient care.",
     "links": "https://www.nacongaming.com/en-US/ambulance-life",
     "dlc": []
+  },
+  {
+    "id": 1734897027849,
+    "name": "Shadow Labyrinth",
+    "image": "https://th.bing.com/th?id=OIF.b%2fETXTdNVxd%2bKS3QpF4XeQ&rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://www.gaming.net/wp-content/uploads/2024/12/Your-paragraph-text-2024-12-20T080814.236.jpg",
+      "https://www.shopto.net/userdata/dcshop/images/thumb_3/MISCSH00_shadow_labyrinth_screenshot_-3.jpg",
+      "https://th.bing.com/th/id/OIF.rIifs0oQqMnDmQh81Xn5wQ?rs=1&pid=ImgDetMain"
+    ],
+    "genre": [
+      "2D Action Platformer"
+    ],
+    "releaseDate": "2025",
+    "betaDate": "",
+    "earlyAccessDate": "",
+    "developer": "Bandai Namco Studios",
+    "publisher": "Bandai Namco Entertainment",
+    "releaseYear": "2025",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation",
+      "nintendo"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "Nintendo Store",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=-7YXmOtc-Io",
+    "price": 0,
+    "details": "\"Shadow Labyrinth\" is an upcoming 2D action platformer developed by Bandai Namco Studios and published by Bandai Namco Entertainment. The game offers a genre-twisting alternate take on the iconic PAC-MAN franchise, presenting a darker and more mature interpretation of the classic maze concept.",
+    "links": "https://www.bandainamcoent.com/games/shadow-labyrinth/",
+    "dlc": []
   }
 ]
