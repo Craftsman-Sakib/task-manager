@@ -442,8 +442,47 @@
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=vPS-pgg3scE&t=3s",
     "price": 0,
-    "details": "Kingdom Come: Deliverance II is an action role-playing game developed by Warhorse Studios and published by Deep Silver. Serving as the sequel to the 2018 game Kingdom Come: Deliverance, it continues the historically grounded narrative set in 15th-century Bohemia.\n\nGameplay and Features:\n\nSetting: The game is set in 15th-century Bohemia, continuing the story of Henry, a blacksmith's son, amidst the turmoil of a civil war.\n\nGame World: The open world is reported to be twice as large as that of the original game, featuring two expansive areas: the Bohemian Paradise and the city of Kutná Hora (Kuttenberg).\n\nCombat: The sequel introduces new weaponry, including crossbows and early firearms, enhancing the game's realistic combat mechanics.\n\nGameplay Mechanics: Players can expect a life simulation experience where the protagonist requires regular sleep and food. The game emphasizes realism, with society and NPCs reacting dynamically to the player's actions, influencing character development and the game world.\n\nGame Length: The base game is estimated to offer 80 to 100 hours of gameplay, excluding DLCs.\n\nCutscenes: The narrative is interspersed with approximately five hours of cinematic cutscenes.\n\nDevelopment Team: The game is directed by Daniel Vávra, with Martin Klíma serving as producer and Viktor Bocan as designer. The music is composed by Jan Valta and Adam Sporka.",
+    "details": "Kingdom Come: Deliverance II is an action role-playing game developed by Warhorse Studios and published by Deep Silver. Serving as the sequel to the 2018 game Kingdom Come: Deliverance, it continues the historically grounded narrative set in 15th-century Bohemia.\n\nGameplay and Features:\n\nSetting: The game is set in 15th-century Bohemia, continuing the story of Henry, a blacksmith's son, amidst the turmoil of a civil war.\n\nGame World: The open world is reported to be twice as large as that of the original game, featuring two expansive areas: the Bohemian Paradise and the city of Kutnï¿½ Hora (Kuttenberg).\n\nCombat: The sequel introduces new weaponry, including crossbows and early firearms, enhancing the game's realistic combat mechanics.\n\nGameplay Mechanics: Players can expect a life simulation experience where the protagonist requires regular sleep and food. The game emphasizes realism, with society and NPCs reacting dynamically to the player's actions, influencing character development and the game world.\n\nGame Length: The base game is estimated to offer 80 to 100 hours of gameplay, excluding DLCs.\n\nCutscenes: The narrative is interspersed with approximately five hours of cinematic cutscenes.\n\nDevelopment Team: The game is directed by Daniel Vï¿½vra, with Martin Klï¿½ma serving as producer and Viktor Bocan as designer. The music is composed by Jan Valta and Adam Sporka.",
     "links": "https://www.kingdomcomerpg.com/?utm_source=chatgpt.com",
+    "dlc": []
+  },
+  {
+    "id": 1734883765254,
+    "name": "Witcher IV",
+    "image": "https://th.bing.com/th?id=OIF.4qQXZH4RH0bx21RJRi5%2bcw&rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://th.bing.com/th/id/OIF.IRQdR16uxhHz7bbBYN2RtQ?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/OIF.2jJMQKWstpS3SkW3XNbg0Q?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th?id=OIF.5Fm9KxzerVd8%2f94YLyXjQA&rs=1&pid=ImgDetMain"
+    ],
+    "genre": [
+      "action",
+      "rpg"
+    ],
+    "releaseDate": "2026",
+    "betaDate": "",
+    "earlyAccessDate": "",
+    "developer": "CD Projekt Red",
+    "publisher": "CD Projekt",
+    "releaseYear": "2026",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "gog",
+      "xbox-store",
+      "playstation-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=54dabgZJ5YA",
+    "price": 80,
+    "details": "",
+    "links": "https://www.thewitcher.com/en/witcher4",
     "dlc": []
   }
 ]
