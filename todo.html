@@ -28,6 +28,7 @@
             top: 0;
             left: 0;
             width: 60px;
+            /* Fixed width for icons */
             height: 100vh;
             background-color: #f8f9fa;
             display: flex;
@@ -37,16 +38,13 @@
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             transition: width 0.3s ease;
-            /* Changed for left position */
-        }
-
-        .navigation-panel:hover {
-            width: 200px;
         }
 
         .nav-item {
             display: flex;
             align-items: center;
+            justify-content: center;
+            /* Center the icon */
             width: 100%;
             padding: 10px;
             margin: 5px 0;
@@ -57,23 +55,17 @@
         }
 
         .nav-item i {
-            margin-right: 15px;
-            width: 25px;
-            text-align: center;
-        }
-
-        .nav-item span {
-            opacity: 0;
-            white-space: nowrap;
-            transition: opacity 0.3s ease;
-        }
-
-        .navigation-panel:hover .nav-item span {
-            opacity: 1;
+            font-size: 1.5em;
+            /* Adjust icon size as needed */
         }
 
         .nav-item:hover {
             background-color: #e9ecef;
+        }
+
+        /* Remove span and hover effect for expanding */
+        .nav-item span {
+            display: none;
         }
 
         /* Main Content Area */
@@ -81,137 +73,15 @@
             display: flex;
             flex-grow: 1;
             padding-left: 60px;
+            /* Fixed padding for icon width */
             transition: padding-left 0.3s ease;
-            /* Adjusted to work with left panel */
             height: 100vh;
             overflow: hidden;
-            /* prevent content overflow that causes a second scroll bar */
-
         }
 
-        .navigation-panel:hover+.app-container {
-            padding-left: 200px;
-        }
-
-        @media (max-width: 768px) {
-            .navigation-panel {
-                width: 100%;
-                height: 60px;
-                flex-direction: row;
-                justify-content: center;
-            }
-
-            .app-container {
-                padding-left: 0;
-                margin-top: 60px;
-            }
-
-            .navigation-panel:hover+.app-container {
-                padding-left: 0;
-            }
-        }
-
-
-        /* Sidebar Styles */
         .sidebar {
-            width: 350px;
-            background-color: #f0f0f0;
-            padding: 20px;
-            border-right: 1px solid #e0e0e0;
-            height: 100%;
-            overflow-y: auto;
-            /* Allow sidebar content to scroll if needed */
-
-        }
-
-        .sidebar-header {
-            text-align: center;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #007bff;
-        }
-
-        .sidebar-header h1 {
-            color: #007bff;
-            font-size: 24px;
-            font-weight: 600;
-        }
-
-        .input-section {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .input-group label {
-            margin-bottom: 5px;
-            color: #555;
-        }
-
-        .input-group input,
-        .input-group select,
-        .input-group textarea {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .priority-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 10px;
-        }
-
-        .priority-label {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            cursor: pointer;
-        }
-
-        .priority-label input {
-            margin-right: 5px;
-        }
-
-        .file-input-wrapper {
-            display: flex;
-            gap: 10px;
-        }
-
-        .file-input-label {
-            display: flex;
-            align-items: center;
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .file-input-label input[type="file"] {
             display: none;
-        }
-
-        .add-btn {
-            background-color: #28a745;
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .add-btn:hover {
-            background-color: #218838;
+            /* Initially hidden */
         }
 
         /* Main Content Area */
@@ -246,27 +116,30 @@
         /* Task List Container */
         .task-list {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            transition: all 0.3s ease;
         }
 
         /* Task Card Styles */
         .task-card {
-            border: 1px solid #e8e8e8;
-            border-radius: 10px;
+            background: white;
+            border-radius: 12px;
             padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid #edf2f7;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
             display: flex;
             flex-direction: column;
-            position: relative;
-            transition: box-shadow 0.3s;
-            background-color: #f8f8f8;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            gap: 12px;
+            height: fit-content;
         }
 
         /* Priority Task Card */
         .task-card.priority {
-            border-left: 5px solid #dc3545;
-            background-color: #fff3f3;
+            border-left: 4px solid #e53e3e;
         }
 
         /* Routine Task Card */
@@ -275,55 +148,86 @@
             border: 1px solid #b8daff;
         }
 
-
         .task-card:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
         }
 
         .task-image {
             width: 100%;
-            height: 200px;
+            height: 160px;
             object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
         }
 
         .task-details {
-            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .task-name {
-            font-weight: bold;
-            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a202c;
+            margin-bottom: 8px;
+            line-height: 1.4;
         }
 
         .task-tags {
             display: flex;
-            gap: 5px;
-            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 8px;
         }
 
         .tag {
-            padding: 3px 8px;
-            border-radius: 4px;
+            padding: 4px 8px;
+            border-radius: 6px;
             font-size: 12px;
-            background-color: #f1f1f1;
-            color: #333;
+            font-weight: 500;
+            white-space: nowrap;
         }
 
         .tag-todo {
-            background-color: #007bff;
-            color: white;
+            background-color: #ebf5ff;
+            color: #3182ce;
         }
 
         .tag-routine {
-            background-color: #28a745;
-            color: white;
+            background-color: #f0fff4;
+            color: #38a169;
         }
 
         .tag-priority {
-            background-color: #dc3545;
-            color: white;
+            background-color: #fff5f5;
+            color: #e53e3e;
+        }
+
+        /* Subtasks */
+        .subtasks {
+            margin-top: 8px;
+            padding: 8px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .subtask-list {
+            margin-top: 4px;
+            padding-left: 20px;
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        /* Notes */
+        .task-notes {
+            font-size: 14px;
+            color: #4a5568;
+            padding: 8px;
+            background: #f7fafc;
+            border-radius: 8px;
+            margin-top: 4px;
         }
 
         .routine-details {
@@ -340,19 +244,51 @@
 
         .delete-btn {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #dc3545;
-            color: white;
+            top: 12px;
+            right: 12px;
+            background-color: #fff5f5;
+            color: #e53e3e;
             border: none;
-            padding: 5px 8px;
-            border-radius: 4px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            transition: background-color 0.3s;
+            opacity: 0;
+            transition: all 0.2s ease;
+        }
+
+        .task-card:hover .delete-btn {
+            opacity: 1;
         }
 
         .delete-btn:hover {
-            background-color: #c82333;
+            background-color: #fed7d7;
+        }
+
+        /* Status Button */
+        .status-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: #f7fafc;
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: auto;
+        }
+
+        .status-btn:hover {
+            background-color: #edf2f7;
+        }
+
+        .status-btn.completed {
+            background-color: #f0fff4;
+            color: #38a169;
         }
 
         /* Homepage Modal Styles */
@@ -412,28 +348,191 @@
         }
 
         /* Modal Overlay */
-        .task-creation-modal {
+        .task-modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
+            z-index: 1001;
+            overflow: auto;
         }
 
-        /* Modal Content Styling */
-        .task-creation-content {
-            background-color: white;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 30px;
+        .task-modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .task-modal-content {
+            background: white;
             border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            /* Adjusted width */
+            position: relative;
+            padding: 30px;
+            max-height: 80vh;
+            /* Limit height */
+            overflow-y: auto;
+            /* Add scroll for overflow */
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #555;
+        }
+
+        /* Modal Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .task-modal-content {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .task-modal.closing .task-modal-content {
+            animation: fadeOut 0.3s ease-out;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #4a5568;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="datetime-local"],
+        .input-group input[type="date"],
+        .input-group select,
+        .input-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+            color: #2d3748;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus,
+        .input-group textarea:focus {
+            border-color: #3b82f6;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            outline: none;
+        }
+
+        .priority-group {
+            display: flex;
+            gap: 16px;
+            padding: 8px 0;
+        }
+
+        .priority-label {
+            flex: 1;
+            padding: 12px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .priority-label:hover {
+            background: #f0f9ff;
+            border-color: #93c5fd;
+        }
+
+        .priority-label input[type="radio"] {
+            display: none;
+        }
+
+        .priority-label input[type="radio"]:checked+span {
+            color: #2563eb;
+            font-weight: 600;
+        }
+
+        .priority-label.low {
+            color: #059669;
+        }
+
+        .priority-label.medium {
+            color: #d97706;
+        }
+
+        .priority-label.high {
+            color: #dc2626;
+        }
+
+        .priority-label input {
+            margin-right: 5px;
+        }
+
+        .file-input-wrapper {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .file-input-label {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .file-input-label:hover {
+            background: #2563eb;
+        }
+
+        .file-input-label input[type="file"] {
+            display: none;
         }
 
         /* Advanced Input Group */
@@ -442,41 +541,92 @@
         }
 
         .subtask-list {
-            margin-top: 12px;
-            padding: 10px;
-            border: 1px solid #f0f0f0;
-            border-radius: 5px;
-            background-color: #f9f9f9;
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 16px;
         }
 
         .subtask-item {
             display: flex;
-            align-items: center;
-            margin-bottom: 5px;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .subtask-item:last-child {
+            margin-bottom: 0;
         }
 
         .subtask-input {
-            flex-grow: 1;
-            margin-right: 10px;
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger {
+            background: #fee2e2;
+            color: #dc2626;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-danger:hover {
+            background: #fecaca;
+        }
+
+        #addSubtaskBtn {
+            background: #f3f4f6;
+            color: #4b5563;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 12px;
+        }
+
+        #addSubtaskBtn:hover {
+            background: #e5e7eb;
         }
 
         /* Color Selector Styling */
         .color-selector {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 12px;
+            padding: 8px 0;
         }
 
         .color-option {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
             cursor: pointer;
-            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .color-option:hover {
+            transform: scale(1.1);
         }
 
         .color-option.selected {
             border-color: #007bff;
+        }
+
+        .color-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 16px;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
         /* Custom Color styling for tasks*/
@@ -516,7 +666,6 @@
             /* Ensure content doesn't overflow */
         }
 
-
         .routine-card {
             background-color: #f8f8f8;
             border-radius: 8px;
@@ -536,7 +685,6 @@
             margin-bottom: 5px;
         }
 
-
         .calendar-day .task-name {
             font-size: 12px;
             margin-bottom: 3px;
@@ -544,8 +692,46 @@
 
         /* Reminder tag styles */
         .reminder-tag {
-            background-color: #f7b801;
-            color: #333;
+            background-color: #fffaf0;
+            color: #dd6b20;
+        }
+
+        .reminder-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .reminder-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .reminder-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            border: 2px solid #e2e8f0;
+            appearance: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .reminder-checkbox input[type="checkbox"]:checked {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            position: relative;
+        }
+
+        .reminder-checkbox input[type="checkbox"]:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         /* Reminder details */
@@ -584,140 +770,113 @@
         .routine-delete-btn i {
             font-size: 12px;
         }
+
+        /* Floating Add Task Button */
+        #openTaskModalBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            /* width: auto;  Keep it auto for now */
+            padding: 12px 24px;
+            /* Increased padding */
+            z-index: 100;
+            background-color: #007bff;
+            /* Use your primary color */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            /* More rounded corners */
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            /* Add a subtle shadow */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            /* Add transitions */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            /* Spacing between icon and text */
+        }
+
+        #openTaskModalBtn:hover {
+            background-color: #0056b3;
+            /* Darker shade on hover */
+            transform: translateY(-2px);
+            /* Slight lift on hover */
+        }
+
+        #openTaskModalBtn i {
+            font-size: 1.2em;
+            /* Adjust icon size */
+        }
+
+        #taskModal .add-btn {
+            /* Target the button within the modal */
+            background-color: #28a745;
+            /* Use a distinct color, like a success color */
+            color: white;
+            border: none;
+            padding: 14px 24px;
+            /* Adjust padding */
+            border-radius: 10px;
+            /* Rounded corners */
+            font-size: 16px;
+            font-weight: 600;
+            /* Make the text a bit bolder */
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Center icon and text */
+            gap: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            /* Subtle shadow */
+            margin-top: 20px;
+            /* Add some space above the button */
+        }
+
+        #taskModal .add-btn:hover {
+            background-color: #218838;
+            /* Darker shade on hover */
+            transform: scale(1.02);
+            /* Slight scale up on hover */
+        }
+
+        #taskModal .add-btn i {
+            font-size: 1.2em;
+            /* Adjust icon size */
+        }
     </style>
 </head>
 
 <body>
     <!-- Navigation Panel -->
     <div class="navigation-panel">
-        <a href="todo.html" class="nav-item active">
+        <a href="todo.html" class="nav-item">
             <i class="fas fa-tasks"></i>
-            <span>Task Manager</span>
         </a>
         <a href="gaming.html" class="nav-item">
             <i class="fas fa-gamepad"></i>
-            <span>Gaming Dashboard</span>
         </a>
         <a href="fitness.html" class="nav-item">
             <i class="fas fa-dumbbell"></i>
-            <span>Fitness Tracker</span>
         </a>
         <a href="finance.html" class="nav-item">
             <i class="fas fa-chart-line"></i>
-            <span>Finance Manager</span>
         </a>
         <a href="notes.html" class="nav-item">
             <i class="fas fa-sticky-note"></i>
-            <span>Personal Notes</span>
         </a>
     </div>
+
     <!-- Main Content Area -->
     <div class="app-container">
-        <!-- Sidebar with Input -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <h1>Task Manager</h1>
-            </div>
-            <div class="input-section">
-                <div class="input-group">
-                    <label for="taskName">Task Name</label>
-                    <input type="text" id="taskName" placeholder="Enter task name" required>
-                </div>
-                <div class="input-group">
-                    <label for="taskType">Task Type</label>
-                    <select id="taskType">
-                        <option value="todo">TODO</option>
-                        <option value="routine">Routine</option>
-                    </select>
-                </div>
+        <!-- Floating Add Task Button -->
+        <button id="openTaskModalBtn" class="add-btn">
+            <i class="fas fa-plus"></i> Add Task
+        </button>
 
-                <!-- Dynamic fields for Advanced Task -->
-                <div id="advancedTaskFields">
-                    <div class="input-group" id="priorityGroup">
-                        <label>Priority</label>
-                        <div class="priority-group">
-                            <label class="priority-label">
-                                <input type="radio" name="priority" value="low" checked> Low
-                            </label>
-                            <label class="priority-label">
-                                <input type="radio" name="priority" value="medium"> Medium
-                            </label>
-                            <label class="priority-label">
-                                <input type="radio" name="priority" value="high"> High
-                            </label>
-                        </div>
-                    </div>
-                    <div class="input-group" id="routineFrequencyGroup" style="display: none;">
-                        <label for="routineFrequency">Routine Frequency</label>
-                        <select id="routineFrequency">
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                        </select>
-                    </div>
-                    <div class="input-group" id="routineDateRange" style="display: none;">
-                        <label>Date Range</label>
-                        <div style="display: flex; gap:10px;">
-                            <input type="date" id="routineStartDate">
-                            <input type="date" id="routineEndDate">
-                        </div>
-                    </div>
-                    <div class="input-group" id="colorSelectorGroup">
-                        <label>Color Tag</label>
-                        <div class="color-selector">
-                            <div class="color-option" style="background-color: #007bff;" data-color="#007bff"></div>
-                            <div class="color-option" style="background-color: #28a745;" data-color="#28a745"></div>
-                            <div class="color-option" style="background-color: #dc3545;" data-color="#dc3545"></div>
-                            <div class="color-option" style="background-color: #ffc107;" data-color="#ffc107"></div>
-                            <div class="color-option" style="background-color: #6f42c1;" data-color="#6f42c1"></div>
-                        </div>
-                    </div>
-                    <div class="input-group" id="dateTimeGroup">
-                        <label for="taskDateTime">Date and Time</label>
-                        <input type="datetime-local" id="taskDateTime">
-                    </div>
-                    <div class="input-group" id="reminderGroup">
-                        <label>Reminders</label>
-                        <div>
-                            <label>
-                                <input type="checkbox" id="emailReminder"> Email Reminder
-                            </label>
-                            <label>
-                                <input type="checkbox" id="desktopNotification"> Desktop Notification
-                            </label>
-                        </div>
-                    </div>
-                    <div class="input-group" id="subtaskGroup">
-                        <label>Subtasks</label>
-                        <div id="subtaskContainer" class="subtask-list">
-                            <div class="subtask-item">
-                                <input type="text" class="subtask-input" placeholder="Enter subtask">
-                                <button class="btn btn-danger">Remove</button>
-                            </div>
-                        </div>
-                        <button id="addSubtaskBtn" class="btn btn-secondary">Add Subtask</button>
-                    </div>
-                    <div class="input-group" id="notesGroup">
-                        <label for="taskNotes">Additional Notes</label>
-                        <textarea id="taskNotes" rows="3"></textarea>
-                    </div>
-                    <div class="input-group">
-                        <label for="taskImageUrl">Image URL</label>
-                        <div class="file-input-wrapper">
-                            <input type="text" id="taskImageUrl" placeholder="Enter image URL or upload">
-                            <label class="file-input-label">
-                                <input type="file" id="taskImageFile" accept="image/*">
-                                <i class="fas fa-upload"></i> Upload
-                            </label>
-                        </div>
-                    </div>
-
-                </div>
-                <button class="add-btn" id="addTaskButton">
-                    <i class="fas fa-plus"></i> Add Task
-                </button>
-            </div>
-        </div>
         <!-- Main Content Display -->
         <div class="main-content">
             <div class="tabs">
@@ -741,6 +900,141 @@
             </div>
         </div>
     </div>
+
+    <!-- Task Modal -->
+    <div id="taskModal" class="task-modal">
+        <div class="task-modal-content">
+            <button class="close-modal"><i class="fas fa-times"></i></button>
+
+            <div class="input-section">
+                <!-- Task Name Input -->
+                <div class="input-group">
+                    <label for="taskName">Task Name</label>
+                    <input type="text" id="taskName" placeholder="Enter task name" required>
+                </div>
+
+                <!-- Task Type Selection -->
+                <div class="input-group">
+                    <label for="taskType">Task Type</label>
+                    <select id="taskType">
+                        <option value="todo">TODO</option>
+                        <option value="routine">Routine</option>
+                    </select>
+                </div>
+
+                <!-- Priority Selection -->
+                <div class="input-group" id="priorityGroup">
+                    <label>Priority</label>
+                    <div class="priority-group">
+                        <label class="priority-label low">
+                            <input type="radio" name="priority" value="low" checked>
+                            <span>Low</span>
+                        </label>
+                        <label class="priority-label medium">
+                            <input type="radio" name="priority" value="medium">
+                            <span>Medium</span>
+                        </label>
+                        <label class="priority-label high">
+                            <input type="radio" name="priority" value="high">
+                            <span>High</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Routine Frequency (hidden by default) -->
+                <div class="input-group" id="routineFrequencyGroup" style="display: none;">
+                    <label for="routineFrequency">Routine Frequency</label>
+                    <select id="routineFrequency">
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+
+                <!-- Routine Date Range (hidden by default) -->
+                <div class="input-group" id="routineDateRange" style="display: none;">
+                    <label>Date Range</label>
+                    <div class="file-input-wrapper">
+                        <input type="date" id="routineStartDate">
+                        <input type="date" id="routineEndDate">
+                    </div>
+                </div>
+
+                <!-- Color Selection -->
+                <div class="input-group" id="colorSelectorGroup">
+                    <label>Color Tag</label>
+                    <div class="color-selector">
+                        <div class="color-option" style="background-color: #007bff;" data-color="#007bff"></div>
+                        <div class="color-option" style="background-color: #28a745;" data-color="#28a745"></div>
+                        <div class="color-option" style="background-color: #dc3545;" data-color="#dc3545"></div>
+                        <div class="color-option" style="background-color: #ffc107;" data-color="#ffc107"></div>
+                        <div class="color-option" style="background-color: #6f42c1;" data-color="#6f42c1"></div>
+                    </div>
+                </div>
+
+                <!-- Date and Time -->
+                <div class="input-group" id="dateTimeGroup">
+                    <label for="taskDateTime">Date and Time</label>
+                    <input type="datetime-local" id="taskDateTime">
+                </div>
+
+                <!-- Reminders -->
+                <div class="input-group" id="reminderGroup">
+                    <label>Reminders</label>
+                    <div class="reminder-group">
+                        <label class="reminder-checkbox">
+                            <input type="checkbox" id="emailReminder">
+                            <span>Email Reminder</span>
+                        </label>
+                        <label class="reminder-checkbox">
+                            <input type="checkbox" id="desktopNotification">
+                            <span>Desktop Notification</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Subtasks -->
+                <div class="input-group" id="subtaskGroup">
+                    <label>Subtasks</label>
+                    <div id="subtaskContainer" class="subtask-list">
+                        <div class="subtask-item">
+                            <input type="text" class="subtask-input" placeholder="Enter subtask">
+                            <button class="btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <button id="addSubtaskBtn">
+                        <i class="fas fa-plus"></i> Add Subtask
+                    </button>
+                </div>
+
+                <!-- Notes -->
+                <div class="input-group" id="notesGroup">
+                    <label for="taskNotes">Additional Notes</label>
+                    <textarea id="taskNotes" rows="3"></textarea>
+                </div>
+
+                <!-- Image Upload -->
+                <div class="input-group">
+                    <label for="taskImageUrl">Image URL</label>
+                    <div class="file-input-wrapper">
+                        <input type="text" id="taskImageUrl" placeholder="Enter image URL or upload">
+                        <label class="file-input-label">
+                            <input type="file" id="taskImageFile" accept="image/*">
+                            <i class="fas fa-upload"></i> Upload
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Add Task Button -->
+                <button class="add-btn" id="addTaskButton">
+                    <i class="fas fa-plus"></i> Add Task
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal for Homepage Setting -->
     <div id="homepageModal" class="homepage-modal">
         <div class="homepage-modal-content">
@@ -752,10 +1046,7 @@
             </div>
         </div>
     </div>
-    <div id="taskCreationModal" class="task-creation-modal">
-        <div class="task-creation-content">
-        </div>
-    </div>
+
     <script>
         class EnhancedTaskManager {
             constructor() {
@@ -779,6 +1070,7 @@
                 // Set current week for Calendar
                 this.currentDate = new Date();
                 this.renderCalendar();
+
             }
 
             initializeElements() {
@@ -816,12 +1108,25 @@
                 this.nextWeekButton = document.getElementById('nextWeek');
 
                 // Modal Elements
-                this.taskCreationModal = document.getElementById('taskCreationModal');
+                this.openTaskModalBtn = document.getElementById('openTaskModalBtn');
+                this.taskModal = document.getElementById('taskModal');
+                this.closeModalBtn = document.querySelector('.close-modal');
 
                 this.advancedTaskFields = document.getElementById('advancedTaskFields');
             }
 
             setupEventListeners() {
+                // Open and Close Modal
+                this.openTaskModalBtn.addEventListener('click', () => this.openModal());
+                this.closeModalBtn.addEventListener('click', () => this.closeModal());
+
+                // Click outside the modal to close
+                this.taskModal.addEventListener('click', (event) => {
+                    if (event.target === this.taskModal) {
+                        this.closeModal();
+                    }
+                });
+
                 // Task type change listener
                 this.taskTypeSelect.addEventListener('change', () => this.handleTaskTypeChange());
 
@@ -850,6 +1155,21 @@
                 this.nextWeekButton.addEventListener('click', () => this.changeWeek(1));
             }
 
+            openModal() {
+                this.taskModal.classList.add('active');
+                this.taskModal.style.display = 'flex';
+            }
+
+            closeModal() {
+                this.taskModal.classList.add('closing');
+                setTimeout(() => {
+                    this.taskModal.classList.remove('closing');
+                    this.taskModal.classList.remove('active');
+                    this.taskModal.style.display = 'none';
+                }, 300); // ~ animation duration
+                this.clearInputs();
+            }
+
             handleTaskTypeChange() {
                 // Show/hide routine details based on task type
                 this.routineFrequencyGroup.style.display =
@@ -866,7 +1186,6 @@
                 this.notesGroup.style.display = isRoutine ? 'none' : 'block';
             }
 
-
             handleImageUpload(event) {
                 const file = event.target.files[0];
                 if (file) {
@@ -877,7 +1196,6 @@
                     reader.readAsDataURL(file);
                 }
             }
-
 
             handleTabChange(event) {
                 // Remove active class from all tabs
@@ -909,8 +1227,8 @@
                 const subtaskItem = document.createElement('div');
                 subtaskItem.className = 'subtask-item';
                 subtaskItem.innerHTML = `
-                    <input type="text" class="subtask-input" placeholder="Enter subtask">
-                    <button class="btn btn-danger">Remove</button>
+                <input type="text" class="subtask-input" placeholder="Enter subtask">
+                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                 `;
 
                 // Remove subtask functionality
@@ -1012,11 +1330,14 @@
                         details.appendChild(tagsEl);
 
                         // Subtasks rendering
+                        // Update this code in renderTasks method where subtasks are rendered
                         if (task.subtasks && task.subtasks.length > 0) {
                             const subtasksEl = document.createElement('div');
+                            // Add the subtasks class
                             subtasksEl.className = 'subtasks';
                             subtasksEl.innerHTML = `<strong>Subtasks:</strong>`;
                             const subtaskList = document.createElement('ul');
+                            // Add the subtask-list class
                             subtaskList.className = 'subtask-list';
                             subtasksEl.appendChild(subtaskList);
                             task.subtasks.forEach(subtask => {
@@ -1030,6 +1351,7 @@
                         // Notes rendering
                         if (task.notes) {
                             const notesEl = document.createElement('div');
+                            // Add the task-notes class
                             notesEl.className = 'task-notes';
                             notesEl.innerHTML = `<strong>Notes:</strong> ${task.notes}`;
                             details.appendChild(notesEl);
@@ -1050,7 +1372,6 @@
                             }
                         }
 
-
                         taskCard.appendChild(details);
 
                         // Delete button
@@ -1061,8 +1382,10 @@
                         taskCard.appendChild(deleteBtn);
 
                         // Status toggle button
+                        // Update this code in renderTasks method
                         const statusBtn = document.createElement('button');
                         statusBtn.innerHTML = task.status === 'completed' ? '✓ Completed' : 'Mark Complete';
+                        // Add the status-btn class
                         statusBtn.className = `status-btn ${task.status === 'completed' ? 'completed' : ''}`;
                         statusBtn.onclick = () => this.toggleTaskStatus(task.id);
                         taskCard.appendChild(statusBtn);
@@ -1163,10 +1486,9 @@
                     this.renderTasks(activeTab);
                 }
 
-                // Clear input fields
-                this.clearInputs();
+                // Close modal and clear inputs
+                this.closeModal();
             }
-
 
             saveTasks() {
                 try {
@@ -1193,7 +1515,6 @@
 
             }
 
-
             clearInputs() {
                 // Reset all input fields
                 this.taskNameInput.value = '';
@@ -1210,7 +1531,7 @@
                 this.subtaskContainer.innerHTML = `
 <div class="subtask-item">
 <input type="text" class="subtask-input" placeholder="Enter subtask">
-<button class="btn btn-danger">Remove</button>
+<button class="btn btn-danger"><i class="fas fa-trash"></i></button>
 </div>
 `;
                 this.taskNotesInput.value = '';
@@ -1228,7 +1549,6 @@
                 this.currentDate.setDate(this.currentDate.getDate() + (direction * 7));
                 this.renderCalendar();
             }
-
 
             renderCalendar() {
                 // Get the first day of the current week
@@ -1348,19 +1668,12 @@
                 const href = item.getAttribute('href');
                 if (href === currentPage) {
                     item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
                 }
             });
 
             window.taskManager = new EnhancedTaskManager();
-
-
-            const addAdvancedTaskBtn = document.createElement('button');
-            addAdvancedTaskBtn.innerHTML = '<i class="fas fa-plus-circle"></i> Advanced Task';
-            addAdvancedTaskBtn.className = 'add-btn';
-            addAdvancedTaskBtn.style.marginTop = '10px';
-
-            // Add the button to the sidebar
-            document.querySelector('.sidebar').appendChild(addAdvancedTaskBtn);
         });
 
         class HomepageManager {
