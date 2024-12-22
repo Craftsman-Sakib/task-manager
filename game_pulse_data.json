@@ -337,5 +337,80 @@
     "details": "Splitgate 2 is a 4v4 competitive multiplayer game that combines fast-paced portal gunplay with objective-based game modes. Players can teleport across the map to outsmart opponents, customize weapons, and master portaling skills. The game features three factions: Aeros, Meridian, and Sabrask, each with unique abilities.",
     "links": "https://www.splitgate.com/",
     "dlc": []
+  },
+  {
+    "id": 1734880493479,
+    "name": "Kingdom Come Deliverance",
+    "image": "https://th.bing.com/th/id/OIP.mjjdC5YKAHMsCO55FC-sFwHaEK?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://th.bing.com/th/id/OIP.DIntPUmAN8jbgt_acIfQGAHaD_?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/OIP.EQL_lSA5ERh2VPe6ldbuFwHaDp?pid=ImgDet&w=474&h=233&rs=1",
+      "https://www.xboxygen.com/IMG/motoff1464.jpg",
+      "https://assets.vg247.com/current/2017/10/kingdom_come_deliverance_Rattay02_logo_VG247.jpg"
+    ],
+    "genre": [
+      "action",
+      "role-playing"
+    ],
+    "releaseDate": "2018-02-13",
+    "betaDate": "2016-03-04",
+    "earlyAccessDate": "",
+    "developer": "Warhorse Studios",
+    "publisher": "Deep Silver",
+    "releaseYear": "2018",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation",
+      "nintendo",
+      "Amazon Luna"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "xbox-store",
+      "playstation-store"
+    ],
+    "modLinks": [
+      "https://www.nexusmods.com/kingdomcomedeliverance/mods/",
+      "https://www.moddb.com/games/kingdom-come-deliverance/mods"
+    ],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=_D48PCFshHg",
+    "price": 4.59,
+    "details": "Kingdom Come: Deliverance is set in the medieval Kingdom of Bohemia, an Imperial State of the Holy Roman Empire, with a focus on historically accurate content. The story takes place during a war in Bohemia in 1403, in the times of King Wenceslaus IV. Players control Henry, the son of a blacksmith, who seeks revenge for his murdered family and becomes involved in an effort to restore Bohemia's rightful king.\n\nThe game features an open-world environment, branching quest lines, and period-accurate weapons, clothing, combat techniques, and architecture. It utilizes a classless role-playing system, allowing players to customize their skills and take on various roles.",
+    "links": "https://www.kingdomcomerpg.com/",
+    "dlc": [
+      {
+        "name": "Treasures of the Past",
+        "releaseDate": "2018-11-04",
+        "price": 0,
+        "image": ""
+      },
+      {
+        "name": "From the Ashes",
+        "releaseDate": "2018-07-05",
+        "price": 0,
+        "image": ""
+      },
+      {
+        "name": "The Amorous Adventures of Bold Sir Hans Capon",
+        "releaseDate": "2018-10-16",
+        "price": 0,
+        "image": ""
+      },
+      {
+        "name": "Band of Bastards",
+        "releaseDate": "2019-02-06",
+        "price": 0,
+        "image": ""
+      },
+      {
+        "name": "A Woman's Lot",
+        "releaseDate": "2019-05-28",
+        "price": 0,
+        "image": ""
+      }
+    ]
   }
 ]
