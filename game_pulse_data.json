@@ -812,5 +812,42 @@
     "details": "\"Onimusha: Way of the Sword\" is an upcoming action-adventure game developed and published by Capcom, marking the return of the acclaimed Onimusha series after nearly two decades.\nSetting: The game is set in Edo-era Kyoto, now twisted by malevolent clouds of Malice, providing a dark and atmospheric backdrop.\nProtagonist: Players follow the tale of a samurai who wields the Oni Gauntlet, a mystical artifact granting the power to slay Genma, the series' demonic adversaries.\nCombat: Expect intense swordplay action, with battles against various monstrosities from the underworld known as Genma.\nExploration: Players will explore the historic Japanese capital, with each stage cloaked in mystery, danger, and intrigue.",
     "links": "https://www.capcom-games.com/onimusha/ws/en-us/",
     "dlc": []
+  },
+  {
+    "id": 1734908599664,
+    "name": "Uncle Chop's Rocket Shop",
+    "image": "https://th.bing.com/th/id/OIP.MoUbLIht5GYmhGWbq5hOvgHaJ4?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://cdn.akamai.steamstatic.com/steam/apps/1849790/ss_9133b886a0969f6f667dd181d35cd9f970c13947.1920x1080.jpg?t=1663336919",
+      "https://img.gg.deals/73/9c/90e818fb6f969f39f93008a1cb3bd9930cd0_1920xt1080_S1000.jpg",
+      "https://cdn.akamai.steamstatic.com/steam/apps/1849790/ss_19c17486461560c656d00edd84400645e981ff12.1920x1080.jpg?t=1709033139"
+    ],
+    "genre": [
+      "Simulation",
+      "Puzzle",
+      "Roguelite"
+    ],
+    "releaseDate": "2024-12-05",
+    "betaDate": "",
+    "earlyAccessDate": "",
+    "developer": "Beard Envy",
+    "publisher": "Kasedo Games",
+    "releaseYear": "2024",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "playstation-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=0RsRnMhqQgI",
+    "price": 8.19,
+    "details": "In \"Uncle Chop's Rocket Shop,\" players assume the role of Wilbur, a fox-like spaceship mechanic working under the watchful eye of Uncle Chop. The game combines simulation and puzzle-solving within a roguelite framework, challenging players to diagnose and repair various spaceship modules under time constraints. The gameplay emphasizes reading comprehension and problem-solving skills, with a humorous narrative and unique art style.",
+    "links": "https://www.kasedogames.com/unclechops",
+    "dlc": []
   }
 ]
