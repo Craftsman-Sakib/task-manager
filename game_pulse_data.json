@@ -481,8 +481,42 @@
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=54dabgZJ5YA",
     "price": 80,
-    "details": "The next installment in The Witcher series, tentatively titled The Witcher IV, is currently under development by CD Projekt Red, the acclaimed studio behind the original trilogy. This action role-playing game (RPG) marks the beginning of a new saga within the franchise, with Ciri, the adopted daughter of Geralt of Rivia, taking center stage as the main protagonist. Announcement: CD Projekt Red announced the development of a new Witcher game in March 2022, signaling the start of a new saga. Protagonist: The game will feature Ciri as the main playable character, transitioning from her supporting role in previous titles. Game Engine: Development is being conducted using Unreal Engine 5, moving away from CD Projekt Red's proprietary REDengine. Narrative Focus: The story is expected to delve into Ciri's journey as a witcher, offering players greater narrative choices and exploring her unique abilities.",
+    "details": "",
     "links": "https://www.thewitcher.com/en/witcher4",
+    "dlc": []
+  },
+  {
+    "id": 1734885607229,
+    "name": "Exodus",
+    "image": "https://assets.exodusgame.com/e_x_o_d_u_s__press-_release-_key_art_1280x720_with-logo-1701984034.jpg",
+    "extraImages": [
+      "https://cdn.neowin.com/news/images/uploaded/2023/12/1701999538_exodus.jpg",
+      "https://insider-gaming.com/wp-content/uploads/2023/12/Exodus-Main-Character-The-Game-Awards-Reveal.webp",
+      "https://sportshub.cbsistatic.com/i/2023/12/08/9df4bc38-aaf4-44c8-899c-90ce38cfb1a1/exodus-hed.jpg?width=1200"
+    ],
+    "genre": [
+      "sci-fi",
+      "rpg",
+      "Action-Adventure"
+    ],
+    "releaseDate": "2026",
+    "betaDate": "",
+    "earlyAccessDate": "",
+    "developer": "Archetype Entertainment",
+    "publisher": "Wizards of the Coast",
+    "releaseYear": "2026",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=DmJxSKn47EE",
+    "price": 70,
+    "details": "The game is set in a distant future where humanity has fled a dying Earth and found a new home in a hostile galaxy. Players take on the role of \"The Traveler,\" humanity's last hope, navigating through challenges in an uncharted cosmos. The game incorporates a time dilation mechanic, where days for the player can mean decades back home, affecting the game's narrative and player choices. Matthew McConaughey voices a character in the game.",
+    "links": "https://www.exodusgame.com/en-US",
     "dlc": []
   }
 ]
