@@ -733,5 +733,45 @@
     "details": "Perspective Shift: The game transitions from the series' traditional first-person perspective to an over-the-shoulder third-person view, offering a fresh gameplay experience.\nCooperative Gameplay: Players can engage in both solo and cooperative multiplayer modes, teaming up to face challenges together.\nNarrative: Players assume the roles of legendary Turok warriors uniting to save humanity from an aggressive alien species and total annihilation.\nEnemy Encounters: The game features battles against ferocious dinosaurs and a terrifying alien threat, maintaining the series' hallmark of prehistoric and sci-fi adversaries.\nUpgradable Weapons and Abilities: Players can utilize enemies' DNA to upgrade their arsenal and abilities, adding a strategic layer to combat.",
     "links": "https://turokorigins.com/",
     "dlc": []
+  },
+  {
+    "id": 1734901205275,
+    "name": "Split Fiction",
+    "image": "https://th.bing.com/th?id=OIF.RO7Ayg7P8D%2bXdbSMHUIMWQ&rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://img.gg.deals/aa/e1/0f8b73ab11d67975afbca5125b2443f81edb_1920xt1080_S1000.jpg",
+      "https://img.gg.deals/a8/3a/fb3eea1d5f6bada553c80d78f50f7fc5b2cc_1920xt1080_S1000.jpg",
+      "https://static1.cbrimages.com/wordpress/wp-content/uploads/sharedimages/2024/12/split-fiction-1.jpg",
+      "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/f5882ef9-b077-40fa-800a-8a2d86860521.png"
+    ],
+    "genre": [
+      "Action-adventure",
+      "platform"
+    ],
+    "releaseDate": "2025-03-06",
+    "betaDate": "",
+    "earlyAccessDate": "",
+    "developer": "Hazelight Studios",
+    "publisher": "Electronic Arts",
+    "releaseYear": "2025",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "playstation-store",
+      "Microsoft Store",
+      "EA App"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=fcwngWPXQtg",
+    "price": 0,
+    "details": "\"Split Fiction\" is an upcoming action-adventure platform game developed by Hazelight Studios and published by Electronic Arts. Known for their previous co-op titles like \"It Takes Two\" and \"A Way Out,\" Hazelight continues their tradition of delivering engaging cooperative experiences.\nDesigned exclusively for split-screen cooperative multiplayer, requiring two players to collaborate either locally or online.\nPlayers control Mio and Zoe, two authors trapped within their own stories, blending science fiction and fantasy elements. They must work together to escape and reclaim their creative legacies.\nEach level introduces unique gameplay mechanics, ranging from taming dragons to engaging in cyber ninja combat, ensuring varied and dynamic experiences.\nAllows owners of the game to invite a friend to play for free, facilitating cooperative play without requiring both players to purchase the game. \nCross-Platform Play: Supports cross-play between PlayStation 5, Xbox Series X|S, and PC, enabling seamless cooperative experiences across different platforms.",
+    "links": "https://www.ea.com/games/split-fiction/split-fiction",
+    "dlc": []
   }
 ]
