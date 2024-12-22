@@ -773,5 +773,44 @@
     "details": "\"Split Fiction\" is an upcoming action-adventure platform game developed by Hazelight Studios and published by Electronic Arts. Known for their previous co-op titles like \"It Takes Two\" and \"A Way Out,\" Hazelight continues their tradition of delivering engaging cooperative experiences.\nDesigned exclusively for split-screen cooperative multiplayer, requiring two players to collaborate either locally or online.\nPlayers control Mio and Zoe, two authors trapped within their own stories, blending science fiction and fantasy elements. They must work together to escape and reclaim their creative legacies.\nEach level introduces unique gameplay mechanics, ranging from taming dragons to engaging in cyber ninja combat, ensuring varied and dynamic experiences.\nAllows owners of the game to invite a friend to play for free, facilitating cooperative play without requiring both players to purchase the game. \nCross-Platform Play: Supports cross-play between PlayStation 5, Xbox Series X|S, and PC, enabling seamless cooperative experiences across different platforms.",
     "links": "https://www.ea.com/games/split-fiction/split-fiction",
     "dlc": []
+  },
+  {
+    "id": 1734903417786,
+    "name": "Onimusha: Way of the Sword",
+    "image": "https://th.bing.com/th/id/OIF.hKTKh6xONyjFlDAVzLSBqg?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://th.bing.com/th?id=OIF.Z5%2bfyz2%2flBzbh%2b0xt7OZQw&rs=1&pid=ImgDetMain",
+      "https://www.gematsu.com/wp-content/uploads/2024/12/Onimusha-Way-of-the-Sword_2024_12-12-24_005.jpg",
+      "https://www.digitaltrends.com/wp-content/uploads/2024/12/ss_7fd45f5f6b3d49ddd1445e645ee31e49a3253b61.1920x1080.jpg?resize=1200",
+      "630&p=1",
+      "https://assetsio.gnwcdn.com/1_UccQlcJ.png?width=1920&height=1920&fit=bounds&quality=80&format=jpg&auto=webp",
+      "https://www.siliconera.com/wp-content/uploads/2024/12/onimusha.png"
+    ],
+    "genre": [
+      "Action-adventure"
+    ],
+    "releaseDate": "2026",
+    "betaDate": "",
+    "earlyAccessDate": "",
+    "developer": "Capcom",
+    "publisher": "Capcom",
+    "releaseYear": "2026",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=KOiJGLZDnFw",
+    "price": null,
+    "details": "\"Onimusha: Way of the Sword\" is an upcoming action-adventure game developed and published by Capcom, marking the return of the acclaimed Onimusha series after nearly two decades.\nSetting: The game is set in Edo-era Kyoto, now twisted by malevolent clouds of Malice, providing a dark and atmospheric backdrop.\nProtagonist: Players follow the tale of a samurai who wields the Oni Gauntlet, a mystical artifact granting the power to slay Genma, the series' demonic adversaries.\nCombat: Expect intense swordplay action, with battles against various monstrosities from the underworld known as Genma.\nExploration: Players will explore the historic Japanese capital, with each stage cloaked in mystery, danger, and intrigue.",
+    "links": "https://www.capcom-games.com/onimusha/ws/en-us/",
+    "dlc": []
   }
 ]
