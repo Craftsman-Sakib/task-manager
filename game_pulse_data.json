@@ -655,5 +655,45 @@
     "details": "\"Shadow Labyrinth\" is an upcoming 2D action platformer developed by Bandai Namco Studios and published by Bandai Namco Entertainment. The game offers a genre-twisting alternate take on the iconic PAC-MAN franchise, presenting a darker and more mature interpretation of the classic maze concept.",
     "links": "https://www.bandainamcoent.com/games/shadow-labyrinth/",
     "dlc": []
+  },
+  {
+    "id": 1734899510419,
+    "name": "Borderlands 4",
+    "image": "https://nomusica.com/wp-content/uploads/2024/08/Borderlands-4.jpg",
+    "extraImages": [
+      "https://gamingbolt.com/wp-content/uploads/2024/12/Borderlands-4-scaled.jpg",
+      "https://assets.2k.com/1a6ngf98576c/6vqNW1m6l8OLz1dhh1mRlP/3194e03c0f9986b5c5aab39a56473a8d/Borderlands4_TGAs_Screen_1_1920x1080.png",
+      "https://th.bing.com/th/id/OIF.75hvaXMqYWjM7vgscvkuhQ?rs=1&pid=ImgDetMain",
+      "https://assets.2k.com/1a6ngf98576c/6rcdKHVFD2bcPQ4pWXaXUQ/60875da720deb288a632f870d7a93bdd/Borderlands4_TGAs_Screen_3_1920x1080.png"
+    ],
+    "genre": [
+      "shooter",
+      "rpg",
+      "first-person"
+    ],
+    "releaseDate": "2025",
+    "betaDate": "",
+    "earlyAccessDate": "",
+    "developer": "Gearbox Software",
+    "publisher": "2K",
+    "releaseYear": "2025",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "playstation-store",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=26vY2GMfYTw",
+    "price": 0,
+    "details": "Seamless World Exploration: The game introduces a \"seamless\" world design, allowing players to explore new areas without loading screens. This design enhances immersion and provides a more cohesive experience.\nSet on the planet Kairos, players will encounter diverse environments distinct from previous settings, offering fresh landscapes and challenges.\nNew traversal tools, such as a grappling hook, are introduced, providing players with innovative ways to navigate the environment and engage in combat. \nMaintaining the series' tradition, \"Borderlands 4\" supports both solo play and cooperative multiplayer, allowing up to four players to team up and tackle missions together. ",
+    "links": "https://borderlands.2k.com/en-GB/borderlands-4/",
+    "dlc": []
   }
 ]
