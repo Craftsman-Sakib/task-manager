@@ -584,25 +584,38 @@
     "dlc": []
   },
   {
-    "id": 1734889621011,
-    "name": "Elden Ring: Nightreign",
-    "image": "https://drive.google.com/uc?export=view&id=1H4eiWpH8kGVvG3Wl835WUWxhB0Rz3XjJ",
-    "extraImages": [],
-    "genre": [],
-    "releaseDate": "",
+    "id": 1734895460097,
+    "name": "Ambulance Life: A Paramedic Simulator",
+    "image": "https://sm.ign.com/t/ign_za/cover/a/ambulance-/ambulance-life-a-paramedic-simulator_b8bv.1200.jpg",
+    "extraImages": [
+      "https://tryhardguides.com/wp-content/uploads/2023/12/ambulance-life-a-paramedic-simulator.jpg"
+    ],
+    "genre": [
+      "simulation"
+    ],
+    "releaseDate": "2025-02-06",
     "betaDate": "",
     "earlyAccessDate": "",
-    "developer": "",
-    "publisher": "",
-    "releaseYear": "",
-    "platform": [],
-    "store": [],
+    "developer": "Aesir Interactive",
+    "publisher": "Nacon",
+    "releaseYear": "2025",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store",
+      "Microsoft Store"
+    ],
     "modLinks": [],
     "subscriptions": [],
-    "trailerLink": "",
-    "price": 0,
-    "details": "",
-    "links": "",
+    "trailerLink": "https://www.youtube.com/watch?v=ufwusKQZirU",
+    "price": 19.99,
+    "details": "\"Ambulance Life: A Paramedic Simulator\" is an upcoming simulation game that immerses players in the life of a paramedic, emphasizing emergency response and patient care.",
+    "links": "https://www.nacongaming.com/en-US/ambulance-life",
     "dlc": []
   }
 ]
