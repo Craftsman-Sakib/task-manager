@@ -695,5 +695,43 @@
     "details": "Seamless World Exploration: The game introduces a \"seamless\" world design, allowing players to explore new areas without loading screens. This design enhances immersion and provides a more cohesive experience.\nSet on the planet Kairos, players will encounter diverse environments distinct from previous settings, offering fresh landscapes and challenges.\nNew traversal tools, such as a grappling hook, are introduced, providing players with innovative ways to navigate the environment and engage in combat. \nMaintaining the series' tradition, \"Borderlands 4\" supports both solo play and cooperative multiplayer, allowing up to four players to team up and tackle missions together. ",
     "links": "https://borderlands.2k.com/en-GB/borderlands-4/",
     "dlc": []
+  },
+  {
+    "id": 1734900158371,
+    "name": "Turok: Origins",
+    "image": "https://gamingstry.com/wp-content/uploads/2024/12/Turok-Origins-8.webp",
+    "extraImages": [
+      "https://gamingbolt.com/wp-content/uploads/2024/12/turok-origins-image-4-1024x576.jpg",
+      "https://static1.srcdn.com/wordpress/wp-content/uploads/2024/12/turok-origins-character-aiming-a-bow.jpg",
+      "https://cdn.thefpsreview.com/wp-content/uploads/2024/12/turok-is-back-saber-interactive-reveals-turok-origins-a-new-vision-for-the-legendary-action-game-franchise-01.png",
+      "https://www.xboxdynasty.de/wp-content/uploads/2024/12/turok-origins-3.jpg"
+    ],
+    "genre": [
+      "Action-adventure",
+      "third-person shooter"
+    ],
+    "releaseDate": "2025",
+    "betaDate": "",
+    "earlyAccessDate": "",
+    "developer": "Saber Interactive",
+    "publisher": "Saber Interactive",
+    "releaseYear": "2025",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=x1ELi_UslrA",
+    "price": 0,
+    "details": "Perspective Shift: The game transitions from the series' traditional first-person perspective to an over-the-shoulder third-person view, offering a fresh gameplay experience.\nCooperative Gameplay: Players can engage in both solo and cooperative multiplayer modes, teaming up to face challenges together.\nNarrative: Players assume the roles of legendary Turok warriors uniting to save humanity from an aggressive alien species and total annihilation.\nEnemy Encounters: The game features battles against ferocious dinosaurs and a terrifying alien threat, maintaining the series' hallmark of prehistoric and sci-fi adversaries.\nUpgradable Weapons and Abilities: Players can utilize enemies' DNA to upgrade their arsenal and abilities, adding a strategic layer to combat.",
+    "links": "https://turokorigins.com/",
+    "dlc": []
   }
 ]
