@@ -849,5 +849,54 @@
     "details": "In \"Uncle Chop's Rocket Shop,\" players assume the role of Wilbur, a fox-like spaceship mechanic working under the watchful eye of Uncle Chop. The game combines simulation and puzzle-solving within a roguelite framework, challenging players to diagnose and repair various spaceship modules under time constraints. The gameplay emphasizes reading comprehension and problem-solving skills, with a humorous narrative and unique art style.",
     "links": "https://www.kasedogames.com/unclechops",
     "dlc": []
+  },
+  {
+    "id": 1734992897096,
+    "name": "Grand Theft Auto VI",
+    "image": "https://upload.wikimedia.org/wikipedia/en/4/46/Grand_Theft_Auto_VI.png",
+    "extraImages": [
+      "https://th.bing.com/th/id/OIP.oJJhCCnwivfdwX2ZWe6k1AHaEK?rs=1&pid=ImgDetMain",
+      "https://gamertweak.com/wp-content/uploads/2023/12/GTA-6-Vs-GTA-5-Map-Size-Comparison.webp",
+      "https://www.hindustantimes.com/ht-img/img/2023/12/05/1600x900/GTA_6_1701776662308_1701776667360.jpeg",
+      "https://staticg.sportskeeda.com/editor/2023/11/4d3f6-17001456944214-1920.jpg"
+    ],
+    "genre": [
+      "action",
+      "Action-adventure"
+    ],
+    "releaseDate": {
+      "start": "2025",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Rockstar Games",
+    "publisher": "Rockstar Games",
+    "specialQuote": "Most anticipated game",
+    "platform": [
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "playstation-store",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=QdBZY2fkU-0",
+    "price": 0,
+    "details": "The game is set in the fictional open world state of Leonida, which includes Vice City, a fictionalized version of Miami.\nThe story follows a criminal duo, Lucia and her male partner.",
+    "links": "https://www.rockstargames.com/VI",
+    "dlc": []
   }
 ]
