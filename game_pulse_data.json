@@ -480,7 +480,7 @@
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=54dabgZJ5YA",
-    "price": 80,
+    "price": null,
     "details": "",
     "links": "https://www.thewitcher.com/en/witcher4",
     "dlc": []
@@ -514,7 +514,7 @@
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=DmJxSKn47EE",
-    "price": 70,
+    "price": null,
     "details": "The game is set in a distant future where humanity has fled a dying Earth and found a new home in a hostile galaxy. Players take on the role of \"The Traveler,\" humanity's last hope, navigating through challenges in an uncharted cosmos. The game incorporates a time dilation mechanic, where days for the player can mean decades back home, affecting the game's narrative and player choices. Matthew McConaughey voices a character in the game.",
     "links": "https://www.exodusgame.com/en-US",
     "dlc": []
@@ -542,7 +542,7 @@
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=o7TVPoxwi74",
-    "price": 0,
+    "price": null,
     "details": "\"Intergalactic: The Heretic Prophet\" is an upcoming action-adventure game developed by Naughty Dog and published by Sony Interactive Entertainment. Set in a retro-futuristic universe, the game follows Jordan A. Mun, a bounty hunter stranded on the enigmatic planet Sempiria, which has been isolated from the rest of the universe for over 600 years.",
     "links": "https://www.naughtydog.com/blog/intergalactic_the_heretic_prophet_announcement",
     "dlc": []
@@ -578,7 +578,7 @@
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=Djtsw5k_DNc",
-    "price": 0,
+    "price": null,
     "details": "Cooperative Play: Designed primarily for three-player cooperative gameplay, allowing teams to face challenges together. Notably, two-player co-op is not supported, a decision made for game balance reasons.\nProcedurally Generated World: Set in a procedurally generated version of Limgrave, offering varied experiences with each playthrough.\nGameplay Structure: Players have three in-game days to prepare for a final boss encounter, facing mini-bosses at the end of the first two days. The gameplay area shrinks over time, similar to mechanics found in battle royale games.\nCrossplay: The game will not support cross-platform play; players can only team up with others on the same platform. \n",
     "links": "https://en.bandainamcoent.eu/elden-ring/elden-ring-nightreign",
     "dlc": []
@@ -651,7 +651,7 @@
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=-7YXmOtc-Io",
-    "price": 0,
+    "price": null,
     "details": "\"Shadow Labyrinth\" is an upcoming 2D action platformer developed by Bandai Namco Studios and published by Bandai Namco Entertainment. The game offers a genre-twisting alternate take on the iconic PAC-MAN franchise, presenting a darker and more mature interpretation of the classic maze concept.",
     "links": "https://www.bandainamcoent.com/games/shadow-labyrinth/",
     "dlc": []
@@ -691,7 +691,7 @@
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=26vY2GMfYTw",
-    "price": 0,
+    "price": null,
     "details": "Seamless World Exploration: The game introduces a \"seamless\" world design, allowing players to explore new areas without loading screens. This design enhances immersion and provides a more cohesive experience.\nSet on the planet Kairos, players will encounter diverse environments distinct from previous settings, offering fresh landscapes and challenges.\nNew traversal tools, such as a grappling hook, are introduced, providing players with innovative ways to navigate the environment and engage in combat. \nMaintaining the series' tradition, \"Borderlands 4\" supports both solo play and cooperative multiplayer, allowing up to four players to team up and tackle missions together. ",
     "links": "https://borderlands.2k.com/en-GB/borderlands-4/",
     "dlc": []
@@ -729,7 +729,7 @@
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=x1ELi_UslrA",
-    "price": 0,
+    "price": null,
     "details": "Perspective Shift: The game transitions from the series' traditional first-person perspective to an over-the-shoulder third-person view, offering a fresh gameplay experience.\nCooperative Gameplay: Players can engage in both solo and cooperative multiplayer modes, teaming up to face challenges together.\nNarrative: Players assume the roles of legendary Turok warriors uniting to save humanity from an aggressive alien species and total annihilation.\nEnemy Encounters: The game features battles against ferocious dinosaurs and a terrifying alien threat, maintaining the series' hallmark of prehistoric and sci-fi adversaries.\nUpgradable Weapons and Abilities: Players can utilize enemies' DNA to upgrade their arsenal and abilities, adding a strategic layer to combat.",
     "links": "https://turokorigins.com/",
     "dlc": []
@@ -769,7 +769,7 @@
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=fcwngWPXQtg",
-    "price": 0,
+    "price": null,
     "details": "\"Split Fiction\" is an upcoming action-adventure platform game developed by Hazelight Studios and published by Electronic Arts. Known for their previous co-op titles like \"It Takes Two\" and \"A Way Out,\" Hazelight continues their tradition of delivering engaging cooperative experiences.\nDesigned exclusively for split-screen cooperative multiplayer, requiring two players to collaborate either locally or online.\nPlayers control Mio and Zoe, two authors trapped within their own stories, blending science fiction and fantasy elements. They must work together to escape and reclaim their creative legacies.\nEach level introduces unique gameplay mechanics, ranging from taming dragons to engaging in cyber ninja combat, ensuring varied and dynamic experiences.\nAllows owners of the game to invite a friend to play for free, facilitating cooperative play without requiring both players to purchase the game. \nCross-Platform Play: Supports cross-play between PlayStation 5, Xbox Series X|S, and PC, enabling seamless cooperative experiences across different platforms.",
     "links": "https://www.ea.com/games/split-fiction/split-fiction",
     "dlc": []
@@ -894,7 +894,7 @@
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=QdBZY2fkU-0",
-    "price": 0,
+    "price": null,
     "details": "The game is set in the fictional open world state of Leonida, which includes Vice City, a fictionalized version of Miami.\nThe story follows a criminal duo, Lucia and her male partner.",
     "links": "https://www.rockstargames.com/VI",
     "dlc": []
