@@ -898,5 +898,52 @@
     "details": "The game is set in the fictional open world state of Leonida, which includes Vice City, a fictionalized version of Miami.\nThe story follows a criminal duo, Lucia and her male partner.",
     "links": "https://www.rockstargames.com/VI",
     "dlc": []
+  },
+  {
+    "id": 1735037770040,
+    "name": "Counter Strike 2",
+    "image": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/CS2_Cover_Art.jpg/220px-CS2_Cover_Art.jpg",
+    "extraImages": [
+      "https://static.standard.co.uk/2023/03/23/12/Counter-Strike%202%20screenshot.png?width=968&auto=webp&quality=50&crop=968:645%2Csmart",
+      "https://static.android.com.pl/uploads/2023/09/counter-strike-2-combat.jpg",
+      "https://guided.news/wp-content/uploads/2023/03/counter-strike-2-smokes-bullet-reaction.jpg",
+      "https://cdn.esportsdriven.com/media/guides/images/How_Molotov_Works_In_CS2.main.webp"
+    ],
+    "genre": [
+      "shooter",
+      "First-person",
+      "Tactical First-Person Shooter"
+    ],
+    "releaseDate": {
+      "start": "2023-09-27",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2023-03-22",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Valve Corporation",
+    "publisher": "Valve Corporation",
+    "specialQuote": "",
+    "platform": [
+      "pc",
+      "Linux"
+    ],
+    "store": [],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=nSE38xjMLqE",
+    "price": 0,
+    "details": "\"Counter-Strike 2\" is a free-to-play tactical first-person shooter developed and published by Valve Corporation. It serves as the fifth installment in the Counter-Strike series, succeeding \"Counter-Strike: Global Offensive\" (CS:GO).\n\nTechnical Enhancements: Built on the Source 2 engine, \"Counter-Strike 2\" introduces significant technical improvements, such as enhanced graphics, realistic physically-based rendering, and a new \"sub-tick\" server architecture that ensures more accurate synchronization with player inputs. ",
+    "links": "https://www.counter-strike.net/cs2",
+    "dlc": []
   }
 ]
