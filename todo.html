@@ -41,26 +41,56 @@
         }
 
         .nav-item {
+            padding: 12px 24px;
+            margin: 8px 0;
+            border-radius: 12px;
+            color: #64748b;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
             display: flex;
             align-items: center;
-            justify-content: center;
-            /* Center the icon */
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            color: #333;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            background: transparent;
         }
 
         .nav-item i {
-            font-size: 1.5em;
-            /* Adjust icon size as needed */
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item:hover i {
+            transform: scale(1.1);
+        }
+
+        .nav-item.active i {
+            color: #4f46e5;
         }
 
         .nav-item:hover {
-            background-color: #e9ecef;
+            color: #4f46e5;
+            background: rgba(79, 70, 229, 0.1);
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            color: #4f46e5;
+            background: linear-gradient(145deg, rgba(99, 102, 241, 0.1), rgba(79, 70, 229, 0.2));
+            font-weight: 600;
+        }
+
+        .nav-item.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 60%;
+            background: linear-gradient(145deg, #6366f1, #4f46e5);
+            border-radius: 0 4px 4px 0;
         }
 
         /* Remove span and hover effect for expanding */
@@ -637,33 +667,76 @@
         /* Calendar View */
         .calendar {
             display: flex;
+            gap: 20px;
+            padding: 20px;
             overflow-x: auto;
-            padding: 10px;
-            margin-top: 20px;
-            gap: 15px;
-            /* Spacing between days */
             height: calc(100vh - 150px);
-            /* Set height to fill remaining screen space with top and bottom padding */
+            scroll-behavior: smooth;
         }
 
         .calendar-header {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            padding: 0 10px;
-            /* Add left and right padding */
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            margin-bottom: 20px;
         }
 
         .calendar-day {
-            min-width: 200px;
-            /* Minimum width of a day container */
+            min-width: 280px;
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .calendar-day:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-day-header {
             padding: 10px;
+            margin-bottom: 15px;
             text-align: center;
-            background-color: #f0f0f0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-            overflow: hidden;
-            /* Ensure content doesn't overflow */
+            border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .day-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #4f46e5;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .day-date {
+            font-size: 0.95rem;
+            color: #64748b;
+            background: rgba(99, 102, 241, 0.08);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .calendar::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .calendar::-webkit-scrollbar-track {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 4px;
+        }
+
+        .calendar::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 4px;
+        }
+
+        .calendar::-webkit-scrollbar-thumb:hover {
+            background: rgba(99, 102, 241, 0.5);
         }
 
         .routine-card {
@@ -847,6 +920,116 @@
             font-size: 1.2em;
             /* Adjust icon size */
         }
+
+        /* Calendar Navigation Buttons */
+        .calendar-navigation {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .prev-week-btn,
+        .next-week-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #6366f1, #4f46e5);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+            pointer-events: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #currentWeek {
+            background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #1e293b;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            min-width: 200px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        #currentWeek::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(99, 102, 241, 0.1),
+                    transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            100% {
+                left: 100%;
+            }
+        }
+
+        .prev-week-btn:hover,
+        .next-week-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.6);
+        }
+
+        .prev-week-btn:active,
+        .next-week-btn:active {
+            transform: scale(0.95);
+        }
+
+        .prev-week-btn i,
+        .next-week-btn i {
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .prev-week-btn:hover i {
+            transform: translateX(-3px);
+        }
+
+        .next-week-btn:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Gradient background effect */
+        .prev-week-btn::before,
+        .next-week-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(145deg, #4f46e5, #4338ca);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .prev-week-btn:hover::before,
+        .next-week-btn:hover::before {
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -888,877 +1071,887 @@
             <div id="taskList" class="task-list">
             </div>
             <div id="calendarView" style="display: none;">
+                <!-- Replace the old calendar-header div with this -->
                 <div class="calendar-header">
-                    <button id="prevWeek">
-                        < Prev Week </button>
-                            <span id="currentWeek">Current Week</span>
-                            <button id="nextWeek"> Next Week > </button>
+                    <div class="calendar-navigation">
+                        <button class="prev-week-btn" id="prevWeek">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <span id="currentWeek">Current Week</span>
+                        <button class="next-week-btn" id="nextWeek">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
                 </div>
                 <div id="calendar" class="calendar">
                     <!-- Calendar days will be generated here -->
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Task Modal -->
-    <div id="taskModal" class="task-modal">
-        <div class="task-modal-content">
-            <button class="close-modal"><i class="fas fa-times"></i></button>
+        <!-- Task Modal -->
+        <div id="taskModal" class="task-modal">
+            <div class="task-modal-content">
+                <button class="close-modal"><i class="fas fa-times"></i></button>
 
-            <div class="input-section">
-                <!-- Task Name Input -->
-                <div class="input-group">
-                    <label for="taskName">Task Name</label>
-                    <input type="text" id="taskName" placeholder="Enter task name" required>
-                </div>
-
-                <!-- Task Type Selection -->
-                <div class="input-group">
-                    <label for="taskType">Task Type</label>
-                    <select id="taskType">
-                        <option value="todo">TODO</option>
-                        <option value="routine">Routine</option>
-                    </select>
-                </div>
-
-                <!-- Priority Selection -->
-                <div class="input-group" id="priorityGroup">
-                    <label>Priority</label>
-                    <div class="priority-group">
-                        <label class="priority-label low">
-                            <input type="radio" name="priority" value="low" checked>
-                            <span>Low</span>
-                        </label>
-                        <label class="priority-label medium">
-                            <input type="radio" name="priority" value="medium">
-                            <span>Medium</span>
-                        </label>
-                        <label class="priority-label high">
-                            <input type="radio" name="priority" value="high">
-                            <span>High</span>
-                        </label>
+                <div class="input-section">
+                    <!-- Task Name Input -->
+                    <div class="input-group">
+                        <label for="taskName">Task Name</label>
+                        <input type="text" id="taskName" placeholder="Enter task name" required>
                     </div>
-                </div>
 
-                <!-- Routine Frequency (hidden by default) -->
-                <div class="input-group" id="routineFrequencyGroup" style="display: none;">
-                    <label for="routineFrequency">Routine Frequency</label>
-                    <select id="routineFrequency">
-                        <option value="daily">Daily</option>
-                        <option value="weekly">Weekly</option>
-                        <option value="monthly">Monthly</option>
-                    </select>
-                </div>
-
-                <!-- Routine Date Range (hidden by default) -->
-                <div class="input-group" id="routineDateRange" style="display: none;">
-                    <label>Date Range</label>
-                    <div class="file-input-wrapper">
-                        <input type="date" id="routineStartDate">
-                        <input type="date" id="routineEndDate">
+                    <!-- Task Type Selection -->
+                    <div class="input-group">
+                        <label for="taskType">Task Type</label>
+                        <select id="taskType">
+                            <option value="todo">TODO</option>
+                            <option value="routine">Routine</option>
+                        </select>
                     </div>
-                </div>
 
-                <!-- Color Selection -->
-                <div class="input-group" id="colorSelectorGroup">
-                    <label>Color Tag</label>
-                    <div class="color-selector">
-                        <div class="color-option" style="background-color: #007bff;" data-color="#007bff"></div>
-                        <div class="color-option" style="background-color: #28a745;" data-color="#28a745"></div>
-                        <div class="color-option" style="background-color: #dc3545;" data-color="#dc3545"></div>
-                        <div class="color-option" style="background-color: #ffc107;" data-color="#ffc107"></div>
-                        <div class="color-option" style="background-color: #6f42c1;" data-color="#6f42c1"></div>
-                    </div>
-                </div>
-
-                <!-- Date and Time -->
-                <div class="input-group" id="dateTimeGroup">
-                    <label for="taskDateTime">Date and Time</label>
-                    <input type="datetime-local" id="taskDateTime">
-                </div>
-
-                <!-- Reminders -->
-                <div class="input-group" id="reminderGroup">
-                    <label>Reminders</label>
-                    <div class="reminder-group">
-                        <label class="reminder-checkbox">
-                            <input type="checkbox" id="emailReminder">
-                            <span>Email Reminder</span>
-                        </label>
-                        <label class="reminder-checkbox">
-                            <input type="checkbox" id="desktopNotification">
-                            <span>Desktop Notification</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Subtasks -->
-                <div class="input-group" id="subtaskGroup">
-                    <label>Subtasks</label>
-                    <div id="subtaskContainer" class="subtask-list">
-                        <div class="subtask-item">
-                            <input type="text" class="subtask-input" placeholder="Enter subtask">
-                            <button class="btn-danger">
-                                <i class="fas fa-trash"></i>
-                            </button>
+                    <!-- Priority Selection -->
+                    <div class="input-group" id="priorityGroup">
+                        <label>Priority</label>
+                        <div class="priority-group">
+                            <label class="priority-label low">
+                                <input type="radio" name="priority" value="low" checked>
+                                <span>Low</span>
+                            </label>
+                            <label class="priority-label medium">
+                                <input type="radio" name="priority" value="medium">
+                                <span>Medium</span>
+                            </label>
+                            <label class="priority-label high">
+                                <input type="radio" name="priority" value="high">
+                                <span>High</span>
+                            </label>
                         </div>
                     </div>
-                    <button id="addSubtaskBtn">
-                        <i class="fas fa-plus"></i> Add Subtask
+
+                    <!-- Routine Frequency (hidden by default) -->
+                    <div class="input-group" id="routineFrequencyGroup" style="display: none;">
+                        <label for="routineFrequency">Routine Frequency</label>
+                        <select id="routineFrequency">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+
+                    <!-- Routine Date Range (hidden by default) -->
+                    <div class="input-group" id="routineDateRange" style="display: none;">
+                        <label>Date Range</label>
+                        <div class="file-input-wrapper">
+                            <input type="date" id="routineStartDate">
+                            <input type="date" id="routineEndDate">
+                        </div>
+                    </div>
+
+                    <!-- Color Selection -->
+                    <div class="input-group" id="colorSelectorGroup">
+                        <label>Color Tag</label>
+                        <div class="color-selector">
+                            <div class="color-option" style="background-color: #007bff;" data-color="#007bff"></div>
+                            <div class="color-option" style="background-color: #28a745;" data-color="#28a745"></div>
+                            <div class="color-option" style="background-color: #dc3545;" data-color="#dc3545"></div>
+                            <div class="color-option" style="background-color: #ffc107;" data-color="#ffc107"></div>
+                            <div class="color-option" style="background-color: #6f42c1;" data-color="#6f42c1"></div>
+                        </div>
+                    </div>
+
+                    <!-- Date and Time -->
+                    <div class="input-group" id="dateTimeGroup">
+                        <label for="taskDateTime">Date and Time</label>
+                        <input type="datetime-local" id="taskDateTime">
+                    </div>
+
+                    <!-- Reminders -->
+                    <div class="input-group" id="reminderGroup">
+                        <label>Reminders</label>
+                        <div class="reminder-group">
+                            <label class="reminder-checkbox">
+                                <input type="checkbox" id="emailReminder">
+                                <span>Email Reminder</span>
+                            </label>
+                            <label class="reminder-checkbox">
+                                <input type="checkbox" id="desktopNotification">
+                                <span>Desktop Notification</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Subtasks -->
+                    <div class="input-group" id="subtaskGroup">
+                        <label>Subtasks</label>
+                        <div id="subtaskContainer" class="subtask-list">
+                            <div class="subtask-item">
+                                <input type="text" class="subtask-input" placeholder="Enter subtask">
+                                <button class="btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <button id="addSubtaskBtn">
+                            <i class="fas fa-plus"></i> Add Subtask
+                        </button>
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="input-group" id="notesGroup">
+                        <label for="taskNotes">Additional Notes</label>
+                        <textarea id="taskNotes" rows="3"></textarea>
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="input-group">
+                        <label for="taskImageUrl">Image URL</label>
+                        <div class="file-input-wrapper">
+                            <input type="text" id="taskImageUrl" placeholder="Enter image URL or upload">
+                            <label class="file-input-label">
+                                <input type="file" id="taskImageFile" accept="image/*">
+                                <i class="fas fa-upload"></i> Upload
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Add Task Button -->
+                    <button class="add-btn" id="addTaskButton">
+                        <i class="fas fa-plus"></i> Add Task
                     </button>
                 </div>
-
-                <!-- Notes -->
-                <div class="input-group" id="notesGroup">
-                    <label for="taskNotes">Additional Notes</label>
-                    <textarea id="taskNotes" rows="3"></textarea>
-                </div>
-
-                <!-- Image Upload -->
-                <div class="input-group">
-                    <label for="taskImageUrl">Image URL</label>
-                    <div class="file-input-wrapper">
-                        <input type="text" id="taskImageUrl" placeholder="Enter image URL or upload">
-                        <label class="file-input-label">
-                            <input type="file" id="taskImageFile" accept="image/*">
-                            <i class="fas fa-upload"></i> Upload
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Add Task Button -->
-                <button class="add-btn" id="addTaskButton">
-                    <i class="fas fa-plus"></i> Add Task
-                </button>
             </div>
         </div>
-    </div>
 
-    <!-- Modal for Homepage Setting -->
-    <div id="homepageModal" class="homepage-modal">
-        <div class="homepage-modal-content">
-            <h2>Set as Homepage</h2>
-            <p>Would you like to set this Task Manager as your browser's default homepage?</p>
-            <div class="homepage-modal-buttons">
-                <button id="setHomepageBtn" class="homepage-btn homepage-btn-primary">Yes, Set Homepage</button>
-                <button id="dismissHomepageBtn" class="homepage-btn homepage-btn-secondary">No, Thanks</button>
+        <!-- Modal for Homepage Setting -->
+        <div id="homepageModal" class="homepage-modal">
+            <div class="homepage-modal-content">
+                <h2>Set as Homepage</h2>
+                <p>Would you like to set this Task Manager as your browser's default homepage?</p>
+                <div class="homepage-modal-buttons">
+                    <button id="setHomepageBtn" class="homepage-btn homepage-btn-primary">Yes, Set Homepage</button>
+                    <button id="dismissHomepageBtn" class="homepage-btn homepage-btn-secondary">No, Thanks</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        class EnhancedTaskManager {
-            constructor() {
-                // Retrieve tasks from localStorage with more robust parsing
-                try {
-                    this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-                } catch (error) {
-                    console.error('Error parsing tasks from localStorage:', error);
-                    this.tasks = [];
-                }
-
-                // DOM Element References
-                this.initializeElements();
-
-                // Setup event listeners
-                this.setupEventListeners();
-
-                // Initial render of tasks
-                this.renderTasks('all');
-
-                // Set current week for Calendar
-                this.currentDate = new Date();
-                this.renderCalendar();
-
-            }
-
-            initializeElements() {
-                // Basic Task Creation Elements
-                this.taskList = document.getElementById('taskList');
-                this.taskNameInput = document.getElementById('taskName');
-                this.taskTypeSelect = document.getElementById('taskType');
-
-                // Advanced Input Fields
-                this.priorityGroup = document.getElementById('priorityGroup');
-                this.routineFrequencyGroup = document.getElementById('routineFrequencyGroup');
-                this.routineFrequencySelect = document.getElementById('routineFrequency');
-                this.routineDateRange = document.getElementById('routineDateRange');
-                this.routineStartDate = document.getElementById('routineStartDate');
-                this.routineEndDate = document.getElementById('routineEndDate');
-                this.colorSelectorGroup = document.getElementById('colorSelectorGroup');
-                this.colorOptions = document.querySelectorAll('.color-option');
-                this.dateTimeGroup = document.getElementById('dateTimeGroup');
-                this.taskDateTimeInput = document.getElementById('taskDateTime');
-                this.reminderGroup = document.getElementById('reminderGroup');
-                this.subtaskGroup = document.getElementById('subtaskGroup');
-                this.subtaskContainer = document.getElementById('subtaskContainer');
-                this.addSubtaskBtn = document.getElementById('addSubtaskBtn');
-                this.notesGroup = document.getElementById('notesGroup');
-                this.taskNotesInput = document.getElementById('taskNotes');
-                this.taskImageUrlInput = document.getElementById('taskImageUrl');
-                this.taskImageFileInput = document.getElementById('taskImageFile');
-                this.addTaskButton = document.getElementById('addTaskButton');
-
-                // Calendar Elements
-                this.calendarView = document.getElementById('calendarView');
-                this.calendarElement = document.getElementById('calendar');
-                this.currentWeekElement = document.getElementById('currentWeek');
-                this.prevWeekButton = document.getElementById('prevWeek');
-                this.nextWeekButton = document.getElementById('nextWeek');
-
-                // Modal Elements
-                this.openTaskModalBtn = document.getElementById('openTaskModalBtn');
-                this.taskModal = document.getElementById('taskModal');
-                this.closeModalBtn = document.querySelector('.close-modal');
-
-                this.advancedTaskFields = document.getElementById('advancedTaskFields');
-            }
-
-            setupEventListeners() {
-                // Open and Close Modal
-                this.openTaskModalBtn.addEventListener('click', () => this.openModal());
-                this.closeModalBtn.addEventListener('click', () => this.closeModal());
-
-                // Click outside the modal to close
-                this.taskModal.addEventListener('click', (event) => {
-                    if (event.target === this.taskModal) {
-                        this.closeModal();
+        <script>
+            class EnhancedTaskManager {
+                constructor() {
+                    // Retrieve tasks from localStorage with more robust parsing
+                    try {
+                        this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+                    } catch (error) {
+                        console.error('Error parsing tasks from localStorage:', error);
+                        this.tasks = [];
                     }
-                });
 
-                // Task type change listener
-                this.taskTypeSelect.addEventListener('change', () => this.handleTaskTypeChange());
+                    // DOM Element References
+                    this.initializeElements();
 
-                // File upload handler
-                this.taskImageFileInput.addEventListener('change', (event) => this.handleImageUpload(event));
+                    // Setup event listeners
+                    this.setupEventListeners();
 
-                // Tab filter event listeners
-                const tabs = document.querySelectorAll('.tab');
-                tabs.forEach(tab => {
-                    tab.addEventListener('click', (event) => this.handleTabChange(event));
-                });
+                    // Initial render of tasks
+                    this.renderTasks('all');
 
-                // Add task button event listener
-                this.addTaskButton.addEventListener('click', () => this.addTask());
-
-                // Color selection
-                this.colorOptions.forEach(option => {
-                    option.addEventListener('click', () => this.handleColorSelection(option));
-                });
-
-                // Add subtask
-                this.addSubtaskBtn.addEventListener('click', () => this.addSubtask());
-
-                // Calendar week navigation
-                this.prevWeekButton.addEventListener('click', () => this.changeWeek(-1));
-                this.nextWeekButton.addEventListener('click', () => this.changeWeek(1));
-            }
-
-            openModal() {
-                this.taskModal.classList.add('active');
-                this.taskModal.style.display = 'flex';
-            }
-
-            closeModal() {
-                this.taskModal.classList.add('closing');
-                setTimeout(() => {
-                    this.taskModal.classList.remove('closing');
-                    this.taskModal.classList.remove('active');
-                    this.taskModal.style.display = 'none';
-                }, 300); // ~ animation duration
-                this.clearInputs();
-            }
-
-            handleTaskTypeChange() {
-                // Show/hide routine details based on task type
-                this.routineFrequencyGroup.style.display =
-                    this.taskTypeSelect.value === 'routine' ? 'block' : 'none';
-                this.routineDateRange.style.display =
-                    this.taskTypeSelect.value === 'routine' ? 'block' : 'none';
-                // Show/hide advanced task settings
-                const isRoutine = this.taskTypeSelect.value === 'routine';
-                this.priorityGroup.style.display = isRoutine ? 'none' : 'flex';
-                this.colorSelectorGroup.style.display = isRoutine ? 'none' : 'flex';
-                this.dateTimeGroup.style.display = isRoutine ? 'none' : 'block';
-                this.reminderGroup.style.display = isRoutine ? 'none' : 'block';
-                this.subtaskGroup.style.display = isRoutine ? 'none' : 'block';
-                this.notesGroup.style.display = isRoutine ? 'none' : 'block';
-            }
-
-            handleImageUpload(event) {
-                const file = event.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        this.taskImageUrlInput.value = e.target.result;
-                    };
-                    reader.readAsDataURL(file);
-                }
-            }
-
-            handleTabChange(event) {
-                // Remove active class from all tabs
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-
-                // Add active class to clicked tab
-                event.target.classList.add('active');
-
-                // Filter tasks based on tab
-                this.renderTasks(event.target.dataset.type);
-
-                // Show/hide calendar based on selected tab
-                if (event.target.dataset.type === 'routine') {
-                    this.taskList.style.display = 'none';
-                    this.calendarView.style.display = 'block';
+                    // Set current week for Calendar
+                    this.currentDate = new Date();
                     this.renderCalendar();
-                } else {
-                    this.taskList.style.display = 'grid';
-                    this.calendarView.style.display = 'none';
+
                 }
-            }
 
-            handleColorSelection(option) {
-                this.colorOptions.forEach(opt => opt.classList.remove('selected'));
-                option.classList.add('selected');
-            }
+                initializeElements() {
+                    // Basic Task Creation Elements
+                    this.taskList = document.getElementById('taskList');
+                    this.taskNameInput = document.getElementById('taskName');
+                    this.taskTypeSelect = document.getElementById('taskType');
 
-            addSubtask() {
-                const subtaskItem = document.createElement('div');
-                subtaskItem.className = 'subtask-item';
-                subtaskItem.innerHTML = `
+                    // Advanced Input Fields
+                    this.priorityGroup = document.getElementById('priorityGroup');
+                    this.routineFrequencyGroup = document.getElementById('routineFrequencyGroup');
+                    this.routineFrequencySelect = document.getElementById('routineFrequency');
+                    this.routineDateRange = document.getElementById('routineDateRange');
+                    this.routineStartDate = document.getElementById('routineStartDate');
+                    this.routineEndDate = document.getElementById('routineEndDate');
+                    this.colorSelectorGroup = document.getElementById('colorSelectorGroup');
+                    this.colorOptions = document.querySelectorAll('.color-option');
+                    this.dateTimeGroup = document.getElementById('dateTimeGroup');
+                    this.taskDateTimeInput = document.getElementById('taskDateTime');
+                    this.reminderGroup = document.getElementById('reminderGroup');
+                    this.subtaskGroup = document.getElementById('subtaskGroup');
+                    this.subtaskContainer = document.getElementById('subtaskContainer');
+                    this.addSubtaskBtn = document.getElementById('addSubtaskBtn');
+                    this.notesGroup = document.getElementById('notesGroup');
+                    this.taskNotesInput = document.getElementById('taskNotes');
+                    this.taskImageUrlInput = document.getElementById('taskImageUrl');
+                    this.taskImageFileInput = document.getElementById('taskImageFile');
+                    this.addTaskButton = document.getElementById('addTaskButton');
+
+                    // Calendar Elements
+                    this.calendarView = document.getElementById('calendarView');
+                    this.calendarElement = document.getElementById('calendar');
+                    this.currentWeekElement = document.getElementById('currentWeek');
+                    this.prevWeekButton = document.getElementById('prevWeek');
+                    this.nextWeekButton = document.getElementById('nextWeek');
+
+                    // Modal Elements
+                    this.openTaskModalBtn = document.getElementById('openTaskModalBtn');
+                    this.taskModal = document.getElementById('taskModal');
+                    this.closeModalBtn = document.querySelector('.close-modal');
+
+                    this.advancedTaskFields = document.getElementById('advancedTaskFields');
+                }
+
+                setupEventListeners() {
+                    // Open and Close Modal
+                    this.openTaskModalBtn.addEventListener('click', () => this.openModal());
+                    this.closeModalBtn.addEventListener('click', () => this.closeModal());
+
+                    // Click outside the modal to close
+                    this.taskModal.addEventListener('click', (event) => {
+                        if (event.target === this.taskModal) {
+                            this.closeModal();
+                        }
+                    });
+
+                    // Task type change listener
+                    this.taskTypeSelect.addEventListener('change', () => this.handleTaskTypeChange());
+
+                    // File upload handler
+                    this.taskImageFileInput.addEventListener('change', (event) => this.handleImageUpload(event));
+
+                    // Tab filter event listeners
+                    const tabs = document.querySelectorAll('.tab');
+                    tabs.forEach(tab => {
+                        tab.addEventListener('click', (event) => this.handleTabChange(event));
+                    });
+
+                    // Add task button event listener
+                    this.addTaskButton.addEventListener('click', () => this.addTask());
+
+                    // Color selection
+                    this.colorOptions.forEach(option => {
+                        option.addEventListener('click', () => this.handleColorSelection(option));
+                    });
+
+                    // Add subtask
+                    this.addSubtaskBtn.addEventListener('click', () => this.addSubtask());
+
+                    // Calendar week navigation
+                    this.prevWeekButton.addEventListener('click', () => this.changeWeek(-1));
+                    this.nextWeekButton.addEventListener('click', () => this.changeWeek(1));
+                }
+
+                openModal() {
+                    this.taskModal.classList.add('active');
+                    this.taskModal.style.display = 'flex';
+                }
+
+                closeModal() {
+                    this.taskModal.classList.add('closing');
+                    setTimeout(() => {
+                        this.taskModal.classList.remove('closing');
+                        this.taskModal.classList.remove('active');
+                        this.taskModal.style.display = 'none';
+                    }, 300); // ~ animation duration
+                    this.clearInputs();
+                }
+
+                handleTaskTypeChange() {
+                    // Show/hide routine details based on task type
+                    this.routineFrequencyGroup.style.display =
+                        this.taskTypeSelect.value === 'routine' ? 'block' : 'none';
+                    this.routineDateRange.style.display =
+                        this.taskTypeSelect.value === 'routine' ? 'block' : 'none';
+                    // Show/hide advanced task settings
+                    const isRoutine = this.taskTypeSelect.value === 'routine';
+                    this.priorityGroup.style.display = isRoutine ? 'none' : 'flex';
+                    this.colorSelectorGroup.style.display = isRoutine ? 'none' : 'flex';
+                    this.dateTimeGroup.style.display = isRoutine ? 'none' : 'block';
+                    this.reminderGroup.style.display = isRoutine ? 'none' : 'block';
+                    this.subtaskGroup.style.display = isRoutine ? 'none' : 'block';
+                    this.notesGroup.style.display = isRoutine ? 'none' : 'block';
+                }
+
+                handleImageUpload(event) {
+                    const file = event.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            this.taskImageUrlInput.value = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+
+                handleTabChange(event) {
+                    // Remove active class from all tabs
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+                    // Add active class to clicked tab
+                    event.target.classList.add('active');
+
+                    // Filter tasks based on tab
+                    this.renderTasks(event.target.dataset.type);
+
+                    // Show/hide calendar based on selected tab
+                    if (event.target.dataset.type === 'routine') {
+                        this.taskList.style.display = 'none';
+                        this.calendarView.style.display = 'block';
+                        this.renderCalendar();
+                    } else {
+                        this.taskList.style.display = 'grid';
+                        this.calendarView.style.display = 'none';
+                    }
+                }
+
+                handleColorSelection(option) {
+                    this.colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                }
+
+                addSubtask() {
+                    const subtaskItem = document.createElement('div');
+                    subtaskItem.className = 'subtask-item';
+                    subtaskItem.innerHTML = `
                 <input type="text" class="subtask-input" placeholder="Enter subtask">
                 <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                 `;
 
-                // Remove subtask functionality
-                subtaskItem.querySelector('button').addEventListener('click', () => {
-                    subtaskItem.remove();
-                });
+                    // Remove subtask functionality
+                    subtaskItem.querySelector('button').addEventListener('click', () => {
+                        subtaskItem.remove();
+                    });
 
-                this.subtaskContainer.appendChild(subtaskItem);
-            }
-
-            renderTasks(filterType = 'all') {
-                // Clear existing task list
-                this.taskList.innerHTML = '';
-
-                // Filter tasks based on selected tab
-                let filteredTasks = this.tasks;
-                switch (filterType) {
-                    case 'todo':
-                        filteredTasks = this.tasks.filter(task => task.type === 'todo');
-                        break;
-                    case 'routine':
-                        filteredTasks = this.tasks.filter(task => task.type === 'routine');
-                        break;
-                    case 'priority':
-                        filteredTasks = this.tasks.filter(task => task.priority === 'high');
-                        break;
-                    default:
-                        filteredTasks = this.tasks;
+                    this.subtaskContainer.appendChild(subtaskItem);
                 }
 
-                // Sort tasks (priority first, then by date)
-                filteredTasks.sort((a, b) => {
-                    // Sort by priority (high first)
-                    const priorityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
-                    const priorityComparison = (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
-                    if (priorityComparison !== 0) return priorityComparison;
+                renderTasks(filterType = 'all') {
+                    // Clear existing task list
+                    this.taskList.innerHTML = '';
 
-                    // Then sort by date if priority is the same
-                    return new Date(a.dateTime || 0) - new Date(b.dateTime || 0);
-                });
-
-                // Render each task
-                filteredTasks.forEach(task => {
-                    try {
-                        const taskCard = document.createElement('div');
-                        taskCard.className = `task-card ${task.priority === 'high' ? 'priority' : ''} ${task.type}`;
-
-                        // Add image if exists
-                        if (task.image) {
-                            const img = document.createElement('img');
-                            img.src = task.image;
-                            img.className = 'task-image';
-                            taskCard.appendChild(img);
-                        }
-                        // Custom color border
-                        if (task.color) {
-                            taskCard.style.borderLeftColor = task.color;
-                        }
-
-                        // Task details section
-                        const details = document.createElement('div');
-                        details.className = 'task-details';
-
-                        // Task name
-                        const nameEl = document.createElement('div');
-                        nameEl.className = 'task-name';
-                        nameEl.textContent = task.name;
-                        details.appendChild(nameEl);
-
-                        // Task tags
-                        const tagsEl = document.createElement('div');
-                        tagsEl.className = 'task-tags';
-
-                        // Type tag
-                        const typeTag = document.createElement('span');
-                        typeTag.className = `tag tag-${task.type}`;
-                        typeTag.textContent = (task.type || 'TODO').toUpperCase();
-                        tagsEl.appendChild(typeTag);
-
-                        // Priority tag
-                        const priorityTag = document.createElement('span');
-                        priorityTag.className = `tag ${task.priority === 'high' ? 'tag-priority' : ''}`;
-                        priorityTag.textContent = task.priority.toUpperCase();
-                        tagsEl.appendChild(priorityTag);
-
-                        // Date/Time tag
-                        if (task.dateTime) {
-                            const dateTag = document.createElement('span');
-                            dateTag.className = 'tag';
-                            const formattedDate = new Date(task.dateTime);
-                            if (formattedDate.getDate() !== new Date().getDate()) {
-                                dateTag.textContent = formattedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-                            } else {
-                                dateTag.textContent = formattedDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-                            }
-                            tagsEl.appendChild(dateTag);
-                        }
-
-                        details.appendChild(tagsEl);
-
-                        // Subtasks rendering
-                        // Update this code in renderTasks method where subtasks are rendered
-                        if (task.subtasks && task.subtasks.length > 0) {
-                            const subtasksEl = document.createElement('div');
-                            // Add the subtasks class
-                            subtasksEl.className = 'subtasks';
-                            subtasksEl.innerHTML = `<strong>Subtasks:</strong>`;
-                            const subtaskList = document.createElement('ul');
-                            // Add the subtask-list class
-                            subtaskList.className = 'subtask-list';
-                            subtasksEl.appendChild(subtaskList);
-                            task.subtasks.forEach(subtask => {
-                                const subtaskItem = document.createElement('li');
-                                subtaskItem.textContent = subtask;
-                                subtaskList.appendChild(subtaskItem);
-                            });
-                            details.appendChild(subtasksEl);
-                        }
-
-                        // Notes rendering
-                        if (task.notes) {
-                            const notesEl = document.createElement('div');
-                            // Add the task-notes class
-                            notesEl.className = 'task-notes';
-                            notesEl.innerHTML = `<strong>Notes:</strong> ${task.notes}`;
-                            details.appendChild(notesEl);
-                        }
-
-                        // Reminders tag
-                        if (task.reminders && (task.reminders.email || task.reminders.desktop)) {
-                            const reminderTag = document.createElement('span');
-                            reminderTag.className = 'tag reminder-tag';
-                            reminderTag.textContent = 'Reminder Set';
-                            tagsEl.appendChild(reminderTag);
-                            if (task.dateTime) {
-                                const reminderDetails = document.createElement('div');
-                                reminderDetails.className = 'reminder-details';
-                                const formattedDate = new Date(task.dateTime);
-                                reminderDetails.textContent = `Reminder: ${formattedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} at ${formattedDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
-                                details.appendChild(reminderDetails);
-                            }
-                        }
-
-                        taskCard.appendChild(details);
-
-                        // Delete button
-                        const deleteBtn = document.createElement('button');
-                        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-                        deleteBtn.className = 'delete-btn';
-                        deleteBtn.onclick = () => this.deleteTask(task.id);
-                        taskCard.appendChild(deleteBtn);
-
-                        // Status toggle button
-                        // Update this code in renderTasks method
-                        const statusBtn = document.createElement('button');
-                        statusBtn.innerHTML = task.status === 'completed' ? '✓ Completed' : 'Mark Complete';
-                        // Add the status-btn class
-                        statusBtn.className = `status-btn ${task.status === 'completed' ? 'completed' : ''}`;
-                        statusBtn.onclick = () => this.toggleTaskStatus(task.id);
-                        taskCard.appendChild(statusBtn);
-
-                        this.taskList.appendChild(taskCard);
-                    } catch (error) {
-                        console.error('Error rendering task:', task, error);
+                    // Filter tasks based on selected tab
+                    let filteredTasks = this.tasks;
+                    switch (filterType) {
+                        case 'todo':
+                            filteredTasks = this.tasks.filter(task => task.type === 'todo');
+                            break;
+                        case 'routine':
+                            filteredTasks = this.tasks.filter(task => task.type === 'routine');
+                            break;
+                        case 'priority':
+                            filteredTasks = this.tasks.filter(task => task.priority === 'high');
+                            break;
+                        default:
+                            filteredTasks = this.tasks;
                     }
-                });
-            }
 
-            toggleTaskStatus(taskId) {
-                const taskIndex = this.tasks.findIndex(task => task.id === taskId);
-                if (taskIndex !== -1) {
-                    this.tasks[taskIndex].status =
-                        this.tasks[taskIndex].status === 'completed' ? 'pending' : 'completed';
-                    this.saveTasks();
-                    this.renderTasks(document.querySelector('.tab.active').dataset.type);
+                    // Sort tasks (priority first, then by date)
+                    filteredTasks.sort((a, b) => {
+                        // Sort by priority (high first)
+                        const priorityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
+                        const priorityComparison = (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
+                        if (priorityComparison !== 0) return priorityComparison;
+
+                        // Then sort by date if priority is the same
+                        return new Date(a.dateTime || 0) - new Date(b.dateTime || 0);
+                    });
+
+                    // Render each task
+                    filteredTasks.forEach(task => {
+                        try {
+                            const taskCard = document.createElement('div');
+                            taskCard.className = `task-card ${task.priority === 'high' ? 'priority' : ''} ${task.type}`;
+
+                            // Add image if exists
+                            if (task.image) {
+                                const img = document.createElement('img');
+                                img.src = task.image;
+                                img.className = 'task-image';
+                                taskCard.appendChild(img);
+                            }
+                            // Custom color border
+                            if (task.color) {
+                                taskCard.style.borderLeftColor = task.color;
+                            }
+
+                            // Task details section
+                            const details = document.createElement('div');
+                            details.className = 'task-details';
+
+                            // Task name
+                            const nameEl = document.createElement('div');
+                            nameEl.className = 'task-name';
+                            nameEl.textContent = task.name;
+                            details.appendChild(nameEl);
+
+                            // Task tags
+                            const tagsEl = document.createElement('div');
+                            tagsEl.className = 'task-tags';
+
+                            // Type tag
+                            const typeTag = document.createElement('span');
+                            typeTag.className = `tag tag-${task.type}`;
+                            typeTag.textContent = (task.type || 'TODO').toUpperCase();
+                            tagsEl.appendChild(typeTag);
+
+                            // Priority tag
+                            const priorityTag = document.createElement('span');
+                            priorityTag.className = `tag ${task.priority === 'high' ? 'tag-priority' : ''}`;
+                            priorityTag.textContent = task.priority.toUpperCase();
+                            tagsEl.appendChild(priorityTag);
+
+                            // Date/Time tag
+                            if (task.dateTime) {
+                                const dateTag = document.createElement('span');
+                                dateTag.className = 'tag';
+                                const formattedDate = new Date(task.dateTime);
+                                if (formattedDate.getDate() !== new Date().getDate()) {
+                                    dateTag.textContent = formattedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+                                } else {
+                                    dateTag.textContent = formattedDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+                                }
+                                tagsEl.appendChild(dateTag);
+                            }
+
+                            details.appendChild(tagsEl);
+
+                            // Subtasks rendering
+                            // Update this code in renderTasks method where subtasks are rendered
+                            if (task.subtasks && task.subtasks.length > 0) {
+                                const subtasksEl = document.createElement('div');
+                                // Add the subtasks class
+                                subtasksEl.className = 'subtasks';
+                                subtasksEl.innerHTML = `<strong>Subtasks:</strong>`;
+                                const subtaskList = document.createElement('ul');
+                                // Add the subtask-list class
+                                subtaskList.className = 'subtask-list';
+                                subtasksEl.appendChild(subtaskList);
+                                task.subtasks.forEach(subtask => {
+                                    const subtaskItem = document.createElement('li');
+                                    subtaskItem.textContent = subtask;
+                                    subtaskList.appendChild(subtaskItem);
+                                });
+                                details.appendChild(subtasksEl);
+                            }
+
+                            // Notes rendering
+                            if (task.notes) {
+                                const notesEl = document.createElement('div');
+                                // Add the task-notes class
+                                notesEl.className = 'task-notes';
+                                notesEl.innerHTML = `<strong>Notes:</strong> ${task.notes}`;
+                                details.appendChild(notesEl);
+                            }
+
+                            // Reminders tag
+                            if (task.reminders && (task.reminders.email || task.reminders.desktop)) {
+                                const reminderTag = document.createElement('span');
+                                reminderTag.className = 'tag reminder-tag';
+                                reminderTag.textContent = 'Reminder Set';
+                                tagsEl.appendChild(reminderTag);
+                                if (task.dateTime) {
+                                    const reminderDetails = document.createElement('div');
+                                    reminderDetails.className = 'reminder-details';
+                                    const formattedDate = new Date(task.dateTime);
+                                    reminderDetails.textContent = `Reminder: ${formattedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })} at ${formattedDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
+                                    details.appendChild(reminderDetails);
+                                }
+                            }
+
+                            taskCard.appendChild(details);
+
+                            // Delete button
+                            const deleteBtn = document.createElement('button');
+                            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                            deleteBtn.className = 'delete-btn';
+                            deleteBtn.onclick = () => this.deleteTask(task.id);
+                            taskCard.appendChild(deleteBtn);
+
+                            // Status toggle button
+                            // Update this code in renderTasks method
+                            const statusBtn = document.createElement('button');
+                            statusBtn.innerHTML = task.status === 'completed' ? '✓ Completed' : 'Mark Complete';
+                            // Add the status-btn class
+                            statusBtn.className = `status-btn ${task.status === 'completed' ? 'completed' : ''}`;
+                            statusBtn.onclick = () => this.toggleTaskStatus(task.id);
+                            taskCard.appendChild(statusBtn);
+
+                            this.taskList.appendChild(taskCard);
+                        } catch (error) {
+                            console.error('Error rendering task:', task, error);
+                        }
+                    });
                 }
-            }
 
-            addTask() {
-                // Get input values
-                const taskName = this.taskNameInput.value.trim();
-                const taskType = this.taskTypeSelect.value;
-
-                // Validate task name
-                if (!taskName) {
-                    alert('Please enter a task name.');
-                    return;
+                toggleTaskStatus(taskId) {
+                    const taskIndex = this.tasks.findIndex(task => task.id === taskId);
+                    if (taskIndex !== -1) {
+                        this.tasks[taskIndex].status =
+                            this.tasks[taskIndex].status === 'completed' ? 'pending' : 'completed';
+                        this.saveTasks();
+                        this.renderTasks(document.querySelector('.tab.active').dataset.type);
+                    }
                 }
 
-                let taskData = {
-                    id: Date.now(),
-                    name: taskName,
-                    type: taskType || 'todo',
-                    status: 'pending',
-                };
+                addTask() {
+                    // Get input values
+                    const taskName = this.taskNameInput.value.trim();
+                    const taskType = this.taskTypeSelect.value;
 
-                if (taskType === 'routine') {
-                    const routineFrequency = this.routineFrequencySelect.value;
-                    const startDate = this.routineStartDate.value;
-                    const endDate = this.routineEndDate.value;
-
-                    // Validate routine details
-                    if (!routineFrequency || !startDate || !endDate) {
-                        alert('Please fill in all routine details (frequency, start date, end date).');
+                    // Validate task name
+                    if (!taskName) {
+                        alert('Please enter a task name.');
                         return;
                     }
 
-                    // Generate a more specific routine identifier
-                    const routineId = `routine_${Date.now()}`;
-
-                    taskData = {
-                        ...taskData,
-                        routineId: routineId,
-                        routineFrequency: routineFrequency,
-                        startDate: startDate,
-                        endDate: endDate,
-                        image: this.taskImageUrlInput.value.trim() || '',
-                        notes: this.taskNotesInput.value.trim(),
-                        dateTime: new Date().toISOString(), // Use current time for routine tasks
+                    let taskData = {
+                        id: Date.now(),
+                        name: taskName,
+                        type: taskType || 'todo',
+                        status: 'pending',
                     };
+
+                    if (taskType === 'routine') {
+                        const routineFrequency = this.routineFrequencySelect.value;
+                        const startDate = this.routineStartDate.value;
+                        const endDate = this.routineEndDate.value;
+
+                        // Validate routine details
+                        if (!routineFrequency || !startDate || !endDate) {
+                            alert('Please fill in all routine details (frequency, start date, end date).');
+                            return;
+                        }
+
+                        // Generate a more specific routine identifier
+                        const routineId = `routine_${Date.now()}`;
+
+                        taskData = {
+                            ...taskData,
+                            routineId: routineId,
+                            routineFrequency: routineFrequency,
+                            startDate: startDate,
+                            endDate: endDate,
+                            image: this.taskImageUrlInput.value.trim() || '',
+                            notes: this.taskNotesInput.value.trim(),
+                            dateTime: new Date().toISOString(), // Use current time for routine tasks
+                        };
+                    }
+                    else {
+                        const selectedPriority = document.querySelector('input[name="priority"]:checked');
+                        const selectedColorOption = document.querySelector('.color-option.selected');
+                        taskData = {
+                            ...taskData,
+                            priority: selectedPriority ? selectedPriority.value : 'low',
+                            color: selectedColorOption ? selectedColorOption.dataset.color : null,
+                            dateTime: this.taskDateTimeInput.value,
+                            subtasks: Array.from(this.subtaskContainer.querySelectorAll('.subtask-input'))
+                                .map(input => input.value.trim())
+                                .filter(subtask => subtask !== ''),
+                            notes: this.taskNotesInput.value.trim(),
+                            reminders: {
+                                email: document.getElementById('emailReminder').checked,
+                                desktop: document.getElementById('desktopNotification').checked
+                            },
+                            image: this.taskImageUrlInput.value.trim() || '',
+                        }
+                    }
+
+                    // Add task to tasks array
+                    this.tasks.push(taskData);
+
+                    // Save tasks to localStorage
+                    this.saveTasks();
+
+                    // Render tasks or calendar based on task type
+                    if (taskType === 'routine') {
+                        this.renderCalendar();
+                    }
+                    else {
+                        // Render tasks (maintaining current filter)
+                        const activeTab = document.querySelector('.tab.active').dataset.type;
+                        this.renderTasks(activeTab);
+                    }
+
+                    // Close modal and clear inputs
+                    this.closeModal();
                 }
-                else {
-                    const selectedPriority = document.querySelector('input[name="priority"]:checked');
-                    const selectedColorOption = document.querySelector('.color-option.selected');
-                    taskData = {
-                        ...taskData,
-                        priority: selectedPriority ? selectedPriority.value : 'low',
-                        color: selectedColorOption ? selectedColorOption.dataset.color : null,
-                        dateTime: this.taskDateTimeInput.value,
-                        subtasks: Array.from(this.subtaskContainer.querySelectorAll('.subtask-input'))
-                            .map(input => input.value.trim())
-                            .filter(subtask => subtask !== ''),
-                        notes: this.taskNotesInput.value.trim(),
-                        reminders: {
-                            email: document.getElementById('emailReminder').checked,
-                            desktop: document.getElementById('desktopNotification').checked
-                        },
-                        image: this.taskImageUrlInput.value.trim() || '',
+
+                saveTasks() {
+                    try {
+                        localStorage.setItem('tasks', JSON.stringify(this.tasks));
+                    } catch (error) {
+                        console.error('Error saving tasks to localStorage:', error);
                     }
                 }
 
-                // Add task to tasks array
-                this.tasks.push(taskData);
+                deleteTask(taskId) {
+                    // Remove task from tasks array
+                    this.tasks = this.tasks.filter(task => task.id !== taskId);
 
-                // Save tasks to localStorage
-                this.saveTasks();
+                    // Save updated tasks
+                    this.saveTasks();
 
-                // Render tasks or calendar based on task type
-                if (taskType === 'routine') {
-                    this.renderCalendar();
-                }
-                else {
-                    // Render tasks (maintaining current filter)
+                    // Re-render tasks (maintaining current filter)
                     const activeTab = document.querySelector('.tab.active').dataset.type;
-                    this.renderTasks(activeTab);
+                    if (activeTab === 'routine') {
+                        this.renderCalendar();
+                    } else {
+                        this.renderTasks(activeTab);
+                    }
+
                 }
 
-                // Close modal and clear inputs
-                this.closeModal();
-            }
-
-            saveTasks() {
-                try {
-                    localStorage.setItem('tasks', JSON.stringify(this.tasks));
-                } catch (error) {
-                    console.error('Error saving tasks to localStorage:', error);
-                }
-            }
-
-            deleteTask(taskId) {
-                // Remove task from tasks array
-                this.tasks = this.tasks.filter(task => task.id !== taskId);
-
-                // Save updated tasks
-                this.saveTasks();
-
-                // Re-render tasks (maintaining current filter)
-                const activeTab = document.querySelector('.tab.active').dataset.type;
-                if (activeTab === 'routine') {
-                    this.renderCalendar();
-                } else {
-                    this.renderTasks(activeTab);
-                }
-
-            }
-
-            clearInputs() {
-                // Reset all input fields
-                this.taskNameInput.value = '';
-                this.taskTypeSelect.value = 'todo';
-                this.priorityGroup.style.display = 'flex';
-                this.colorSelectorGroup.style.display = 'flex';
-                this.dateTimeGroup.style.display = 'block';
-                this.reminderGroup.style.display = 'block';
-                this.subtaskGroup.style.display = 'block';
-                this.notesGroup.style.display = 'block';
-                document.querySelector('input[name="priority"][value="low"]').checked = true;
-                this.colorOptions.forEach(opt => opt.classList.remove('selected'));
-                this.taskDateTimeInput.value = '';
-                this.subtaskContainer.innerHTML = `
+                clearInputs() {
+                    // Reset all input fields
+                    this.taskNameInput.value = '';
+                    this.taskTypeSelect.value = 'todo';
+                    this.priorityGroup.style.display = 'flex';
+                    this.colorSelectorGroup.style.display = 'flex';
+                    this.dateTimeGroup.style.display = 'block';
+                    this.reminderGroup.style.display = 'block';
+                    this.subtaskGroup.style.display = 'block';
+                    this.notesGroup.style.display = 'block';
+                    document.querySelector('input[name="priority"][value="low"]').checked = true;
+                    this.colorOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.taskDateTimeInput.value = '';
+                    this.subtaskContainer.innerHTML = `
 <div class="subtask-item">
 <input type="text" class="subtask-input" placeholder="Enter subtask">
 <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
 </div>
 `;
-                this.taskNotesInput.value = '';
-                document.getElementById('emailReminder').checked = false;
-                document.getElementById('desktopNotification').checked = false;
-                this.routineFrequencyGroup.style.display = 'none';
-                this.routineDateRange.style.display = 'none';
-                this.routineFrequencySelect.value = 'daily';
-                this.routineStartDate.value = '';
-                this.routineEndDate.value = '';
-                this.taskImageUrlInput.value = '';
-                this.taskImageFileInput.value = '';
-            }
-            changeWeek(direction) {
-                this.currentDate.setDate(this.currentDate.getDate() + (direction * 7));
-                this.renderCalendar();
-            }
+                    this.taskNotesInput.value = '';
+                    document.getElementById('emailReminder').checked = false;
+                    document.getElementById('desktopNotification').checked = false;
+                    this.routineFrequencyGroup.style.display = 'none';
+                    this.routineDateRange.style.display = 'none';
+                    this.routineFrequencySelect.value = 'daily';
+                    this.routineStartDate.value = '';
+                    this.routineEndDate.value = '';
+                    this.taskImageUrlInput.value = '';
+                    this.taskImageFileInput.value = '';
+                }
+                changeWeek(direction) {
+                    this.currentDate.setDate(this.currentDate.getDate() + (direction * 7));
+                    this.renderCalendar();
+                }
 
-            renderCalendar() {
-                // Get the first day of the current week
-                const firstDay = new Date(this.currentDate);
-                firstDay.setDate(this.currentDate.getDate() - this.currentDate.getDay());
+                renderCalendar() {
+                    // Get the first day of the current week
+                    const firstDay = new Date(this.currentDate);
+                    firstDay.setDate(this.currentDate.getDate() - this.currentDate.getDay());
 
-                // Set the current week display
-                const lastDay = new Date(firstDay);
-                lastDay.setDate(lastDay.getDate() + 6);
-                this.currentWeekElement.textContent = `${firstDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${lastDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
+                    // Set the current week display
+                    const lastDay = new Date(firstDay);
+                    lastDay.setDate(lastDay.getDate() + 6);
+                    this.currentWeekElement.textContent = `${firstDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${lastDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
 
-                // Clear previous calendar
-                this.calendarElement.innerHTML = '';
+                    // Clear previous calendar
+                    this.calendarElement.innerHTML = '';
 
-                // Generate days
-                for (let i = 0; i < 7; i++) {
-                    const day = new Date(firstDay);
-                    day.setDate(firstDay.getDate() + i);
+                    // Generate days
+                    for (let i = 0; i < 7; i++) {
+                        const day = new Date(firstDay);
+                        day.setDate(firstDay.getDate() + i);
 
-                    const dayDiv = document.createElement('div');
-                    dayDiv.className = 'calendar-day';
-                    dayDiv.textContent = day.toLocaleDateString('en-US', { weekday: 'short', day: 'numeric' });
+                        const dayDiv = document.createElement('div');
+                        dayDiv.className = 'calendar-day';
+                        dayDiv.innerHTML = `
+    <div class="calendar-day-header">
+        <span class="day-name">${day.toLocaleDateString('en-US', { weekday: 'short' })}</span>
+        <span class="day-date">${day.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}</span>
+    </div>
+`;
 
-                    // Filter and sort routines for the current day
-                    const dailyRoutines = this.tasks.filter(task => {
-                        if (task.type !== 'routine') return false;
+                        // Filter and sort routines for the current day
+                        const dailyRoutines = this.tasks.filter(task => {
+                            if (task.type !== 'routine') return false;
 
-                        const startDate = new Date(task.startDate);
-                        const endDate = new Date(task.endDate);
+                            const startDate = new Date(task.startDate);
+                            const endDate = new Date(task.endDate);
 
-                        // Check if the current day is within the start and end dates
-                        if (day < startDate || day > endDate) return false;
+                            // Check if the current day is within the start and end dates
+                            if (day < startDate || day > endDate) return false;
 
-                        // Check routine frequency
-                        return this.isRoutineDay(task, day);
-                    }).sort((a, b) => a.name.localeCompare(b.name));
+                            // Check routine frequency
+                            return this.isRoutineDay(task, day);
+                        }).sort((a, b) => a.name.localeCompare(b.name));
 
-                    // Render each routine in its own card within the day
-                    dailyRoutines.forEach((task) => {
-                        const routineCard = document.createElement('div');
-                        routineCard.className = 'routine-card';
-                        routineCard.setAttribute('data-task-id', task.id);
+                        // Render each routine in its own card within the day
+                        dailyRoutines.forEach((task) => {
+                            const routineCard = document.createElement('div');
+                            routineCard.className = 'routine-card';
+                            routineCard.setAttribute('data-task-id', task.id);
 
-                        // Add image if exists
-                        if (task.image) {
-                            const img = document.createElement('img');
-                            img.src = task.image;
-                            img.className = 'task-image';
-                            routineCard.appendChild(img);
-                        }
+                            // Add image if exists
+                            if (task.image) {
+                                const img = document.createElement('img');
+                                img.src = task.image;
+                                img.className = 'task-image';
+                                routineCard.appendChild(img);
+                            }
 
-                        const taskName = document.createElement('div');
-                        taskName.className = 'task-name';
-                        taskName.textContent = task.name;
-                        routineCard.appendChild(taskName);
+                            const taskName = document.createElement('div');
+                            taskName.className = 'task-name';
+                            taskName.textContent = task.name;
+                            routineCard.appendChild(taskName);
 
-                        // Add notes if exists
-                        if (task.notes) {
-                            const notesEl = document.createElement('div');
-                            notesEl.className = 'routine-notes';
-                            notesEl.textContent = task.notes;
-                            routineCard.appendChild(notesEl);
-                        }
+                            // Add notes if exists
+                            if (task.notes) {
+                                const notesEl = document.createElement('div');
+                                notesEl.className = 'routine-notes';
+                                notesEl.textContent = task.notes;
+                                routineCard.appendChild(notesEl);
+                            }
 
-                        // Delete button for routine task
-                        const deleteBtn = document.createElement('button');
-                        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-                        deleteBtn.className = 'delete-btn routine-delete-btn';
-                        deleteBtn.onclick = (event) => {
-                            event.stopPropagation(); // Prevent any parent event handlers
-                            this.deleteRoutineTask(task.id);
-                        };
-                        routineCard.appendChild(deleteBtn);
+                            // Delete button for routine task
+                            const deleteBtn = document.createElement('button');
+                            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                            deleteBtn.className = 'delete-btn routine-delete-btn';
+                            deleteBtn.onclick = (event) => {
+                                event.stopPropagation(); // Prevent any parent event handlers
+                                this.deleteRoutineTask(task.id);
+                            };
+                            routineCard.appendChild(deleteBtn);
 
-                        dayDiv.appendChild(routineCard);
-                    });
+                            dayDiv.appendChild(routineCard);
+                        });
 
-                    this.calendarElement.appendChild(dayDiv);
+                        this.calendarElement.appendChild(dayDiv);
+                    }
+                }
+
+                // New method to delete routine tasks
+                deleteRoutineTask(taskId) {
+                    // Confirm deletion
+                    const confirmDelete = confirm('Are you sure you want to delete this routine task?');
+                    if (!confirmDelete) return;
+
+                    // Remove task from tasks array
+                    this.tasks = this.tasks.filter(task => task.id !== taskId);
+
+                    // Save updated tasks
+                    this.saveTasks();
+
+                    // Re-render calendar
+                    this.renderCalendar();
+                }
+
+                isRoutineDay(task, day) {
+                    if (task.routineFrequency === 'daily') {
+                        return true;
+                    } else if (task.routineFrequency === 'weekly') {
+                        // Check if the day of the week matches
+                        return day.getDay() === new Date(task.startDate).getDay();
+                    } else if (task.routineFrequency === 'monthly') {
+                        // Check if the date of the month matches
+                        return day.getDate() === new Date(task.startDate).getDate();
+                    }
+                    return false;
                 }
             }
 
-            // New method to delete routine tasks
-            deleteRoutineTask(taskId) {
-                // Confirm deletion
-                const confirmDelete = confirm('Are you sure you want to delete this routine task?');
-                if (!confirmDelete) return;
+            // Initialize Task Manager when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                const currentPage = window.location.pathname.split('/').pop();
+                const navItems = document.querySelectorAll('.nav-item');
+                navItems.forEach(item => {
+                    const href = item.getAttribute('href');
+                    if (href === currentPage) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
 
-                // Remove task from tasks array
-                this.tasks = this.tasks.filter(task => task.id !== taskId);
-
-                // Save updated tasks
-                this.saveTasks();
-
-                // Re-render calendar
-                this.renderCalendar();
-            }
-
-            isRoutineDay(task, day) {
-                if (task.routineFrequency === 'daily') {
-                    return true;
-                } else if (task.routineFrequency === 'weekly') {
-                    // Check if the day of the week matches
-                    return day.getDay() === new Date(task.startDate).getDay();
-                } else if (task.routineFrequency === 'monthly') {
-                    // Check if the date of the month matches
-                    return day.getDate() === new Date(task.startDate).getDate();
-                }
-                return false;
-            }
-        }
-
-        // Initialize Task Manager when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentPage = window.location.pathname.split('/').pop();
-            const navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-                const href = item.getAttribute('href');
-                if (href === currentPage) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
+                window.taskManager = new EnhancedTaskManager();
             });
 
-            window.taskManager = new EnhancedTaskManager();
-        });
+            class HomepageManager {
+                constructor() {
+                    this.modal = document.getElementById('homepageModal');
+                    this.setHomepageBtn = document.getElementById('setHomepageBtn');
+                    this.dismissHomepageBtn = document.getElementById('dismissHomepageBtn');
 
-        class HomepageManager {
-            constructor() {
-                this.modal = document.getElementById('homepageModal');
-                this.setHomepageBtn = document.getElementById('setHomepageBtn');
-                this.dismissHomepageBtn = document.getElementById('dismissHomepageBtn');
-
-                this.init();
-            }
-
-            init() {
-                // Check if homepage is already set
-                if (this.isHomepageSet()) {
-                    return;
+                    this.init();
                 }
 
-                // Check if user has previously dismissed the prompt
-                if (this.hasUserDismissedPrompt()) {
-                    return;
+                init() {
+                    // Check if homepage is already set
+                    if (this.isHomepageSet()) {
+                        return;
+                    }
+
+                    // Check if user has previously dismissed the prompt
+                    if (this.hasUserDismissedPrompt()) {
+                        return;
+                    }
+
+                    // Show homepage setting modal
+                    this.showModal();
+
+                    // Setup event listeners
+                    this.setHomepageBtn.addEventListener('click', () => this.setHomepage());
+                    this.dismissHomepageBtn.addEventListener('click', () => this.dismissPrompt());
                 }
 
-                // Show homepage setting modal
-                this.showModal();
+                isHomepageSet() {
+                    // This is a simplified check and might need browser-specific adjustments
+                    try {
+                        return localStorage.getItem('isHomepageSet') === 'true';
+                    } catch (error) {
+                        console.error('Error checking homepage status:', error);
+                        return false;
+                    }
+                }
 
-                // Setup event listeners
-                this.setHomepageBtn.addEventListener('click', () => this.setHomepage());
-                this.dismissHomepageBtn.addEventListener('click', () => this.dismissPrompt());
+                hasUserDismissedPrompt() {
+                    try {
+                        return localStorage.getItem('homepagePromptDismissed') === 'true';
+                    } catch (error) {
+                        console.error('Error checking prompt dismissal:', error);
+                        return false;
+                    }
+                }
+
+                showModal() {
+                    this.modal.style.display = 'flex';
+                }
+
+                setHomepage() {
+                    try {
+                        // Note: This is a hint to the browser. Actual homepage setting
+                        // requires browser-specific methods or user manual settings
+                        localStorage.setItem('isHomepageSet', 'true');
+                        this.modal.style.display = 'none';
+                        alert('This hint has been saved. You may need to set the homepage manually in your browser settings.');
+                    } catch (error) {
+                        console.error('Error setting homepage:', error);
+                        alert('Could not set homepage. Please set it manually in your browser settings.');
+                    }
+                }
+
+                dismissPrompt() {
+                    try {
+                        localStorage.setItem('homepagePromptDismissed', 'true');
+                        this.modal.style.display = 'none';
+                    } catch (error) {
+                        console.error('Error dismissing homepage prompt:', error);
+                    }
+                }
             }
 
-            isHomepageSet() {
-                // This is a simplified check and might need browser-specific adjustments
+            // Initialize Task Manager and Homepage Manager when DOM is loaded
+            document.addEventListener('DOMContentLoaded', () => {
                 try {
-                    return localStorage.getItem('isHomepageSet') === 'true';
+                    window.homepageManager = new HomepageManager();
                 } catch (error) {
-                    console.error('Error checking homepage status:', error);
-                    return false;
+                    console.error('Error initializing managers:', error);
                 }
-            }
-
-            hasUserDismissedPrompt() {
-                try {
-                    return localStorage.getItem('homepagePromptDismissed') === 'true';
-                } catch (error) {
-                    console.error('Error checking prompt dismissal:', error);
-                    return false;
-                }
-            }
-
-            showModal() {
-                this.modal.style.display = 'flex';
-            }
-
-            setHomepage() {
-                try {
-                    // Note: This is a hint to the browser. Actual homepage setting
-                    // requires browser-specific methods or user manual settings
-                    localStorage.setItem('isHomepageSet', 'true');
-                    this.modal.style.display = 'none';
-                    alert('This hint has been saved. You may need to set the homepage manually in your browser settings.');
-                } catch (error) {
-                    console.error('Error setting homepage:', error);
-                    alert('Could not set homepage. Please set it manually in your browser settings.');
-                }
-            }
-
-            dismissPrompt() {
-                try {
-                    localStorage.setItem('homepagePromptDismissed', 'true');
-                    this.modal.style.display = 'none';
-                } catch (error) {
-                    console.error('Error dismissing homepage prompt:', error);
-                }
-            }
-        }
-
-        // Initialize Task Manager and Homepage Manager when DOM is loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            try {
-                window.homepageManager = new HomepageManager();
-            } catch (error) {
-                console.error('Error initializing managers:', error);
-            }
-        });
-    </script>
+            });
+        </script>
 </body>
 
 </html>
