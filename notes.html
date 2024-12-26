@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced File Organizer</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #f4f7f6;
+            --sidebar-bg: #2c3e50;
+            --card-bg: #ffffff;
+            --text-color: #333;
+            --accent-color: #3498db;
+            --hover-color: #2980b9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--primary-bg);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            transition: width 0.3s ease;
+        }
+
+        #main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .topic-btn {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .topic-btn:hover {
+            background-color: var(--accent-color);
+        }
+
+        .topic-btn.active {
+            background-color: var(--accent-color);
+        }
+
+        #content-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #file-section,
+        #notes-section {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            overflow: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .file-card {
+            background-color: var(--primary-bg);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .file-card .file-preview {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .file-card .file-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+        }
+
+        .note-card {
+            background-color: var(--primary-bg);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+
+        .note-card:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .note-actions {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--hover-color);
+        }
+
+        #note-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #note-modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 600px;
+            max-height: 80%;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        #note-area {
+            width: 100%;
+            min-height: 300px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+        }
+
+        #preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .preview-item {
+            position: relative;
+            max-width: 150px;
+        }
+
+        .preview-item img,
+        .preview-item iframe {
+            max-width: 100%;
+            max-height: 150px;
+            border-radius: 8px;
+        }
+
+        .remove-preview {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .construction-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            animation: modalAppear 0.5s ease;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .construction-icon {
+            font-size: 3rem;
+            color: #f59e0b;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        .construction-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 15px;
+        }
+
+        .construction-message {
+            color: #64748b;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .close-modal-btn {
+            padding: 10px 25px;
+            background: linear-gradient(145deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .close-modal-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal-backdrop">
+        <div class="construction-modal">
+            <i class="fas fa-hard-hat construction-icon"></i>
+            <h2 class="construction-title">Under Construction</h2>
+            <p class="construction-message">
+                We're currently working on enhancing this feature. File upload functionality
+                will be available soon. Thank you for your patience!
+            </p>
+            <button class="close-modal-btn" onclick="closeModal()">
+                Got it!
+            </button>
+        </div>
+    </div>
+    <div id="sidebar">
+        <h2>Topics</h2>
+        <div id="topic-list">
+            <button class="topic-btn active" onclick="selectTopic('Work')">
+                <span>Work</span>
+                <i class="fas fa-folder"></i>
+            </button>
+            <button class="topic-btn" onclick="selectTopic('Personal')">
+                <span>Personal</span>
+                <i class="fas fa-folder"></i>
+            </button>
+            <button class="topic-btn" onclick="selectTopic('Study')">
+                <span>Study</span>
+                <i class="fas fa-folder"></i>
+            </button>
+            <button class="topic-btn" onclick="addNewTopic()">
+                <span>Add Topic</span>
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h1 id="current-topic">Work</h1>
+            <div>
+                <input type="file" id="file-upload" multiple style="display:none;"
+                    accept="image/*,application/pdf,.doc,.docx,.txt">
+                <button class="btn" onclick="document.getElementById('file-upload').click()">
+                    <i class="fas fa-upload"></i> Upload Files
+                </button>
+                <button class="btn" onclick="openNoteModal()">
+                    <i class="fas fa-plus"></i> Add Note
+                </button>
+            </div>
+        </div>
+
+        <div id="content-area">
+            <div id="file-section">
+                <h2>Files</h2>
+                <div id="file-grid"></div>
+            </div>
+
+            <div id="notes-section">
+                <h2>Notes</h2>
+                <div id="topic-notes"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="note-modal">
+        <div id="note-modal-content">
+            <div style="padding: 20px; border-bottom: 1px solid #eee;">
+                <h2>Add Note</h2>
+            </div>
+            <div style="padding: 20px; flex-grow: 1;">
+                <textarea id="note-area" placeholder="Write your note here..."></textarea>
+                <input type="file" id="note-file-upload" multiple style="display:none;"
+                    accept="image/*,application/pdf,.doc,.docx,.txt">
+                <button class="btn" style="margin-top: 15px;"
+                    onclick="document.getElementById('note-file-upload').click()">
+                    <i class="fas fa-paperclip"></i> Attach Files
+                </button>
+                <div id="preview-container"></div>
+            </div>
+            <div
+                style="padding: 20px; border-top: 1px solid #eee; display: flex; justify-content: flex-end; gap: 10px;">
+                <button class="btn" onclick="saveNote()">Save Note</button>
+                <button class="btn" style="background-color: #e74c3c;" onclick="closeNoteModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let appData = JSON.parse(localStorage.getItem('fileOrganizerData')) || {
+            topics: {
+                'Work': { files: [], notes: [] },
+                'Personal': { files: [], notes: [] },
+                'Study': { files: [], notes: [] }
+            }
+        };
+
+        let currentTopic = 'Work';
+        let attachedFiles = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Regenerate object URLs on page load
+            regenerateObjectUrls();
+            renderTopics();
+            renderFiles();
+            renderNotes();
+            setupFileInputs();
+        });
+
+        function closeModal() {
+            const backdrop = document.querySelector('.modal-backdrop');
+            backdrop.style.opacity = '0';
+            setTimeout(() => {
+                backdrop.style.display = 'none';
+            }, 300);
+        }
+        function setupFileInputs() {
+            const fileInput = document.getElementById('file-upload');
+            fileInput.addEventListener('change', (event) => handleFileUpload(event.target.files, 'file'));
+
+            const noteFileInput = document.getElementById('note-file-upload');
+            noteFileInput.addEventListener('change', (event) => handleFileUpload(event.target.files, 'note'));
+        }
+
+        function handleFileUpload(files, type) {
+            Array.from(files).forEach(file => {
+                const fileUrl = URL.createObjectURL(file);
+                const fileInfo = {
+                    name: file.name,
+                    type: file.type,
+                    url: type === 'file' ? fileUrl : null,
+                    size: file.size,
+                    addedDate: new Date().toLocaleString(),
+                    file: file // Store the actual File object for persistence
+                };
+
+                if (type === 'file') {
+                    appData.topics[currentTopic].files.push(fileInfo);
+                } else if (type === 'note') {
+                    attachedFiles.push(fileInfo);
+                }
+            });
+
+            if (type === 'file') {
+                saveAppData();
+                renderFiles();
+            } else if (type === 'note') {
+                renderNotePreview();
+            }
+        }
+
+        function renderNotePreview() {
+            const previewContainer = document.getElementById('preview-container');
+            previewContainer.innerHTML = '';
+
+            attachedFiles.forEach((file, index) => {
+                const previewItem = document.createElement('div');
+                previewItem.classList.add('preview-item');
+
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = '×';
+                removeBtn.classList.add('remove-preview');
+                removeBtn.onclick = () => {
+                    attachedFiles.splice(index, 1);
+                    renderNotePreview();
+                };
+
+                // Display for image
+                if (file.type.startsWith('image/')) {
+                    const img = document.createElement('img');
+                    img.src = URL.createObjectURL(file.file);
+                    img.alt = file.name;
+                    previewItem.appendChild(img);
+                }
+
+                previewItem.appendChild(removeBtn);
+                previewContainer.appendChild(previewItem);
+            });
+        }
+        function regenerateObjectUrls() {
+            for (const topic in appData.topics) {
+                appData.topics[topic].files.forEach(fileInfo => {
+                    if (fileInfo.file) {
+                        fileInfo.url = URL.createObjectURL(fileInfo.file);
+                    }
+                });
+
+                appData.topics[topic].notes.forEach(note => {
+                    note.attachments.forEach(fileInfo => {
+                        if (fileInfo.file) {
+                            fileInfo.url = URL.createObjectURL(fileInfo.file);
+                        }
+                    });
+                });
+            }
+        }
+
+        function getFileIcon(fileType) {
+            if (fileType.startsWith('image/')) return '<i class="fas fa-image"></i>';
+            if (fileType === 'application/pdf') return '<i class="fas fa-file-pdf"></i>';
+            if (fileType.startsWith('text/')) return '<i class="fas fa-file-alt"></i>';
+            if (fileType.startsWith('audio/')) return '<i class="fas fa-file-audio"></i>';
+            if (fileType.startsWith('video/')) return '<i class="fas fa-file-video"></i>';
+            return '<i class="fas fa-file"></i>';
+        }
+
+        function renderFiles() {
+            const fileGrid = document.getElementById('file-grid');
+            fileGrid.innerHTML = '';
+
+            const topicFiles = appData.topics[currentTopic].files || [];
+            topicFiles.forEach((file) => {
+                const fileCard = document.createElement('div');
+                fileCard.classList.add('file-card');
+
+                if (file.type.startsWith('image/')) {
+                    const preview = document.createElement('img');
+                    preview.src = file.url;
+                    preview.alt = file.name;
+                    preview.classList.add('file-preview');
+
+                    // Open image in a new window
+                    preview.onclick = () => {
+                        const imageWindow = window.open('');
+                        imageWindow.document.write(`
+                    <html>
+                        <head><title>${file.name}</title></head>
+                        <body style="margin:0; display:flex; justify-content:center; align-items:center; height:100vh;">
+                            <img src="${file.url}" style="max-width:100%; max-height:100%;">
+                        </body>
+                    </html>
+                `);
+                    };
+
+                    fileCard.appendChild(preview);
+                } else {
+                    const fileIcon = document.createElement('div');
+                    fileIcon.classList.add('file-icon');
+                    fileIcon.innerHTML = getFileIcon(file.type);
+                    fileCard.appendChild(fileIcon);
+
+                    // Handle click event based on file type
+                    fileCard.onclick = () => handleFileClick(file);
+                }
+
+                // File details
+                const fileInfo = document.createElement('div');
+                fileInfo.innerHTML = `
+            <strong>${file.name}</strong><br>
+            ${(file.size / 1024).toFixed(2)} KB<br>
+            ${file.addedDate}
+        `;
+                fileCard.appendChild(fileInfo);
+
+                fileGrid.appendChild(fileCard);
+            });
+        }
+
+        // Handle file click for various types
+        function handleFileClick(file) {
+            if (file.type === 'application/pdf') {
+                // Simple alert for PDF path 
+                const filePath = `PDF Name: ${file.name}`;
+                alert(filePath);
+            } else {
+                const fileWindow = window.open('');
+                fileWindow.document.write(`
+                <html>
+                    <head><title>${file.name}</title></head>
+                    <body>
+                        <p>This file type cannot be directly previewed.</p>
+                        <p>File name: ${file.name}</p>
+                    </body>
+                </html>
+             `);
+            }
+        }
+
+        function saveNote() {
+            const noteArea = document.getElementById('note-area');
+            const noteContent = noteArea.value.trim();
+
+            if (noteContent || attachedFiles.length > 0) {
+                if (!appData.topics[currentTopic].notes) {
+                    appData.topics[currentTopic].notes = [];
+                }
+
+                appData.topics[currentTopic].notes.push({
+                    content: noteContent,
+                    date: new Date().toLocaleString(),
+                    attachments: attachedFiles
+                });
+
+                // Save data and render notes
+                saveAppData();
+                renderNotes();
+
+                // Clear note area and attached files
+                noteArea.value = '';
+                attachedFiles = [];
+                document.getElementById('preview-container').innerHTML = '';
+                closeNoteModal();
+            }
+        }
+
+        function renderNotes() {
+            const topicNotesArea = document.getElementById('topic-notes');
+            topicNotesArea.innerHTML = '';
+
+            const topicNotes = appData.topics[currentTopic].notes || [];
+
+            topicNotes.forEach((note, index) => {
+                const noteDiv = document.createElement('div');
+                noteDiv.classList.add('note-card');
+
+                const noteContent = document.createElement('div');
+                noteContent.innerHTML = `
+            <div class="note-actions">
+                <button onclick="editNote(${index})" class="btn" style="background-color: #2ecc71; padding: 5px 10px;">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button onclick="deleteNote(${index})" class="btn" style="background-color: #e74c3c; padding: 5px 10px;">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+            <p>${note.date}</p>
+            <p>${note.content || 'No text content'}</p>
+        `;
+
+                noteDiv.appendChild(noteContent);
+
+                if (note.attachments && note.attachments.length > 0) {
+                    const attachmentsContainer = document.createElement('div');
+                    attachmentsContainer.style.display = 'flex';
+                    attachmentsContainer.style.flexWrap = 'wrap';
+                    attachmentsContainer.style.gap = '10px';
+                    attachmentsContainer.style.marginTop = '10px';
+
+                    note.attachments.forEach(attachment => {
+                        const attachmentPreview = document.createElement('div');
+                        attachmentPreview.style.maxWidth = '100px';
+                        attachmentPreview.style.cursor = 'pointer';
+
+                        if (attachment.type.startsWith('image/')) {
+                            const img = document.createElement('img');
+                            img.src = attachment.url;
+                            img.style.maxWidth = '100px';
+                            img.style.borderRadius = '8px';
+
+                            img.onclick = () => {
+                                const imageWindow = window.open('');
+                                imageWindow.document.write(`
+                            <html>
+                                <head><title>${attachment.name}</title></head>
+                                <body style="margin:0; display:flex; justify-content:center; align-items:center; height:100vh;">
+                                    <img src="${attachment.url}" style="max-width:100%; max-height:100%;">
+                                </body>
+                            </html>
+                        `);
+                            };
+
+                            attachmentPreview.appendChild(img);
+                        } else {
+                            // Handle other file types
+                            const fileIcon = document.createElement('div');
+                            fileIcon.innerHTML = getFileIcon(attachment.type);
+                            fileIcon.style.fontSize = '48px';
+                            fileIcon.style.color = '#3498db';
+                            fileIcon.style.cursor = 'pointer';
+
+                            // Call handleFileClick for all non-image attachments
+                            fileIcon.onclick = () => handleFileClick(attachment);
+
+                            attachmentPreview.appendChild(fileIcon);
+                        }
+
+                        const fileName = document.createElement('p');
+                        fileName.textContent = attachment.name;
+                        fileName.style.fontSize = '12px';
+                        fileName.style.textAlign = 'center';
+                        attachmentPreview.appendChild(fileName);
+
+                        attachmentsContainer.appendChild(attachmentPreview);
+                    });
+
+                    noteContent.appendChild(attachmentsContainer);
+                }
+
+                topicNotesArea.appendChild(noteDiv);
+            });
+        }
+
+        function deleteNote(index) {
+            const note = appData.topics[currentTopic].notes[index];
+            if (note.attachments) {
+                note.attachments.forEach(attachment => {
+                    URL.revokeObjectURL(attachment.url);
+                });
+            }
+
+            appData.topics[currentTopic].notes.splice(index, 1);
+            saveAppData();
+            renderNotes();
+        }
+
+        function editNote(index) {
+            const note = appData.topics[currentTopic].notes[index];
+
+            openNoteModal();
+            document.getElementById('note-area').value = note.content;
+
+            if (note.attachments) {
+                attachedFiles = [...note.attachments];
+                renderNotePreview();
+            }
+
+            appData.topics[currentTopic].notes.splice(index, 1);
+        }
+
+        function selectTopic(topic) {
+            document.querySelectorAll('.topic-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            const selectedButton = Array.from(document.querySelectorAll('.topic-btn'))
+                .find(btn => btn.textContent.trim() === topic);
+
+            if (selectedButton) {
+                selectedButton.classList.add('active');
+            }
+
+            currentTopic = topic;
+            document.getElementById('current-topic').textContent = topic;
+            renderFiles();
+            renderNotes();
+        }
+
+        function addNewTopic() {
+            const newTopic = prompt('Enter new topic name:');
+            if (newTopic && !appData.topics[newTopic]) {
+                appData.topics[newTopic] = { files: [], notes: [] };
+                saveAppData();
+                renderTopics();
+                selectTopic(newTopic);
+            }
+        }
+
+        function renderTopics() {
+            const topicList = document.getElementById('topic-list');
+            const existingTopicButtons = topicList.querySelectorAll('.topic-btn:not(:last-child)');
+
+            existingTopicButtons.forEach(btn => btn.remove());
+
+            Object.keys(appData.topics).forEach(topic => {
+                if (topic !== '+ Add Topic') {
+                    const topicBtn = document.createElement('button');
+                    topicBtn.innerHTML = `
+                        <span>${topic}</span>
+                        <i class="fas fa-folder"></i>
+                    `;
+                    topicBtn.classList.add('topic-btn');
+                    topicBtn.onclick = () => selectTopic(topic);
+
+                    const addButton = document.querySelector('.topic-btn:last-child');
+                    addButton.parentNode.insertBefore(topicBtn, addButton);
+                }
+            });
+        }
+
+        function saveAppData() {
+            // Stringify the file object before storing it
+            const dataToStore = JSON.stringify(appData, (key, value) => {
+                if (value instanceof File) {
+                    return {
+                        _type: 'File',
+                        name: value.name,
+                        type: value.type,
+                        size: value.size,
+                        lastModified: value.lastModified,
+                        // Convert File to a string using FileReader (async)
+                        data: readFileDataAsBase64(value)
+                    };
+                }
+                return value;
+            });
+
+            localStorage.setItem('fileOrganizerData', dataToStore);
+        }
+
+        // This is a utility function used in localstorage data storing in saveAppData().
+        // Use FileReader for converting data, for asynchrounously and better performance with large files 
+        function readFileDataAsBase64(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onloadend = () => resolve(reader.result);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // This is a utility function to check if the file object has been read previously 
+        // in saveAppData().
+        async function prepareFilesForStorage(topicData) {
+            const filePromises = [];
+
+            // Iterate over files in topics
+            for (const topic in topicData) {
+                topicData[topic].files.forEach(fileInfo => {
+                    // Check if file is an instance of File and has not been processed
+                    if (fileInfo.file instanceof File && !fileInfo.fileProcessed) {
+                        const promise = new Promise(resolve => {
+                            const reader = new FileReader();
+                            reader.onload = () => {
+                                // Replace File object with its data
+                                fileInfo.file = {
+                                    name: fileInfo.file.name,
+                                    type: fileInfo.file.type,
+                                    size: fileInfo.file.size,
+                                    data: reader.result
+                                };
+                                // Mark as processed
+                                fileInfo.fileProcessed = true;
+                                resolve();
+                            };
+                            reader.readAsDataURL(fileInfo.file);
+                        });
+                        filePromises.push(promise);
+                    }
+                });
+            }
+            // Wait for all files to be read
+            await Promise.all(filePromises);
+            return topicData;
+        }
+
+        function openNoteModal() {
+            document.getElementById('note-modal').style.display = 'flex';
+        }
+
+        function closeNoteModal() {
+            document.getElementById('note-modal').style.display = 'none';
+            document.getElementById('note-area').value = '';
+            attachedFiles = [];
+            document.getElementById('preview-container').innerHTML = '';
+        }
+    </script>
+</body>
+
+</html>
