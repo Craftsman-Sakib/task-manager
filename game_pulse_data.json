@@ -1182,5 +1182,58 @@
     "details": "In \"Marathon,\" players assume the roles of Runners, cybernetic mercenaries exploring the mysterious planet of Tau Ceti IV. The game emphasizes player-versus-player (PvP) combat in an extraction shooter format, where players compete to secure valuable loot and safely extract from the environment.",
     "links": "https://www.marathonthegame.com/",
     "dlc": []
+  },
+  {
+    "id": 1735427256998,
+    "name": "Judas",
+    "image": "https://m.media-amazon.com/images/M/MV5BZWVhYjYxZTgtYjNhYS00ZTg4LWE1ZDgtMzZkYzdlY2I1NmFjXkEyXkFqcGdeQXVyMTk2OTAzNTI@._V1_FMjpg_UX1000_.jpg",
+    "extraImages": [
+      "https://th.bing.com/th/id/OIP.41PyQD-D3X5SrH5H2Y7DngAAAA?rs=1&pid=ImgDetMain",
+      "https://www.dsogaming.com/wp-content/uploads/2022/12/JUDAS-feature-scaled.jpg",
+      "https://cdn.mos.cms.futurecdn.net/woNGvLroMbJJx62Y8Jw5nh-970-80.png"
+    ],
+    "genre": [
+      "action",
+      "shooter",
+      "FPS",
+      "Shooter"
+    ],
+    "releaseDate": {
+      "start": "2025-03",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Ghost Story Games",
+    "publisher": "Ghost Story Games",
+    "specialQuote": "From BioShock Creator",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "playstation-store",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=AYR-gxtLd_A",
+    "price": null,
+    "details": "In \"Judas,\" players assume the role of the titular character aboard a disintegrating starship. To survive, Judas must forge or break alliances with her worst enemies, navigating complex relationships and moral dilemmas. The game emphasizes narrative depth, player choice, and immersive storytelling, building upon the legacy of Ken Levine's previous works.",
+    "links": "https://www.judasthegame.com/",
+    "dlc": []
   }
 ]
