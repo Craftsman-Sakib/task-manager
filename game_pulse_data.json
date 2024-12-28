@@ -1235,5 +1235,56 @@
     "details": "In \"Judas,\" players assume the role of the titular character aboard a disintegrating starship. To survive, Judas must forge or break alliances with her worst enemies, navigating complex relationships and moral dilemmas. The game emphasizes narrative depth, player choice, and immersive storytelling, building upon the legacy of Ken Levine's previous works.",
     "links": "https://www.judasthegame.com/",
     "dlc": []
+  },
+  {
+    "id": 1735427713356,
+    "name": "Manor Lords",
+    "image": "https://th.bing.com/th/id/OIP.Cbapi-qVhl2psfJhgMmhawAAAA?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://www.xboxygen.com/IMG/jpg/manor_lords_2_.jpg",
+      "https://th.bing.com/th/id/R.e0a14cef50ee68aa7637bfc730113a4a?rik=dLhFI3gt5tR4cA&riu=http%3a%2f%2fhoodedhorse.com%2fwiki%2fimages%2fmbhh_ml%2fthumb%2f8%2f80%2fGame_Map.jpg%2f400px-Game_Map.jpg&ehk=IZqzctNcKioYApfAkj53PDdxUBkYPFfL58fe8RQ2w20%3d&risl=&pid=ImgRaw&r=0",
+      "https://www.xboxygen.com/IMG/jpg/manorlords_screenshot_2024.04.18_-_13.54.05.19.jpg"
+    ],
+    "genre": [
+      "City-builder",
+      "Real-time tactics"
+    ],
+    "releaseDate": {
+      "start": "2024-04-26",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Slavic Magic (Greg Styczeń)",
+    "publisher": "Hooded Horse",
+    "specialQuote": "Solo Developer Masterpiece",
+    "platform": [
+      "pc",
+      "xbox"
+    ],
+    "store": [
+      "steam",
+      "gog",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [
+      "xbox-game-pass"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=edB0J0bS-4s",
+    "price": 13.99,
+    "details": "Set in late 14th-century Franconia, \"Manor Lords\" combines deep, organic, and realistic city-building mechanics with large-scale, tactical battles. Players expand settlements, manage resources, and engage in real-time combat, all while navigating challenges like weather changes and environmental degradation. The game emphasizes historical accuracy, offering a gridless city-building experience with curved roads and free-form placement of structures.",
+    "links": "https://manorlords.com/",
+    "dlc": []
   }
 ]
