@@ -1131,5 +1131,56 @@
         "image": "https://platform.polygon.com/wp-content/uploads/sites/2/2024/12/palworld-feybreak-green.jpg?quality=90&strip=all&crop=0%2C3.4613147178592%2C100%2C93.077370564282&w=1200"
       }
     ]
+  },
+  {
+    "id": 1735426689584,
+    "name": "Marathon",
+    "image": "https://th.bing.com/th/id/OIP.ZfeG6ef4FATtojggE3KfrAHaEK?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://www.xboxygen.com/IMG/jpg/marathon-fps-bungie.jpg",
+      "https://www.xboxygen.com/IMG/jpg/marathon_goliath_hero_desktop_large.jpg"
+    ],
+    "genre": [
+      "sci-fi",
+      "shooter",
+      "PvP",
+      "Extraction Shooter"
+    ],
+    "releaseDate": {
+      "start": "",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2025",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "2025",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Bungie",
+    "publisher": "Bungie",
+    "specialQuote": "",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=ckI_m8bbXfw",
+    "price": null,
+    "details": "In \"Marathon,\" players assume the roles of Runners, cybernetic mercenaries exploring the mysterious planet of Tau Ceti IV. The game emphasizes player-versus-player (PvP) combat in an extraction shooter format, where players compete to secure valuable loot and safely extract from the environment.",
+    "links": "https://www.marathonthegame.com/",
+    "dlc": []
   }
 ]
