@@ -1003,5 +1003,63 @@
     "details": "In \"Balatro,\" players build and enhance a deck of playing cards to create powerful poker hands, earning chips to overcome increasing blinds. The game introduces unique Joker cards that modify standard poker rules, allowing for varied synergies and strategies. As a roguelike, each run offers different challenges and opportunities, with unlockable bonus hands and decks enhancing replayability.",
     "links": "https://www.playbalatro.com/",
     "dlc": []
+  },
+  {
+    "id": 1735424682152,
+    "name": "Prince of Persia: The Lost Crown",
+    "image": "https://th.bing.com/th/id/OIP.uhMuL6KYKO9gvpWlzRgwcgAAAA?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://th.bing.com/th/id/OIP.qoenbIYshYE3SCdVWCrxLwHaEL?rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/OIP.jGUDcyaijK5Gt_WDLMXHLQHaEK?rs=1&pid=ImgDetMain",
+      "https://www.xboxygen.com/IMG/jpg/prince_of_persia__the_lost_crown-indice.jpg",
+      "https://spacenerd.it/wp-content/uploads/2023/11/Prince-of-Persia-The-Lost-Crown-wakwak-tree-1024x576.webp"
+    ],
+    "genre": [
+      "Metroidvania",
+      "Action-Adventure"
+    ],
+    "releaseDate": {
+      "start": "2024-01-18",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Ubisoft Montpellier",
+    "publisher": "Ubisoft",
+    "specialQuote": "Innovation in Accessibility Award at The Game Awards 2024",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation",
+      "nintendo",
+      "macOS"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "xbox-store",
+      "playstation-store",
+      "Nintendo Eshop"
+    ],
+    "modLinks": [
+      "https://www.nexusmods.com/princeofpersiathelostcrown",
+      "https://gamebanana.com/games/20091"
+    ],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=MmX7a_e65uU",
+    "price": 14.99,
+    "details": "\"Prince of Persia: The Lost Crown\" revitalizes the classic series with a Metroidvania twist, offering players a blend of challenging platforming, time-manipulation abilities, and intricate level design. Players control Sargon, a young warrior with time-based powers, navigating through a mythological Persian world filled with enemies and puzzles. The game emphasizes exploration, combat, and the strategic use of time-manipulation mechanics to overcome obstacles.",
+    "links": "https://www.ubisoft.com/en-us/game/prince-of-persia/the-lost-crown?utm_source=chatgpt.com",
+    "dlc": []
   }
 ]
