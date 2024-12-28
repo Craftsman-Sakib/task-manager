@@ -945,5 +945,63 @@
     "details": "\"Counter-Strike 2\" is a free-to-play tactical first-person shooter developed and published by Valve Corporation. It serves as the fifth installment in the Counter-Strike series, succeeding \"Counter-Strike: Global Offensive\" (CS:GO).\n\nTechnical Enhancements: Built on the Source 2 engine, \"Counter-Strike 2\" introduces significant technical improvements, such as enhanced graphics, realistic physically-based rendering, and a new \"sub-tick\" server architecture that ensures more accurate synchronization with player inputs. ",
     "links": "https://www.counter-strike.net/cs2",
     "dlc": []
+  },
+  {
+    "id": 1735423733101,
+    "name": "Balatro",
+    "image": "https://th.bing.com/th/id/OIP.SDKKSyrN046PY7_eyeONfwHaHa?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://itc.ua/wp-content/uploads/2024/02/balatro_kwVyr89.jpeg",
+      "https://th.bing.com/th/id/OIP.gulisPA56zPpCltt0wgFQwHaEK?w=1024&h=576&rs=1&pid=ImgDetMain",
+      "https://th.bing.com/th/id/OIP._BB4ho0mv1teje8AWLFxTwHaEK?pid=ImgDet&w=474&h=266&rs=1"
+    ],
+    "genre": [
+      "Roguelike",
+      "Deck-building",
+      "Card Game"
+    ],
+    "releaseDate": {
+      "start": "2024-02-20",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": " LocalThunk",
+    "publisher": " Playstack",
+    "specialQuote": "Award-Winning Deck builder",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation",
+      "nintendo",
+      "mobile"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store",
+      "PlayStore",
+      "AppleStore"
+    ],
+    "modLinks": [],
+    "subscriptions": [
+      "xbox-game-pass",
+      "playstation-plus"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=9agt18c_V1U",
+    "price": 6.29,
+    "details": "In \"Balatro,\" players build and enhance a deck of playing cards to create powerful poker hands, earning chips to overcome increasing blinds. The game introduces unique Joker cards that modify standard poker rules, allowing for varied synergies and strategies. As a roguelike, each run offers different challenges and opportunities, with unlockable bonus hands and decks enhancing replayability.",
+    "links": "https://www.playbalatro.com/",
+    "dlc": []
   }
 ]
