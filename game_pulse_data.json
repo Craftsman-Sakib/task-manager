@@ -1061,5 +1061,75 @@
     "details": "\"Prince of Persia: The Lost Crown\" revitalizes the classic series with a Metroidvania twist, offering players a blend of challenging platforming, time-manipulation abilities, and intricate level design. Players control Sargon, a young warrior with time-based powers, navigating through a mythological Persian world filled with enemies and puzzles. The game emphasizes exploration, combat, and the strategic use of time-manipulation mechanics to overcome obstacles.",
     "links": "https://www.ubisoft.com/en-us/game/prince-of-persia/the-lost-crown?utm_source=chatgpt.com",
     "dlc": []
+  },
+  {
+    "id": 1735425829931,
+    "name": "Palworld",
+    "image": "https://upload.wikimedia.org/wikipedia/en/f/fb/Palworld_Steam_artwork.jpg",
+    "extraImages": [
+      "https://www.xboxygen.com/local/cache-vignettes/L790xH445/palword-mise-a-jour-12b74.jpg?1706011065",
+      "https://gflix.kr/wp-content/uploads/2024/01/building-a-ranch-in-palworld-e1706004215170.jpg",
+      "https://blog.kakaocdn.net/dn/tvl12/btsD3MBXLvI/mlwLcKjBjDZCIpXxWo6BzK/img.jpg"
+    ],
+    "genre": [
+      "Action-Adventure",
+      "Survival",
+      "Monster-Taming"
+    ],
+    "releaseDate": {
+      "start": "2024-01-19",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Pocketpair, Inc.",
+    "publisher": "Pocketpair, Inc.",
+    "specialQuote": "",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation",
+      "macOS"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "Microsoft Store"
+    ],
+    "modLinks": [
+      "https://www.nexusmods.com/palworld",
+      "https://www.curseforge.com/palworld"
+    ],
+    "subscriptions": [
+      "xbox-game-pass"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=WS2yS9rO-lI",
+    "price": 7.86,
+    "details": "In \"Palworld,\" players explore a vast open world inhabited by diverse creatures called \"Pals.\" These Pals can be captured, trained, and utilized in various aspects of gameplay, including combat, farming, building, and even factory work. The game supports both single-player and multiplayer modes, with online multiplayer accommodating up to 32 players on a single server. The combination of survival mechanics, crafting, and creature management offers a distinctive experience that sets it apart from traditional monster-taming games.",
+    "links": "https://www.pocketpair.jp/palworld",
+    "dlc": [
+      {
+        "name": "Sakurajima Expansion",
+        "releaseDate": "2024-06-27",
+        "price": null,
+        "image": "https://sm.ign.com/ign_sea/image/p/palworld-s/palworld-sakurajima-island-map-is-now-available_7me1.jpg"
+      },
+      {
+        "name": "Feybreak Expansion",
+        "releaseDate": "2024-12-23",
+        "price": null,
+        "image": "https://platform.polygon.com/wp-content/uploads/sites/2/2024/12/palworld-feybreak-green.jpg?quality=90&strip=all&crop=0%2C3.4613147178592%2C100%2C93.077370564282&w=1200"
+      }
+    ]
   }
 ]
