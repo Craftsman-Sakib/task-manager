@@ -1337,5 +1337,56 @@
     "details": "Pragmata will be played mostly from a third-person perspective and heavily focus on action, similar to Capcom's Devil May Cry series. The game features fights against robotic foes, dodge and melee mechanics, and futuristic firearms.   Pragmata is Capcom's first original franchise in eight years and is being developed by newly hired young employees",
     "links": "https://news.capcomusa.com/lets/browse/announcing-pragmata-a-brand-new-game-from-capcom-launching-2022",
     "dlc": []
+  },
+  {
+    "id": 1735493864506,
+    "name": "Caves of Qud",
+    "image": "https://th.bing.com/th/id/OIP.G3J4mQLKABCZC0_-svuyAQHaD2?pid=ImgDet&w=474&h=246&rs=1",
+    "extraImages": [
+      "https://wiki.cavesofqud.com/images/3/36/Characters.png",
+      "https://th.bing.com/th/id/OIP.EgA9C2s0kbrDR8HV6fUp6wHaHa?pid=ImgDet&w=474&h=474&rs=1",
+      "https://wiki.cavesofqud.com/images/thumb/b/bf/Trading.png/500px-Trading.png"
+    ],
+    "genre": [
+      "rpg",
+      "Science Fiction",
+      "Roguelike"
+    ],
+    "releaseDate": {
+      "start": "2024-12-05",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2015",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "2015",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "2015-07-15",
+      "end": ""
+    },
+    "developer": "Freehold Games",
+    "publisher": "Kitfox Games",
+    "specialQuote": "15-year indie RPG journey",
+    "platform": [
+      "pc",
+      "macOS",
+      "linux"
+    ],
+    "store": [
+      "steam",
+      "gog",
+      "itchio"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=4nG-N_jtpZI",
+    "price": 9.34,
+    "details": "Set in a post-apocalyptic world, \"Caves of Qud\" offers a richly detailed environment with deep simulation elements. Players can explore diverse biomes, interact with various factions, and experience a dynamic narrative influenced by their choices. The game is known for its complex character customization, allowing players to choose from a wide range of mutations and cybernetic implants. Its turn-based combat and procedurally generated content provide a unique experience with each playthrough.",
+    "links": "https://www.cavesofqud.com/",
+    "dlc": []
   }
 ]
