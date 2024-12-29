@@ -1388,5 +1388,52 @@
     "details": "Set in a post-apocalyptic world, \"Caves of Qud\" offers a richly detailed environment with deep simulation elements. Players can explore diverse biomes, interact with various factions, and experience a dynamic narrative influenced by their choices. The game is known for its complex character customization, allowing players to choose from a wide range of mutations and cybernetic implants. Its turn-based combat and procedurally generated content provide a unique experience with each playthrough.",
     "links": "https://www.cavesofqud.com/",
     "dlc": []
+  },
+  {
+    "id": 1735495139237,
+    "name": "TankHead",
+    "image": "https://th.bing.com/th/id/OIF.1tLX1JVFeNlp9EMWq6S97g?rs=1&pid=ImgDetMain",
+    "extraImages": [
+      "https://bigbaddice.pl/wp-content/uploads/2024/12/tankhead-recenzja.png",
+      "https://cdn1.epicgames.com/spt-assets/ce3cfe56d21147dcb398823206cf9073/tankhead-1v4nf.jpg",
+      "https://itorrents-igruha.org/uploads/posts/2024-12/1734259895_11.jpg"
+    ],
+    "genre": [
+      "action",
+      "Action-Adventure",
+      "Roguelite"
+    ],
+    "releaseDate": {
+      "start": "2024-12-11",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Alpha Channel Inc.",
+    "publisher": "Alpha Channel Inc.",
+    "specialQuote": "",
+    "platform": [
+      "pc"
+    ],
+    "store": [
+      "epic"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=KzYw01FIwUc",
+    "price": 14.99,
+    "details": "In \"TankHead,\" players control Whitaker, who pilots a drone-controlled tank through the desolate ECA (Earth Contamination Area). The game emphasizes fast-paced tank combat, exploration, and survival in a post-apocalyptic world. Players can customize their tanks with various weapons, armor, and abilities to navigate the harsh environment and battle enemies.",
+    "links": "https://www.tankhead.com/",
+    "dlc": []
   }
 ]
