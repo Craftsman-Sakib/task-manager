@@ -1286,5 +1286,56 @@
     "details": "Set in late 14th-century Franconia, \"Manor Lords\" combines deep, organic, and realistic city-building mechanics with large-scale, tactical battles. Players expand settlements, manage resources, and engage in real-time combat, all while navigating challenges like weather changes and environmental degradation. The game emphasizes historical accuracy, offering a gridless city-building experience with curved roads and free-form placement of structures.",
     "links": "https://manorlords.com/",
     "dlc": []
+  },
+  {
+    "id": 1735489624804,
+    "name": "Pragmata",
+    "image": "https://image.api.playstation.com/vulcan/ap/rnd/202010/3011/Y6BnyaVY0q2X41QxiBKiY9cA.png",
+    "extraImages": [
+      "https://static1.colliderimages.com/wordpress/wp-content/uploads/2021/11/Pragmata-Social.jpg",
+      "https://wanuxi-storage.sgp1.cdn.digitaloceanspaces.com/2023/06/CS-Pragmata-7.jpg",
+      "https://cdn.mos.cms.futurecdn.net/ZAoZTNor8D3aAa8j6ZtVof.jpg",
+      "https://www.videogameschronicle.com/files/2023/06/pragmata-b-1280x720.jpg"
+    ],
+    "genre": [
+      "Science Fiction",
+      "Action-Adventure"
+    ],
+    "releaseDate": {
+      "start": "",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Capcom",
+    "publisher": "Capcom",
+    "specialQuote": "Visually breathtaking sci-fi journey.",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=h4Q7Q8e3M0A",
+    "price": null,
+    "details": "Pragmata will be played mostly from a third-person perspective and heavily focus on action, similar to Capcom's Devil May Cry series. The game features fights against robotic foes, dodge and melee mechanics, and futuristic firearms.   Pragmata is Capcom's first original franchise in eight years and is being developed by newly hired young employees",
+    "links": "https://news.capcomusa.com/lets/browse/announcing-pragmata-a-brand-new-game-from-capcom-launching-2022",
+    "dlc": []
   }
 ]
