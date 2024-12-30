@@ -1532,5 +1532,59 @@
     "details": "\"Schoolboy Runaway - Stealth\" is a 3D first-person stealth game where players assume the role of a schoolboy attempting to escape from home without alerting his parents.",
     "links": "https://schoolboyrunaway.com/",
     "dlc": []
+  },
+  {
+    "id": 1735600106926,
+    "name": "Overwatch",
+    "image": "https://upload.wikimedia.org/wikipedia/en/5/51/Overwatch_cover_art.jpg",
+    "extraImages": [
+      "https://i.ytimg.com/vi/UEYp1RTvllM/maxresdefault.jpg",
+      "https://i.stack.imgur.com/gM8h9.jpg",
+      "https://pc-gaming.it/wp-content/uploads/2017/05/grauito_overwatch.jpg",
+      "https://th.bing.com/th/id/OIP.ifBDJJeOF4SfAt4Ez-9e6wHaEo?rs=1&pid=ImgDetMain"
+    ],
+    "genre": [
+      "FPS",
+      "Hero Shooter"
+    ],
+    "releaseDate": {
+      "start": "2016-05-24",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2016-05",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "2015",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Blizzard Entertainment",
+    "publisher": "Blizzard Entertainment",
+    "specialQuote": "Game of the Year 2016.",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation",
+      "nintendo"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "Microsoft Store",
+      "Battle.net",
+      "Nintendo eShop"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=FqnKB22pOC0",
+    "price": null,
+    "details": "In \"Overwatch,\" players select from a diverse roster of heroes, each with unique abilities, and engage in objective-based team battles. The game emphasizes teamwork and strategy, with roles categorized into Damage, Tank, and Support. Matches take place across various maps inspired by real-world locations, each with specific objectives like capturing points or escorting payloads.",
+    "links": "https://en.wikipedia.org/wiki/Overwatch_(video_game)",
+    "dlc": []
   }
 ]
