@@ -1483,5 +1483,54 @@
     "details": "\"The Bustling World\" immerses players in a dynamic representation of ancient China, allowing for a wide range of activities including farming, crafting, building, exploration, and combat. Players can choose various life paths, from leading a tranquil existence to commanding armies and engaging in diplomacy. The game features a dynamic world where NPCs make autonomous decisions, influencing the environment and narrative. With a unique hand-painted art style and advanced physics simulations, the game aims to provide an authentic and immersive experience.",
     "links": "https://www.thermitegames.com/games/the-bustling-world/",
     "dlc": []
+  },
+  {
+    "id": 1735592036400,
+    "name": "SchoolBoy Runaway",
+    "image": "https://chepgame.net/wp-content/uploads/2024/12/schoolboy-runaway-download-game-pc-iso-new-free.jpg",
+    "extraImages": [
+      "https://play-lh.googleusercontent.com/-pGkIUvHV7K9wW9FUuOtXA8LIuYk1rK_oeszf-bHqfv4PKTs2PyOcbVWoeA7OQIdvo0=w540-h302-rw",
+      "https://image.winudf.com/v2/image1/Mzg3ODk2MjhfMTczMzY4MTY5OF8wNjM/screen-0.png?fakeurl=1&type=png&h=400"
+    ],
+    "genre": [
+      "Stealth",
+      "Puzzle",
+      "Adventure"
+    ],
+    "releaseDate": {
+      "start": "2024-12-07",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Linked Squad",
+    "publisher": "Linked Squad",
+    "specialQuote": "",
+    "platform": [
+      "pc",
+      "mobile"
+    ],
+    "store": [
+      "steam",
+      "PlayStore",
+      "AppStore"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=kqKDxsd8qiU",
+    "price": 3.49,
+    "details": "\"Schoolboy Runaway - Stealth\" is a 3D first-person stealth game where players assume the role of a schoolboy attempting to escape from home without alerting his parents.",
+    "links": "https://schoolboyrunaway.com/",
+    "dlc": []
   }
 ]
