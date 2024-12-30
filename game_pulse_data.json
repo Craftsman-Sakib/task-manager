@@ -1435,5 +1435,53 @@
     "details": "In \"TankHead,\" players control Whitaker, who pilots a drone-controlled tank through the desolate ECA (Earth Contamination Area). The game emphasizes fast-paced tank combat, exploration, and survival in a post-apocalyptic world. Players can customize their tanks with various weapons, armor, and abilities to navigate the harsh environment and battle enemies.",
     "links": "https://www.tankhead.com/",
     "dlc": []
+  },
+  {
+    "id": 1735570967933,
+    "name": "The Bustling World",
+    "image": "https://i.ytimg.com/vi/AMeoVp2wzTc/maxresdefault.jpg",
+    "extraImages": [
+      "https://img.4gamers.com.tw/news-image/a55243d4-12c5-4aa2-968e-bdb9c30efaa0.jpg",
+      "https://www.gaming.net/wp-content/uploads/2023/12/The-Bustling-World-1-jpg.webp",
+      "https://www.rpgfan.com/wp-content/uploads/2024/01/The-Bustling-World-Screenshot-020.webp",
+      "https://www.gamesvillage.it/wp-content/uploads/2024/12/ss_49bc9dd279b07e4bfddc119ab5632589fad9ca60.1920x1080-1600x900.jpg"
+    ],
+    "genre": [
+      "Open-World RPG",
+      "Life Simulation",
+      "Strategy"
+    ],
+    "releaseDate": {
+      "start": "",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "FireWo Games",
+    "publisher": "Thermite Games",
+    "specialQuote": "Boundless freedom in ancient China.",
+    "platform": [
+      "pc"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=m-yt9NFU24A",
+    "price": null,
+    "details": "\"The Bustling World\" immerses players in a dynamic representation of ancient China, allowing for a wide range of activities including farming, crafting, building, exploration, and combat. Players can choose various life paths, from leading a tranquil existence to commanding armies and engaging in diplomacy. The game features a dynamic world where NPCs make autonomous decisions, influencing the environment and narrative. With a unique hand-painted art style and advanced physics simulations, the game aims to provide an authentic and immersive experience.",
+    "links": "https://www.thermitegames.com/games/the-bustling-world/",
+    "dlc": []
   }
 ]
