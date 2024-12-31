@@ -1586,5 +1586,54 @@
     "details": "In \"Overwatch,\" players select from a diverse roster of heroes, each with unique abilities, and engage in objective-based team battles. The game emphasizes teamwork and strategy, with roles categorized into Damage, Tank, and Support. Matches take place across various maps inspired by real-world locations, each with specific objectives like capturing points or escorting payloads.",
     "links": "https://en.wikipedia.org/wiki/Overwatch_(video_game)",
     "dlc": []
+  },
+  {
+    "id": 1735687816901,
+    "name": "Detroit: Become Human",
+    "image": "https://cdn.wikimg.net/en/strategywiki/images/d/d8/Detroit-_Become_Human_cover.jpg",
+    "extraImages": [
+      "https://th.bing.com/th/id/R.0b37f9a0d6dde5ff2721661625220382?rik=HLxEBJER7ME%2fQQ&pid=ImgRaw&r=0",
+      "https://upload.wikimedia.org/wikipedia/en/c/c5/Detroit_Become_Human_gameplay.png",
+      "https://gamepedia.cursecdn.com/detroitbecomehuman_gamepedia_en/thumb/2/20/Detroit.png/1200px-Detroit.png",
+      "https://th.bing.com/th/id/R.c83a30075947ff058565e80cad031e7f?rik=%2bIUtPOC%2fbt9Ylg&pid=ImgRaw&r=0"
+    ],
+    "genre": [
+      "Adventure"
+    ],
+    "releaseDate": {
+      "start": "2018-05-25",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Quantic Dream",
+    "publisher": "Sony Interactive Entertainment",
+    "specialQuote": "Quantic Dream's best-selling game, over 10 million units sold.",
+    "platform": [
+      "pc",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "playstation-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=TDxOUD7AgJk",
+    "price": 8.99,
+    "details": "Set in a futuristic Detroit during 2038, the game follows three androids: Kara, who escapes her owner to explore her newfound sentience and protect a young girl; Connor, whose job is to hunt down sentient androids; and Markus, who devotes himself to releasing other androids from servitude. The player's choices affect the course and outcome of the story, leading to multiple possible endings.",
+    "links": "https://www.quanticdream.com/en/detroit-become-human",
+    "dlc": []
   }
 ]
