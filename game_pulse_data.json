@@ -1748,21 +1748,8 @@
     "image": "https://lutris.net/media/igdb/cover_big/co63rz.jpg",
     "extraImages": [
       "https://static.wixstatic.com/media/1b2eb1_4d2cb1aca5084949a2378e9ea8bb0c51~mv2.jpg/v1/fill/w_1920",
-      "h_945",
-      "fp_0.50_0.50",
-      "q_90/1b2eb1_4d2cb1aca5084949a2378e9ea8bb0c51~mv2.jpg",
-      "https://th.bing.com/th/id/OIP.O3WlQdwSF0niuVnIcvQEKQHaEK?pid=ImgDet&w=474&h=266&rs=1",
-      "https://static.wixstatic.com/media/1b2eb1_6a95450bf002442c8f9a84524e517867~mv2.jpg/v1/fill/w_1920",
-      "h_945",
-      "fp_0.50_0.50",
-      "q_90/1b2eb1_6a95450bf002442c8f9a84524e517867~mv2.jpg",
-      "https://static.wixstatic.com/media/1b2eb1_6db1d3c0336d4b91bb5b502ad26324cd~mv2.jpg/v1/fill/w_900",
-      "h_504",
-      "q_90/1b2eb1_6db1d3c0336d4b91bb5b502ad26324cd~mv2.jpg",
-      "https://static.wixstatic.com/media/1b2eb1_458dd6ab4fe740a0bb8ed7d77865f170~mv2.jpg/v1/fill/w_1920",
-      "h_945",
-      "fp_0.50_0.50",
-      "q_90/1b2eb1_458dd6ab4fe740a0bb8ed7d77865f170~mv2.jpg"
+      "https://static.wixstatic.com/media/1b2eb1_458dd6ab4fe740a0bb8ed7d77865f170~mv2.jpg/v1/fill/w_1920,h_945,fp_0.50_0.50,q_90/1b2eb1_458dd6ab4fe740a0bb8ed7d77865f170~mv2.jpg",
+      "https://static.wixstatic.com/media/1b2eb1_6db1d3c0336d4b91bb5b502ad26324cd~mv2.jpg/v1/fill/w_900,h_504,q_90/1b2eb1_6db1d3c0336d4b91bb5b502ad26324cd~mv2.jpg"
     ],
     "genre": [
       "action",
