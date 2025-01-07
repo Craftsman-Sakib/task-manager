@@ -1635,5 +1635,57 @@
     "details": "Set in a futuristic Detroit during 2038, the game follows three androids: Kara, who escapes her owner to explore her newfound sentience and protect a young girl; Connor, whose job is to hunt down sentient androids; and Markus, who devotes himself to releasing other androids from servitude. The player's choices affect the course and outcome of the story, leading to multiple possible endings.",
     "links": "https://www.quanticdream.com/en/detroit-become-human",
     "dlc": []
+  },
+  {
+    "id": 1736228292996,
+    "name": "Metel: Horror Escape",
+    "image": "https://play-lh.googleusercontent.com/hj9U4yAtJceXcX82gtJf7R-lX4MS-Lo_0u9f3CLczBH4CzPeqfVe_OxjDlxDOdzJAEw",
+    "extraImages": [
+      "https://images.sftcdn.net/images/t_app-cover-l",
+      "f_auto/p/721b5852-d68c-4708-943f-2a6ba175f8b4/384338116/metel-horror-escape-screenshot.png",
+      "https://images.sftcdn.net/images/t_app-cover-l",
+      "f_auto/p/721b5852-d68c-4708-943f-2a6ba175f8b4/2197668261/metel-horror-escape-screenshot.png",
+      "https://mobimg.b-cdn.net/v2/fetch/67/673e32020676303a4ceb52a6f5fe2c35.jpeg"
+    ],
+    "genre": [
+      "Horror",
+      "Puzzle"
+    ],
+    "releaseDate": {
+      "start": "2020-08-31",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Linked Squad",
+    "publisher": "Linked Squad",
+    "specialQuote": "Unusual gameplay with atmospheric graphics.",
+    "platform": [
+      "pc",
+      "mobile"
+    ],
+    "store": [
+      "steam",
+      "itchio",
+      "Google PlayStore",
+      "AppStore"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=qy2CRLMgZdU",
+    "price": 1.89,
+    "details": "In \"Metel: Horror Escape,\" players assume the role of a victim captured by a maniac and confined in a metal cage within an abandoned house in the forest. The primary objective is to escape without alerting the captor. Players must solve puzzles, hide evidence of escape attempts, and avoid detection to survive.",
+    "links": "https://linkedsquad.itch.io/metel",
+    "dlc": []
   }
 ]
