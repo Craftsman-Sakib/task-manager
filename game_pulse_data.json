@@ -1790,5 +1790,53 @@
     "details": "In \"Project Feline,\" players control Gabi, utilizing her feline agility to run, grind, and slide across various surfaces, building momentum to navigate complex 3D stages inspired by 2000s anime aesthetics.",
     "links": "https://www.projectfeline.com/",
     "dlc": []
+  },
+  {
+    "id": 1736282288147,
+    "name": "Henry Stickmin: Collection (Remastered)",
+    "image": "https://www.databaze-her.cz/obrazky/hry_krabice/20644.png?_=1612079195",
+    "extraImages": [
+      "https://i.ytimg.com/vi/V_-WSA_9DCI/maxresdefault.jpg",
+      "https://wallpapercave.com/wp/wp7442331.png",
+      "https://blogimg.ngfiles.com/988000/988651/936212742_WW2two.png"
+    ],
+    "genre": [
+      "Interactive Fiction",
+      "Adventure"
+    ],
+    "releaseDate": {
+      "start": "2020-08-07",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Puffballs United ",
+    "publisher": "Innersloth",
+    "specialQuote": "Interactive stick-figure adventure.",
+    "platform": [
+      "pc",
+      "Linux",
+      "macOS"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=M0JtUImSEzU",
+    "price": 6.99,
+    "details": "In \"Stealing the Diamond,\" players assist the protagonist, Henry Stickmin, in attempting to steal the Tunisian Diamond from a museum. The game offers multiple choices leading to different outcomes, including three main endings: the Aggressive Way, the Undetected Way, and the Epic Way. Each choice presents humorous scenarios and various fail states, encouraging players to explore all possible paths.",
+    "links": "https://www.innersloth.com/games/the-henry-stickmin-collection/",
+    "dlc": []
   }
 ]
