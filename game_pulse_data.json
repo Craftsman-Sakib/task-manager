@@ -901,7 +901,7 @@
   },
   {
     "id": 1735037770040,
-    "name": "Counter Strike 2",
+    "name": "Counter Strike 2(CS:GO 2)",
     "image": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/CS2_Cover_Art.jpg/220px-CS2_Cover_Art.jpg",
     "extraImages": [
       "https://static.standard.co.uk/2023/03/23/12/Counter-Strike%202%20screenshot.png?width=968&auto=webp&quality=50&crop=968:645%2Csmart",
@@ -932,7 +932,7 @@
     },
     "developer": "Valve Corporation",
     "publisher": "Valve Corporation",
-    "specialQuote": "",
+    "specialQuote": "Largest technical leap in Counter-Strike's history.",
     "platform": [
       "pc",
       "Linux"
