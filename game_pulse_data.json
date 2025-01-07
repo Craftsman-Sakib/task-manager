@@ -1687,5 +1687,59 @@
     "details": "In \"Metel: Horror Escape,\" players assume the role of a victim captured by a maniac and confined in a metal cage within an abandoned house in the forest. The primary objective is to escape without alerting the captor. Players must solve puzzles, hide evidence of escape attempts, and avoid detection to survive.",
     "links": "https://linkedsquad.itch.io/metel",
     "dlc": []
+  },
+  {
+    "id": 1736230451752,
+    "name": "Counter-Strike: Global Offensive(CS:GO)",
+    "image": "https://files.gamebanana.com/img/ico/sprays/530-90_52527762aa96b.jpg",
+    "extraImages": [
+      "https://th.bing.com/th/id/R.c7610315c8660199a8b8bc751e073e92?rik=LD5JdHPKa81trw&riu=http%3a%2f%2fwww.lagzero.net%2fwp-content%2fuploads%2f2011%2f08%2fCS_GO.jpg&ehk=14xIT1ehq8svYrzGcTF8m0eYkrymCtdi%2f0RJw3Hct0U%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1",
+      "https://files.gamebanana.com/img/ss/tools/5604344021a80.jpg",
+      "https://th.bing.com/th/id/OIP.1CvN_IOlpLH2NSvgeu9L5AHaEK?rs=1&pid=ImgDetMain"
+    ],
+    "genre": [
+      "Tactical First-Person Shooter"
+    ],
+    "releaseDate": {
+      "start": "2012-08-21",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2011-11-30",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Valve Corporation, Hidden Path Entertainment",
+    "publisher": "Valve Corporation",
+    "specialQuote": "Among the best in esports.",
+    "platform": [
+      "pc",
+      "xbox",
+      "playstation",
+      "macOS",
+      "Linux"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store"
+    ],
+    "modLinks": [
+      "https://gamebanana.com/games/4660",
+      "https://www.nexusmods.com/csgo"
+    ],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=edYCtaNueQY",
+    "price": 0,
+    "details": "In CS:GO, players join one of two teams: Terrorists or Counter-Terrorists. The game features various objective-based modes, with the most common involving Terrorists attempting to plant a bomb while Counter-Terrorists strive to prevent it, or Counter-Terrorists working to rescue hostages held by Terrorists. The game emphasizes strategic team-based action and has a high skill ceiling, contributing to its popularity in the esports scene.",
+    "links": "https://www.counter-strike.net/news",
+    "dlc": []
   }
 ]
