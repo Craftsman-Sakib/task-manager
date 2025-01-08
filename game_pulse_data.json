@@ -2033,5 +2033,62 @@
     "details": "\"Coin Pusher Casino\" is a digital simulation of the classic arcade coin pusher machines, offering players an engaging and nostalgic experience.",
     "links": "https://coinpushercasino.com/",
     "dlc": []
+  },
+  {
+    "id": 1736371987095,
+    "name": "Mecha BREAK",
+    "image": "https://howlongtobeat.com/games/141868_Mecha_BREAK.jpg",
+    "extraImages": [
+      "https://www.xboxygen.com/local/cache-vignettes/L790xH445/mecha_break-a39d9.jpg",
+      "https://www.metalbridges.com/wp-content/uploads/2023/12/Mecha-BREAK_2023_12-07-23_004-1024x576.jpg",
+      "https://dl.memuplay.com/new_market/img/com.mechabreak.sc3.2025-01-03-11-35-35.jpg",
+      "https://cdn.kikinote.net/gallery/game/9fb7269675739b0ae08161a54450b5ab.jpeg"
+    ],
+    "genre": [
+      "Multiplayer Third-Person Shooter",
+      "Third-Person Shooter",
+      "Mechs",
+      "Robots"
+    ],
+    "releaseDate": {
+      "start": "2025",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2024-08-02",
+      "end": "2024-08-13"
+    },
+    "alphaDate": {
+      "start": "2024-04-26",
+      "end": "2024-04-29"
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Amazing Seasun Games",
+    "publisher": "Amazing Seasun Games",
+    "specialQuote": "Nvidia's AI NPCs will debut in the multiplayer Mecha Break game next year.",
+    "platform": [
+      "windows",
+      "linux",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [
+      "xbox-game-pass",
+      "playstation-plus"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=L_C52nanJNA",
+    "price": null,
+    "details": "\"Mecha BREAK\" offers players the opportunity to engage in high-octane ground and aerial combat using customizable mechs. The game features three unique game modes and allows players to choose from diverse classes, each with distinct fighting styles. Set in a futuristic sci-fi realm, players can battle hostile mechs across treacherous terrain.",
+    "links": "https://mechabreak.seasungames.com/en/#/",
+    "dlc": []
   }
 ]
