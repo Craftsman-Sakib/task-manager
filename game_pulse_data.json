@@ -1,23 +1,5 @@
 [
   {
-    "id": 1734294192342,
-    "name": "The Cabin Factory",
-    "image": "https://daominhha.net/wp-content/uploads/2024/12/download-game-The-Cabin-Factory-tai-daominhha2.jpg",
-    "genre": [
-      "horror"
-    ],
-    "releaseYear": "2024",
-    "platform": [
-      "Windows"
-    ],
-    "store": [
-      "steam"
-    ],
-    "price": "1.70",
-    "details": "Welcome to The Cabin Factory - as a newly hired Cabin Inspector your job is to inspect the cabins and determine whether or not they are haunted.",
-    "links": "https://www.youtube.com/watch?v=Yqnk-LxxKFg"
-  },
-  {
     "id": 1734330569710,
     "name": "Ballionaire",
     "image": "https://static.dlgamer.com/assets/105/083/packshots/ballionaire.jpg?v=20241210174003",
