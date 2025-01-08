@@ -2090,5 +2090,58 @@
     "details": "\"Mecha BREAK\" offers players the opportunity to engage in high-octane ground and aerial combat using customizable mechs. The game features three unique game modes and allows players to choose from diverse classes, each with distinct fighting styles. Set in a futuristic sci-fi realm, players can battle hostile mechs across treacherous terrain.",
     "links": "https://mechabreak.seasungames.com/en/#/",
     "dlc": []
+  },
+  {
+    "id": 1736373331778,
+    "name": "Path of Exile",
+    "image": "https://pcmodgamer.com/wp-content/uploads/path-of-exile-wallpapers.jpg",
+    "extraImages": [
+      "https://gamepedia.cursecdn.com/pathofexile_gamepedia/thumb/7/7e/The_new_masters.jpg/1200px-The_new_masters.jpg",
+      "https://1.bp.blogspot.com/-u7w-NYlsmHk/WDn4fhsbDKI/AAAAAAAABcM/CPaodBUdoKgng1vx9R90BD4g0-ewQK9VACEw/s1600/path-of-exile-skill-tree.jpg",
+      "https://artctrl.me/wp-content/uploads/2012/05/path.jpg",
+      "https://gamepedia.cursecdn.com/pathofexile_gamepedia/thumb/e/e0/Temporal_incursion_screenshot.jpg/1200px-Temporal_incursion_screenshot.jpg"
+    ],
+    "genre": [
+      "Action Role-Playing Game",
+      "ARPG"
+    ],
+    "releaseDate": {
+      "start": "2013-10-23",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2013-01-23",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "2011-08-10",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Grinding Gear Games",
+    "publisher": "Grinding Gear Games",
+    "specialQuote": "2013 PC Game of the Year",
+    "platform": [
+      "windows",
+      "macos",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store",
+      "https://www.pathofexile.com/"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=dURQBqMiwIk&list=PLt5SL2R19SuLnOKqCj4r5uOyBt2DFo-HF&index=34",
+    "price": 0,
+    "details": "Set in the dark fantasy world of Wraeclast, players assume the role of exiles striving to survive and exact revenge on those who wronged them.\n\nThe game is renowned for its deep character customization, extensive skill tree, and complex itemization.\n\nPlayers can choose from seven-character classes: Marauder, Duelist, Ranger, Shadow, Witch, Templar, and Scion, each offering unique playstyles.\n\n\"Path of Exile\" features a unique league system, introducing new content and mechanics every three months.",
+    "links": "https://www.pathofexile.com/",
+    "dlc": []
   }
 ]
