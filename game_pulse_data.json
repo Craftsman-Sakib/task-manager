@@ -2190,5 +2190,55 @@
     "details": "Set in the expansive world of Arkesia, players embark on quests to find the titular Lost Ark while battling formidable foes and uncovering ancient secrets.\n\nThe game is celebrated for its dynamic combat system, diverse class options, and rich PvE and PvP content.\n\nPlayers can choose from multiple classes, each with unique abilities and playstyles, allowing for personalized character development.",
     "links": "https://www.playlostark.com/en-us",
     "dlc": []
+  },
+  {
+    "id": 1736376482608,
+    "name": "Star Citizen",
+    "image": "https://cdna.artstation.com/p/assets/covers/images/046/085/062/large/christophe-halut-christophe-halut-arccorp-banner-01.jpg",
+    "extraImages": [
+      "https://www.dsogaming.com/wp-content/uploads/2017/12/Squadron-42-Star-Citizen-Screenshot-2017.12.25-16.42.32.39.jpg",
+      "https://media.robertsspaceindustries.com/jfzf3lhwmvv4o/store_slideshow_large_zoom.jpg",
+      "https://par30games.net/wp-content/uploads/2025/01/Star-Citizen-Game.jpg",
+      "https://dto9r5vaiz7bu.cloudfront.net/le8y5p9461rk2/source.jpg",
+      "https://gameranx.com/wp-content/uploads/2022/02/star-citizen-scaled.jpg"
+    ],
+    "genre": [
+      "MMO",
+      "Space Trading",
+      "FPS",
+      "Combat Simulation"
+    ],
+    "releaseDate": {
+      "start": "2027",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "2017-12-23",
+      "end": ""
+    },
+    "developer": "Cloud Imperium Games",
+    "publisher": "Cloud Imperium Games",
+    "specialQuote": "One of the most ambitious crowdfunding projects ever.",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "robertsspaceindustries.com/star-citizen"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=xf4zCCjBwOA",
+    "price": 45,
+    "details": "\"Star Citizen\" aims to provide a comprehensive space simulation experience, allowing players to:\n\nPilot a variety of spacecraft.\n\nEngage in space combat.\n\nTrade goods across the universe.\n\nExplore diverse planets and space stations.\n\nParticipate in first-person shooter missions.",
+    "links": "https://robertsspaceindustries.com/star-citizen",
+    "dlc": []
   }
 ]
