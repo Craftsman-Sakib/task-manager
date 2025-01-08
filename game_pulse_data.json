@@ -2143,5 +2143,52 @@
     "details": "Set in the dark fantasy world of Wraeclast, players assume the role of exiles striving to survive and exact revenge on those who wronged them.\n\nThe game is renowned for its deep character customization, extensive skill tree, and complex itemization.\n\nPlayers can choose from seven-character classes: Marauder, Duelist, Ranger, Shadow, Witch, Templar, and Scion, each offering unique playstyles.\n\n\"Path of Exile\" features a unique league system, introducing new content and mechanics every three months.",
     "links": "https://www.pathofexile.com/",
     "dlc": []
+  },
+  {
+    "id": 1736374953384,
+    "name": "Lost Ark",
+    "image": "https://www.highgroundgaming.com/wp-content/uploads/2024/05/Lost-Ark-Box-Art.jpeg",
+    "extraImages": [
+      "https://progameguides.com/wp-content/uploads/2021/11/Lost-Ark-Sunflower-for-my-Love-2.jpg",
+      "https://www.denofgeek.com/wp-content/uploads/2022/04/Lost-Ark.jpg?fit=1920%2C1080",
+      "https://img.mmorpg.org.pl/img/upload/posts/53809e5e-e3cf-4099-9951-0d5fec1f013a.jpg",
+      "https://www.freemmostation.com/wp-content/uploads/2014/11/Lost-Ark-summoner1.jpg"
+    ],
+    "genre": [
+      "MMORPG"
+    ],
+    "releaseDate": {
+      "start": "2022-02-11",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2021-11-04",
+      "end": "2021-11-11"
+    },
+    "alphaDate": {
+      "start": "2021-06-11",
+      "end": "2021-06-16"
+    },
+    "earlyAccessDate": {
+      "start": "2022-02-08",
+      "end": ""
+    },
+    "developer": "Smilegate RPG and Tripod Studio",
+    "publisher": "Amazon Games",
+    "specialQuote": "2019 Korean Game of the Year",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam",
+      "playlostark.com"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=iwnk9XrhN54",
+    "price": 0,
+    "details": "Set in the expansive world of Arkesia, players embark on quests to find the titular Lost Ark while battling formidable foes and uncovering ancient secrets.\n\nThe game is celebrated for its dynamic combat system, diverse class options, and rich PvE and PvP content.\n\nPlayers can choose from multiple classes, each with unique abilities and playstyles, allowing for personalized character development.",
+    "links": "https://www.playlostark.com/en-us",
+    "dlc": []
   }
 ]
