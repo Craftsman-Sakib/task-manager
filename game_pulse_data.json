@@ -1879,5 +1879,52 @@
     "details": "\"Path of Exile 2\" continues the legacy of its predecessor, offering a rich ARPG experience with a focus on deep character customization, intricate skill systems, and challenging combat. The game introduces new classes, revamped graphics, and enhanced gameplay mechanics, providing both new and returning players with a fresh yet familiar experience.",
     "links": "https://pathofexile2.com/",
     "dlc": []
+  },
+  {
+    "id": 1736314462584,
+    "name": "The Cabin Factory",
+    "image": "https://www.speedrun.com/static/game/nd270231/cover.jpg?v=0981bdc",
+    "extraImages": [
+      "https://www.siliconera.com/wp-content/uploads/2024/12/review-the-cabin-factory-is-a-more-story-driven-take-on-the-exit-8-formula-3.jpg",
+      "https://www.gamespew.com/wp-content/uploads/2024/12/cabin-factory-3.jpg",
+      "https://lastwordongaming.com/wp-content/uploads/2024/12/The-Cabin-Factory-Anomalies-GUide.jpg",
+      "https://media.imgcdn.org/repo/2024/12/the-cabin-factory/676423fcbcca8-the-cabin-factory-screenshot3.webp"
+    ],
+    "genre": [
+      "horror",
+      "Simulation"
+    ],
+    "releaseDate": {
+      "start": "2024-12-13",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "International Cat Studios",
+    "publisher": "Future Friends Games",
+    "specialQuote": "A pleasant surprise for any horror fan.",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=zra3izX0xXQ",
+    "price": 1.89,
+    "details": "In \"The Cabin Factory,\" players assume the role of a newly hired Cabin Inspector tasked with determining whether cabins are haunted. The gameplay involves exploring cabins to detect anomalies or movements indicating a haunting. If a cabin is deemed haunted, players must exit immediately and mark it as 'danger'; if safe, they mark it as 'clear'. The game offers a short horror experience inspired by liminal spaces and psychological horror walking simulators.",
+    "links": "https://press.futurefriendsgames.com/the-cabin-factory",
+    "dlc": []
   }
 ]
