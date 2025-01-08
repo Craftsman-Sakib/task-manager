@@ -1819,5 +1819,53 @@
     "details": "In \"Stealing the Diamond,\" players assist the protagonist, Henry Stickmin, in attempting to steal the Tunisian Diamond from a museum. The game offers multiple choices leading to different outcomes, including three main endings: the Aggressive Way, the Undetected Way, and the Epic Way. Each choice presents humorous scenarios and various fail states, encouraging players to explore all possible paths.",
     "links": "https://www.innersloth.com/games/the-henry-stickmin-collection/",
     "dlc": []
+  },
+  {
+    "id": 1736307147932,
+    "name": "VOIN",
+    "image": "https://assets-prd.ignimgs.com/2024/03/02/voin-button-1709341514392.jpg",
+    "extraImages": [
+      "https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/03/voin-steam-playtest-1-550x309.jpg",
+      "https://www.gamingdragons.com/images/game_img/screenshots/voin/8501262537c0d743bb06e1c3206f926e.jpg",
+      "https://www.allkeyshop.com/blog/wp-content/uploads/Voin-Full-Release.jpg"
+    ],
+    "genre": [
+      "action",
+      "rpg",
+      "Adventure",
+      "Indie"
+    ],
+    "releaseDate": {
+      "start": "",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "2024-12-10",
+      "end": ""
+    },
+    "developer": "Nikita Sozidar",
+    "publisher": "tinyBuild",
+    "specialQuote": "Crafted by a solo developer.",
+    "platform": [
+      "Windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=4U8UOqkAhjw",
+    "price": 8.19,
+    "details": "In \"VOIN,\" players engage in fast-paced, first-person hack-and-slash combat against hordes of enemies. The game features exploration of dark fantasy realms filled with secrets and dangers, discovery of powerful gear and weapons, and battles against menacing bosses in a quest to cleanse a broken world.",
+    "links": "",
+    "dlc": []
   }
 ]
