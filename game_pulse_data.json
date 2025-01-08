@@ -1936,5 +1936,50 @@
     "details": "In \"Ballionaire,\" players build and customize pachinko-style boards, aiming to create and exploit game-breaking synergies. The game emphasizes kinetic chaos, requiring players to strategize and adapt to the physics-driven mechanics. As players progress, they encounter various challenges and opportunities to climb the ranks of the Ballionaires. ",
     "links": "https://ballionaire.net/",
     "dlc": []
+  },
+  {
+    "id": 1736317060315,
+    "name": "Among Ashes",
+    "image": "/api/placeholder/200/300",
+    "extraImages": [],
+    "genre": [
+      "horror",
+      "FPS",
+      "First-Person Horror"
+    ],
+    "releaseDate": {
+      "start": "2024-12-10",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Rat Cliff Games",
+    "publisher": "Rat Cliff Games",
+    "specialQuote": "",
+    "platform": [
+      "windows",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "playstation-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=Y_AWkU8fkhM",
+    "price": 14.99,
+    "details": "\"Among Ashes\" offers a unique experience by embedding a first-person horror game within another. Players begin by sitting at an in-game PC, playing a horror-themed game reminiscent of early 2000s titles. As the in-game horror unfolds, strange occurrences begin happening in the player's virtual apartment, blurring the lines between the game and reality. This meta-horror approach has been praised for its creativity and immersion.",
+    "links": "https://www.ratcliffgames.com/among-ashes",
+    "dlc": []
   }
 ]
