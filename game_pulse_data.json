@@ -1844,5 +1844,58 @@
     "details": "In \"VOIN,\" players engage in fast-paced, first-person hack-and-slash combat against hordes of enemies. The game features exploration of dark fantasy realms filled with secrets and dangers, discovery of powerful gear and weapons, and battles against menacing bosses in a quest to cleanse a broken world.",
     "links": "",
     "dlc": []
+  },
+  {
+    "id": 1736313658570,
+    "name": "Path of Exile 2 ",
+    "image": "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/03/pathofexile2_ranger_cinematic5-1.jpg",
+    "extraImages": [
+      "https://insider-gaming.com/wp-content/uploads/2023/06/PoE2Featured.jpg",
+      "https://www.kakuchopurei.com/wp-content/uploads/2023/07/Poe2_Dark-scaled.jpg",
+      "https://www.pcgamesn.com/wp-content/sites/pcgamesn/2023/07/path-of-exile-2-huntress.jpg",
+      "https://cdn.mos.cms.futurecdn.net/w7D73DBWGYGbQt5VCjY4Gf-1200-80.png"
+    ],
+    "genre": [
+      "action",
+      "rpg",
+      "ARPG",
+      "Action Role-Playing Game"
+    ],
+    "releaseDate": {
+      "start": "2025",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2024-06-07",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "2024-12-06",
+      "end": ""
+    },
+    "developer": "Grinding Gear Games",
+    "publisher": "Grinding Gear Games",
+    "specialQuote": "Crafted by Grinding Gear Games.",
+    "platform": [
+      "windows",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=9OosC1E8TVM",
+    "price": 0,
+    "details": "\"Path of Exile 2\" continues the legacy of its predecessor, offering a rich ARPG experience with a focus on deep character customization, intricate skill systems, and challenging combat. The game introduces new classes, revamped graphics, and enhanced gameplay mechanics, providing both new and returning players with a fresh yet familiar experience.",
+    "links": "https://pathofexile2.com/",
+    "dlc": []
   }
 ]
