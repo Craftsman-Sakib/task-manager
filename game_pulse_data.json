@@ -73,29 +73,6 @@
     "isWishlisted": false
   },
   {
-    "id": 1734339212520,
-    "name": "path of exile 2",
-    "image": "https://th.bing.com/th/id/OIP.OgqslLNkN7WWBFWindowsXu342wHaHa?rs=1&pid=ImgDetMain",
-    "genre": [
-      "action",
-      "rpg"
-    ],
-    "releaseDate": "2025-05-01",
-    "releaseYear": "2025",
-    "platform": [
-      "Windows",
-      "xbox",
-      "playstation"
-    ],
-    "store": [
-      "steam",
-      "epic"
-    ],
-    "price": "0.00",
-    "details": "Path of Exile (PoE) is a popular online action RPG developed by Grinding Gear Games. The game is set in a dark fantasy world and offers deep character customization, a vast skill tree, and engaging gameplay.",
-    "links": "https://pathofexile2.com/"
-  },
-  {
     "id": 1734443917559,
     "name": "Indiana Jones and the Great Circle",
     "image": "https://th.bing.com/th/id/OIP.poAV5YKX1AqL4Lt_U3Mk6wHaHa?rs=1&pid=ImgDetMain",
