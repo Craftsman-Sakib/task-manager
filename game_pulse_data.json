@@ -1984,5 +1984,54 @@
     "details": "\"Among Ashes\" offers a unique experience by embedding a first-person horror game within another. Players begin by sitting at an in-game PC, playing a horror-themed game reminiscent of early 2000s titles. As the in-game horror unfolds, strange occurrences begin happening in the player's virtual apartment, blurring the lines between the game and reality. This meta-horror approach has been praised for its creativity and immersion.",
     "links": "https://www.ratcliffgames.com/among-ashes",
     "dlc": []
+  },
+  {
+    "id": 1736322673356,
+    "name": "Coin Pusher Casino",
+    "image": "https://image.winudf.com/v2/image1/MzU2Mjg0NjRfMTcyOTUyNTY0M18wMTE/screen-0.png?fakeurl=1&type=.webp&w=288",
+    "extraImages": [
+      "https://image.winudf.com/v2/image1/MzU2Mjg0NjRfMTcyOTUyNTY1NV8wMDk/screen-3.png?fakeurl=1&type=.webp&h=400",
+      "https://image.winudf.com/v2/image1/MzU2Mjg0NjRfMTcyOTUyNTY2MV8wNDQ/screen-5.png?fakeurl=1&type=.webp&h=400",
+      "https://image.winudf.com/v2/image1/MzU2Mjg0NjRfMTcyOTUyNTY0NF8wMjY/screen-0.png?fakeurl=1&type=.webp&h=400"
+    ],
+    "genre": [
+      "strategy",
+      "Casual",
+      "Simulation",
+      "Indie"
+    ],
+    "releaseDate": {
+      "start": "2024-02-29",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "2022-12-28",
+      "end": ""
+    },
+    "developer": "TreeNutsGames",
+    "publisher": "TreeNutsGames",
+    "specialQuote": "A must-play for fans of arcade and coin pusher games!",
+    "platform": [
+      "windows",
+      "linux"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=wD8U9XBSiaE",
+    "price": 5,
+    "details": "\"Coin Pusher Casino\" is a digital simulation of the classic arcade coin pusher machines, offering players an engaging and nostalgic experience.",
+    "links": "https://coinpushercasino.com/",
+    "dlc": []
   }
 ]
