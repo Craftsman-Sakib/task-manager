@@ -2739,11 +2739,7 @@
     ],
     "genre": [
       "action",
-      "Indie",
-      "Procedural Generation",
-      "Perma Death",
-      "Shooter",
-      "FPS"
+      "Indie"
     ],
     "releaseDate": {
       "start": "2025-01-09",
@@ -2776,6 +2772,57 @@
     "price": 5.49,
     "details": "\"CRUEL\" offers a fast-paced run-and-gun horror shooter experience with roguelike elements, providing players with a challenging and engaging adventure.",
     "links": "",
+    "dlc": [],
+    "isFavorite": true
+  },
+  {
+    "id": 1736448277394,
+    "name": "My Summer Car",
+    "image": "https://i.playground.ru/e/z-KvUdjtXNg0dOETgFwhsA.jpeg?600-600, ",
+    "extraImages": [
+      "https://guides.gamepressure.com/my-summer-car/gfx/word/94353531.jpg"
+    ],
+    "genre": [
+      "Vehicle simulation",
+      "Survival",
+      "Driving",
+      "Automobile Sim",
+      "Open World"
+    ],
+    "releaseDate": {
+      "start": "2025-01-08",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "2016-10-24",
+      "end": ""
+    },
+    "developer": " Amistech Games, primarily led by Finnish developer Johannes Rojola",
+    "publisher": " Amistech Games",
+    "specialQuote": "94% positive reviews from over 77,000 users on 9th January.",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [
+      "https://www.nexusmods.com/mysummercar/mods/",
+      "https://modslab.net/en/my_summer_car/"
+    ],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=ulXkgdijz1c",
+    "price": 5.73,
+    "details": "\"My Summer Car\" is renowned for its detailed car-building mechanics and permadeath survival elements, offering a unique and challenging experience.\nIt offers an immersive experience where players build and maintain a car from scratch while managing survival aspects, set in the Finnish countryside during the summer of 1995. ",
+    "links": "http://www.amistech.com/msc/",
     "dlc": []
   }
 ]
