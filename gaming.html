@@ -7,6 +7,7 @@
     <title>Game Pulse - Gaming News & Tracker</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         /* CSS Styles */
         :root {
@@ -82,9 +83,93 @@
         }
 
         .sidebar-section h3 {
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border-radius: 12px;
+            background: rgba(106, 90, 205, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(145deg,
+                    rgba(106, 90, 205, 0.1),
+                    rgba(106, 90, 205, 0.05));
+        }
+
+        .sidebar-section h3:hover {
+            background: linear-gradient(145deg,
+                    rgba(106, 90, 205, 0.15),
+                    rgba(106, 90, 205, 0.1));
+            transform: translateX(4px);
+        }
+
+        .section-header-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Arrow styles for Categories */
+        .sidebar-section h3::after {
+            content: '\f107';
+            /* FontAwesome chevron icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-section h3.active::after {
+            transform: rotate(180deg);
+            /* Rotate arrow on active state */
+        }
+
+        /* Initially hide the categories */
+        .sidebar-section#categories-section ul {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar-section#categories-section ul li {
+            padding: 10px 12px;
+            margin: 4px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            background: rgba(106, 90, 205, 0.05);
+        }
+
+        .sidebar-section#categories-section ul li:hover {
+            background: rgba(106, 90, 205, 0.15);
+            color: var(--text-primary);
+            transform: translateX(4px);
+        }
+
+        .sidebar-section#categories-section ul li.active {
+            background: rgba(106, 90, 205, 0.2);
             color: var(--accent-color);
-            margin-bottom: 15px;
             font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 0.02em;
+            transform: translateX(4px);
+            box-shadow: 0 2px 4px rgba(106, 90, 205, 0.1);
+        }
+
+        .sidebar-section#categories-section.active ul {
+            max-height: 800px;
         }
 
         .sidebar-section ul {
@@ -96,6 +181,23 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
+            display: flex;
+            /* Use flexbox */
+            align-items: center;
+            /* Align items vertically */
+            gap: 10px;
+            /* Space between image and text */
+        }
+
+        /* Style for the game thumbnails in the sidebar */
+        .sidebar-section ul li img {
+            width: 24px;
+            /* Adjust size as needed */
+            height: 24px;
+            /* Adjust size as needed */
+            object-fit: cover;
+            border-radius: 5px;
+            /* Rounded corners for images */
         }
 
         .sidebar-section ul li:hover {
@@ -166,13 +268,52 @@
             overflow: hidden;
         }
 
-        .game-card-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
+        .game-card-image-container {
             position: relative;
+            width: 100%;
+            padding-top: 133.33%;
+            /* 3:4 aspect ratio */
+            overflow: hidden;
+            border-radius: 12px;
+            background: linear-gradient(45deg, rgba(106, 90, 205, 0.1), rgba(0, 0, 0, 0.2));
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .game-card-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+            backface-visibility: hidden;
+            will-change: transform;
+
+            /* Image optimization */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+
+            /* Add loading animation */
+            opacity: 0;
+            animation: imageLoad 0.3s ease forwards;
+
+        }
+
+        /* Loading animation */
+        @keyframes imageLoad {
+            from {
+                opacity: 0;
+                transform: scale(1.02);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
 
         /* Style for the 'UPCOMING' overlay */
@@ -209,6 +350,11 @@
         .game-card-image .overlay.upcoming {
             background-color: rgba(0, 255, 0, 0.7);
             /* Greenish color */
+        }
+
+        .game-card:hover .game-card-image {
+            transform: scale(1.05);
+            filter: brightness(1.1);
         }
 
         /* Show overlay on hover */
@@ -264,25 +410,77 @@
         .game-card-header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            position: relative;
         }
 
         .game-card-title {
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--text-primary);
-            white-space: nowrap;
+            font-weight: 600;
+            margin: 0;
+            padding: 10px 15px;
+            background: linear-gradient(145deg,
+                    rgba(106, 90, 205, 0.15) 0%,
+                    rgba(106, 90, 205, 0.05) 100%);
+            border-left: 3px solid var(--accent-color);
+            border-radius: 4px;
+            line-height: 1.3;
+            position: relative;
             overflow: hidden;
-            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            max-height: 3.6em;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            letter-spacing: 0.02em;
+            backdrop-filter: blur(5px);
+        }
+
+        .game-card-title:hover {
+            background: linear-gradient(145deg,
+                    rgba(106, 90, 205, 0.25) 0%,
+                    rgba(106, 90, 205, 0.15) 100%);
+            transform: translateX(5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .game-card-title::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right,
+                    transparent,
+                    rgba(106, 90, 205, 0.1));
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .game-card-title:hover::after {
+            transform: translateX(0);
         }
 
         .game-card-tags {
             display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
+            flex-direction: column;
+            gap: 8px;
             margin-bottom: 10px;
-            font-size: 0.8rem;
-            /* Smaller font size */
+        }
+
+        .tag-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            border-bottom: 1px solid rgba(106, 90, 205, 0.1);
+            padding-bottom: 8px;
         }
 
         .game-tag {
@@ -325,6 +523,8 @@
             background-color: var(--accent-color);
             color: white;
             flex: 1 0 auto;
+            text-decoration: none;
+            /* Remove underline for hyperlinks */
         }
 
         .btn-favorite,
@@ -367,6 +567,36 @@
             transform: translate(-50%, -50%) scale(1);
             opacity: 1;
             pointer-events: auto;
+        }
+
+        /* Override browser default scrollbar */
+        .add-game-section {
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--card-bg);
+        }
+
+        .add-game-section::-webkit-scrollbar {
+            width: 8px;
+            /* Width of the scrollbar */
+        }
+
+        .add-game-section::-webkit-scrollbar-track {
+            background: var(--card-bg);
+            /* Color of the track */
+        }
+
+        .add-game-section::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            /* Color of the scroll thumb */
+            border-radius: 10px;
+            /* Rounded corners for the thumb */
+            border: 2px solid var(--card-bg);
+            /* Creates padding around the thumb */
+        }
+
+        .add-game-section::-webkit-scrollbar-thumb:hover {
+            background-color: var(--hover-color);
+            /* Color of the scroll thumb on hover */
         }
 
         /* Overlay for the Add New Game Section */
@@ -436,30 +666,45 @@
         }
 
         /* Styles for the Release Date Group */
-        .release-date-group {
+        .release-date-group,
+        .beta-release-group,
+        .alpha-release-group,
+        .early-access-group {
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 8px;
             padding: 10px;
             margin-bottom: 15px;
         }
 
-        .release-date-group h4 {
+        .release-date-group h4,
+        .beta-release-group h4,
+        .alpha-release-group h4,
+        .early-access-group h4 {
             color: var(--accent-color);
             margin-bottom: 10px;
         }
 
-        .release-date-item {
+        .release-date-item,
+        .beta-release-item,
+        .alpha-release-item,
+        .early-access-item {
             display: flex;
             align-items: center;
             gap: 10px;
             margin-bottom: 5px;
         }
 
-        .release-date-item i {
+        .release-date-item i,
+        .beta-release-item i,
+        .alpha-release-item i,
+        .early-access-item i {
             color: var(--accent-color);
         }
 
-        .release-date-input {
+        .release-date-input,
+        .beta-release-input,
+        .alpha-release-input,
+        .early-access-input {
             background-color: rgba(30, 30, 46, 0.8);
             border: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--text-primary);
@@ -468,64 +713,9 @@
             flex-grow: 1;
         }
 
-        /* Early Access Release Date */
-        .early-access-group {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        .early-access-group h4 {
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .early-access-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 5px;
-        }
-
         .early-access-input {
-            background-color: rgba(30, 30, 46, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            border-radius: 5px;
-            padding: 5px;
-        }
-
-        /* Beta Release Group Styling */
-        .beta-release-group {
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 15px;
-        }
-
-        .beta-release-group h4 {
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        .beta-release-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 5px;
-        }
-
-        .beta-release-item i {
-            color: var(--accent-color);
-        }
-
-        .beta-release-input {
-            background-color: rgba(30, 30, 46, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-primary);
-            border-radius: 5px;
-            padding: 5px;
+            flex-grow: 1;
+            /* Changed to grow and take available space */
         }
 
         /* Developer and Publisher Styles */
@@ -537,6 +727,19 @@
         }
 
         .developer-publisher-group h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        /*Special qoute section style*/
+        .special-quote-group {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .special-quote-group h4 {
             color: var(--accent-color);
             margin-bottom: 10px;
         }
@@ -575,6 +778,7 @@
         .game-description {
             display: -webkit-box;
             -webkit-line-clamp: 3;
+            line-clamp: 3;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -594,6 +798,8 @@
             display: none;
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .game-details-modal.active {
@@ -602,21 +808,45 @@
 
         /* Styles for the game details modal content */
         .game-details-content {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            max-width: 600px;
-            width: 90%;
+            background: linear-gradient(145deg,
+                    rgba(30, 30, 46, 0.95),
+                    rgba(30, 30, 46, 0.85));
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            max-width: 800px;
+            width: 95%;
             max-height: 80vh;
-            padding: 20px;
+            padding: 32px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--card-bg);
         }
 
-        /* Hide the scrollbar in the game details modal */
         .game-details-content::-webkit-scrollbar {
-            width: 0;
-            height: 0;
+            width: 8px;
+            /* Width of the scrollbar */
+        }
+
+        .game-details-content::-webkit-scrollbar-track {
+            background: var(--card-bg);
+            /* Color of the track */
+        }
+
+        .game-details-content::-webkit-scrollbar-thumb {
+            background-color: var(--accent-color);
+            /* Color of the thumb */
+            border-radius: 10px;
+            /* Rounded corners for the thumb */
+            border: 2px solid var(--card-bg);
+            /* Creates padding around the thumb */
+        }
+
+        .game-details-content::-webkit-scrollbar-thumb:hover {
+            background-color: var(--hover-color);
+            /* Darken color of the thumb on hover */
         }
 
         .game-details-header {
@@ -655,46 +885,61 @@
         }
 
         .game-details-item {
-            display: flex;
+            background: rgba(106, 90, 205, 0.1);
             align-items: center;
-            gap: 15px;
-            background-color: rgba(106, 90, 205, 0.1);
-            padding: 12px;
-            border-radius: 8px;
-            transition: background-color 0.3s ease;
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 12px;
         }
 
         .game-details-item:hover {
-            background-color: rgba(106, 90, 205, 0.2);
+            background: rgba(106, 90, 205, 0.15);
+            transform: translateY(-2px);
         }
 
         .game-details-item i {
             color: var(--accent-color);
-            min-width: 30px;
-            text-align: center;
             font-size: 1.2rem;
+            padding: 8px;
+            background: rgba(106, 90, 205, 0.2);
+            border-radius: 8px;
+            min-width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .game-details-item span {
             flex-grow: 1;
+            line-height: 1.6;
         }
 
         /* Developer and Publisher Styling */
         .dev-publisher-container {
             display: flex;
             flex-direction: column;
-            /* Changed for better clarity */
-            gap: 5px;
-            /* Reduced gap */
-            font-size: 0.9rem;
+            gap: 8px;
         }
 
         .developer-name,
         .publisher-name {
-            background-color: rgba(106, 90, 205, 0.2);
+            background: rgba(106, 90, 205, 0.2);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             color: var(--accent-color);
-            padding: 3px 8px;
-            border-radius: 15px;
+            border: 1px solid rgba(106, 90, 205, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .developer-name:hover,
+        .publisher-name:hover {
+            background: rgba(106, 90, 205, 0.3);
+            transform: translateX(4px);
         }
 
         .dev-label,
@@ -780,43 +1025,72 @@
         .tag-group {
             display: flex;
             align-items: center;
-            background-color: rgba(106, 90, 205, 0.1);
-            border-radius: 5px;
+            background: linear-gradient(145deg,
+                    rgba(106, 90, 205, 0.1) 0%,
+                    rgba(106, 90, 205, 0.05) 100%);
+            border-radius: 8px;
             overflow: hidden;
+            margin-bottom: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tag-group:hover {
+            transform: translateX(5px);
+            background: linear-gradient(145deg,
+                    rgba(106, 90, 205, 0.15) 0%,
+                    rgba(106, 90, 205, 0.1) 100%);
+            border-color: rgba(106, 90, 205, 0.2);
         }
 
         .tag-group-icon {
-            background-color: rgba(106, 90, 205, 0.2);
-            padding: 5px 8px;
+            background: rgba(106, 90, 205, 0.15);
+            padding: 8px 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease;
         }
 
         .tag-group-icon i {
             color: var(--accent-color);
+            font-size: 0.9rem;
         }
 
         .tag-group-tags {
             display: flex;
             align-items: center;
-            padding: 5px 8px;
+            padding: 6px 12px;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .game-tag {
-            background-color: transparent;
-            color: var(--text-secondary);
-            margin-right: 5px;
-            font-size: 0.7rem;
+            color: var(--text-primary);
+            font-size: 0.8rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(106, 90, 205, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .tag-group:hover .game-tag {
+            background: rgba(106, 90, 205, 0.25);
+            color: white;
         }
 
         .tag-overflow {
-            background-color: rgba(106, 90, 205, 0.3);
+            background: rgba(106, 90, 205, 0.25);
             color: var(--accent-color);
-            border-radius: 10px;
+            border-radius: 4px;
             padding: 2px 6px;
-            margin-left: 5px;
-            font-size: 0.6rem;
+            font-size: 0.7rem;
+            transition: all 0.3s ease;
+        }
+
+        .tag-group:hover .tag-overflow {
+            background: rgba(106, 90, 205, 0.35);
+            color: white;
         }
 
         /* Differentiate tag types with subtle color variations */
@@ -856,9 +1130,78 @@
             cursor: pointer;
         }
 
+        /* Style for price display on the game card image */
+        .game-card-price {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .game-card-price .free-tag {
+            background-color: rgba(0, 128, 0, 0.7);
+            /* Darker green background for Free */
+            color: #00ff00;
+            /* Bright green text */
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Style for link display on the game card */
+        .game-card-link {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            z-index: 10;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            max-width: calc(100% - 60px);
+            /* Account for favorite icon */
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .game-card-link::before {
+            content: '\f0c1';
+            /* Link icon */
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            font-size: 0.75rem;
+            color: var(--accent-color);
+        }
+
+        .game-card-link:hover {
+            background: rgba(106, 90, 205, 0.3);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+
+        .game-card-link:hover::before {
+            color: white;
+        }
+
         .price-tag {
             background-color: rgba(0, 128, 0, 0.2);
-            /* Green background for price */
+            /* Green background for            /* Green background for price */
             color: #00ff00;
             /* Bright green text */
             padding: 2px 6px;
@@ -874,6 +1217,39 @@
             padding: 2px 6px;
             border-radius: 5px;
             font-weight: bold;
+        }
+
+        /*Special Quote Style for game card*/
+        .special-quote {
+            background-color: rgba(106, 90, 205, 0.1);
+            /* Light shade of accent color */
+            color: var(--text-primary);
+            /* Primary text color for contrast */
+            padding: 5px 10px;
+            /* Reduced padding */
+            border-radius: 10px;
+            /* More rounded corners */
+            font-size: 0.8rem;
+            /* Smaller font size */
+            font-weight: normal;
+            /* Regular font weight */
+            margin-top: 8px;
+            /* Reduced margin */
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+            /* Subtle inner shadow */
+            line-height: 1.4;
+            /* Slightly increased line height for readability */
+            text-align: center;
+            /* Centered text */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            /* Smooth transition for hover effect */
+        }
+
+        .special-quote:hover {
+            background-color: rgba(106, 90, 205, 0.2);
+            /* Slightly darker on hover */
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4);
+            /* Slightly stronger shadow on hover */
         }
 
         /* Media query for smaller screens */
@@ -1005,8 +1381,8 @@
             display: none;
             position: fixed;
             z-index: 3000;
-                        /* Ensure it's on top */
-                        left: 0;
+            /* Ensure it's on top */
+            left: 0;
             top: 0;
             width: 100%;
             height: 100%;
@@ -1095,27 +1471,39 @@
 
         /* Details header style to show game name and game image*/
         .details-title-image-section {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 20px;
-            background-color: rgba(106, 90, 205, 0.2);
-            padding: 15px;
-            border-radius: 10px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+            background: linear-gradient(145deg,
+                    rgba(106, 90, 205, 0.1),
+                    rgba(106, 90, 205, 0.05));
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .details-game-image {
-            width: 150px;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            width: 180px;
+            height: 240px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .details-game-image:hover {
+            transform: scale(1.02);
         }
 
         .details-game-title {
-            font-size: 1.8rem;
-            color: var(--text-primary);
-            font-weight: 600;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.7));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
         }
 
         .trailer-link {
@@ -1286,43 +1674,455 @@
             font-size: 1.5rem;
         }
 
+        /* Style for the heart icon container */
         .favorite-icon {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 40px;
-            height: 40px;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 50%;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 10;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
         }
 
+        /* Style for the heart icon */
         .favorite-icon i {
-            color: white;
-            font-size: 20px;
-            transition: transform 0.3s ease;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            transform-origin: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* Hover effect for the heart icon container */
         .favorite-icon:hover {
             transform: scale(1.1);
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.2);
         }
 
+        .favorite-icon:hover i {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Active state for the heart icon (when favorited) */
         .favorite-icon.active {
-            color: #ff4d4d;
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .favorite-icon.active i {
             color: #ff4d4d;
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 2px rgba(255, 77, 77, 0.3));
+        }
+
+        .favorite-icon.active:hover {
+            background: rgba(255, 77, 77, 0.15);
+            border-color: rgba(255, 77, 77, 0.3);
+            transform: scale(1.15) rotate(5deg);
         }
 
         .game-card-image-container {
             position: relative;
+        }
+
+        .game-card-image-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    rgba(106, 90, 205, 0.05) 25%,
+                    rgba(106, 90, 205, 0.1) 37%,
+                    rgba(106, 90, 205, 0.05) 63%);
+            animation: shimmer 1.5s infinite linear;
+            background-size: 400% 100%;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 100% 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        .game-card:hover .game-card-image-container {
+            transform: translateY(-4px);
+        }
+
+        /* Style for the container of platform icons */
+        .platform-icons-container {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 8px 12px;
+            background: linear-gradient(145deg,
+                    rgba(106, 90, 205, 0.1) 0%,
+                    rgba(106, 90, 205, 0.05) 100%);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+
+        .platform-icons-container:hover {
+            transform: translateX(5px);
+            background: linear-gradient(145deg,
+                    rgba(106, 90, 205, 0.15) 0%,
+                    rgba(106, 90, 205, 0.1) 100%);
+            border-color: rgba(106, 90, 205, 0.2);
+        }
+
+        /* Update individual platform icon styles */
+        .platform-icon {
+            width: 20px;
+            height: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            filter: brightness(0) invert(73%) sepia(12%) saturate(1640%) hue-rotate(202deg) brightness(87%) contrast(87%);
+        }
+
+        .platform-icon:hover {
+            transform: scale(1.15);
+            filter: brightness(0) invert(73%) sepia(59%) saturate(552%) hue-rotate(202deg) brightness(101%) contrast(96%);
+        }
+
+        /* Add tooltip for platform names */
+        .platform-icon::after {
+            content: attr(data-platform);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.95);
+            background: rgba(106, 90, 205, 0.9);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+        }
+
+        .platform-icon:hover::after {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .platform-icon.light-theme {
+            filter: brightness(0);
+            /* For dark icons on light background */
+        }
+
+        /* Individual platform icon styles with increased specificity */
+        .game-card-content .platform-icon.pc {
+            background-image: url('pc.svg');
+        }
+
+        .game-card-content .platform-icon.xbox {
+            background-image: url('xbox.svg');
+        }
+
+        .game-card-content .platform-icon.playstation {
+            background-image: url('playstation.svg');
+        }
+
+        .game-card-content .platform-icon.nintendo {
+            background-image: url('nintendo.svg');
+        }
+
+        .game-card-content .platform-icon.windows {
+            background-image: url('windows.svg');
+        }
+
+        .game-card-content .platform-icon.linux {
+            background-image: url('linux.svg');
+        }
+
+        .game-card-content .platform-icon.macos {
+            background-image: url('macos.svg');
+        }
+
+        .game-card-content .platform-icon.android {
+            background-image: url('android.svg');
+        }
+
+        .game-card-content .platform-icon.ios {
+            background-image: url('ios.svg');
+        }
+
+        /* Style for the container of platform icons in game details */
+        .game-details-content .platform-icons-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+            /* Adjust as necessary */
+        }
+
+        /* Style for each individual platform icon in game details */
+        .game-details-content .platform-icon {
+            width: 20px;
+            /* Adjust size as needed */
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+        }
+
+        /* Specific styles for each platform icon using the correct selector */
+        .game-details-content .platform-icon.pc {
+            background-image: url('pc.svg');
+        }
+
+        .game-details-content .platform-icon.xbox {
+            background-image: url('xbox.svg');
+        }
+
+        .game-details-content .platform-icon.playstation {
+            background-image: url('playstation.svg');
+        }
+
+        .game-details-content .platform-icon.nintendo {
+            background-image: url('nintendo.svg');
+        }
+
+        /* Specific styles for each platform icon using the correct selector */
+        .game-details-content .platform-icon.windows {
+            background-image: url('windows.svg');
+        }
+
+        .game-details-content .platform-icon.linux {
+            background-image: url('linux.svg');
+        }
+
+        .game-details-content .platform-icon.macos {
+            background-image: url('macos.svg');
+        }
+
+        .game-details-content .platform-icon.android {
+            background-image: url('android.svg');
+        }
+
+        .game-details-content .platform-icon.ios {
+            background-image: url('ios.svg');
+        }
+
+        /* Style for store icons in game card tags */
+        .game-card-content .store-icon {
+            width: 16px;
+            /* Smaller size for game card */
+            height: 16px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+            margin-right: 3px;
+            /* Space between icon and text */
+        }
+
+        /* Style for store icons in game details */
+        .game-details-content .store-icon {
+            width: 20px;
+            /* Larger size for game details */
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: inline-block;
+            margin-right: 5px;
+            /* Space between icon and text */
+        }
+
+        /* Specific styles for each store icon */
+        .store-icon.steam {
+            background-image: url('steam.svg');
+        }
+
+        .store-icon.epic-games {
+            background-image: url('epic.svg');
+        }
+
+        .store-icon.gog {
+            background-image: url('gog.svg');
+        }
+
+        .store-icon.xbox-store {
+            background-image: url('xbox.svg');
+        }
+
+        .store-icon.playstation-store {
+            background-image: url('playstation.svg');
+        }
+
+        .store-icon.itchio {
+            background-image: url('itchio.svg');
+        }
+
+        /* Add these styles to your existing CSS */
+        .trailer-container {
+            margin-top: 16px;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
+            height: 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .trailer-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        /* Style for the favorite games section */
+        #favorite-games-list {
+            max-height: 300px;
+            /* Limit height */
+            overflow-y: auto;
+            transition: max-height 0.3s ease;
+            position: relative;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--card-bg);
+        }
+
+        /* Collapsed state */
+        #favorite-games-list.collapsed {
+            max-height: 150px;
+            /* Show fewer items when collapsed */
+        }
+
+        /* Style for the show more/less button */
+        .show-more-btn {
+            width: 100%;
+            padding: 8px;
+            background: linear-gradient(to bottom,
+                    rgba(30, 30, 46, 0) 0%,
+                    var(--card-bg) 20%);
+            border: none;
+            color: var(--accent-color);
+            cursor: pointer;
+            position: sticky;
+            bottom: 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .show-more-btn:hover {
+            color: var(--text-primary);
+        }
+
+        /* Compact style for favorite game items */
+        #favorite-games-list li {
+            padding: 6px 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        #favorite-games-list li img {
+            width: 40px;
+            /* Smaller images */
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        #wishlisted-games-list {
+            max-height: 300px;
+            overflow-y: auto;
+            transition: max-height 0.3s ease;
+            position: relative;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--card-bg);
+        }
+
+        #wishlisted-games-list.collapsed {
+            max-height: 150px;
+        }
+
+        #wishlisted-games-list li {
+            padding: 6px 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+        }
+
+        #wishlisted-games-list li img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .game-counter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 24px;
+            height: 24px;
+            padding: 0 8px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: rgba(106, 90, 205, 0.2);
+            color: var(--accent-color);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        /* Arrow icon */
+        .section-toggle-icon {
+            font-size: 0.8rem;
+            color: var(--accent-color);
+            opacity: 0.7;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-section.active .section-toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Hover effects */
+        .sidebar-section h3:hover .game-counter {
+            background: rgba(106, 90, 205, 0.3);
+            color: white;
+        }
+
+        .sidebar-section h3:hover .section-toggle-icon {
+            opacity: 1;
         }
     </style>
 </head>
@@ -1331,12 +2131,27 @@
     <div class="app-container">
         <!-- Sidebar -->
         <div class="sidebar">
-            <div class="sidebar-section">
-                <h3>Favorite Games</h3>
+            <!-- 1. Favorite Games Section -->
+            <div class="sidebar-section" id="favorite-games-section">
+                <h3 onclick="toggleSection('favorite-games-list')">
+                    Favorite Games <span class="game-counter" id="favorite-counter">0</span>
+                </h3>
                 <ul id="favorite-games-list"></ul>
             </div>
-            <div class="sidebar-section">
-                <h3>Categories</h3>
+
+            <!-- 2. Wishlisted Games Section -->
+            <div class="sidebar-section" id="wishlisted-games-section">
+                <h3 onclick="toggleSection('wishlisted-games-list')">
+                    Wishlisted Games <span class="game-counter" id="wishlisted-counter">0</span>
+                </h3>
+                <ul id="wishlisted-games-list">
+                    <!-- Wishlisted games will be dynamically added here -->
+                </ul>
+            </div>
+
+            <!-- 3. Categories Section -->
+            <div class="sidebar-section" id="categories-section">
+                <h3 onclick="toggleCategories()">Categories</h3>
                 <ul id="genre-filter-list">
                     <li data-genre="all" class="active">All Games</li>
                     <li data-genre="sci-fi">Sci-Fi Games</li>
@@ -1348,20 +2163,16 @@
                     <li data-genre="free">Free Games</li>
                 </ul>
             </div>
-            <!-- Free Games Section in the left side which will show which games are free -->
+
+            <!-- 4. Free Games Section -->
             <div class="sidebar-section">
-                <h3>Free Games</h3>
+                <h3 onclick="toggleSection('free-games-list')">Free Games</h3>
                 <ul id="free-games-list">
                     <!-- Free games will be dynamically added here -->
                 </ul>
             </div>
-            <!-- Wishlisted Games Section -->
-            <div class="sidebar-section">
-                <h3>Wishlisted Games</h3>
-                <ul id="wishlisted-games-list">
-                    <!-- Wishlisted games will be dynamically added here -->
-                </ul>
-            </div>
+
+            <!-- 5. Release Year & Month Section -->
             <div class="sidebar-section year-month-filter">
                 <h3>Release Year & Month</h3>
                 <ul class="year-filter-list" id="year-filter-list">
@@ -1425,7 +2236,9 @@
                     <h4>Release Date</h4>
                     <div class="release-date-item">
                         <i class="fas fa-calendar-alt"></i>
-                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-release-date"
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-release-date-start"
+                            class="release-date-input" oninput="formatAnyDate(this)">
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-release-date-end"
                             class="release-date-input" oninput="formatAnyDate(this)">
                         <input type="date" id="game-release-date-calendar" style="display: none;">
                     </div>
@@ -1436,9 +2249,24 @@
                     <h4>Beta Release Date (Optional)</h4>
                     <div class="beta-release-item">
                         <i class="fas fa-calendar-alt"></i>
-                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-beta-date"
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-beta-date-start"
+                            class="beta-release-input" oninput="formatAnyDate(this)">
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-beta-date-end"
                             class="beta-release-input" oninput="formatAnyDate(this)">
                         <input type="date" id="game-beta-date-calendar" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Alpha Release Group-->
+                <div class="alpha-release-group">
+                    <h4>Alpha Release Date (Optional)</h4>
+                    <div class="alpha-release-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-alpha-date-start"
+                            class="alpha-release-input" oninput="formatAnyDate(this)">
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-alpha-date-end"
+                            class="alpha-release-input" oninput="formatAnyDate(this)">
+                        <input type="date" id="game-alpha-date-calendar" style="display: none;">
                     </div>
                 </div>
 
@@ -1447,7 +2275,9 @@
                     <h4>Early Access Release Date (Optional)</h4>
                     <div class="early-access-item">
                         <i class="fas fa-calendar-alt"></i>
-                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-early-access-date"
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-early-access-date-start"
+                            class="early-access-input" oninput="formatAnyDate(this)">
+                        <input type="text" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" id="game-early-access-date-end"
                             class="early-access-input" oninput="formatAnyDate(this)">
                         <input type="date" id="game-early-access-date-calendar" style="display: none;">
                     </div>
@@ -1463,11 +2293,22 @@
                     </div>
                 </div>
 
+                <!-- Special Quote Input -->
+                <div class="special-quote-group">
+                    <h4>Special Quote (Optional)</h4>
+                    <input type="text" placeholder="e.g. One developer made" id="game-special-quote">
+                </div>
+
                 <!-- Multi-select for Platforms -->
                 <div class="multi-select-container">
                     <div class="multi-select-tags" id="platform-tags"></div>
                     <input type="text" placeholder="Select Platforms" id="platform-input" readonly>
                     <div class="multi-select-dropdown" id="platform-dropdown">
+                        <label><input type="checkbox" value="windows"> Windows</label>
+                        <label><input type="checkbox" value="linux"> Linux</label>
+                        <label><input type="checkbox" value="macos"> macOS</label>
+                        <label><input type="checkbox" value="android"> Android</label>
+                        <label><input type="checkbox" value="ios"> iOS</label>
                         <label><input type="checkbox" value="pc"> PC</label>
                         <label><input type="checkbox" value="xbox"> Xbox</label>
                         <label><input type="checkbox" value="playstation"> PlayStation</label>
@@ -1575,12 +2416,8 @@
         </div>
     </div>
 
-    
-
     <script>
         // Store added games with local storage and JSON export
-        
-
         let games = [];
         // Initialize search input globally
         const searchInput = document.getElementById('game-search');
@@ -1635,13 +2472,12 @@
         // Function to update the remote JSON file
         async function updateRemoteGames() {
             try {
-                // IMPORTANT: Replace with your actual GitHub Personal Access Token
                 const githubToken = '';
                 const owner = 'Craftsman-Sakib';
                 const repo = 'task-manager';
                 const path = 'game_pulse_data.json';
 
-                // First, get the current file's SHA
+                // Get current file's SHA
                 const getFileResponse = await fetch(
                     `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
                     {
@@ -1658,10 +2494,11 @@
 
                 const fileInfo = await getFileResponse.json();
 
-                // Prepare the updated content
-                const updatedContent = btoa(JSON.stringify(games, null, 2));
+                // Fix: Properly encode content with UTF-8 support
+                const content = JSON.stringify(games, null, 2);
+                const encodedContent = btoa(unescape(encodeURIComponent(content)));
 
-                // Update the file
+                // Update file
                 const updateResponse = await fetch(
                     `https://api.github.com/repos/${owner}/${repo}/contents/${path}`,
                     {
@@ -1673,8 +2510,8 @@
                         },
                         body: JSON.stringify({
                             message: 'Update game data',
-                            content: updatedContent,
-                            sha: fileInfo.sha  // Include the current file's SHA
+                            content: encodedContent,
+                            sha: fileInfo.sha
                         })
                     }
                 );
@@ -1704,31 +2541,74 @@
             link.click();
         }
 
-        function populateYearsAndMonths() {
-            // Reset the object
-            yearsAndMonths = {};
+        function normalizeReleaseDate(releaseDate) {
+            // If releaseDate is null/undefined, return default object
+            if (!releaseDate) {
+                return { start: null, end: null };
+            }
 
-            // Populate the object based on the fetched games
+            // If releaseDate is a string, convert to object format
+            if (typeof releaseDate === 'string') {
+                return { start: releaseDate, end: null };
+            }
+
+            // If releaseDate is an object but missing start
+            if (typeof releaseDate === 'object' && !releaseDate.start) {
+                return { start: null, end: null };
+            }
+
+            // Return the object with null for missing end date
+            return {
+                start: releaseDate.start,
+                end: releaseDate.end || null
+            };
+        }
+
+        function populateYearsAndMonths() {
+            yearsAndMonths = {};
             games.forEach(game => {
-                // Assuming releaseDate is a string that can be parsed by new Date()
-                const releaseDate = game.releaseDate ? new Date(game.releaseDate) : null;
-                if (releaseDate) {
-                    const year = releaseDate.getFullYear();
-                    const month = releaseDate.getMonth();
+                const releaseDate = normalizeReleaseDate(game.releaseDate);
+                if (!releaseDate || !releaseDate.start) return;
+
+                try {
+                    const dateObj = new Date(releaseDate.start);
+                    const year = dateObj.getFullYear();
+                    const month = dateObj.getMonth();
 
                     if (!yearsAndMonths[year]) {
                         yearsAndMonths[year] = new Set();
                     }
                     yearsAndMonths[year].add(month);
+
+                    // If there's an end date, add those months too
+                    if (releaseDate.end) {
+                        const endDateObj = new Date(releaseDate.end);
+                        const endYear = endDateObj.getFullYear();
+                        const endMonth = endDateObj.getMonth();
+
+                        // Add all months between start and end date
+                        let currentDate = new Date(dateObj);
+                        while (currentDate <= endDateObj) {
+                            const currentYear = currentDate.getFullYear();
+                            const currentMonth = currentDate.getMonth();
+
+                            if (!yearsAndMonths[currentYear]) {
+                                yearsAndMonths[currentYear] = new Set();
+                            }
+                            yearsAndMonths[currentYear].add(currentMonth);
+
+                            currentDate.setMonth(currentDate.getMonth() + 1);
+                        }
+                    }
+                } catch (error) {
+                    console.error("Invalid date:", releaseDate.start, error);
                 }
             });
 
             // Convert Sets to Arrays
             for (const year in yearsAndMonths) {
-                yearsAndMonths[year] = Array.from(yearsAndMonths[year]);
+                yearsAndMonths[year] = Array.from(yearsAndMonths[year]).sort((a, b) => a - b);
             }
-
-            // Update the filter lists
             renderYearFilterList();
         }
 
@@ -1770,9 +2650,9 @@
                 tag.className = 'multi-select-tag';
                 tag.id = tagId;
                 tag.innerHTML = `
-                            ${value}
-                            <span class="remove-tag" onclick="removeTag('${tagId}', '${value}')">×</span>
-                        `;
+                                ${value}
+                                <span class="remove-tag" onclick="removeTag('${tagId}', '${value}')">×</span>
+                            `;
                 tagsContainer.appendChild(tag);
             } else {
                 // Remove tag
@@ -1837,7 +2717,7 @@
             const customStore = customStoreInput.value.trim();
             if (customStore) {
                 const dropdown = document.getElementById('store-dropdown');
-                const                 label = document.createElement('label');
+                const label = document.createElement('label');
                 label.innerHTML = `<input type="checkbox" value="${customStore}"> ${customStore}`;
                 dropdown.appendChild(label);
 
@@ -1893,16 +2773,16 @@
             const newDlcItem = document.createElement('div');
             newDlcItem.className = 'dlc-item';
             newDlcItem.innerHTML = `
-                <label for="dlc-name">Name:</label>
-                <input type="text" id="dlc-name" placeholder="DLC Name" class="dlc-input" data-field="name">
-                <label for="dlc-release-date">Release Date:</label>
-                <input type="text" id="dlc-release-date" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" class="dlc-input" data-field="releaseDate" oninput="formatAnyDate(this)">
-                <label for="dlc-price">Price:</label>
-                <input type="number" id="dlc-price" placeholder="Price (0 for Free)" class="dlc-input" data-field="price" step="0.01" value="0" min="0">
-                <label for="dlc-image">Image Link:</label>
-                <input type="url" id="dlc-image" placeholder="DLC Image URL" class="dlc-input" data-field="image">
-                <button type="button" onclick="removeDlcItem(this)">Remove</button>
-            `;
+                    <label for="dlc-name">Name:</label>
+                    <input type="text" id="dlc-name" placeholder="DLC Name" class="dlc-input" data-field="name">
+                    <label for="dlc-release-date">Release Date:</label>
+                    <input type="text" id="dlc-release-date" placeholder="YYYY or YYYY-MM or YYYY-MM-DD" class="dlc-input" data-field="releaseDate" oninput="formatAnyDate(this)">
+                    <label for="dlc-price">Price:</label>
+                    <input type="number" id="dlc-price" placeholder="Price (0 for Free)" class="dlc-input" data-field="price" step="0.01" value="0" min="0">
+                    <label for="dlc-image">Image Link:</label>
+                    <input type="url" id="dlc-image" placeholder="DLC Image URL" class="dlc-input" data-field="image">
+                    <button type="button" onclick="removeDlcItem(this)">Remove</button>
+                `;
             dlcList.appendChild(newDlcItem);
         }
 
@@ -1910,6 +2790,22 @@
         function removeDlcItem(button) {
             const dlcItem = button.parentNode;
             dlcItem.remove();
+        }
+
+        function convertGoogleDriveLink(url) {
+            if (!url) return '';
+
+            // Check if it's a Google Drive link
+            if (url.includes('drive.google.com')) {
+                // Extract file ID from the URL
+                const fileId = url.match(/\/d\/(.*?)\//) || url.match(/id=(.*?)&/);
+
+                if (fileId && fileId[1]) {
+                    // Convert to direct download link
+                    return `https://drive.google.com/uc?export=view&id=${fileId[1]}`;
+                }
+            }
+            return url;
         }
 
         document.getElementById('add-game-form').addEventListener('submit', async function (event) {
@@ -1933,16 +2829,30 @@
                 });
             }
 
+            const rawGameImage = document.getElementById('game-image').value;
+            const gameImage = rawGameImage.includes('drive.google.com')
+                ? convertGoogleDriveLink(rawGameImage)
+                : rawGameImage || '/api/placeholder/200/300';
             const gameName = document.getElementById('game-name').value;
-            const gameImage = document.getElementById('game-image').value || '/api/placeholder/200/300';
             const extraImageUrlsText = document.getElementById('extra-image-urls').value;
-            const extraImageUrls = extraImageUrlsText ? extraImageUrlsText.split(',').map(url => url.trim()).filter(Boolean) : [];
+            const extraImageUrls = extraImageUrlsText
+                ? extraImageUrlsText.split(',')
+                    .map(url => url.trim())
+                    .filter(Boolean)
+                    .map(url => url.includes('drive.google.com') ? convertGoogleDriveLink(url) : url)
+                : [];
             const gameGenre = getMultiSelectValues('genre-dropdown');
-            const gameReleaseDate = document.getElementById('game-release-date').value;
-            const gameBetaDate = document.getElementById('game-beta-date').value; // Added beta date
-            const gameEarlyAccessDate = document.getElementById('game-early-access-date').value; // Added early access date
+            const gameReleaseDateStart = document.getElementById('game-release-date-start').value;
+            const gameReleaseDateEnd = document.getElementById('game-release-date-end').value;
+            const gameBetaDateStart = document.getElementById('game-beta-date-start').value;
+            const gameBetaDateEnd = document.getElementById('game-beta-date-end').value;
+            const gameAlphaDateStart = document.getElementById('game-alpha-date-start').value;
+            const gameAlphaDateEnd = document.getElementById('game-alpha-date-end').value;
+            const gameEarlyAccessDateStart = document.getElementById('game-early-access-date-start').value;
+            const gameEarlyAccessDateEnd = document.getElementById('game-early-access-date-end').value;
             const gameDeveloper = document.getElementById('game-developer').value;
             const gamePublisher = document.getElementById('game-publisher').value;
+            const gameSpecialQuote = document.getElementById('game-special-quote').value; // Get the special quote
             const gamePlatform = getMultiSelectValues('platform-dropdown');
             const gameStore = getMultiSelectValues('store-dropdown');
             const gameModLinks = getMultiSelectValues('mod-dropdown');
@@ -1953,9 +2863,6 @@
             const gameLinks = document.getElementById('game-links').value;
             const gameDlc = getDlcData();
 
-            // Extract release year
-            const releaseYear = gameReleaseDate ? new Date(gameReleaseDate).getFullYear().toString() : '';
-
             // Create game object
             const game = {
                 id: Date.now(),
@@ -1963,12 +2870,25 @@
                 image: gameImage,
                 extraImages: extraImageUrls,
                 genre: gameGenre,
-                releaseDate: gameReleaseDate,
-                betaDate: gameBetaDate,
-                earlyAccessDate: gameEarlyAccessDate,
+                releaseDate: {
+                    start: gameReleaseDateStart,
+                    end: gameReleaseDateEnd
+                },
+                betaDate: {
+                    start: gameBetaDateStart,
+                    end: gameBetaDateEnd
+                },
+                alphaDate: {
+                    start: gameAlphaDateStart,
+                    end: gameAlphaDateEnd
+                },
+                earlyAccessDate: {
+                    start: gameEarlyAccessDateStart,
+                    end: gameEarlyAccessDateEnd
+                },
                 developer: gameDeveloper,
                 publisher: gamePublisher,
-                releaseYear: releaseYear,
+                specialQuote: gameSpecialQuote,
                 platform: gamePlatform,
                 store: gameStore,
                 modLinks: gameModLinks,
@@ -2035,6 +2955,7 @@
 
             // Add event listeners to date input fields
             addDateInputListeners();
+            updateGameCounters();
         });
 
         // Optional: Add export functionality for manual backup
@@ -2135,48 +3056,50 @@
             }
         }
 
-        // placing this function outside of the renderGameCard function
-        function determineGameStatus(releaseDateString) {
-            if (!releaseDateString) return '';
-
-            const today = new Date();
-            today.setHours(0, 0, 0, 0);
-
-            const releaseDate = new Date(releaseDateString);
-            releaseDate.setHours(0, 0, 0, 0);
-
-            if (releaseDate > today) {
-                return 'upcoming';
-            } else if (releaseDate.toDateString() === today.toDateString()) {
-                return 'new';
-            }
-
-            return '';
-        }
         function renderDlcSection(dlc) {
             if (!dlc || dlc.length === 0) return '';
 
             const dlcHtml = dlc.map(item => `
-                <div class="dlc-item">
-                    <strong>${item.name}</strong>
-                    <span>Release Date: ${formatDate(item.releaseDate)}</span>
-                    <span>Price: ${item.price == 0 ? 'Free' : '$' + parseFloat(item.price).toFixed(2)}</span>
-                    ${item.image ? `<img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-top: 5px;">` : ''}
-                </div>
-            `).join('');
+                    <div class="dlc-item">
+                        <strong>${item.name}</strong>
+                        <span>Release Date: ${formatDate(item.releaseDate)}</span>
+                        <span>Price: ${item.price == 0 ? 'Free' : '$' + parseFloat(item.price).toFixed(2)}</span>
+                        ${item.image ? `<img src="${item.image}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 5px; margin-top: 5px;">` : ''}
+                    </div>
+                `).join('');
 
             return `
-                <div class="dlc-container">
-                    <h4>DLCs and Expansions</h4>
-                    <div class="dlc-list">${dlcHtml}</div>
-                </div>
-            `;
+                    <div class="dlc-container">
+                        <h4>DLCs and Expansions</h4>
+                        <div class="dlc-list">${dlcHtml}</div>
+                    </div>
+                `;
+        }
+
+        function setupWishlistedGamesList() {
+            const wishlistedGamesList = document.getElementById('wishlisted-games-list');
+            const showMoreBtn = document.createElement('button');
+            showMoreBtn.className = 'show-more-btn';
+            showMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show More';
+
+            // Add the button after the list
+            wishlistedGamesList.parentNode.insertBefore(showMoreBtn, wishlistedGamesList.nextSibling);
+
+            // Initially collapse the list
+            wishlistedGamesList.classList.add('collapsed');
+
+            showMoreBtn.addEventListener('click', () => {
+                wishlistedGamesList.classList.toggle('collapsed');
+                showMoreBtn.innerHTML = wishlistedGamesList.classList.contains('collapsed')
+                    ? '<i class="fas fa-chevron-down"></i> Show More'
+                    : '<i class="fas fa-chevron-up"></i> Show Less';
+            });
         }
 
         // Function to populate the wishlisted games list in the sidebar
         function populateWishlistedGames() {
             const wishlistedGamesList = document.getElementById('wishlisted-games-list');
-            wishlistedGamesList.innerHTML = ''; // Clear existing list
+            wishlistedGamesList.innerHTML = '';
 
             const wishlistedGamesIds = JSON.parse(localStorage.getItem('wishlistedGames')) || [];
             const wishlistedGames = games.filter(game => wishlistedGamesIds.includes(game.id));
@@ -2191,11 +3114,10 @@
             wishlistedGames.forEach(game => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
-                <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
-                ${game.name}
-                `;
+            <img src="${game.image}" alt="${game.name}">
+            <span>${game.name}</span>
+        `;
                 listItem.addEventListener('click', () => {
-                    // Trigger the details button of the corresponding game card
                     const gameCard = Array.from(document.querySelectorAll(`.game-card`)).find(card => {
                         const titleElement = card.querySelector('.game-card-title');
                         return titleElement && titleElement.textContent === game.name;
@@ -2209,27 +3131,50 @@
                 });
                 wishlistedGamesList.appendChild(listItem);
             });
+
+            setupWishlistedGamesList();
         }
         // Modify renderGameCard to include price display and wishlist button
         function renderGameCard(game) {
             const gameCard = document.createElement('div');
             gameCard.className = 'game-card';
             gameCard.dataset.genres = Array.isArray(game.genre) ? game.genre.join(',') : game.genre;
-            gameCard.dataset.year = game.releaseYear;
-            gameCard.dataset.releaseDate = game.releaseDate; // Store the release date in dataset
+            const releaseDates = [
+                game.releaseDate && game.releaseDate.start ? game.releaseDate.start : null,
+                game.releaseDate && game.releaseDate.end ? game.releaseDate.end : null,
+                game.betaDate && game.betaDate.start ? game.betaDate.start : null,
+                game.betaDate && game.betaDate.end ? game.betaDate.end : null,
+                game.alphaDate && game.alphaDate.start ? game.alphaDate.start : null,
+                game.alphaDate && game.alphaDate.end ? game.alphaDate.end : null,
+                game.earlyAccessDate && game.earlyAccessDate.start ? game.earlyAccessDate.start : null,
+                game.earlyAccessDate && game.earlyAccessDate.end ? game.earlyAccessDate.end : null
+            ];
 
-            // Check if release date exists before accessing its properties
-            const releaseDate = game.releaseDate ? new Date(game.releaseDate) : null;
+            let allYears = new Set();
+            let allMonths = new Set();
 
-            // Now we set 'activeMonth' in our data attribute if 'releaseDate' exists
-            if (releaseDate) {
-                gameCard.dataset.month = releaseDate.getMonth();
-            }
+            releaseDates.forEach(dateString => {
+                if (dateString) {
+                    const date = new Date(dateString);
+                    allYears.add(date.getFullYear().toString());
+                    allMonths.add(date.getMonth());
+                }
+            });
+
+            gameCard.dataset.year = Array.from(allYears).join(',');
+            gameCard.dataset.month = Array.from(allMonths).join(',');
+            gameCard.dataset.releaseDate = game.releaseDate;
+            gameCard.dataset.releaseDateStart = game.releaseDate && (typeof game.releaseDate === 'string' ?
+                game.releaseDate : game.releaseDate.start) || '';
+            gameCard.dataset.releaseDateEnd = game.releaseDate && typeof game.releaseDate === 'object' ?
+                game.releaseDate.end || '' : '';
 
             const gameStatus = determineGameStatus(game.releaseDate);
-
             function getPriceTag(price) {
-                const numericPrice = isNaN(parseFloat(price)) ? 0 : parseFloat(price);
+                if (price === null || price === undefined || isNaN(parseFloat(price))) {
+                    return '<span class="price-tag">Price not confirmed</span>';
+                }
+                const numericPrice = parseFloat(price);
                 return numericPrice === 0 ? '<span class="free-tag">FREE</span>' : `<span class="price-tag">$${numericPrice.toFixed(2)}</span>`;
             }
 
@@ -2253,6 +3198,58 @@
                     `;
             }
 
+            // Function to render platform icons
+            function renderPlatformIcons(platforms) {
+                if (!platforms || platforms.length === 0) return '';
+
+                // Map of platform names to their display names
+                const platformDisplayNames = {
+                    'windows': 'Windows',
+                    'linux': 'Linux',
+                    'macos': 'macOS',
+                    'android': 'Android',
+                    'ios': 'iOS',
+                    'pc': 'PC',
+                    'xbox': 'Xbox',
+                    'playstation': 'PlayStation',
+                    'nintendo': 'Nintendo',
+                    'mobile': 'Mobile'
+                };
+
+                const icons = platforms.map(platform => {
+                    const platformLower = platform.toLowerCase();
+                    const displayName = platformDisplayNames[platformLower] || platform;
+                    return `<span class="platform-icon ${platformLower}" data-platform="${displayName}"></span>`;
+                }).join('');
+
+                return `
+        <div class="platform-icons-container" title="Available Platforms">
+            ${icons}
+        </div>
+    `;
+            }
+
+            // Function to render store icons
+            function renderStoreIcons(stores) {
+                if (!stores || stores.length === 0) return '';
+
+                const iconMap = {
+                    'steam': 'steam.svg',
+                    'epic': 'epic.svg',
+                    'gog': 'gog.svg',
+                    'xbox-store': 'xbox.svg',
+                    'playstation-store': 'playstation.svg',
+                    'itchio': 'itchio.svg'
+                };
+
+                return `
+            <div class="store-icons-container">
+                ${stores.map(store => `
+                    <span class="store-icon ${store.toLowerCase()}" title="${store}"></span>
+                `).join('')}
+            </div>
+        `;
+            }
             // Create overlay element
             let overlayClass = '';
             if (gameStatus === 'new') {
@@ -2268,6 +3265,13 @@
             favoriteIcon.innerHTML = '<i class="fas fa-heart"></i>';
             favoriteIcon.dataset.gameId = game.id; // Set game ID for reference
 
+            function hasValidReleaseDate(game) {
+                if (!game.releaseDate) return false;
+
+                const normalized = normalizeReleaseDate(game.releaseDate);
+                return normalized.start !== null;
+            }
+
             // Toggle favorite status on click
             favoriteIcon.addEventListener('click', function (event) {
                 event.stopPropagation(); // Prevent triggering other click events
@@ -2278,40 +3282,87 @@
             if (game.isFavorite) {
                 favoriteIcon.classList.add('active');
             }
+            // special quote section inside game card
+            const specialQuoteSection = game.specialQuote ? `<div class="special-quote">${game.specialQuote}</div>` : '';
+
+            //append price tag in card image
+
+            const priceTag = game.price !== undefined ? getPriceTag(game.price) : '';
+
+            // Render the "More Info" link
+            const gameLink = game.links ? `<a href="${game.links}" target="_blank" class="game-card-link">More Info</a>` : '';
+
+            // Add this function to optimize image URLs
+            function optimizeImageUrl(url, width = 400) {
+                // If it's a Google Drive image, keep the existing optimization
+                if (url.includes('drive.google.com')) {
+                    return convertGoogleDriveLink(url);
+                }
+
+                // Add query parameters for CDN optimization if using a CDN
+                // Example for Cloudinary or similar services
+                if (url.includes('cloudinary.com')) {
+                    return `${url}?w=${width}&q=80&auto=format,compress`;
+                }
+
+                return url;
+            }
+
+            // Update the image rendering in renderGameCard function
+            const optimizedImageUrl = optimizeImageUrl(game.image);
+            const imageHtml = `
+                <img 
+                    src="${optimizedImageUrl}"
+                    alt="${game.name}"
+                    class="game-card-image"
+                    loading="lazy"
+                    decoding="async"
+                    fetchpriority="high"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    onerror="this.onerror=null; this.src='/path/to/fallback-image.jpg';"
+                >`;
 
             gameCard.innerHTML = `
                 <div class="game-card-image-container">
-        <img src="${game.image}" alt="${game.name}" class="game-card-image">
+        ${imageHtml}
         ${overlay}
+        ${priceTag}
+        ${gameLink}
         <div class="favorite-icon" onclick="toggleFavorite(this, ${game.id})">
             <i class="fas fa-heart"></i>
         </div>
     </div>
+    
                 <div class="game-card-content">
                 <div class="game-card-header">
                 <h2 class="game-card-title">${game.name}</h2>
-                ${getPriceTag(game.price)}
                 </div>
                 <div class="game-card-tags">
                 ${renderTagGroup(game.genre, 'genre', 'fa-tags')}
-                ${renderTagGroup(game.platform, 'platform', 'fa-desktop')}
-                ${renderTagGroup(game.store, 'store', 'fa-shopping-cart')}
-                ${renderTagGroup(game.modLinks, 'mod', 'fa-link')}
+                ${renderPlatformIcons(game.platform)}
+                ${renderTagGroup(game.store, 'store', 'fa-store')}
                 ${renderTagGroup(game.subscriptions, 'subscription', 'fa-credit-card')}
-                ${game.releaseYear ? `
-                <div class="tag-group" data-type="year">
-                <div class="tag-group-icon">
-                    <i class="fas fa-calendar"></i>
-                </div>
-                <div class="tag-group-tags">
-                    <span class="game-tag">${formatFullDate(game.releaseDate)}</span>
-                </div>
-                </div>` : ''}
-                </div>
+                ${hasValidReleaseDate(game) ? `
+    <div class="tag-group" data-type="year">
+        <div class="tag-group-icon">
+            <i class="fas fa-calendar"></i>
+        </div>
+        <div class="tag-group-tags">
+            ${(() => {
+                        const dates = normalizeReleaseDate(game.releaseDate);
+                        return `
+                    <span class="game-tag">${formatFullDate(dates.start)}</span>
+                    ${dates.end ? `- <span class="game-tag">${formatFullDate(dates.end)}</span>` : ''}
+                `;
+                    })()}
+        </div>
+    </div>` : ''}
+</div>
+                ${specialQuoteSection}
                 <div class="game-card-actions">
-                    <button class="btn btn-details" onclick="openGameDetails(this, ${game.id})">
-                        <i class="fas fa-info-circle"></i> Details
-                    </button>
+                    <a href="#" class="btn btn-details" onclick="openGameDetails(this, ${game.id}); return false;">
+                    <i class="fas fa-info-circle"></i> Details
+                </a>
                     <div class="wishlist-fav-container">
                     ${gameStatus === 'upcoming' ? `
                         <button class="btn btn-wishlist ${game.isWishlisted ? 'active' : ''}" onclick="toggleWishlist(this, ${game.id})">
@@ -2321,10 +3372,10 @@
                 </div>
                 </div>
                 `;
-            
+            const actionsDiv = gameCard.querySelector('.game-card-actions');
             document.getElementById('game-list').appendChild(gameCard);
         }
-        // Append the modal to the body, not inside the game card
+        // Append the modal to the body,not inside the game card
 
         function createDetailItem(icon, label, value) {
             if (!value || (Array.isArray(value) && value.length === 0)) {
@@ -2339,8 +3390,6 @@
                 </div>
                 `;
         }
-
-       
 
         // YouTube modal functions
         function openYouTubeModal(trailerLink) {
@@ -2419,89 +3468,136 @@
         let currentDetailsCard = null;
 
         function openGameDetails(button, gameId) {
-            // Find the game with the given ID
             const game = games.find(g => g.id === gameId);
             if (!game) return;
 
-            // Get the modal and its content element
             const modal = document.getElementById('game-details-modal');
             const modalContent = document.getElementById('game-details-content');
-
-            // Clear existing content
             modalContent.innerHTML = '';
 
-            // Construct the modal content dynamically
             modalContent.innerHTML = `
-                <div class="game-details-header">
-                    <h3>Game Details</h3>
-                    <button class="close-details" onclick="closeGameDetails()">×</button>
-                </div>
-                <div class="details-title-image-section">
-                    <img src="${game.image}" alt="${game.name}" class="details-game-image">
-                    <div>
-                        <h4 class="details-game-title">${game.name}</h4>
-                        <div class="dev-publisher-container">
-                            ${game.developer ? `<span class="dev-label">Developer:</span> <span class="developer-name">${game.developer}</span>` : ''}
-                            ${game.publisher ? `<span class="publisher-label">Publisher:</span> <span class="publisher-name">${game.publisher}</span>` : ''}
-                        </div>
-                    </div>
-                </div>
-                <div class="game-details-grid">
-                    ${createDetailItem('fa-calendar', 'Release Date', formatFullDate(game.releaseDate))}
-                    ${game.betaDate ? createDetailItem('fa-calendar-alt', 'Beta Release', formatFullDate(game.betaDate)) : ''}
-                    ${game.earlyAccessDate ? createDetailItem('fa-calendar-check', 'Early Access Date', formatFullDate(game.earlyAccessDate)) : ''}
-                    ${createDetailItem('fa-tags', 'Genres', game.genre)}
-                    ${createDetailItem('fa-desktop', 'Platforms', game.platform)}
-                    ${createDetailItem('fa-shopping-cart', 'Stores', game.store || 'Not available')}
-                    ${createDetailItem('fa-credit-card', 'Subscriptions', game.subscriptions)}
-                    ${game.modLinks && game.modLinks.length > 0 ? `
-                        <div class="game-details-item">
-                            <i class="fas fa-link"></i>
-                            <span>Mod Links: 
-                                ${game.modLinks.map(link => `<a href="${link}" target="_blank">${link}</a>`).join(', ')}
-                            </span>
-                        </div>` : ''}
-                    ${game.trailerLink ? `
-                        <div class="game-details-item" onclick="openYouTubeModal('${game.trailerLink}')">
-                            <i class="fas fa-video"></i>
-                            <span class="trailer-link">Trailer: Watch Trailer</span>
-                        </div>` : ''}
-                    ${createDetailItem('fa-dollar-sign', 'Price', game.price ? (isNaN(parseFloat(game.price)) || parseFloat(game.price) === 0 ? 'Free' : `$${parseFloat(game.price).toFixed(2)}`) : 'Free')}
-                    ${renderDlcSection(game.dlc)}
-                    ${game.links ? `
-                        <div class="game-details-item">
-                            <i class="fas fa-link"></i>
-                            <span>More Info: <a href="${game.links}" target="_blank">External Link</a></span>
-                        </div>` : ''}
-                    ${game.extraImages && game.extraImages.length > 0 ? `
-                        <div class="game-details-item">
-                            <i class="fas fa-images"></i>
-                            <span>
-                                Additional Images
-                                <div class="additional-images-container">
-                                    ${game.extraImages.map(imageUrl =>
-                `<img src="${imageUrl}" alt="Additional" class="additional-image" onclick="openImageInPopup('${imageUrl}', this.closest('.additional-images-container'))">`
-            ).join('')}
-                                </div>
-                            </span>
-                        </div>` : ''}
-                    ${createDetailItem('fa-info-circle', 'Description', game.details)}
-                </div>
-            `;
+        <div class="game-details-header">
+            <h3>Game Details</h3>
+            <button class="close-details" onclick="closeGameDetails()">×</button>
+        </div>
 
-            // Show the modal
+        <!-- Title Section -->
+        <div class="details-title-image-section">
+            <img src="${game.image}" alt="${game.name}" class="details-game-image">
+            <div>
+                <h4 class="details-game-title">${game.name}</h4>
+                <div class="dev-publisher-container">
+                    ${game.developer ? `<span class="dev-label">Developer:</span> <span class="developer-name">${game.developer}</span>` : ''}
+                    ${game.publisher ? `<span class="publisher-label">Publisher:</span> <span class="publisher-name">${game.publisher}</span>` : ''}
+                </div>
+            </div>
+        </div>
+
+        <div class="game-details-grid">
+            <!-- Release Information -->
+            ${createDetailItem('fa-calendar', 'Release Date', game.releaseDate && game.releaseDate.start ?
+                `${formatFullDate(game.releaseDate.start)}${game.releaseDate.end && game.releaseDate.end !== game.releaseDate.start ?
+                    ' - ' + formatFullDate(game.releaseDate.end) : ''}` : '')}
+            ${game.earlyAccessDate && game.earlyAccessDate.start ?
+                    createDetailItem('fa-calendar-check', 'Early Access Date',
+                        `${formatFullDate(game.earlyAccessDate.start)}${game.earlyAccessDate.end && game.earlyAccessDate.end !== game.earlyAccessDate.start ?
+                            ' - ' + formatFullDate(game.earlyAccessDate.end) : ''}`) : ''}
+            ${game.betaDate && game.betaDate.start ?
+                    createDetailItem('fa-calendar-alt', 'Beta Release',
+                        `${formatFullDate(game.betaDate.start)}${game.betaDate.end && game.betaDate.end !== game.betaDate.start ?
+                            ' - ' + formatFullDate(game.betaDate.end) : ''}`) : ''}
+            ${game.alphaDate && game.alphaDate.start ?
+                    createDetailItem('fa-calendar-minus', 'Alpha Release',
+                        `${formatFullDate(game.alphaDate.start)}${game.alphaDate.end && game.alphaDate.end !== game.alphaDate.start ?
+                            ' - ' + formatFullDate(game.alphaDate.end) : ''}`) : ''}
+
+            <!-- Platforms & Stores -->
+            <div class="game-details-item">
+                <i class="fas fa-desktop"></i>
+                <span>Platforms:</span>
+                <div class="platform-icons-container">
+                    ${game.platform.map(platform => `<span class="platform-icon ${platform}" title="${platform}"></span>`).join('')}
+                </div>
+            </div>
+            ${createDetailItem('fa-shopping-cart', 'Stores', game.store || 'Not available')}
+            ${createDetailItem('fa-credit-card', 'Subscriptions', game.subscriptions)}
+
+            <!-- Price & Purchase Info -->
+            ${createDetailItem('fa-dollar-sign', 'Price', game.price !== undefined && game.price !== null ?
+                                (isNaN(parseFloat(game.price)) || parseFloat(game.price) === 0 ? 'Free' :
+                                    `$${parseFloat(game.price).toFixed(2)}`) : 'Price not confirmed')}
+            ${renderDlcSection(game.dlc)}
+
+            <!-- Media & Content -->
+            ${game.trailerLink ? `
+                <div class="game-details-item">
+                    <i class="fas fa-video"></i>
+                    <span>Game Trailer</span>
+                    <div class="trailer-container">
+                        <iframe 
+                            width="100%" 
+                            height="315" 
+                            src="https://www.youtube.com/embed/${getYouTubeVideoId(game.trailerLink)}"
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>` : ''}
+            ${game.extraImages && game.extraImages.length > 0 ? `
+                <div class="game-details-item">
+                    <i class="fas fa-images"></i>
+                    <span>
+                        Additional Images
+                        <div class="additional-images-container">
+                            ${game.extraImages.map(imageUrl =>
+                                        `<img src="${imageUrl}" alt="Additional" class="additional-image" 
+                                onclick="openImageInPopup('${imageUrl}', this.closest('.additional-images-container'))">`
+                                    ).join('')}
+                        </div>
+                    </span>
+                </div>` : ''}
+
+            <!-- Game Details -->
+            ${createDetailItem('fa-tags', 'Genres', game.genre)}
+            ${createDetailItem('fa-info-circle', 'Description', game.details)}
+            ${game.modLinks && game.modLinks.length > 0 ? `
+                <div class="game-details-item">
+                    <i class="fas fa-link"></i>
+                    <span>Mod Links: 
+                        ${game.modLinks.map(link => `<a href="${link}" target="_blank">${link}</a>`).join(', ')}
+                    </span>
+                </div>` : ''}
+            ${game.links ? `
+                <div class="game-details-item">
+                    <i class="fas fa-link"></i>
+                    <span>More Info: <a href="${game.links}" target="_blank">External Link</a></span>
+                </div>` : ''}
+        </div>
+    `;
+
             modal.classList.add('active');
-            // Add event listener for closing the modal when clicking outside
             modal.addEventListener('click', (event) => {
                 if (event.target === modal) {
                     closeGameDetails();
                 }
             });
+            modalContent.scrollTop = 0;
         }
 
         function closeGameDetails() {
             const modal = document.getElementById('game-details-modal');
             modal.classList.remove('active');
+        }
+
+        function updateGameCounters() {
+            // Update favorite counter
+            const favoriteGames = JSON.parse(localStorage.getItem('favoriteGames')) || [];
+            document.getElementById('favorite-counter').textContent = favoriteGames.length;
+
+            // Update wishlisted counter
+            const wishlistedGames = JSON.parse(localStorage.getItem('wishlistedGames')) || [];
+            document.getElementById('wishlisted-counter').textContent = wishlistedGames.length;
         }
 
         // Updated toggleFavorite function with local storage handling
@@ -2545,6 +3641,27 @@
             localStorage.setItem('favoriteGames', JSON.stringify(favoriteGames));
             populateFavoriteGames();
             filterAndSearchGames();
+            updateGameCounters();
+        }
+
+        function setupFavoriteGamesList() {
+            const favoriteGamesList = document.getElementById('favorite-games-list');
+            const showMoreBtn = document.createElement('button');
+            showMoreBtn.className = 'show-more-btn';
+            showMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> Show More';
+
+            // Add the button after the list
+            favoriteGamesList.parentNode.insertBefore(showMoreBtn, favoriteGamesList.nextSibling);
+
+            // Initially collapse the list
+            favoriteGamesList.classList.add('collapsed');
+
+            showMoreBtn.addEventListener('click', () => {
+                favoriteGamesList.classList.toggle('collapsed');
+                showMoreBtn.innerHTML = favoriteGamesList.classList.contains('collapsed')
+                    ? '<i class="fas fa-chevron-down"></i> Show More'
+                    : '<i class="fas fa-chevron-up"></i> Show Less';
+            });
         }
 
         // Function to populate the favorite games list in the sidebar
@@ -2565,9 +3682,9 @@
             favoriteGames.forEach(game => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
-                    <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
-                    ${game.name}
-                `;
+            <img src="${game.image}" alt="${game.name}">
+            <span>${game.name}</span>
+        `;
                 listItem.addEventListener('click', () => {
                     // Trigger the details button of the corresponding game card
                     const gameCard = Array.from(document.querySelectorAll(`.game-card`)).find(card => {
@@ -2583,6 +3700,7 @@
                 });
                 favoriteGamesList.appendChild(listItem);
             });
+            setupFavoriteGamesList();
         }
 
         // Function to populate the wishlisted games list in the sidebar
@@ -2603,9 +3721,9 @@
             wishlistedGames.forEach(game => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
-            <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
-            ${game.name}
-        `;
+    <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
+    ${game.name}
+`;
                 listItem.addEventListener('click', () => {
                     // Trigger the details button of the corresponding game card
                     const gameCard = Array.from(document.querySelectorAll(`.game-card`)).find(card => {
@@ -2634,67 +3752,86 @@
             overlay.classList.toggle('active');
         }
 
-        function determineGameStatus(releaseDateString) {
-            if (!releaseDateString) return '';
-
+        function determineGameStatus(releaseDate) {
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
-            const releaseDate = new Date(releaseDateString);
-            releaseDate.setHours(0, 0, 0, 0);
+            const normalizedDate = normalizeReleaseDate(releaseDate);
+            if (!normalizedDate || !normalizedDate.start) return '';
 
-            if (releaseDate > today) {
-                return 'upcoming';
-            } else if (releaseDate.toDateString() === today.toDateString()) {
-                return 'new';
+            try {
+                // Get the current year
+                const currentYear = today.getFullYear();
+
+                // First, check if it's a year-only date
+                if (/^\d{4}$/.test(normalizedDate.start)) {
+                    const releaseYear = parseInt(normalizedDate.start);
+                    // Consider it upcoming if it's the current year or future
+                    if (releaseYear >= currentYear) {
+                        return 'upcoming';
+                    }
+                    return '';
+                }
+
+                // For dates with month or full dates
+                let startDate;
+                if (/^\d{4}-\d{2}$/.test(normalizedDate.start)) {
+                    // For year-month dates, use the last day of the month
+                    const [year, month] = normalizedDate.start.split('-');
+                    startDate = new Date(parseInt(year), parseInt(month), 0);
+                } else {
+                    startDate = new Date(normalizedDate.start);
+                }
+                startDate.setHours(0, 0, 0, 0);
+
+                // Handle normal date comparisons
+                if (normalizedDate.end) {
+                    const endDate = new Date(normalizedDate.end);
+                    endDate.setHours(0, 0, 0, 0);
+                    if (startDate > today) return 'upcoming';
+                    if (startDate <= today && today <= endDate) return 'new';
+                } else {
+                    if (startDate > today) return 'upcoming';
+                    if (startDate.toDateString() === today.toDateString()) return 'new';
+                }
+            } catch (error) {
+                console.error("Invalid date format:", releaseDate, error);
             }
-
             return '';
         }
 
-        // Updated filterAndSearchGames function to include month filtering and upcoming logic
         function filterAndSearchGames() {
             const searchTerm = searchInput.value.toLowerCase();
             const gameCards = document.querySelectorAll('.game-card');
 
-            // Sort upcoming games by release date
-            const upcomingGames = Array.from(gameCards).filter(card => {
-                const gameStatus = determineGameStatus(card.dataset.releaseDate);
-                return gameStatus === 'upcoming';
-            }).sort((a, b) => {
-                const dateA = new Date(a.dataset.releaseDate);
-                const dateB = new Date(b.dataset.releaseDate);
-                return dateA - dateB;
-            });
-
-            // Process non-upcoming games
             gameCards.forEach(card => {
-                const gameStatus = determineGameStatus(card.dataset.releaseDate);
-                const isFavorite = games.find(g => g.name === card.querySelector('.game-card-title').textContent).isFavorite || false;
+                let matchesYear = activeYear === 'all';
+                let matchesMonth = activeMonth === null;
+
+                if (card.dataset.releaseDateStart) {
+                    try {
+                        const dateObj = new Date(card.dataset.releaseDateStart);
+                        const year = dateObj.getFullYear().toString();
+                        const month = dateObj.getMonth();
+
+                        matchesYear = activeYear === 'all' || year === activeYear;
+                        matchesMonth = activeMonth === null || month === parseInt(activeMonth);
+                    } catch (error) {
+                        console.error("Invalid date format:", card.dataset.releaseDateStart, error);
+                    }
+                }
 
                 const matchesGenre = activeGenre === 'all' ||
                     card.dataset.genres.split(',').includes(activeGenre) ||
-                    (activeGenre === 'upcoming' && gameStatus === 'upcoming') ||
-                    (activeGenre === 'free' && parseFloat(card.querySelector('.game-card-header span')?.textContent.replace(/[^0-9.-]+/g, "")) === 0);
-                const matchesYear = activeYear === 'all' || card.dataset.year === activeYear;
-                const matchesMonth = activeMonth === null || card.dataset.month == activeMonth;
-                const matchesSearchTerm = gameMatchesSearchTerm(card, searchTerm);
-                const matchesFavorites = document.getElementById('genre-filter-list').querySelector('[data-genre="favorites"]')?.classList.contains('active') ? isFavorite : true;
+                    (activeGenre === 'upcoming' && card.querySelector('.overlay.upcoming')) ||
+                    (activeGenre === 'free' && card.querySelector('.free-tag'));
 
-                if (matchesGenre && matchesYear && matchesMonth && matchesSearchTerm && matchesFavorites) {
-                    if (gameStatus !== 'upcoming') {
-                        card.style.display = 'flex';
-                    }
+                const matchesSearchTerm = gameMatchesSearchTerm(card, searchTerm);
+
+                if (matchesGenre && matchesYear && matchesMonth && matchesSearchTerm) {
+                    card.style.display = 'flex';
                 } else {
                     card.style.display = 'none';
-                }
-            });
-
-            // Append upcoming games to the game list, maintaining their sorted order
-            const gameList = document.getElementById('game-list');
-            upcomingGames.forEach(card => {
-                if (card.style.display !== 'none') {
-                    gameList.appendChild(card);
                 }
             });
         }
@@ -2824,6 +3961,7 @@
         function gameMatchesSearchTerm(card, searchTerm) {
             const title = card.querySelector('.game-card-title').textContent.toLowerCase();
             const tags = Array.from(card.querySelectorAll('.game-tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+            const specialQuote = card.querySelector('.special-quote')?.textContent.toLowerCase() || '';
             let price = '';
             const priceElement = card.querySelector('.game-card-header span');
             if (priceElement) {
@@ -2833,7 +3971,7 @@
                 price = price.toLowerCase();
             }
 
-            return title.includes(searchTerm) || tags.includes(searchTerm) || price.includes(searchTerm);
+            return title.includes(searchTerm) || tags.includes(searchTerm) || price.includes(searchTerm) || specialQuote.includes(searchTerm);
         }
 
         function searchGames() {
@@ -2867,7 +4005,7 @@
             const freeGamesList = document.getElementById('free-games-list');
             freeGamesList.innerHTML = '';
 
-            const freeGames = games.filter(game => game.price == 0).sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate));
+            const freeGames = games.filter(game => game.price == 0).sort((a, b) => new Date(b.releaseDate.start) - new Date(a.releaseDate.start));
             const latestFreeGames = freeGames.slice(0, 3);
 
             latestFreeGames.forEach(game => {
@@ -2934,55 +4072,51 @@
 
         // Function to add event listeners to date input fields
         function addDateInputListeners() {
-            const releaseDateInput = document.getElementById('game-release-date');
-            const betaDateInput = document.getElementById('game-beta-date');
-            const earlyAccessDateInput = document.getElementById('game-early-access-date');
+            const releaseDateInputStart = document.getElementById('game-release-date-start');
+            const releaseDateInputEnd = document.getElementById('game-release-date-end');
+            const betaDateInputStart = document.getElementById('game-beta-date-start');
+            const betaDateInputEnd = document.getElementById('game-beta-date-end');
+            const alphaDateInputStart = document.getElementById('game-alpha-date-start');
+            const alphaDateInputEnd = document.getElementById('game-alpha-date-end');
+            const earlyAccessDateInputStart = document.getElementById('game-early-access-date-start');
+            const earlyAccessDateInputEnd = document.getElementById('game-early-access-date-end');
+
             const releaseDateCalendar = document.getElementById('game-release-date-calendar');
             const betaDateCalendar = document.getElementById('game-beta-date-calendar');
+            const alphaDateCalendar = document.getElementById('game-alpha-date-calendar');
             const earlyAccessDateCalendar = document.getElementById('game-early-access-date-calendar');
 
-            releaseDateInput.addEventListener('click', () => {
-                releaseDateCalendar.style.display = 'block';
-                releaseDateCalendar.focus();
-            });
+            // Helper function to set up each date input
+            function setupDateInput(inputStart, inputEnd, calendar) {
+                inputStart.addEventListener('click', () => {
+                    calendar.style.display = 'block';
+                    calendar.focus();
+                });
 
-            betaDateInput.addEventListener('click', () => {
-                betaDateCalendar.style.display = 'block';
-                betaDateCalendar.focus();
-            });
+                inputEnd.addEventListener('click', () => {
+                    calendar.style.display = 'block';
+                    calendar.focus();
+                });
 
-            earlyAccessDateInput.addEventListener('click', () => {
-                earlyAccessDateCalendar.style.display = 'block';
-                earlyAccessDateCalendar.focus();
-            });
+                calendar.addEventListener('change', () => {
+                    if (!inputStart.value) {
+                        inputStart.value = formatAnyDate(calendar);
+                    } else {
+                        inputEnd.value = formatAnyDate(calendar);
+                    }
+                    calendar.style.display = 'none';
+                });
 
-            releaseDateCalendar.addEventListener('change', () => {
-                releaseDateInput.value = formatAnyDate(releaseDateCalendar);
-                releaseDateCalendar.style.display = 'none';
-            });
+                calendar.addEventListener('click', (event) => {
+                    event.stopPropagation();
+                });
+            }
 
-            betaDateCalendar.addEventListener('change', () => {
-                betaDateInput.value = formatAnyDate(betaDateCalendar);
-                betaDateCalendar.style.display = 'none';
-            });
-
-            earlyAccessDateCalendar.addEventListener('change', () => {
-                earlyAccessDateInput.value = formatAnyDate(earlyAccessDateCalendar);
-                earlyAccessDateCalendar.style.display = 'none';
-            });
-
-            // Prevent modal from closing when clicking inside the calendar input
-            releaseDateCalendar.addEventListener('click', (event) => {
-                event.stopPropagation();
-            });
-
-            betaDateCalendar.addEventListener('click', (event) => {
-                event.stopPropagation();
-            });
-
-            earlyAccessDateCalendar.addEventListener('click', (event) => {
-                event.stopPropagation();
-            });
+            // Set up each pair of date inputs
+            setupDateInput(releaseDateInputStart, releaseDateInputEnd, releaseDateCalendar);
+            setupDateInput(betaDateInputStart, betaDateInputEnd, betaDateCalendar);
+            setupDateInput(alphaDateInputStart, alphaDateInputEnd, alphaDateCalendar);
+            setupDateInput(earlyAccessDateInputStart, earlyAccessDateInputEnd, earlyAccessDateCalendar);
         }
 
         // Add multiple select functionality to dropdowns
@@ -3037,9 +4171,9 @@
             favoriteGames.forEach(game => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
-                    <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
-                    ${game.name}
-                `;
+            <img src="${game.image}" alt="${game.name}" style="width: 50px; margin-right: 10px; border-radius: 5px;">
+            ${game.name}
+        `;
                 listItem.addEventListener('click', () => {
                     // Trigger the details button of the corresponding game card
                     const gameCard = Array.from(document.querySelectorAll(`.game-card`)).find(card => {
@@ -3056,8 +4190,6 @@
                 favoriteGamesList.appendChild(listItem);
             });
         }
-
-
 
         // Function to manage wishlisted games in local storage
         function toggleWishlist(button, gameId) {
@@ -3081,6 +4213,21 @@
 
             localStorage.setItem('wishlistedGames', JSON.stringify(wishlistedGames));
             populateWishlistedGames(); // Update the UI
+            updateGameCounters();
+        }
+
+        // Function to toggle the visibility of a sidebar section
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = section.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+
+        // Function to toggle the categories section
+        function toggleCategories() {
+            const categoriesSection = document.getElementById('categories-section');
+            categoriesSection.classList.toggle('active');
         }
     </script>
 </body>
