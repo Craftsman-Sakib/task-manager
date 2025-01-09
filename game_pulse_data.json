@@ -2393,5 +2393,40 @@
     "details": "In \"Sniper Elite: Resistance,\" players assume the role of Harry Hawker, an agent of the Special Operations Executive (SOE), tasked with infiltrating Nazi-occupied France. The mission involves aiding the French Resistance to thwart the development of a mysterious Nazi weapon that could alter the war's outcome.",
     "links": "https://rebellion.com/games/sniper-elite-resistance/",
     "dlc": []
+  },
+  {
+    "id": 1736406676405,
+    "name": "Dynasty Warriors: Origins",
+    "image": "/api/placeholder/200/300",
+    "extraImages": [],
+    "genre": [],
+    "releaseDate": {
+      "start": "",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Omega Force",
+    "publisher": "Koei Tecmo",
+    "specialQuote": "The musou experience reimagined.",
+    "platform": [],
+    "store": [],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=ORzdFB3XLBI",
+    "price": 58.29,
+    "details": "\"Dynasty Warriors: Origins\" revitalizes the series with its signature 1 vs. 1,000 combat, allowing players to engage massive armies on the battlefield. The game introduces a nameless protagonist who, suffering from amnesia, must navigate the war-torn landscape of ancient China, forging alliances and uncovering their past.",
+    "links": "https://www.koeitecmoamerica.com/dw_origins/us/about/",
+    "dlc": []
   }
 ]
