@@ -2501,5 +2501,59 @@
     "details": "\"Assetto Corsa EVO\" introduces a free-roam mode featuring over 600 square miles of Lidar-scanned countryside, enhancing the open-world driving experience.",
     "links": "https://assettocorsa.gg/assetto-corsa-evo/",
     "dlc": []
+  },
+  {
+    "id": 1736409829703,
+    "name": "Star Wars Episode I: Jedi Power Battles",
+    "image": "https://universonintendo.com/wp-content/uploads/2024/10/Star-Wars-Episode-I-Jedi-Power-Battles-CAP.jpg",
+    "extraImages": [
+      "https://staticg.sportskeeda.com/editor/2025/01/0f0f8-17361850036694-1920.jpg?w=720",
+      "https://staticg.sportskeeda.com/editor/2025/01/3597e-17362638433232-1920.jpg"
+    ],
+    "genre": [
+      "action",
+      "Hack-and-Slash",
+      "Adventure",
+      "Arcade",
+      "Retro"
+    ],
+    "releaseDate": {
+      "start": "2025-01-25",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "LucasArts",
+    "publisher": "LucasArts",
+    "specialQuote": "The best straight-action title on the Dreamcast.",
+    "platform": [
+      "windows",
+      "xbox",
+      "playstation",
+      "nintendo"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store",
+      "nintendo-eShop"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=4M4Ej4aHXN4",
+    "price": 7.37,
+    "details": "Star Wars Episode I: Jedi Power Battles Remastered is an updated version of the classic action-adventure game. It features modern controls, 13 new playable characters, and enhanced graphics.",
+    "links": "https://www.starwars.com/news/star-wars-episode-i-jedi-power-battles-announce",
+    "dlc": []
   }
 ]
