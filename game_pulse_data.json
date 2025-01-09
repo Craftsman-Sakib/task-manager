@@ -2671,5 +2671,60 @@
     "details": "\"MiSide\" offers a unique psychological horror experience that combines charming anime visuals with unsettling themes, providing players with an engaging and immersive adventure.",
     "links": "https://miside.games/",
     "dlc": []
+  },
+  {
+    "id": 1736429719170,
+    "name": "Indiana Jones and the Great Circle",
+    "image": "https://howlongtobeat.com/games/144234_Indiana_Jones_and_the_Great_Circle.jpg?width=250",
+    "extraImages": [
+      "https://sirusgaming.com/wp-content/uploads/2024/12/indiana-jones-and-the-great-circle-screenshot-1-1200x675.jpg",
+      "https://sirusgaming.com/wp-content/uploads/2024/12/indiana-jones-and-the-great-circle-screenshot-3-1200x675.jpg",
+      "https://thegameslayer.com/wp-content/uploads/2024/12/Indiana-Jones-and-the-Great-Circle-Tour-de-Force-AchievementTrophy-All-3-Boxing-Disguises-and-Pit-Locations-Guide-7-1024x576.png",
+      "https://cdn.mos.cms.futurecdn.net/BjqQVZzoCdk8BcQdXk9AiE.jpg"
+    ],
+    "genre": [
+      "action",
+      "adventure",
+      "Action-adventure"
+    ],
+    "releaseDate": {
+      "start": "2024-12-09",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "MachineGames",
+    "publisher": "Bethesda Softworks",
+    "specialQuote": "The Ultimate Archaeological Quest.",
+    "platform": [
+      "windows",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store"
+    ],
+    "modLinks": [
+      "https://www.nexusmods.com/indianajonesandthegreatcircle",
+      "https://www.wemod.com/cheats/indiana-jones-and-the-great-circle-trainers"
+    ],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=sq97d1RkdRM",
+    "price": 42.99,
+    "details": "Set between the events of \"Raiders of the Lost Ark\" and \"The Last Crusade,\" the game follows Indiana Jones in 1937 as he seeks to uncover the secrets of the Great Circle and prevent them from falling into the hands of sinister forces.",
+    "links": "https://indianajones.bethesda.net/",
+    "dlc": []
   }
 ]
