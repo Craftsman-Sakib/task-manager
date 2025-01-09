@@ -2636,5 +2636,58 @@
     "details": "Citizen Sleeper 2: Starward Vector is a dice-driven RPG where you play as an escaped android with a malfunctioning body. You must navigate the Starward Belt, take on contracts, and build a crew while managing stress and glitches.",
     "links": "https://www.fellowtraveller.games/citizen-sleeper-2-starward-vector",
     "dlc": []
+  },
+  {
+    "id": 1736428653586,
+    "name": "MiSide",
+    "image": "https://howlongtobeat.com/games/131878_MiSide.jpg?width=250",
+    "extraImages": [
+      "https://img.4gamers.com.tw/news-image/9882e42e-b022-4688-90e7-6173ccc09c80.jpg",
+      "https://www.anmosugoi.com/wp-content/uploads/2023/07/Miside-waifu-movil-1-1200x675.jpg",
+      "https://dotesports.com/wp-content/uploads/2024/12/MiSide-sauce.jpg?w=640",
+      "https://jpg.mac89.com/pic/202501/09092552_e6da1161ae.jpeg"
+    ],
+    "genre": [
+      "Psychological horror",
+      "adventure",
+      "indie",
+      "simulation"
+    ],
+    "releaseDate": {
+      "start": "2024-12-10",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "AIHASTO",
+    "publisher": "IndieArk and Shochiku",
+    "specialQuote": "Anime Horror Redefined. Over 1 Million Downloads.",
+    "platform": [
+      "windows",
+      "macos"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [
+      "https://www.nexusmods.com/miside/mods/",
+      "https://www.misidemods.com/"
+    ],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=r-bgCU8a5CM",
+    "price": 14.99,
+    "details": "\"MiSide\" offers a unique psychological horror experience that combines charming anime visuals with unsettling themes, providing players with an engaging and immersive adventure.",
+    "links": "https://miside.games/",
+    "dlc": []
   }
 ]
