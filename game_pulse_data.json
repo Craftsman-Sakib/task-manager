@@ -2726,5 +2726,52 @@
     "details": "Set between the events of \"Raiders of the Lost Ark\" and \"The Last Crusade,\" the game follows Indiana Jones in 1937 as he seeks to uncover the secrets of the Great Circle and prevent them from falling into the hands of sinister forces.",
     "links": "https://indianajones.bethesda.net/",
     "dlc": []
+  },
+  {
+    "id": 1736445914143,
+    "name": "Cruel",
+    "image": "https://gocdkeys.com/images/games/cruel-pc-cd-key.jpg",
+    "extraImages": [
+      "https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2689470/ss_982b0eb03b7d59a0fd8f84e0c818ce4ece94e75e.1920x1080.jpg",
+      "https://www.indiemag.fr/sites/default/files/jeux/c/cruel/galerie/galerie-cruel_3.jpg",
+      "https://daominhha.net/wp-content/uploads/2025/01/download-game-CRUEL-tai-daominhha7.jpg",
+      "https://daominhha.net/wp-content/uploads/2025/01/download-game-CRUEL-tai-daominhha5.jpg"
+    ],
+    "genre": [
+      "action",
+      "Indie"
+    ],
+    "releaseDate": {
+      "start": "2025-01-09",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "James Dornan",
+    "publisher": "James Dornan",
+    "specialQuote": "Solo Dev's Dark Triumph",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=hO2luhyJze0",
+    "price": 5.49,
+    "details": "\"CRUEL\" offers a fast-paced run-and-gun horror shooter experience with roguelike elements, providing players with a challenging and engaging adventure.",
+    "links": "",
+    "dlc": []
   }
 ]
