@@ -2607,5 +2607,54 @@
     "details": "The game is set in the year 2222, following a catastrophic event known as \"The Tears of the New Moon,\" which devastated humanity and introduced hostile creatures called Enders. Players assume the role of Drifters, piloting customizable mechs known as CRADLECOFFINs, accompanied by AI partners called Magus, to gather resources and survive in this perilous world.",
     "links": "https://synduality-ada.bn-ent.net/",
     "dlc": []
+  },
+  {
+    "id": 1736412882578,
+    "name": "Citizen Sleeper 2: Starward Vector",
+    "image": "https://static1.thegamerimages.com/wordpress/wp-content/uploads/sharedimages/2024/06/citizen-sleeper-2-starward-vector-tag-page-cover-art.jpg",
+    "extraImages": [
+      "https://www.gamereactor.se/media/37/immaiwacht_3763753.jpg",
+      "https://ldm3.r1-it.storage.cloud.it/screens/f2/0f/f20fc2c312d01a055eeaa0556f4280ee.jpg",
+      "https://ldm3.r1-it.storage.cloud.it/screens/14/e4/14e463319a899ba3ff9de5b74e35a9c2.jpg",
+      "https://cdn.mos.cms.futurecdn.net/9zCeXunAoqoTXZik4akdxP.jpg",
+      "https://ldm3.r1-it.storage.cloud.it/screens/ec/30/ec30b895f984ac0518bc6455659474d5.jpg"
+    ],
+    "genre": [
+      "sci-fi",
+      "rpg",
+      "Dice",
+      "Indie",
+      "TableTop"
+    ],
+    "releaseDate": {
+      "start": "2025-01-31",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2024-12-12",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Jump Over The Age",
+    "publisher": "Fellow Traveller",
+    "specialQuote": "Dice-Driven Sci-Fi RPG",
+    "platform": [],
+    "store": [],
+    "modLinks": [],
+    "subscriptions": [
+      "xbox-game-pass"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=ryA2lZ-FEp8",
+    "price": null,
+    "details": "Citizen Sleeper 2: Starward Vector is a dice-driven RPG where you play as an escaped android with a malfunctioning body. You must navigate the Starward Belt, take on contracts, and build a crew while managing stress and glitches.",
+    "links": "https://www.fellowtraveller.games/citizen-sleeper-2-starward-vector",
+    "dlc": []
   }
 ]
