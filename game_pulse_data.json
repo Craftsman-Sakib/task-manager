@@ -2555,5 +2555,57 @@
     "details": "Star Wars Episode I: Jedi Power Battles Remastered is an updated version of the classic action-adventure game. It features modern controls, 13 new playable characters, and enhanced graphics.",
     "links": "https://www.starwars.com/news/star-wars-episode-i-jedi-power-battles-announce",
     "dlc": []
+  },
+  {
+    "id": 1736411936388,
+    "name": "Synduality Echo of Ada",
+    "image": "https://www.gematsu.com/wp-content/uploads/2022/09/Game-Page-Box-Art_SYNDUALITY-Initis.jpg",
+    "extraImages": [
+      "https://i.playground.ru/i/screenshot/214542/synduality_echo_of_ada.jpg",
+      "https://image.winudf.com/v2/image1/Mzk1NDk4ODlfMTczNTgzNTM2MV8wMzg/screen-1.png?fakeurl=1&type=png&h=400",
+      "https://driffle.com/blog/wp-content/uploads/2025/01/ss_a58b9de2ae9622f2567a17197ba06095505d9226.1920x1080-1024x576.jpg",
+      "https://i.playground.ru/i/screenshot/214537/synduality_echo_of_ada.jpg"
+    ],
+    "genre": [
+      "sci-fi",
+      "third-person shooter",
+      "PPE"
+    ],
+    "releaseDate": {
+      "start": "2025-01-23",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2024-12-12",
+      "end": "2024-12-20"
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "2025-01-16",
+      "end": ""
+    },
+    "developer": "Game Studio Inc.",
+    "publisher": "Bandai Namco Entertainment",
+    "specialQuote": "Futuristic Survival Adventure",
+    "platform": [
+      "windows",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=ZoBZdNlRGss",
+    "price": 39.99,
+    "details": "The game is set in the year 2222, following a catastrophic event known as \"The Tears of the New Moon,\" which devastated humanity and introduced hostile creatures called Enders. Players assume the role of Drifters, piloting customizable mechs known as CRADLECOFFINs, accompanied by AI partners called Magus, to gather resources and survive in this perilous world.",
+    "links": "https://synduality-ada.bn-ent.net/",
+    "dlc": []
   }
 ]
