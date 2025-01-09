@@ -2292,5 +2292,53 @@
     "details": "\"Final Fantasy VII Rebirth\" continues the journey of Cloud Strife and his companions as they venture beyond Midgar into a vast world filled with new challenges and narratives.\n\nThe game features an enhanced combat system, blending real-time action with strategic command-based mechanics.\n\nPlayers can explore expansive environments, engage in side quests, and experience a reimagined storyline that pays homage to the original while introducing new elements.",
     "links": "https://ffvii.square-enix-games.com/en-us/games/rebirth",
     "dlc": []
+  },
+  {
+    "id": 1736404684358,
+    "name": "Virtua Fighter 5 R.E.V.O",
+    "image": "https://images.g2a.com/360x600/1x1x1/virtua-fighter-5-revo-pc-steam-regalo-america-del-norte-i10000509332003/ce94f9982ba44bd4a0e66914",
+    "extraImages": [
+      "https://automaton-media.com/wp-content/uploads/2024/11/virtua-fighter-5-revo-20241122-319004-header.jpg",
+      "https://jagatplay.com/wp-content/uploads/2024/11/virtua-fighter-5-revo.jpg",
+      "https://flowgames.gg/wp-content/uploads/2024/11/virtua-fighter-5-revo.jpg"
+    ],
+    "genre": [
+      "action",
+      "Fighter",
+      "Multiplayer",
+      "Local Multiplayer"
+    ],
+    "releaseDate": {
+      "start": "2025-01-27",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Ryu Ga Gotoku Studio",
+    "publisher": "SEGA",
+    "specialQuote": "First PC release in 27 years.",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=dKaR2wHDKlU",
+    "price": 14.39,
+    "details": "\"Virtua Fighter 5 R.E.V.O.\" elevates the original game with:\n\nRollback Netcode: Enhances online play for smoother matches.\n\n4K Visuals: Updated high-resolution textures for modern displays.\n\nBalance Updates: First game balance update in 13 years, based on the upcoming VF5US/VFes Ver2.0 update. \n\nGame Modes: Includes ranked, arcade, training, versus, and 16-player tournaments and leagues.",
+    "links": "https://virtua-fighter.com/revo/jp/",
+    "dlc": []
   }
 ]
