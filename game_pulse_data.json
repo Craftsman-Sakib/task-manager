@@ -2340,5 +2340,58 @@
     "details": "\"Virtua Fighter 5 R.E.V.O.\" elevates the original game with:\n\nRollback Netcode: Enhances online play for smoother matches.\n\n4K Visuals: Updated high-resolution textures for modern displays.\n\nBalance Updates: First game balance update in 13 years, based on the upcoming VF5US/VFes Ver2.0 update. \n\nGame Modes: Includes ranked, arcade, training, versus, and 16-player tournaments and leagues.",
     "links": "https://virtua-fighter.com/revo/jp/",
     "dlc": []
+  },
+  {
+    "id": 1736405765685,
+    "name": "Sniper Elite: Resistance",
+    "image": "https://sniperelite.com/_content/f_webp/SER_KeyArt_Logo_ASQ.png",
+    "extraImages": [
+      "https://rebellion.com/wp-content/uploads/2025/01/00_SniperEliteResistance_Accessibility_Overview_PracticeArea.jpg",
+      "https://lowcygier.pl/wp-content/uploads/2025/01/Sniper-Elite-Resistance-1-scaled.jpg",
+      "https://gamingbolt.com/wp-content/uploads/2024/08/sniper-elite-resistance-image-5-1536x864.jpg",
+      "https://gamingbolt.com/wp-content/uploads/2024/08/sniper-elite-resistance-image-3-1536x864.jpg"
+    ],
+    "genre": [
+      "action",
+      "Tactical Third-Person Shooter",
+      "Adventure"
+    ],
+    "releaseDate": {
+      "start": "2025-01-30",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Rebellion",
+    "publisher": "Rebellion",
+    "specialQuote": "",
+    "platform": [
+      "windows",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "playstation-store",
+      "microsoft-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=lyqDitom1QQ",
+    "price": 15.99,
+    "details": "In \"Sniper Elite: Resistance,\" players assume the role of Harry Hawker, an agent of the Special Operations Executive (SOE), tasked with infiltrating Nazi-occupied France. The mission involves aiding the French Resistance to thwart the development of a mysterious Nazi weapon that could alter the war's outcome.",
+    "links": "https://rebellion.com/games/sniper-elite-resistance/",
+    "dlc": []
   }
 ]
