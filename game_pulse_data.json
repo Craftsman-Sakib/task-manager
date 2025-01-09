@@ -2393,5 +2393,59 @@
     "details": "In \"Sniper Elite: Resistance,\" players assume the role of Harry Hawker, an agent of the Special Operations Executive (SOE), tasked with infiltrating Nazi-occupied France. The mission involves aiding the French Resistance to thwart the development of a mysterious Nazi weapon that could alter the war's outcome.",
     "links": "https://rebellion.com/games/sniper-elite-resistance/",
     "dlc": []
+  },
+  {
+    "id": 1736407416650,
+    "name": "Dynasty Warriors: Origins",
+    "image": "https://assetsio.gnwcdn.com/Main_1_EN_1x1.png?width=1920&height=1920&fit=bounds&quality=80&format=jpg&auto=webp",
+    "extraImages": [
+      "https://images.pushsquare.com/screenshots/120429/large.jpg",
+      "https://full-juegospc.com/wp-content/uploads/2024/12/DYNASTY-WARRIORS-ORIGINS-DOWNLOAD-PC-3.jpg",
+      "https://image.winudf.com/v2/image1/MzU2MDU4NTNfMTczMzEyODYwMF8wNDU/screen-0.png?fakeurl=1&type=png",
+      "https://full-juegospc.com/wp-content/uploads/2024/12/DYNASTY-WARRIORS-ORIGINS-DOWNLOAD-PC-2.jpg",
+      "https://videoigr.net/images/DinastywarriorOriginScr1.jpg",
+      "https://imgix.bustle.com/uploads/image/2025/1/6/89ae8777/originscombat.jpg?w=374&h=210&fit=crop&crop=faces&dpr=2",
+      "https://imgix.bustle.com/uploads/image/2025/1/6/db807941/originscharacters.jpg?w=374&h=210&fit=crop&crop=faces&dpr=2"
+    ],
+    "genre": [
+      "Hack-and-Slash",
+      "Wargame"
+    ],
+    "releaseDate": {
+      "start": "2025-01-17",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Omega Force",
+    "publisher": "Koei Tecmo",
+    "specialQuote": "The musou experience reimagined.",
+    "platform": [
+      "windows",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "microsoft-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=ORzdFB3XLBI",
+    "price": 58.29,
+    "details": "\"Dynasty Warriors: Origins\" revitalizes the series with its signature 1 vs. 1,000 combat, allowing players to engage massive armies on the battlefield. The game introduces a nameless protagonist who, suffering from amnesia, must navigate the war-torn landscape of ancient China, forging alliances and uncovering their past.",
+    "links": "https://www.koeitecmoamerica.com/dw_origins/us/about/",
+    "dlc": []
   }
 ]
