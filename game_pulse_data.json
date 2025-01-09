@@ -2447,5 +2447,59 @@
     "details": "\"Dynasty Warriors: Origins\" revitalizes the series with its signature 1 vs. 1,000 combat, allowing players to engage massive armies on the battlefield. The game introduces a nameless protagonist who, suffering from amnesia, must navigate the war-torn landscape of ancient China, forging alliances and uncovering their past.",
     "links": "https://www.koeitecmoamerica.com/dw_origins/us/about/",
     "dlc": []
+  },
+  {
+    "id": 1736408695136,
+    "name": "Assetto Corsa EVO",
+    "image": "https://showgamer.com/storage/uploads/games/2025-01-02/026874341b89dfb30f8047fe58cad2d2.jpg",
+    "extraImages": [
+      "https://www.gamereactor.es/media/66/assettocorsaultimate_2436693b.jpg",
+      "https://live.staticflickr.com/65535/50616686003_3dc1a90d8f_k.jpg",
+      "https://www.operationsports.com/wp-content/uploads/2024/07/Assetto-Corsa-EVO-6.jpg",
+      "https://www.gtplanet.net/wp-content/uploads/2024/12/evo-148.jpg",
+      "https://www.hayatimizoyun.com/wp-content/uploads/2024/12/image-69.png",
+      "https://s1.cdn.autoevolution.com/images/news/assetto-corsa-evo-is-sorely-missing-from-ps5-and-xbox-so-can-your-pc-run-it-properly-245082_1.jpg"
+    ],
+    "genre": [
+      "Simulation",
+      "Sports",
+      "Racing",
+      "VR"
+    ],
+    "releaseDate": {
+      "start": "2025",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "2025-01-16",
+      "end": ""
+    },
+    "developer": "KUNOS Simulazioni",
+    "publisher": "505 Games",
+    "specialQuote": "Driving Simulation Evolved",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [
+      "xbox-game-pass",
+      "playstation-plus"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=0uOkigs9hnY",
+    "price": null,
+    "details": "\"Assetto Corsa EVO\" introduces a free-roam mode featuring over 600 square miles of Lidar-scanned countryside, enhancing the open-world driving experience.",
+    "links": "https://assettocorsa.gg/assetto-corsa-evo/",
+    "dlc": []
   }
 ]
