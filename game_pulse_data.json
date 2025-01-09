@@ -1,25 +1,5 @@
 [
   {
-    "id": 1734338128081,
-    "name": "MiSide",
-    "image": "https://th.bing.com/th/id/OIP.1tJUGhZbsCBguOkLyLGb3wHaEK?rs=1&pid=ImgDetMain",
-    "genre": [
-      "horror"
-    ],
-    "releaseDate": "2024-12-11",
-    "releaseYear": "2024",
-    "platform": [
-      "windows"
-    ],
-    "store": [
-      "steam"
-    ],
-    "price": "6.29",
-    "details": "The game revolves around a protagonist who is mysteriously drawn into a mobile simulation game. Players navigate this surreal world",
-    "links": "https://aihasto.itch.io/miside",
-    "isWishlisted": false
-  },
-  {
     "id": 1734443917559,
     "name": "Indiana Jones and the Great Circle",
     "image": "https://th.bing.com/th/id/OIP.poAV5YKX1AqL4Lt_U3Mk6wHaHa?rs=1&pid=ImgDetMain",
