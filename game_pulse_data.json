@@ -2240,5 +2240,57 @@
     "details": "\"Star Citizen\" aims to provide a comprehensive space simulation experience, allowing players to:\n\nPilot a variety of spacecraft.\n\nEngage in space combat.\n\nTrade goods across the universe.\n\nExplore diverse planets and space stations.\n\nParticipate in first-person shooter missions.",
     "links": "https://robertsspaceindustries.com/star-citizen",
     "dlc": []
+  },
+  {
+    "id": 1736402707739,
+    "name": "Final Fantasy VII Rebirth",
+    "image": "https://howlongtobeat.com/games/109434_Final_Fantasy_VII_Rebirth.jpg",
+    "extraImages": [
+      "https://www.gamespot.com/a/uploads/screen_kubrick/1601/16018044/4049924-ff7.jpg",
+      "https://cdn.mos.cms.futurecdn.net/hZFwBfn4rYQEhRwDrVf7xP.jpg",
+      "https://cdn.wccftech.com/wp-content/uploads/2023/11/Final-Fantasy-VII-Rebirth-scaled.jpg",
+      "https://www.gamesrig.com/img/screenshots/final-fantasy-vii-rebirth-0701251858074.jpg",
+      "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/12/6-final-fantasy-7-rebirth-aerith-death-scene.jpg",
+      "https://i.ytimg.com/vi/Pu7TkwzIsNg/maxresdefault.jpg"
+    ],
+    "genre": [
+      "action",
+      "ARPG"
+    ],
+    "releaseDate": {
+      "start": "2025-01-23",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Square Enix Creative Business Unit I",
+    "publisher": "Square Enix",
+    "specialQuote": "Epic Reimagining",
+    "platform": [
+      "windows",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "playstation-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=KOhs9ZLImgE",
+    "price": 41.99,
+    "details": "\"Final Fantasy VII Rebirth\" continues the journey of Cloud Strife and his companions as they venture beyond Midgar into a vast world filled with new challenges and narratives.\n\nThe game features an enhanced combat system, blending real-time action with strategic command-based mechanics.\n\nPlayers can explore expansive environments, engage in side quests, and experience a reimagined storyline that pays homage to the original while introducing new elements.",
+    "links": "https://ffvii.square-enix-games.com/en-us/games/rebirth",
+    "dlc": []
   }
 ]
