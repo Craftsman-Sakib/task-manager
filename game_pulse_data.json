@@ -2824,5 +2824,63 @@
     "details": "\"My Summer Car\" is renowned for its detailed car-building mechanics and permadeath survival elements, offering a unique and challenging experience.\nIt offers an immersive experience where players build and maintain a car from scratch while managing survival aspects, set in the Finnish countryside during the summer of 1995. ",
     "links": "http://www.amistech.com/msc/",
     "dlc": []
+  },
+  {
+    "id": 1736578855854,
+    "name": "Ananta",
+    "image": "https://seagm-media.seagmcdn.com/game_480/5825.jpg?x-oss-process=image/resize,w_360",
+    "extraImages": [
+      "https://gameworldobserver.com/wp-content/uploads/2024/12/ananta-china-approved.jpg",
+      "https://r.res.easebar.com/pic/20241205/de8b53cd-518a-47aa-97aa-056904021905.jpg",
+      "https://r.res.easebar.com/pic/20241205/8eedd755-6212-4de3-8387-04f59b5a5148.jpg",
+      "https://r.res.easebar.com/pic/20241205/190e9a59-b61f-4f56-8e01-e3631a4f06c0.jpg",
+      "https://img.tripi.vn/cdn-cgi/image/width=700",
+      "height=700/https://gcs.tripi.vn/public-tripi/tripi-feed/img/482203mrq/anh-mo-ta.png",
+      "https://blog.metaco.gg/wp-content/uploads/2025/01/game-gacha-2025-4.jpg"
+    ],
+    "genre": [
+      "Urban",
+      "Open-World",
+      "RPG",
+      "Anime-style"
+    ],
+    "releaseDate": {
+      "start": "2025-12-31",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Naked Rain, in collaboration with NetEase Montreal",
+    "publisher": "NetEase Games",
+    "specialQuote": "Rule-breaking urban open-world RPG",
+    "platform": [
+      "windows",
+      "android",
+      "ios",
+      "playstation"
+    ],
+    "store": [
+      "playstation-store",
+      "PlayStore",
+      "AppleStore",
+      "www.anantagame.com"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=n26InrperQE",
+    "price": 0,
+    "details": "\"Ananta\" aims to provide an immersive urban open-world experience, allowing players to explore a vibrant cityscape with a high degree of freedom. The game is currently in development, with a planned release at the end of 2025.",
+    "links": "https://www.anantagame.com/",
+    "dlc": []
   }
 ]
