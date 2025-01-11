@@ -16,8 +16,18 @@
       "end": ""
     },
     "releaseYear": "2025",
-    "platform": [],
-    "store": [],
+    "platform": [
+      "windows",
+      "android",
+      "ios",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "xbox-store",
+      "playstation-store"
+    ],
     "price": 0,
     "details": "The new Delta Force game is making a comeback after 15 years.\nThe game features large-scale PvP battles and an extraction mode where players compete for gear and cash. It also includes a remaster of the 2003 campaign, Delta Force: Black Hawk Down",
     "links": "https://www.playdeltaforce.com/",
