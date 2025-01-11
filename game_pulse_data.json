@@ -284,34 +284,28 @@
     "id": 1734881900510,
     "name": "Kingdom Come: Deliverance II",
     "image": "https://gaming-cdn.com/images/products/8988/616x353/kingdom-come-deliverance-2-windows-game-cover.jpg?v=1666787433",
-    "extraImages": [],
-    "genre": [
-      "action role play"
+    "extraImages": [
+      "https://nexushub.co.za/images/gallery/00015/15809_kc_4.jpg",
+      "https://sm.ign.com/ign_in/photo/k/kingdom-co/kingdom-come-deliverance-2-announced-will-be-twice-as-big-as_1fm1.jpg",
+      "https://www.dsogaming.com/wp-content/uploads/2016/09/Kingdom_Come_-_Deliverance_Screenshot_08_mill.jpg",
+      "https://www.xboxdynasty.de/wp-content/uploads/2024/04/kingdom-come-deliverance-ii-6.jpg",
+      "https://media.altchar.com/prod/images/gm_article_embed_image/2ad27556c070-kingdom-come-deliverance-2-sc3.jpg"
     ],
-    "releaseDate": "2025-02-04",
-    "betaDate": "",
-    "earlyAccessDate": "",
-    "developer": "Warhorse Studios",
-    "publisher": "Deep Silver",
+    "genre": [],
+    "releaseDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "",
+    "publisher": "",
     "releaseYear": "2025",
-    "platform": [
-      "windows",
-      "xbox",
-      "playstation"
-    ],
-    "store": [
-      "steam",
-      "epic",
-      "xbox-store",
-      "playstation-store"
-    ],
-    "modLinks": [],
-    "subscriptions": [],
-    "trailerLink": "https://www.youtube.com/watch?v=vPS-pgg3scE&t=3s",
-    "price": null,
-    "details": "Kingdom Come: Deliverance II is an action role-playing game developed by Warhorse Studios and published by Deep Silver. Serving as the sequel to the 2018 game Kingdom Come: Deliverance, it continues the historically grounded narrative set in 15th-century Bohemia.\n\nGameplay and Features:\n\nSetting: The game is set in 15th-century Bohemia, continuing the story of Henry, a blacksmith's son, amidst the turmoil of a civil war.\n\nGame World: The open world is reported to be twice as large as that of the original game, featuring two expansive areas: the Bohemian Paradise and the city of Kutn� Hora (Kuttenberg).\n\nCombat: The sequel introduces new weaponry, including crossbows and early firearms, enhancing the game's realistic combat mechanics.\n\nGameplay Mechanics: Players can expect a life simulation experience where the protagonist requires regular sleep and food. The game emphasizes realism, with society and Nwindowss reacting dynamically to the player's actions, influencing character development and the game world.\n\nGame Length: The base game is estimated to offer 80 to 100 hours of gameplay, excluding DLCs.\n\nCutscenes: The narrative is interspersed with approximately five hours of cinematic cutscenes.\n\nDevelopment Team: The game is directed by Daniel V�vra, with Martin Kl�ma serving as producer and Viktor Bocan as designer. The music is composed by Jan Valta and Adam Sporka.",
-    "links": "https://www.kingdomcomerpg.com/?utm_source=chatgpt.com",
-    "dlc": []
+    "platform": [],
+    "store": [],
+    "trailerLink": "",
+    "price": 0,
+    "details": "",
+    "links": "",
+    "specialQuote": ""
   },
   {
     "id": 1734883765254,
