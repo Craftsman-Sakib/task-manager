@@ -2959,49 +2959,5 @@
     ],
     "isFavorite": false,
     "isWishlisted": false
-  },
-  {
-    "id": 1736656640516,
-    "name": "karma",
-    "image": "/api/placeholder/200/300",
-    "extraImages": [],
-    "genre": [],
-    "releaseDate": {
-      "start": "",
-      "end": ""
-    },
-    "betaDate": {
-      "start": "",
-      "end": ""
-    },
-    "alphaDate": {
-      "start": "",
-      "end": ""
-    },
-    "earlyAccessDate": {
-      "start": "",
-      "end": ""
-    },
-    "developer": "",
-    "publisher": "",
-    "specialQuote": "",
-    "platform": [],
-    "store": [],
-    "modLinks": [],
-    "subscriptions": [],
-    "trailerLink": "",
-    "price": 0,
-    "details": "",
-    "links": "",
-    "dlc": [
-      {
-        "name": "Abyssal Terrors",
-        "releaseDate": "2024-10-25",
-        "price": 0,
-        "image": "https://media.nichegamer.com/wp-content/uploads/2024/04/brotato-04-10-24-1.jpg"
-      }
-    ],
-    "isFavorite": false,
-    "isWishlisted": false
   }
 ]
