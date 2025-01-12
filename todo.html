@@ -17,17 +17,28 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f3f3f3;
-            color: #333;
             line-height: 1.6;
             display: flex;
-            transition: background-image 0.3s ease;
-            /* Add these properties */
+            min-height: 100vh;
+            margin: 0;
+            /* Enhance background image styling */
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed;
-            min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            /* Subtle dark overlay */
+            z-index: 0;
         }
 
         /* Navigation Panel */
@@ -55,6 +66,9 @@
             top: 60px;
             height: calc(100vh - 60px);
             transform: translateX(0);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .nav-toggle {
@@ -221,6 +235,9 @@
             transition: padding-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             height: 100vh;
             overflow: hidden;
+            position: relative;
+            z-index: 1;
+            width: 100%;
         }
 
         .app-container.nav-open {
@@ -241,7 +258,12 @@
             flex-direction: column;
             margin-top: 60px;
             gap: 20px;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            margin: 80px 20px 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             /* Add blur effect to background */
         }
 
@@ -470,13 +492,13 @@
             display: flex;
             gap: 8px;
             padding: 8px;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(248, 250, 252, 0.8));
+            background: rgba(255, 255, 255, 0.75);
             border-radius: 16px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             box-shadow:
                 0 4px 12px rgba(0, 0, 0, 0.05),
                 inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-            border: none;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             transition: all 0.3s ease;
         }
 
@@ -582,15 +604,15 @@
 
         /* Task Card Styles */
         .task-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
             border-radius: 16px;
             padding: 16px;
             padding-bottom: 40px;
             position: relative;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -800,6 +822,7 @@
             color: #64748b;
             display: -webkit-box;
             -webkit-line-clamp: 1;
+            line-clamp: 1;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -1358,17 +1381,24 @@
 
         .calendar-day {
             min-width: 280px;
-            background: linear-gradient(145deg, #ffffff, #f8fafc);
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(99, 102, 241, 0.1);
-            transition: all 0.3s ease;
+            max-height: calc(100vh - 200px);
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(99, 102, 241, 0.3) rgba(99, 102, 241, 0.1);
+        }
+
+        .calendar-day::-webkit-scrollbar {
+            width: 6px;
         }
 
         .calendar-day:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-day::-webkit-scrollbar-thumb {
+            background: rgba(99, 102, 241, 0.3);
+            border-radius: 3px;
         }
 
         .calendar-day-header {
@@ -1414,21 +1444,87 @@
         }
 
         .routine-card {
-            background-color: #f8f8f8;
-            border-radius: 8px;
-            padding: 10px;
-            margin-bottom: 5px;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.8));
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 8px;
             position: relative;
-            border-left: 5px solid;
-            box-shadow: 0 2px 4px rgba(0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow: hidden;
+        }
+
+        .routine-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .routine-card .task-name {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a202c;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .routine-card .routine-meta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        .routine-card .routine-frequency {
+            padding: 2px 8px;
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 12px;
+            font-weight: 500;
+            color: #4f46e5;
         }
 
         .routine-card .task-image {
             width: 100%;
-            height: 100px;
+            height: 80px;
             object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 5px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .routine-card .routine-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(99, 102, 241, 0.1);
+            overflow: hidden;
+        }
+
+        .routine-card .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #6366f1, #4f46e5);
+            width: 0;
+            transition: width 0.3s ease;
+        }
+
+        .routine-card .routine-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .routine-card:hover .routine-actions {
+            opacity: 1;
         }
 
         .calendar-day .task-name {
@@ -1487,34 +1583,43 @@
             margin-top: 5px;
         }
 
-        .routine-card {
-            position: relative;
-        }
-
         .routine-delete-btn {
             position: absolute;
-            top: 5px;
-            right: 5px;
-            background-color: #dc3545;
-            color: white;
+            top: 8px;
+            right: 8px;
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
             border: none;
-            border-radius: 50%;
-            width: 25px;
-            height: 25px;
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
+            opacity: 0;
+            transition: all 0.2s ease;
         }
 
         .routine-delete-btn:hover {
-            opacity: 1;
+            background: rgba(239, 68, 68, 0.2);
+            transform: scale(1.05);
         }
 
         .routine-delete-btn i {
             font-size: 12px;
+        }
+
+        .routine-notes {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.3;
         }
 
         /* Floating Add Task Button */
@@ -2079,10 +2184,11 @@
             display: flex;
             align-items: center;
             gap: 15px;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(248, 250, 252, 0.95));
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
             height: 60px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .search-and-tools {
@@ -2266,6 +2372,193 @@
             background: linear-gradient(145deg, rgba(254, 226, 226, 0.7), rgba(254, 202, 202, 0.7));
             border-color: rgba(220, 38, 38, 0.2);
         }
+
+        /* Quick Jump Calendar Styles */
+        .quick-jump-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1010;
+            backdrop-filter: blur(5px);
+        }
+
+        .quick-jump-calendar {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.3s ease;
+            max-width: 90%;
+            width: 400px;
+        }
+
+        .quick-jump-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .quick-jump-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1a202c;
+        }
+
+        .month-year-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .month-select,
+        .year-select {
+            padding: 8px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            flex: 1;
+        }
+
+        .quick-jump-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .day-header {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #64748b;
+            padding: 5px;
+        }
+
+        .date-cell {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .date-cell:hover {
+            background: #f1f5f9;
+        }
+
+        .date-cell.today {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .date-cell.selected {
+            background: rgba(79, 70, 229, 0.1);
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        .quick-jump-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .quick-jump-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .quick-jump-btn.cancel {
+            background: #f1f5f9;
+            color: #64748b;
+        }
+
+        .quick-jump-btn.jump {
+            background: #4f46e5;
+            color: white;
+        }
+
+        .quick-jump-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        #currentWeek {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #currentWeek:hover {
+            background: rgba(79, 70, 229, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .preset-backgrounds {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .preset-bg-option {
+            position: relative;
+            cursor: pointer;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            transition: all 0.3s ease;
+        }
+
+        .preset-bg-option:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .preset-bg-option.selected {
+            box-shadow: 0 0 0 3px #4f46e5;
+        }
+
+        .preset-bg-option img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .preset-bg-option span {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
     </style>
 </head>
 
@@ -2339,10 +2632,31 @@
                         <button class="prev-week-btn" id="prevWeek">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <span id="currentWeek">Current Week</span>
+                        <span id="currentWeek" title="Click to jump to date" style="cursor: pointer;">
+                            Current Week
+                        </span>
                         <button class="next-week-btn" id="nextWeek">
                             <i class="fas fa-chevron-right"></i>
                         </button>
+                    </div>
+                    <div class="quick-jump-overlay" id="quickJumpOverlay">
+                        <div class="quick-jump-calendar">
+                            <div class="quick-jump-header">
+                                <div class="quick-jump-title">Jump to Date</div>
+                                <button class="close-quick-jump">×</button>
+                            </div>
+                            <div class="month-year-selector">
+                                <select class="month-select" id="monthSelect"></select>
+                                <select class="year-select" id="yearSelect"></select>
+                            </div>
+                            <div class="quick-jump-grid" id="dateGrid">
+                                <!-- Days will be generated here -->
+                            </div>
+                            <div class="quick-jump-actions">
+                                <button class="quick-jump-btn cancel" id="cancelJump">Cancel</button>
+                                <button class="quick-jump-btn jump" id="confirmJump">Jump to Date</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div id="calendar" class="calendar">
@@ -2548,13 +2862,38 @@
 
                 <!-- Modal Body -->
                 <!-- Update the settings modal body section -->
+                <!-- Update the settings modal body section -->
                 <div class="settings-modal-body">
+                    <!-- Preset Backgrounds -->
                     <div class="input-group">
-                        <label for="backgroundFile">Background Image</label>
+                        <label>Preset Backgrounds</label>
+                        <div class="preset-backgrounds">
+                            <div class="preset-bg-option" data-bg="images/backgrounds/task_background1.jpg">
+                                <img src="images/backgrounds/task_background1.jpg" alt="Mountain Lake">
+                                <span>Mountain Lake</span>
+                            </div>
+                            <div class="preset-bg-option" data-bg="images/backgrounds/task_background2.jpg">
+                                <img src="images/backgrounds/task_background2.jpg" alt="Forest">
+                                <span>Forest</span>
+                            </div>
+                            <div class="preset-bg-option" data-bg="images/backgrounds/task_background3.jpg">
+                                <img src="images/backgrounds/task_background3.jpg" alt="Ocean">
+                                <span>Ocean</span>
+                            </div>
+                            <div class="preset-bg-option" data-bg="images/backgrounds/task_background4.jpg">
+                                <img src="images/backgrounds/task_background4.jpg" alt="Mountains">
+                                <span>Mountains</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom Background Upload -->
+                    <div class="input-group">
+                        <label>Custom Background</label>
                         <div class="settings-buttons-group">
                             <label class="file-input-label" for="backgroundFile">
                                 <i class="fas fa-upload"></i>
-                                <span>Choose File</span>
+                                <span>Upload Custom</span>
                                 <input type="file" id="backgroundFile" accept="image/*" class="visually-hidden">
                             </label>
                             <button class="remove-bg-btn" id="removeBgBtn">
@@ -2637,6 +2976,12 @@
 
                     // Setup navigation drawer
                     this.setupNavigationDrawer();
+                    this.currentDate = new Date();
+                    this.renderCalendar();
+                    this.initializeQuickJump(); // Add this line
+
+                    this.initializeBackground();
+
                 }
 
                 setupNavigationDrawer() {
@@ -2675,6 +3020,114 @@
                     });
                 }
 
+                initializeQuickJump() {
+                    this.quickJumpOverlay = document.getElementById('quickJumpOverlay');
+                    this.monthSelect = document.getElementById('monthSelect');
+                    this.yearSelect = document.getElementById('yearSelect');
+                    this.dateGrid = document.getElementById('dateGrid');
+
+                    // Initialize month/year selectors
+                    const currentYear = new Date().getFullYear();
+                    for (let year = currentYear - 2; year <= currentYear + 5; year++) {
+                        const option = document.createElement('option');
+                        option.value = year;
+                        option.textContent = year;
+                        this.yearSelect.appendChild(option);
+                    }
+
+                    const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                        'July', 'August', 'September', 'October', 'November', 'December'];
+                    months.forEach((month, index) => {
+                        const option = document.createElement('option');
+                        option.value = index;
+                        option.textContent = month;
+                        this.monthSelect.appendChild(option);
+                    });
+
+                    // Add event listeners
+                    this.currentWeekElement.addEventListener('click', () => this.showQuickJump());
+                    document.querySelector('.close-quick-jump').addEventListener('click', () => this.hideQuickJump());
+                    document.getElementById('cancelJump').addEventListener('click', () => this.hideQuickJump());
+                    document.getElementById('confirmJump').addEventListener('click', () => this.jumpToSelectedDate());
+
+                    // Update calendar when month/year changes
+                    this.monthSelect.addEventListener('change', () => this.updateQuickJumpCalendar());
+                    this.yearSelect.addEventListener('change', () => this.updateQuickJumpCalendar());
+                }
+
+                jumpToSelectedDate() {
+                    if (this.selectedDate) {
+                        this.currentDate = new Date(this.selectedDate);
+                        this.renderCalendar();
+                        this.hideQuickJump();
+                    } else {
+                        alert('Please select a date first');
+                    }
+                }
+
+                showQuickJump() {
+                    const currentDate = new Date();
+                    this.monthSelect.value = currentDate.getMonth();
+                    this.yearSelect.value = currentDate.getFullYear();
+                    this.updateQuickJumpCalendar();
+                    this.quickJumpOverlay.style.display = 'flex';
+                }
+
+                hideQuickJump() {
+                    this.quickJumpOverlay.style.display = 'none';
+                }
+
+                updateQuickJumpCalendar() {
+                    const year = parseInt(this.yearSelect.value);
+                    const month = parseInt(this.monthSelect.value);
+                    const today = new Date();
+
+                    // Clear existing grid
+                    this.dateGrid.innerHTML = '';
+
+                    // Add day headers
+                    const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+                    days.forEach(day => {
+                        const dayHeader = document.createElement('div');
+                        dayHeader.className = 'day-header';
+                        dayHeader.textContent = day;
+                        this.dateGrid.appendChild(dayHeader);
+                    });
+
+                    // Get first day of month and number of days
+                    const firstDay = new Date(year, month, 1);
+                    const lastDay = new Date(year, month + 1, 0);
+                    const daysInMonth = lastDay.getDate();
+
+                    // Add empty cells for days before first of month
+                    for (let i = 0; i < firstDay.getDay(); i++) {
+                        const emptyCell = document.createElement('div');
+                        emptyCell.className = 'date-cell empty';
+                        this.dateGrid.appendChild(emptyCell);
+                    }
+
+                    // Add days of month
+                    for (let day = 1; day <= daysInMonth; day++) {
+                        const dateCell = document.createElement('div');
+                        dateCell.className = 'date-cell';
+                        dateCell.textContent = day;
+
+                        const cellDate = new Date(year, month, day);
+
+                        if (cellDate.toDateString() === today.toDateString()) {
+                            dateCell.classList.add('today');
+                        }
+
+                        dateCell.addEventListener('click', () => {
+                            document.querySelectorAll('.date-cell').forEach(cell => cell.classList.remove('selected'));
+                            dateCell.classList.add('selected');
+                            this.selectedDate = cellDate;
+                        });
+
+                        this.dateGrid.appendChild(dateCell);
+                    }
+                }
+
                 setupTaskCardInteraction(taskCard) {
                     taskCard.addEventListener('click', (e) => {
                         // Ignore clicks on buttons
@@ -2692,7 +3145,50 @@
                     });
                 }
 
-                // Add these methods inside your EnhancedTaskManager class
+                // Add these methods to your EnhancedTaskManager class
+
+                getRoutineOccurrences(task) {
+                    try {
+                        const startDate = new Date(task.startDate);
+                        const endDate = new Date(task.endDate);
+                        let occurrences = 0;
+
+                        // For single date tasks
+                        if (task.isSingleDate) {
+                            return 1;
+                        }
+
+                        // Calculate days between start and end date
+                        const dayDiff = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+                        switch (task.routineFrequency) {
+                            case 'daily':
+                                occurrences = dayDiff + 1;
+                                break;
+                            case 'weekly':
+                                occurrences = Math.ceil((dayDiff + 1) / 7);
+                                break;
+                            case 'monthly':
+                                occurrences = Math.ceil((dayDiff + 1) / 30);
+                                break;
+                            case 'custom':
+                                // Default to 1 for custom frequencies
+                                occurrences = 1;
+                                break;
+                        }
+
+                        return occurrences;
+                    } catch (error) {
+                        console.error('Error calculating routine occurrences:', error);
+                        return 1;
+                    }
+                }
+
+                getCompletedOccurrences(task) {
+                    // This is a placeholder - implement your actual completion tracking logic
+                    return 0; // For now, return 0 completed occurrences
+                }
+
 
                 createDeleteButton(taskId) {
                     const deleteBtn = document.createElement('button');
@@ -2794,6 +3290,8 @@
 
                         //Remove BG
                         this.removeBgBtn = document.getElementById('removeBgBtn');
+                        // Add preset background elements
+                        this.presetBgOptions = document.querySelectorAll('.preset-bg-option');
                     } catch (error) {
                         console.error('Error initializing elements:', error);
                         alert('There was an error initializing the task manager. Please refresh the page.');
@@ -2896,6 +3394,11 @@
                     this.dateTypeButtons.forEach(btn => {
                         btn.addEventListener('click', (e) => this.handleDateTypeChange(e));
                     });
+
+                    // Add preset background listeners
+                    this.presetBgOptions.forEach(option => {
+                        option.addEventListener('click', () => this.handlePresetBackgroundSelect(option));
+                    });
                 }
 
                 // Initialize background
@@ -2904,6 +3407,25 @@
                     if (savedBackground) {
                         this.setBackground(savedBackground);
                     }
+                }
+
+                handlePresetBackgroundSelect(selectedOption) {
+                    // Remove selection from all options
+                    this.presetBgOptions.forEach(option => option.classList.remove('selected'));
+
+                    // Add selection to clicked option
+                    selectedOption.classList.add('selected');
+
+                    // Set the background
+                    const bgUrl = selectedOption.dataset.bg;
+                    this.setBackground(bgUrl);
+
+                    // Save to localStorage
+                    localStorage.setItem('backgroundImage', bgUrl);
+
+                    // Clear custom file input
+                    this.backgroundFileInput.value = '';
+                    this.backgroundFileName.textContent = 'No file chosen';
                 }
 
                 // Update clock widget
@@ -2971,7 +3493,10 @@
                 // Save settings (currently only background image)
                 saveSettings() {
                     const backgroundFile = this.backgroundFileInput.files[0];
+                    const selectedPreset = document.querySelector('.preset-bg-option.selected');
+
                     if (backgroundFile) {
+                        // Handle custom file upload
                         const reader = new FileReader();
                         reader.onload = (e) => {
                             localStorage.setItem('backgroundImage', e.target.result);
@@ -2979,10 +3504,14 @@
                             alert('Settings saved successfully!');
                         };
                         reader.readAsDataURL(backgroundFile);
-                    } else {
-                        // Handle case where no new background is selected but user wants to save other settings (if any in the future)
+                    } else if (selectedPreset) {
+                        // Handle preset background
+                        localStorage.setItem('backgroundImage', selectedPreset.dataset.bg);
                         this.closeSettingsModal();
-                        alert('Settings saved!');
+                        alert('Settings saved successfully!');
+                    } else {
+                        this.closeSettingsModal();
+                        alert('No background changes to save.');
                     }
                 }
 
@@ -3711,15 +4240,8 @@
                     this.routineSingleDate.value = '';
                 }
                 changeWeek(direction) {
-                    // Update current date
+                    // Update current date by 7 days in either direction
                     this.currentDate.setDate(this.currentDate.getDate() + (direction * 7));
-
-                    // Reset to center view if returning to current week
-                    const today = new Date();
-                    if (this.currentDate.toDateString() === today.toDateString()) {
-                        this.currentDate = new Date();
-                    }
-
                     this.renderCalendar();
                 }
 
@@ -3728,12 +4250,12 @@
                     const today = new Date();
 
                     // Calculate the start date (3 days before today)
-                    const firstDay = new Date(today);
-                    firstDay.setDate(today.getDate() - 3);
+                    const firstDay = new Date(this.currentDate);
+                    firstDay.setDate(this.currentDate.getDate() - 3);
 
                     // Calculate the end date (3 days after today)
-                    const lastDay = new Date(today);
-                    lastDay.setDate(today.getDate() + 3);
+                    const lastDay = new Date(this.currentDate);
+                    lastDay.setDate(this.currentDate.getDate() + 3);
 
                     // Set the current week display
                     this.currentWeekElement.textContent = `${firstDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${lastDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
@@ -3773,36 +4295,31 @@
                             routineCard.className = 'routine-card';
                             routineCard.setAttribute('data-task-id', task.id);
 
-                            // Add image if exists
-                            if (task.image) {
-                                const img = document.createElement('img');
-                                img.src = task.image;
-                                img.className = 'task-image';
-                                routineCard.appendChild(img);
-                            }
+                            routineCard.innerHTML = `
+        ${task.image ? `<img src="${task.image}" class="task-image" alt="${task.name}">` : ''}
+        <div class="task-name">${task.name}</div>
+        <div class="routine-meta">
+            <span class="routine-frequency">${task.routineFrequency}</span>
+            <i class="fas fa-clock"></i>
+            ${this.getFormattedTime(task)}
+        </div>
+        ${task.notes ? `
+            <div class="routine-notes">${task.notes}</div>
+        ` : ''}
+        <div class="routine-progress">
+            <div class="progress-bar" style="width: ${this.getRoutineProgress(task)}%"></div>
+        </div>
+        <button class="routine-delete-btn">
+            <i class="fas fa-trash-alt"></i>
+        </button>
+    `;
 
-                            const taskName = document.createElement('div');
-                            taskName.className = 'task-name';
-                            taskName.textContent = task.name;
-                            routineCard.appendChild(taskName);
-
-                            // Add notes if exists
-                            if (task.notes) {
-                                const notesEl = document.createElement('div');
-                                notesEl.className = 'routine-notes';
-                                notesEl.textContent = task.notes;
-                                routineCard.appendChild(notesEl);
-                            }
-
-                            // Delete button for routine task
-                            const deleteBtn = document.createElement('button');
-                            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-                            deleteBtn.className = 'delete-btn routine-delete-btn';
-                            deleteBtn.onclick = (event) => {
-                                event.stopPropagation(); // Prevent any parent event handlers
+                            // Add delete functionality
+                            const deleteBtn = routineCard.querySelector('.routine-delete-btn');
+                            deleteBtn.onclick = (e) => {
+                                e.stopPropagation();
                                 this.deleteRoutineTask(task.id);
                             };
-                            routineCard.appendChild(deleteBtn);
 
                             dayDiv.appendChild(routineCard);
                         });
@@ -3819,6 +4336,22 @@
                             });
                         }
                     });
+                }
+
+                getFormattedTime(task) {
+                    // Example implementation - adjust based on your task data structure
+                    const time = new Date(task.startDate).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    return time;
+                }
+
+                getRoutineProgress(task) {
+                    // Example implementation - adjust based on your tracking needs
+                    const total = this.getRoutineOccurrences(task);
+                    const completed = this.getCompletedOccurrences(task);
+                    return (completed / total) * 100;
                 }
 
                 // New method to delete routine tasks
