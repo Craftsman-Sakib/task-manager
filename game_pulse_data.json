@@ -2884,5 +2884,36 @@
     "details": "\"Ananta\" aims to provide an immersive urban open-world experience, allowing players to explore a vibrant cityscape with a high degree of freedom. The game is currently in development, with a planned release at the end of 2025.",
     "links": "https://www.anantagame.com/",
     "dlc": []
+  },
+  {
+    "id": 1736655185468,
+    "name": "Brotato",
+    "image": "https://digiseller.mycdn.ink/imgwebp.ashx?idp=7480721&w=712",
+    "extraImages": [
+      "https://par30games.net/wp-content/uploads/2025/01/Brotato-1.jpg",
+      "https://par30games.net/wp-content/uploads/2025/01/Brotato-3.jpg",
+      "https://voxelsmash.com/wp-content/uploads/2023/04/Brotato-release-date-trailer-story.jpg"
+    ],
+    "genre": [
+      "Roguelite",
+      "Top-Down Shoot 'Em Up"
+    ],
+    "releaseDate": {
+      "start": "2023-06-23",
+      "end": ""
+    },
+    "developer": "Thomas Gervraud under the studio name Blobfish.",
+    "publisher": "Blobfish",
+    "specialQuote": "",
+    "platform": [],
+    "store": [
+      "AppStore",
+      "PlayStore",
+      "Nintendo-eShop"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=nfceZHR7Yq0",
+    "price": 2.99,
+    "details": "\"Brotato\" has received positive reviews for its engaging gameplay and has been compared to titles like \"Vampire Survivors,\" offering a fast-paced and strategic roguelite experience.\nThe game features players controlling a potato character, battling through waves of enemies with various weapons and upgrades.",
+    "links": "https://thomasgervraud.com/press/brotato"
   }
 ]
