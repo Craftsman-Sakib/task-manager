@@ -264,9 +264,61 @@
             margin: 80px 20px 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            /* Add blur effect to background */
+            position: relative;
+            overflow: hidden;
         }
 
+        .content-wrapper {
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            padding-right: 16px;
+            /* Add space for scrollbar */
+            margin-right: -16px;
+            /* Compensate for padding */
+            padding-bottom: 20px;
+        }
+
+        .content-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .content-wrapper::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .content-wrapper::-webkit-scrollbar-thumb {
+            background-color: rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            border: 2px solid transparent;
+            background-clip: content-box;
+        }
+
+        .content-wrapper::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .main-content::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+        }
+
+        .main-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
 
         /* Top Bar Section (Right-Aligned) */
         .top-bar {
@@ -2607,841 +2659,842 @@
 
         <!-- Main Content Display -->
         <div class="main-content">
-
-            <div class="tabs">
-                <div class="tab active" data-type="all">All Tasks</div>
-                <div class="tab" data-type="todo">TODO</div>
-                <div class="tab" data-type="routine">Routine</div>
-                <div class="tab" data-type="priority">Priority</div>
-                <div class="tab" data-type="projects">Projects</div>
-            </div>
-            <div id="taskList" class="task-list">
-            </div>
-            <div id="projectList" class="project-list" style="display: none;">
-                <!-- Project cards will be generated here -->
-                <div class="project-card add-project-card">
-                    <div class="""project-name add-project-name">
-                        <i class="fas fa-plus"></i> Add New Project
-                    </div>
+            <div class="content-wrapper">
+                <div class="tabs">
+                    <div class="tab active" data-type="all">All Tasks</div>
+                    <div class="tab" data-type="todo">TODO</div>
+                    <div class="tab" data-type="routine">Routine</div>
+                    <div class="tab" data-type="priority">Priority</div>
+                    <div class="tab" data-type="projects">Projects</div>
                 </div>
-            </div>
-            <div id="calendarView" style="display: none;">
-                <!-- Replace the old calendar-header div with this -->
-                <div class="calendar-header">
-                    <div class="calendar-navigation">
-                        <button class="prev-week-btn" id="prevWeek">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <span id="currentWeek" title="Click to jump to date" style="cursor: pointer;">
-                            Current Week
-                        </span>
-                        <button class="next-week-btn" id="nextWeek">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                    <div class="quick-jump-overlay" id="quickJumpOverlay">
-                        <div class="quick-jump-calendar">
-                            <div class="quick-jump-header">
-                                <div class="quick-jump-title">Jump to Date</div>
-                                <button class="close-quick-jump">×</button>
-                            </div>
-                            <div class="month-year-selector">
-                                <select class="month-select" id="monthSelect"></select>
-                                <select class="year-select" id="yearSelect"></select>
-                            </div>
-                            <div class="quick-jump-grid" id="dateGrid">
-                                <!-- Days will be generated here -->
-                            </div>
-                            <div class="quick-jump-actions">
-                                <button class="quick-jump-btn cancel" id="cancelJump">Cancel</button>
-                                <button class="quick-jump-btn jump" id="confirmJump">Jump to Date</button>
-                            </div>
+                <div id="taskList" class="task-list">
+                </div>
+                <div id="projectList" class="project-list" style="display: none;">
+                    <!-- Project cards will be generated here -->
+                    <div class="project-card add-project-card">
+                        <div class="""project-name add-project-name">
+                            <i class="fas fa-plus"></i> Add New Project
                         </div>
                     </div>
                 </div>
-                <div id="calendar" class="calendar">
-                    <!-- Calendar days will be generated here -->
-                </div>
-            </div>
-        </div>
-
-        <!-- Task Modal -->
-        <div id="taskModal" class="task-modal">
-            <div class="task-modal-content">
-                <button class="close-modal"><i class="fas fa-times"></i></button>
-
-                <div class="input-section">
-                    <!-- Task Name Input -->
-                    <div class="input-group">
-                        <label for="taskName">Task Name</label>
-                        <input type="text" id="taskName" placeholder="Enter task name" required>
-                    </div>
-
-                    <!-- Task Type Selection -->
-                    <div class="input-group">
-                        <label for="taskType">Task Type</label>
-                        <select id="taskType">
-                            <option value="todo">TODO</option>
-                            <option value="routine">Routine</option>
-                        </select>
-                    </div>
-
-                    <!-- Project Selection -->
-                    <div class="input-group">
-                        <label for="projectSelect">Project (Optional)</label>
-                        <select id="projectSelect">
-                            <option value="">No Project</option>
-                            <!-- Projects will be dynamically loaded here -->
-                        </select>
-                    </div>
-
-                    <!-- Priority Selection -->
-                    <div class="input-group" id="priorityGroup">
-                        <label>Priority</label>
-                        <div class="priority-group">
-                            <label class="priority-label low">
-                                <input type="radio" name="priority" value="low" checked>
-                                <span>Low</span>
-                            </label>
-                            <label class="priority-label medium">
-                                <input type="radio" name="priority" value="medium">
-                                <span>Medium</span>
-                            </label>
-                            <label class="priority-label high">
-                                <input type="radio" name="priority" value="high">
-                                <span>High</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Routine Frequency (hidden by default) -->
-                    <div class="input-group" id="routineFrequencyGroup" style="display: none;">
-                        <label for="routineFrequency">Routine Frequency</label>
-                        <select id="routineFrequency">
-                            <option value="daily">Daily</option>
-                            <option value="weekly">Weekly</option>
-                            <option value="monthly">Monthly</option>
-                            <option value="custom">Custom</option>
-                        </select>
-                    </div>
-
-                    <!-- Custom Recurrence Input (hidden by default) -->
-                    <div class="input-group custom-recurrence-input" id="customRecurrenceInput" style="display: none;">
-                        <label for="customRecurrence">Custom Recurrence Pattern</label>
-                        <input type="text" id="customRecurrence"
-                            placeholder="E.g., 'every 2 days', 'every other monday'">
-                    </div>
-
-                    <!-- Routine Date Range (hidden by default) -->
-                    <!-- Add this inside the routineDateRange div in your HTML -->
-                    <div class="input-group" id="routineDateRange" style="display: none;">
-                        <label>Date Selection</label>
-                        <div class="date-type-selector">
-                            <button type="button" class="date-type-btn active" data-type="range">Date Range</button>
-                            <button type="button" class="date-type-btn" data-type="single">Single Date</button>
-                        </div>
-                        <div id="dateRangeInputs">
-                            <div class="file-input-wrapper">
-                                <input type="date" id="routineStartDate">
-                                <input type="date" id="routineEndDate">
-                            </div>
-                        </div>
-                        <div id="singleDateInput" style="display: none;">
-                            <input type="date" id="routineSingleDate">
-                        </div>
-                    </div>
-
-                    <!-- Color Selection -->
-                    <div class="input-group" id="colorSelectorGroup">
-                        <label>Color Tag</label>
-                        <div class="color-selector">
-                            <div class="color-option" style="background-color: #007bff;" data-color="#007bff"></div>
-                            <div class="color-option" style="background-color: #28a745;" data-color="#28a745"></div>
-                            <div class="color-option" style="background-color: #dc3545;" data-color="#dc3545"></div>
-                            <div class="color-option" style="background-color: #ffc107;" data-color="#ffc107"></div>
-                            <div class="color-option" style="background-color: #6f42c1;" data-color="#6f42c1"></div>
-                        </div>
-                    </div>
-
-                    <!-- Date and Time -->
-                    <div class="input-group" id="dateTimeGroup">
-                        <label for="taskDateTime">Date and Time</label>
-                        <input type="datetime-local" id="taskDateTime">
-                    </div>
-
-                    <!-- Task Dependencies Selection (hidden by default) -->
-                    <div class="input-group" id="taskDependenciesGroup" style="display: none;">
-                        <label for="taskDependenciesSelect">Task Dependencies (Optional)</label>
-                        <select id="taskDependenciesSelect" multiple>
-                            <!-- Tasks will be dynamically loaded here -->
-                        </select>
-                    </div>
-
-                    <!-- Reminders -->
-                    <div class="input-group" id="reminderGroup">
-                        <label>Reminders</label>
-                        <div class="reminder-group">
-                            <label class="reminder-checkbox">
-                                <input type="checkbox" id="emailReminder">
-                                <span>Email Reminder</span>
-                            </label>
-                            <label class="reminder-checkbox">
-                                <input type="checkbox" id="desktopNotification">
-                                <span>Desktop Notification</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Subtasks -->
-                    <div class="input-group" id="subtaskGroup">
-                        <label>Subtasks</label>
-                        <div id="subtaskContainer" class="subtask-list">
-                            <div class="subtask-item">
-                                <input type="text" class="subtask-input" placeholder="Enter subtask">
-                                <button class="btn-danger">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button id="addSubtaskBtn">
-                            <i class="fas fa-plus"></i> Add Subtask
-                        </button>
-                    </div>
-
-                    <!-- Notes -->
-                    <div class="input-group" id="notesGroup">
-                        <label for="taskNotes">Additional Notes</label>
-                        <textarea id="taskNotes" rows="3"></textarea>
-                    </div>
-
-                    <!-- Image Upload -->
-                    <div class="input-group">
-                        <label for="taskImageUrl">Image URL</label>
-                        <div class="file-input-wrapper">
-                            <input type="text" id="taskImageUrl" placeholder="Enter image URL or upload">
-                            <label class="file-input-label">
-                                <input type="file" id="taskImageFile" accept="image/*">
-                                <i class="fas fa-upload"></i> Upload
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Add Task Button -->
-                    <button class="add-btn" id="addTaskButton">
-                        <i class="fas fa-plus"></i> Add Task
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Project Modal -->
-        <div id="projectModal" class="task-modal">
-            <div class="task-modal-content">
-                <button class="close-modal"><i class="fas fa-times"></i></button>
-                <div class="input-group">
-                    <label for="projectNameInput">Project Name</label>
-                    <input type="text" id="projectNameInput" placeholder="Enter project name" required>
-                </div>
-                <button class="add-btn" id="addProjectBtn">
-                    <i class="fas fa-plus"></i> Add Project
-                </button>
-            </div>
-        </div>
-
-        <!-- Settings Modal -->
-        <!-- Settings Modal -->
-        <div id="settingsModal" class="settings-modal">
-            <div class="settings-modal-content">
-                <!-- Modal Header -->
-                <div class="settings-modal-header">
-                    <h2>Settings</h2>
-                    <button class="close-settings-modal">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-
-                <!-- Modal Body -->
-                <!-- Update the settings modal body section -->
-                <!-- Update the settings modal body section -->
-                <div class="settings-modal-body">
-                    <!-- Preset Backgrounds -->
-                    <div class="input-group">
-                        <label>Preset Backgrounds</label>
-                        <div class="preset-backgrounds">
-                            <div class="preset-bg-option" data-bg="images/backgrounds/task_background1.jpg">
-                                <img src="images/backgrounds/task_background1.jpg" alt="Mountain Lake">
-                                <span>Mountain Lake</span>
-                            </div>
-                            <div class="preset-bg-option" data-bg="images/backgrounds/task_background2.jpg">
-                                <img src="images/backgrounds/task_background2.jpg" alt="Forest">
-                                <span>Forest</span>
-                            </div>
-                            <div class="preset-bg-option" data-bg="images/backgrounds/task_background3.jpg">
-                                <img src="images/backgrounds/task_background3.jpg" alt="Ocean">
-                                <span>Ocean</span>
-                            </div>
-                            <div class="preset-bg-option" data-bg="images/backgrounds/task_background4.jpg">
-                                <img src="images/backgrounds/task_background4.jpg" alt="Mountains">
-                                <span>Mountains</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Custom Background Upload -->
-                    <div class="input-group">
-                        <label>Custom Background</label>
-                        <div class="settings-buttons-group">
-                            <label class="file-input-label" for="backgroundFile">
-                                <i class="fas fa-upload"></i>
-                                <span>Upload Custom</span>
-                                <input type="file" id="backgroundFile" accept="image/*" class="visually-hidden">
-                            </label>
-                            <button class="remove-bg-btn" id="removeBgBtn">
-                                <i class="fas fa-trash-alt"></i>
-                                <span>Remove Background</span>
+                <div id="calendarView" style="display: none;">
+                    <!-- Replace the old calendar-header div with this -->
+                    <div class="calendar-header">
+                        <div class="calendar-navigation">
+                            <button class="prev-week-btn" id="prevWeek">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <span id="currentWeek" title="Click to jump to date" style="cursor: pointer;">
+                                Current Week
+                            </span>
+                            <button class="next-week-btn" id="nextWeek">
+                                <i class="fas fa-chevron-right"></i>
                             </button>
                         </div>
-                        <div id="backgroundFileName" class="file-name-display">No file chosen</div>
+                        <div class="quick-jump-overlay" id="quickJumpOverlay">
+                            <div class="quick-jump-calendar">
+                                <div class="quick-jump-header">
+                                    <div class="quick-jump-title">Jump to Date</div>
+                                    <button class="close-quick-jump">×</button>
+                                </div>
+                                <div class="month-year-selector">
+                                    <select class="month-select" id="monthSelect"></select>
+                                    <select class="year-select" id="yearSelect"></select>
+                                </div>
+                                <div class="quick-jump-grid" id="dateGrid">
+                                    <!-- Days will be generated here -->
+                                </div>
+                                <div class="quick-jump-actions">
+                                    <button class="quick-jump-btn cancel" id="cancelJump">Cancel</button>
+                                    <button class="quick-jump-btn jump" id="confirmJump">Jump to Date</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="calendar" class="calendar">
+                        <!-- Calendar days will be generated here -->
                     </div>
                 </div>
+            </div>
 
-                <!-- Modal Footer -->
-                <div class="settings-modal-footer">
-                    <button class="settings-btn cancel-settings-btn" id="cancelSettingsBtn">
-                        Cancel
-                    </button>
-                    <button class="settings-btn save-settings-btn" id="saveSettingsBtn">
-                        Save Changes
+            <!-- Task Modal -->
+            <div id="taskModal" class="task-modal">
+                <div class="task-modal-content">
+                    <button class="close-modal"><i class="fas fa-times"></i></button>
+
+                    <div class="input-section">
+                        <!-- Task Name Input -->
+                        <div class="input-group">
+                            <label for="taskName">Task Name</label>
+                            <input type="text" id="taskName" placeholder="Enter task name" required>
+                        </div>
+
+                        <!-- Task Type Selection -->
+                        <div class="input-group">
+                            <label for="taskType">Task Type</label>
+                            <select id="taskType">
+                                <option value="todo">TODO</option>
+                                <option value="routine">Routine</option>
+                            </select>
+                        </div>
+
+                        <!-- Project Selection -->
+                        <div class="input-group">
+                            <label for="projectSelect">Project (Optional)</label>
+                            <select id="projectSelect">
+                                <option value="">No Project</option>
+                                <!-- Projects will be dynamically loaded here -->
+                            </select>
+                        </div>
+
+                        <!-- Priority Selection -->
+                        <div class="input-group" id="priorityGroup">
+                            <label>Priority</label>
+                            <div class="priority-group">
+                                <label class="priority-label low">
+                                    <input type="radio" name="priority" value="low" checked>
+                                    <span>Low</span>
+                                </label>
+                                <label class="priority-label medium">
+                                    <input type="radio" name="priority" value="medium">
+                                    <span>Medium</span>
+                                </label>
+                                <label class="priority-label high">
+                                    <input type="radio" name="priority" value="high">
+                                    <span>High</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Routine Frequency (hidden by default) -->
+                        <div class="input-group" id="routineFrequencyGroup" style="display: none;">
+                            <label for="routineFrequency">Routine Frequency</label>
+                            <select id="routineFrequency">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+
+                        <!-- Custom Recurrence Input (hidden by default) -->
+                        <div class="input-group custom-recurrence-input" id="customRecurrenceInput"
+                            style="display: none;">
+                            <label for="customRecurrence">Custom Recurrence Pattern</label>
+                            <input type="text" id="customRecurrence"
+                                placeholder="E.g., 'every 2 days', 'every other monday'">
+                        </div>
+
+                        <!-- Routine Date Range (hidden by default) -->
+                        <!-- Add this inside the routineDateRange div in your HTML -->
+                        <div class="input-group" id="routineDateRange" style="display: none;">
+                            <label>Date Selection</label>
+                            <div class="date-type-selector">
+                                <button type="button" class="date-type-btn active" data-type="range">Date Range</button>
+                                <button type="button" class="date-type-btn" data-type="single">Single Date</button>
+                            </div>
+                            <div id="dateRangeInputs">
+                                <div class="file-input-wrapper">
+                                    <input type="date" id="routineStartDate">
+                                    <input type="date" id="routineEndDate">
+                                </div>
+                            </div>
+                            <div id="singleDateInput" style="display: none;">
+                                <input type="date" id="routineSingleDate">
+                            </div>
+                        </div>
+
+                        <!-- Color Selection -->
+                        <div class="input-group" id="colorSelectorGroup">
+                            <label>Color Tag</label>
+                            <div class="color-selector">
+                                <div class="color-option" style="background-color: #007bff;" data-color="#007bff"></div>
+                                <div class="color-option" style="background-color: #28a745;" data-color="#28a745"></div>
+                                <div class="color-option" style="background-color: #dc3545;" data-color="#dc3545"></div>
+                                <div class="color-option" style="background-color: #ffc107;" data-color="#ffc107"></div>
+                                <div class="color-option" style="background-color: #6f42c1;" data-color="#6f42c1"></div>
+                            </div>
+                        </div>
+
+                        <!-- Date and Time -->
+                        <div class="input-group" id="dateTimeGroup">
+                            <label for="taskDateTime">Date and Time</label>
+                            <input type="datetime-local" id="taskDateTime">
+                        </div>
+
+                        <!-- Task Dependencies Selection (hidden by default) -->
+                        <div class="input-group" id="taskDependenciesGroup" style="display: none;">
+                            <label for="taskDependenciesSelect">Task Dependencies (Optional)</label>
+                            <select id="taskDependenciesSelect" multiple>
+                                <!-- Tasks will be dynamically loaded here -->
+                            </select>
+                        </div>
+
+                        <!-- Reminders -->
+                        <div class="input-group" id="reminderGroup">
+                            <label>Reminders</label>
+                            <div class="reminder-group">
+                                <label class="reminder-checkbox">
+                                    <input type="checkbox" id="emailReminder">
+                                    <span>Email Reminder</span>
+                                </label>
+                                <label class="reminder-checkbox">
+                                    <input type="checkbox" id="desktopNotification">
+                                    <span>Desktop Notification</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Subtasks -->
+                        <div class="input-group" id="subtaskGroup">
+                            <label>Subtasks</label>
+                            <div id="subtaskContainer" class="subtask-list">
+                                <div class="subtask-item">
+                                    <input type="text" class="subtask-input" placeholder="Enter subtask">
+                                    <button class="btn-danger">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <button id="addSubtaskBtn">
+                                <i class="fas fa-plus"></i> Add Subtask
+                            </button>
+                        </div>
+
+                        <!-- Notes -->
+                        <div class="input-group" id="notesGroup">
+                            <label for="taskNotes">Additional Notes</label>
+                            <textarea id="taskNotes" rows="3"></textarea>
+                        </div>
+
+                        <!-- Image Upload -->
+                        <div class="input-group">
+                            <label for="taskImageUrl">Image URL</label>
+                            <div class="file-input-wrapper">
+                                <input type="text" id="taskImageUrl" placeholder="Enter image URL or upload">
+                                <label class="file-input-label">
+                                    <input type="file" id="taskImageFile" accept="image/*">
+                                    <i class="fas fa-upload"></i> Upload
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Add Task Button -->
+                        <button class="add-btn" id="addTaskButton">
+                            <i class="fas fa-plus"></i> Add Task
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Modal -->
+            <div id="projectModal" class="task-modal">
+                <div class="task-modal-content">
+                    <button class="close-modal"><i class="fas fa-times"></i></button>
+                    <div class="input-group">
+                        <label for="projectNameInput">Project Name</label>
+                        <input type="text" id="projectNameInput" placeholder="Enter project name" required>
+                    </div>
+                    <button class="add-btn" id="addProjectBtn">
+                        <i class="fas fa-plus"></i> Add Project
                     </button>
                 </div>
             </div>
-        </div>
 
-        <!-- Modal for Homepage Setting -->
-        <div id="homepageModal" class="homepage-modal">
-            <div class="homepage-modal-content">
-                <h2>Set as Homepage</h2>
-                <p>Would you like to set this Task Manager as your browser's default homepage?</p>
-                <div class="homepage-modal-buttons">
-                    <button id="setHomepageBtn" class="homepage-btn homepage-btn-primary">Yes, Set Homepage</button>
-                    <button id="dismissHomepageBtn" class="homepage-btn homepage-btn-secondary">No, Thanks</button>
+            <!-- Settings Modal -->
+            <!-- Settings Modal -->
+            <div id="settingsModal" class="settings-modal">
+                <div class="settings-modal-content">
+                    <!-- Modal Header -->
+                    <div class="settings-modal-header">
+                        <h2>Settings</h2>
+                        <button class="close-settings-modal">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <!-- Update the settings modal body section -->
+                    <!-- Update the settings modal body section -->
+                    <div class="settings-modal-body">
+                        <!-- Preset Backgrounds -->
+                        <div class="input-group">
+                            <label>Preset Backgrounds</label>
+                            <div class="preset-backgrounds">
+                                <div class="preset-bg-option" data-bg="images/backgrounds/task_background1.jpg">
+                                    <img src="images/backgrounds/task_background1.jpg" alt="Mountain Lake">
+                                    <span>Mountain Lake</span>
+                                </div>
+                                <div class="preset-bg-option" data-bg="images/backgrounds/task_background2.jpg">
+                                    <img src="images/backgrounds/task_background2.jpg" alt="Forest">
+                                    <span>Forest</span>
+                                </div>
+                                <div class="preset-bg-option" data-bg="images/backgrounds/task_background3.jpg">
+                                    <img src="images/backgrounds/task_background3.jpg" alt="Ocean">
+                                    <span>Ocean</span>
+                                </div>
+                                <div class="preset-bg-option" data-bg="images/backgrounds/task_background4.jpg">
+                                    <img src="images/backgrounds/task_background4.jpg" alt="Mountains">
+                                    <span>Mountains</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Background Upload -->
+                        <div class="input-group">
+                            <label>Custom Background</label>
+                            <div class="settings-buttons-group">
+                                <label class="file-input-label" for="backgroundFile">
+                                    <i class="fas fa-upload"></i>
+                                    <span>Upload Custom</span>
+                                    <input type="file" id="backgroundFile" accept="image/*" class="visually-hidden">
+                                </label>
+                                <button class="remove-bg-btn" id="removeBgBtn">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Remove Background</span>
+                                </button>
+                            </div>
+                            <div id="backgroundFileName" class="file-name-display">No file chosen</div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="settings-modal-footer">
+                        <button class="settings-btn cancel-settings-btn" id="cancelSettingsBtn">
+                            Cancel
+                        </button>
+                        <button class="settings-btn save-settings-btn" id="saveSettingsBtn">
+                            Save Changes
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <script>
-            class EnhancedTaskManager {
-                constructor() {
-                    // Retrieve tasks from localStorage with more robust parsing
-                    try {
-                        this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
-                    } catch (error) {
-                        console.error('Error parsing tasks from localStorage:', error);
-                        this.tasks = [];
-                    }
+            <!-- Modal for Homepage Setting -->
+            <div id="homepageModal" class="homepage-modal">
+                <div class="homepage-modal-content">
+                    <h2>Set as Homepage</h2>
+                    <p>Would you like to set this Task Manager as your browser's default homepage?</p>
+                    <div class="homepage-modal-buttons">
+                        <button id="setHomepageBtn" class="homepage-btn homepage-btn-primary">Yes, Set Homepage</button>
+                        <button id="dismissHomepageBtn" class="homepage-btn homepage-btn-secondary">No, Thanks</button>
+                    </div>
+                </div>
+            </div>
 
-                    // Retrieve projects from localStorage
-                    try {
-                        this.projects = JSON.parse(localStorage.getItem('projects') || '{}');
-                    } catch (error) {
-                        console.error('Error parsing projects from localStorage:', error);
-                        this.projects = {};
-                    }
+            <script>
+                class EnhancedTaskManager {
+                    constructor() {
+                        // Retrieve tasks from localStorage with more robust parsing
+                        try {
+                            this.tasks = JSON.parse(localStorage.getItem('tasks') || '[]');
+                        } catch (error) {
+                            console.error('Error parsing tasks from localStorage:', error);
+                            this.tasks = [];
+                        }
 
-                    // DOM Element References
-                    this.initializeElements();
+                        // Retrieve projects from localStorage
+                        try {
+                            this.projects = JSON.parse(localStorage.getItem('projects') || '{}');
+                        } catch (error) {
+                            console.error('Error parsing projects from localStorage:', error);
+                            this.projects = {};
+                        }
 
-                    // Setup event listeners
-                    this.setupEventListeners();
+                        // DOM Element References
+                        this.initializeElements();
 
-                    // Initial render of tasks and projects
-                    this.renderTasks('all');
-                    this.renderProjects();
+                        // Setup event listeners
+                        this.setupEventListeners();
 
-                    // Set current week for Calendar
-                    this.currentDate = new Date();
-                    this.renderCalendar();
+                        // Initial render of tasks and projects
+                        this.renderTasks('all');
+                        this.renderProjects();
 
-                    this.initializeBackground();
-
-                    // Initialize clock
-                    this.updateClock();
-                    setInterval(() => this.updateClock(), 1000);
-
-                    // Navigation drawer elements
-                    this.navToggle = document.querySelector('.nav-toggle');
-                    this.navPanel = document.querySelector('.navigation-panel');
-                    this.navBackdrop = document.querySelector('.nav-backdrop');
-                    this.appContainer = document.querySelector('.app-container');
-
-                    // Setup navigation drawer
-                    this.setupNavigationDrawer();
-                    this.currentDate = new Date();
-                    this.renderCalendar();
-                    this.initializeQuickJump(); // Add this line
-
-                    this.initializeBackground();
-
-                }
-
-                setupNavigationDrawer() {
-                    this.navToggle.addEventListener('click', (e) => {
-                        // Create ripple effect
-                        const ripple = document.createElement('span');
-                        ripple.classList.add('ripple');
-
-                        // Set ripple position
-                        const rect = this.navToggle.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        ripple.style.left = `${x}px`;
-                        ripple.style.top = `${y}px`;
-
-                        // Add and remove ripple
-                        this.navToggle.appendChild(ripple);
-                        setTimeout(() => ripple.remove(), 600);
-
-                        // Toggle navigation
-                        this.navPanel.classList.toggle('open');
-                        this.navToggle.classList.toggle('open');
-                        this.navBackdrop.classList.toggle('show');
-                        this.appContainer.classList.toggle('nav-open');
-                    });
-
-                    // Close drawer when clicking navigation items
-                    const navItems = document.querySelectorAll('.nav-item');
-                    navItems.forEach(item => {
-                        item.addEventListener('click', () => {
-                            this.navPanel.classList.remove('open');
-                            this.navToggle.classList.remove('open');
-                            this.navBackdrop.classList.remove('show');
-                            this.appContainer.classList.remove('nav-open');
-                        });
-                    });
-                }
-
-                initializeQuickJump() {
-                    this.quickJumpOverlay = document.getElementById('quickJumpOverlay');
-                    this.monthSelect = document.getElementById('monthSelect');
-                    this.yearSelect = document.getElementById('yearSelect');
-                    this.dateGrid = document.getElementById('dateGrid');
-
-                    // Initialize month/year selectors
-                    const currentYear = new Date().getFullYear();
-                    for (let year = currentYear - 2; year <= currentYear + 5; year++) {
-                        const option = document.createElement('option');
-                        option.value = year;
-                        option.textContent = year;
-                        this.yearSelect.appendChild(option);
-                    }
-
-                    const months = ['January', 'February', 'March', 'April', 'May', 'June',
-                        'July', 'August', 'September', 'October', 'November', 'December'];
-                    months.forEach((month, index) => {
-                        const option = document.createElement('option');
-                        option.value = index;
-                        option.textContent = month;
-                        this.monthSelect.appendChild(option);
-                    });
-
-                    // Add event listeners
-                    this.currentWeekElement.addEventListener('click', () => this.showQuickJump());
-                    document.querySelector('.close-quick-jump').addEventListener('click', () => this.hideQuickJump());
-                    document.getElementById('cancelJump').addEventListener('click', () => this.hideQuickJump());
-                    document.getElementById('confirmJump').addEventListener('click', () => this.jumpToSelectedDate());
-
-                    // Update calendar when month/year changes
-                    this.monthSelect.addEventListener('change', () => this.updateQuickJumpCalendar());
-                    this.yearSelect.addEventListener('change', () => this.updateQuickJumpCalendar());
-                }
-
-                jumpToSelectedDate() {
-                    if (this.selectedDate) {
-                        this.currentDate = new Date(this.selectedDate);
+                        // Set current week for Calendar
+                        this.currentDate = new Date();
                         this.renderCalendar();
-                        this.hideQuickJump();
-                    } else {
-                        alert('Please select a date first');
-                    }
-                }
 
-                showQuickJump() {
-                    const currentDate = new Date();
-                    this.monthSelect.value = currentDate.getMonth();
-                    this.yearSelect.value = currentDate.getFullYear();
-                    this.updateQuickJumpCalendar();
-                    this.quickJumpOverlay.style.display = 'flex';
-                }
+                        this.initializeBackground();
 
-                hideQuickJump() {
-                    this.quickJumpOverlay.style.display = 'none';
-                }
+                        // Initialize clock
+                        this.updateClock();
+                        setInterval(() => this.updateClock(), 1000);
 
-                updateQuickJumpCalendar() {
-                    const year = parseInt(this.yearSelect.value);
-                    const month = parseInt(this.monthSelect.value);
-                    const today = new Date();
+                        // Navigation drawer elements
+                        this.navToggle = document.querySelector('.nav-toggle');
+                        this.navPanel = document.querySelector('.navigation-panel');
+                        this.navBackdrop = document.querySelector('.nav-backdrop');
+                        this.appContainer = document.querySelector('.app-container');
 
-                    // Clear existing grid
-                    this.dateGrid.innerHTML = '';
+                        // Setup navigation drawer
+                        this.setupNavigationDrawer();
+                        this.currentDate = new Date();
+                        this.renderCalendar();
+                        this.initializeQuickJump(); // Add this line
 
-                    // Add day headers
-                    const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-                    days.forEach(day => {
-                        const dayHeader = document.createElement('div');
-                        dayHeader.className = 'day-header';
-                        dayHeader.textContent = day;
-                        this.dateGrid.appendChild(dayHeader);
-                    });
+                        this.initializeBackground();
 
-                    // Get first day of month and number of days
-                    const firstDay = new Date(year, month, 1);
-                    const lastDay = new Date(year, month + 1, 0);
-                    const daysInMonth = lastDay.getDate();
-
-                    // Add empty cells for days before first of month
-                    for (let i = 0; i < firstDay.getDay(); i++) {
-                        const emptyCell = document.createElement('div');
-                        emptyCell.className = 'date-cell empty';
-                        this.dateGrid.appendChild(emptyCell);
                     }
 
-                    // Add days of month
-                    for (let day = 1; day <= daysInMonth; day++) {
-                        const dateCell = document.createElement('div');
-                        dateCell.className = 'date-cell';
-                        dateCell.textContent = day;
+                    setupNavigationDrawer() {
+                        this.navToggle.addEventListener('click', (e) => {
+                            // Create ripple effect
+                            const ripple = document.createElement('span');
+                            ripple.classList.add('ripple');
 
-                        const cellDate = new Date(year, month, day);
+                            // Set ripple position
+                            const rect = this.navToggle.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
+                            ripple.style.left = `${x}px`;
+                            ripple.style.top = `${y}px`;
 
-                        if (cellDate.toDateString() === today.toDateString()) {
-                            dateCell.classList.add('today');
-                        }
+                            // Add and remove ripple
+                            this.navToggle.appendChild(ripple);
+                            setTimeout(() => ripple.remove(), 600);
 
-                        dateCell.addEventListener('click', () => {
-                            document.querySelectorAll('.date-cell').forEach(cell => cell.classList.remove('selected'));
-                            dateCell.classList.add('selected');
-                            this.selectedDate = cellDate;
+                            // Toggle navigation
+                            this.navPanel.classList.toggle('open');
+                            this.navToggle.classList.toggle('open');
+                            this.navBackdrop.classList.toggle('show');
+                            this.appContainer.classList.toggle('nav-open');
                         });
 
-                        this.dateGrid.appendChild(dateCell);
+                        // Close drawer when clicking navigation items
+                        const navItems = document.querySelectorAll('.nav-item');
+                        navItems.forEach(item => {
+                            item.addEventListener('click', () => {
+                                this.navPanel.classList.remove('open');
+                                this.navToggle.classList.remove('open');
+                                this.navBackdrop.classList.remove('show');
+                                this.appContainer.classList.remove('nav-open');
+                            });
+                        });
                     }
-                }
 
-                setupTaskCardInteraction(taskCard) {
-                    taskCard.addEventListener('click', (e) => {
-                        // Ignore clicks on buttons
-                        if (e.target.closest('button')) return;
+                    initializeQuickJump() {
+                        this.quickJumpOverlay = document.getElementById('quickJumpOverlay');
+                        this.monthSelect = document.getElementById('monthSelect');
+                        this.yearSelect = document.getElementById('yearSelect');
+                        this.dateGrid = document.getElementById('dateGrid');
 
-                        taskCard.classList.toggle('expanded');
-
-                        // Update expand indicator
-                        const indicator = taskCard.querySelector('.expand-indicator');
-                        if (taskCard.classList.contains('expanded')) {
-                            indicator.innerHTML = '<i class="fas fa-chevron-up"></i>';
-                        } else {
-                            indicator.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                        // Initialize month/year selectors
+                        const currentYear = new Date().getFullYear();
+                        for (let year = currentYear - 2; year <= currentYear + 5; year++) {
+                            const option = document.createElement('option');
+                            option.value = year;
+                            option.textContent = year;
+                            this.yearSelect.appendChild(option);
                         }
-                    });
-                }
 
-                // Add these methods to your EnhancedTaskManager class
+                        const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                            'July', 'August', 'September', 'October', 'November', 'December'];
+                        months.forEach((month, index) => {
+                            const option = document.createElement('option');
+                            option.value = index;
+                            option.textContent = month;
+                            this.monthSelect.appendChild(option);
+                        });
 
-                getRoutineOccurrences(task) {
-                    try {
-                        const startDate = new Date(task.startDate);
-                        const endDate = new Date(task.endDate);
-                        let occurrences = 0;
+                        // Add event listeners
+                        this.currentWeekElement.addEventListener('click', () => this.showQuickJump());
+                        document.querySelector('.close-quick-jump').addEventListener('click', () => this.hideQuickJump());
+                        document.getElementById('cancelJump').addEventListener('click', () => this.hideQuickJump());
+                        document.getElementById('confirmJump').addEventListener('click', () => this.jumpToSelectedDate());
 
-                        // For single date tasks
-                        if (task.isSingleDate) {
+                        // Update calendar when month/year changes
+                        this.monthSelect.addEventListener('change', () => this.updateQuickJumpCalendar());
+                        this.yearSelect.addEventListener('change', () => this.updateQuickJumpCalendar());
+                    }
+
+                    jumpToSelectedDate() {
+                        if (this.selectedDate) {
+                            this.currentDate = new Date(this.selectedDate);
+                            this.renderCalendar();
+                            this.hideQuickJump();
+                        } else {
+                            alert('Please select a date first');
+                        }
+                    }
+
+                    showQuickJump() {
+                        const currentDate = new Date();
+                        this.monthSelect.value = currentDate.getMonth();
+                        this.yearSelect.value = currentDate.getFullYear();
+                        this.updateQuickJumpCalendar();
+                        this.quickJumpOverlay.style.display = 'flex';
+                    }
+
+                    hideQuickJump() {
+                        this.quickJumpOverlay.style.display = 'none';
+                    }
+
+                    updateQuickJumpCalendar() {
+                        const year = parseInt(this.yearSelect.value);
+                        const month = parseInt(this.monthSelect.value);
+                        const today = new Date();
+
+                        // Clear existing grid
+                        this.dateGrid.innerHTML = '';
+
+                        // Add day headers
+                        const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+                        days.forEach(day => {
+                            const dayHeader = document.createElement('div');
+                            dayHeader.className = 'day-header';
+                            dayHeader.textContent = day;
+                            this.dateGrid.appendChild(dayHeader);
+                        });
+
+                        // Get first day of month and number of days
+                        const firstDay = new Date(year, month, 1);
+                        const lastDay = new Date(year, month + 1, 0);
+                        const daysInMonth = lastDay.getDate();
+
+                        // Add empty cells for days before first of month
+                        for (let i = 0; i < firstDay.getDay(); i++) {
+                            const emptyCell = document.createElement('div');
+                            emptyCell.className = 'date-cell empty';
+                            this.dateGrid.appendChild(emptyCell);
+                        }
+
+                        // Add days of month
+                        for (let day = 1; day <= daysInMonth; day++) {
+                            const dateCell = document.createElement('div');
+                            dateCell.className = 'date-cell';
+                            dateCell.textContent = day;
+
+                            const cellDate = new Date(year, month, day);
+
+                            if (cellDate.toDateString() === today.toDateString()) {
+                                dateCell.classList.add('today');
+                            }
+
+                            dateCell.addEventListener('click', () => {
+                                document.querySelectorAll('.date-cell').forEach(cell => cell.classList.remove('selected'));
+                                dateCell.classList.add('selected');
+                                this.selectedDate = cellDate;
+                            });
+
+                            this.dateGrid.appendChild(dateCell);
+                        }
+                    }
+
+                    setupTaskCardInteraction(taskCard) {
+                        taskCard.addEventListener('click', (e) => {
+                            // Ignore clicks on buttons
+                            if (e.target.closest('button')) return;
+
+                            taskCard.classList.toggle('expanded');
+
+                            // Update expand indicator
+                            const indicator = taskCard.querySelector('.expand-indicator');
+                            if (taskCard.classList.contains('expanded')) {
+                                indicator.innerHTML = '<i class="fas fa-chevron-up"></i>';
+                            } else {
+                                indicator.innerHTML = '<i class="fas fa-chevron-down"></i>';
+                            }
+                        });
+                    }
+
+                    // Add these methods to your EnhancedTaskManager class
+
+                    getRoutineOccurrences(task) {
+                        try {
+                            const startDate = new Date(task.startDate);
+                            const endDate = new Date(task.endDate);
+                            let occurrences = 0;
+
+                            // For single date tasks
+                            if (task.isSingleDate) {
+                                return 1;
+                            }
+
+                            // Calculate days between start and end date
+                            const dayDiff = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+
+                            switch (task.routineFrequency) {
+                                case 'daily':
+                                    occurrences = dayDiff + 1;
+                                    break;
+                                case 'weekly':
+                                    occurrences = Math.ceil((dayDiff + 1) / 7);
+                                    break;
+                                case 'monthly':
+                                    occurrences = Math.ceil((dayDiff + 1) / 30);
+                                    break;
+                                case 'custom':
+                                    // Default to 1 for custom frequencies
+                                    occurrences = 1;
+                                    break;
+                            }
+
+                            return occurrences;
+                        } catch (error) {
+                            console.error('Error calculating routine occurrences:', error);
                             return 1;
                         }
-
-                        // Calculate days between start and end date
-                        const dayDiff = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
-
-                        switch (task.routineFrequency) {
-                            case 'daily':
-                                occurrences = dayDiff + 1;
-                                break;
-                            case 'weekly':
-                                occurrences = Math.ceil((dayDiff + 1) / 7);
-                                break;
-                            case 'monthly':
-                                occurrences = Math.ceil((dayDiff + 1) / 30);
-                                break;
-                            case 'custom':
-                                // Default to 1 for custom frequencies
-                                occurrences = 1;
-                                break;
-                        }
-
-                        return occurrences;
-                    } catch (error) {
-                        console.error('Error calculating routine occurrences:', error);
-                        return 1;
                     }
-                }
 
-                getCompletedOccurrences(task) {
-                    // This is a placeholder - implement your actual completion tracking logic
-                    return 0; // For now, return 0 completed occurrences
-                }
-
-
-                createDeleteButton(taskId) {
-                    const deleteBtn = document.createElement('button');
-                    deleteBtn.className = 'delete-btn';
-                    deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
-                    deleteBtn.onclick = (e) => {
-                        e.stopPropagation();
-                        if (confirm('Are you sure you want to delete this task?')) {
-                            this.deleteTask(taskId);
-                        }
-                    };
-                    return deleteBtn;
-                }
-
-                createStatusButton(status, taskId) {
-                    const statusBtn = document.createElement('button');
-                    statusBtn.className = `status-btn ${status === 'completed' ? 'completed' : ''}`;
-                    statusBtn.textContent = status === 'completed' ? 'Completed' : 'Mark Complete';
-                    statusBtn.onclick = (e) => {
-                        e.stopPropagation();
-                        this.toggleTaskStatus(taskId);
-                    };
-                    return statusBtn;
-                }
-
-                initializeElements() {
-                    try {
-                        // Basic Task Creation Elements
-                        this.taskList = document.getElementById('taskList');
-                        this.projectList = document.getElementById('projectList');
-                        this.taskNameInput = document.getElementById('taskName');
-                        this.taskTypeSelect = document.getElementById('taskType');
-
-                        if (!this.taskList || !this.taskNameInput || !this.taskTypeSelect) {
-                            throw new Error('Required task elements not found');
-                        }
-
-                        // Advanced Input Fields
-                        this.projectSelect = document.getElementById('projectSelect');
-                        this.priorityGroup = document.getElementById('priorityGroup');
-                        this.routineFrequencyGroup = document.getElementById('routineFrequencyGroup');
-                        this.routineFrequencySelect = document.getElementById('routineFrequency');
-                        this.customRecurrenceInput = document.getElementById('customRecurrenceInput');
-                        this.routineDateRange = document.getElementById('routineDateRange');
-                        this.routineStartDate = document.getElementById('routineStartDate');
-                        this.routineEndDate = document.getElementById('routineEndDate');
-                        this.dateTypeButtons = document.querySelectorAll('.date-type-btn');
-                        this.dateRangeInputs = document.getElementById('dateRangeInputs');
-                        this.singleDateInput = document.getElementById('singleDateInput');
-                        this.routineSingleDate = document.getElementById('routineSingleDate');
-                        this.colorSelectorGroup = document.getElementById('colorSelectorGroup');
-                        this.colorOptions = document.querySelectorAll('.color-option');
-                        this.dateTimeGroup = document.getElementById('dateTimeGroup');
-                        this.taskDateTimeInput = document.getElementById('taskDateTime');
-                        this.taskDependenciesGroup = document.getElementById('taskDependenciesGroup');
-                        this.taskDependenciesSelect = document.getElementById('taskDependenciesSelect');
-                        this.reminderGroup = document.getElementById('reminderGroup');
-                        this.subtaskGroup = document.getElementById('subtaskGroup');
-                        this.subtaskContainer = document.getElementById('subtaskContainer');
-                        this.addSubtaskBtn = document.getElementById('addSubtaskBtn');
-                        this.notesGroup = document.getElementById('notesGroup');
-                        this.taskNotesInput = document.getElementById('taskNotes');
-                        this.taskImageUrlInput = document.getElementById('taskImageUrl');
-                        this.taskImageFileInput = document.getElementById('taskImageFile');
-                        this.addTaskButton = document.getElementById('addTaskButton');
-
-                        // Calendar Elements
-                        this.calendarView = document.getElementById('calendarView');
-                        this.calendarElement = document.getElementById('calendar');
-                        this.currentWeekElement = document.getElementById('currentWeek');
-                        this.prevWeekButton = document.getElementById('prevWeek');
-                        this.nextWeekButton = document.getElementById('nextWeek');
-
-                        // Modal Elements
-                        this.openTaskModalBtn = document.getElementById('openTaskModalBtn');
-                        this.taskModal = document.getElementById('taskModal');
-                        this.closeModalBtn = document.querySelector('.close-modal');
-
-                        this.advancedTaskFields = document.getElementById('advancedTaskFields');
-
-                        // Search Bar
-                        this.searchTasksInput = document.getElementById('searchTasks');
-
-                        // Settings Modal Elements
-                        this.openSettingsModalBtn = document.getElementById('openSettingsModalBtn');
-                        this.settingsModal = document.getElementById('settingsModal');
-                        this.closeSettingsModalBtn = document.querySelector('.close-settings-modal');
-                        this.backgroundFileInput = document.getElementById('backgroundFile');
-                        this.backgroundFileName = document.getElementById('backgroundFileName');
-                        this.saveSettingsBtn = document.getElementById('saveSettingsBtn');
-
-                        // Clock Element
-                        this.clockWidget = document.getElementById('clockWidget');
-
-                        //Project Modal Elements
-                        this.projectModal = document.getElementById('projectModal');
-                        this.projectNameInput = document.getElementById('projectNameInput');
-                        this.addProjectBtn = document.getElementById('addProjectBtn');
-
-                        //Remove BG
-                        this.removeBgBtn = document.getElementById('removeBgBtn');
-                        // Add preset background elements
-                        this.presetBgOptions = document.querySelectorAll('.preset-bg-option');
-                    } catch (error) {
-                        console.error('Error initializing elements:', error);
-                        alert('There was an error initializing the task manager. Please refresh the page.');
+                    getCompletedOccurrences(task) {
+                        // This is a placeholder - implement your actual completion tracking logic
+                        return 0; // For now, return 0 completed occurrences
                     }
-                }
 
-                setupEventListeners() {
-                    // Open and Close Modal
-                    this.openTaskModalBtn.addEventListener('click', () => this.openModal());
-                    this.closeModalBtn.addEventListener('click', () => this.closeModal());
 
-                    // Click outside the modal to close
-                    this.taskModal.addEventListener('click', (event) => {
-                        if (event.target === this.taskModal) {
-                            this.closeModal();
+                    createDeleteButton(taskId) {
+                        const deleteBtn = document.createElement('button');
+                        deleteBtn.className = 'delete-btn';
+                        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+                        deleteBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            if (confirm('Are you sure you want to delete this task?')) {
+                                this.deleteTask(taskId);
+                            }
+                        };
+                        return deleteBtn;
+                    }
+
+                    createStatusButton(status, taskId) {
+                        const statusBtn = document.createElement('button');
+                        statusBtn.className = `status-btn ${status === 'completed' ? 'completed' : ''}`;
+                        statusBtn.textContent = status === 'completed' ? 'Completed' : 'Mark Complete';
+                        statusBtn.onclick = (e) => {
+                            e.stopPropagation();
+                            this.toggleTaskStatus(taskId);
+                        };
+                        return statusBtn;
+                    }
+
+                    initializeElements() {
+                        try {
+                            // Basic Task Creation Elements
+                            this.taskList = document.getElementById('taskList');
+                            this.projectList = document.getElementById('projectList');
+                            this.taskNameInput = document.getElementById('taskName');
+                            this.taskTypeSelect = document.getElementById('taskType');
+
+                            if (!this.taskList || !this.taskNameInput || !this.taskTypeSelect) {
+                                throw new Error('Required task elements not found');
+                            }
+
+                            // Advanced Input Fields
+                            this.projectSelect = document.getElementById('projectSelect');
+                            this.priorityGroup = document.getElementById('priorityGroup');
+                            this.routineFrequencyGroup = document.getElementById('routineFrequencyGroup');
+                            this.routineFrequencySelect = document.getElementById('routineFrequency');
+                            this.customRecurrenceInput = document.getElementById('customRecurrenceInput');
+                            this.routineDateRange = document.getElementById('routineDateRange');
+                            this.routineStartDate = document.getElementById('routineStartDate');
+                            this.routineEndDate = document.getElementById('routineEndDate');
+                            this.dateTypeButtons = document.querySelectorAll('.date-type-btn');
+                            this.dateRangeInputs = document.getElementById('dateRangeInputs');
+                            this.singleDateInput = document.getElementById('singleDateInput');
+                            this.routineSingleDate = document.getElementById('routineSingleDate');
+                            this.colorSelectorGroup = document.getElementById('colorSelectorGroup');
+                            this.colorOptions = document.querySelectorAll('.color-option');
+                            this.dateTimeGroup = document.getElementById('dateTimeGroup');
+                            this.taskDateTimeInput = document.getElementById('taskDateTime');
+                            this.taskDependenciesGroup = document.getElementById('taskDependenciesGroup');
+                            this.taskDependenciesSelect = document.getElementById('taskDependenciesSelect');
+                            this.reminderGroup = document.getElementById('reminderGroup');
+                            this.subtaskGroup = document.getElementById('subtaskGroup');
+                            this.subtaskContainer = document.getElementById('subtaskContainer');
+                            this.addSubtaskBtn = document.getElementById('addSubtaskBtn');
+                            this.notesGroup = document.getElementById('notesGroup');
+                            this.taskNotesInput = document.getElementById('taskNotes');
+                            this.taskImageUrlInput = document.getElementById('taskImageUrl');
+                            this.taskImageFileInput = document.getElementById('taskImageFile');
+                            this.addTaskButton = document.getElementById('addTaskButton');
+
+                            // Calendar Elements
+                            this.calendarView = document.getElementById('calendarView');
+                            this.calendarElement = document.getElementById('calendar');
+                            this.currentWeekElement = document.getElementById('currentWeek');
+                            this.prevWeekButton = document.getElementById('prevWeek');
+                            this.nextWeekButton = document.getElementById('nextWeek');
+
+                            // Modal Elements
+                            this.openTaskModalBtn = document.getElementById('openTaskModalBtn');
+                            this.taskModal = document.getElementById('taskModal');
+                            this.closeModalBtn = document.querySelector('.close-modal');
+
+                            this.advancedTaskFields = document.getElementById('advancedTaskFields');
+
+                            // Search Bar
+                            this.searchTasksInput = document.getElementById('searchTasks');
+
+                            // Settings Modal Elements
+                            this.openSettingsModalBtn = document.getElementById('openSettingsModalBtn');
+                            this.settingsModal = document.getElementById('settingsModal');
+                            this.closeSettingsModalBtn = document.querySelector('.close-settings-modal');
+                            this.backgroundFileInput = document.getElementById('backgroundFile');
+                            this.backgroundFileName = document.getElementById('backgroundFileName');
+                            this.saveSettingsBtn = document.getElementById('saveSettingsBtn');
+
+                            // Clock Element
+                            this.clockWidget = document.getElementById('clockWidget');
+
+                            //Project Modal Elements
+                            this.projectModal = document.getElementById('projectModal');
+                            this.projectNameInput = document.getElementById('projectNameInput');
+                            this.addProjectBtn = document.getElementById('addProjectBtn');
+
+                            //Remove BG
+                            this.removeBgBtn = document.getElementById('removeBgBtn');
+                            // Add preset background elements
+                            this.presetBgOptions = document.querySelectorAll('.preset-bg-option');
+                        } catch (error) {
+                            console.error('Error initializing elements:', error);
+                            alert('There was an error initializing the task manager. Please refresh the page.');
                         }
-                    });
+                    }
 
-                    // Task type change listener
-                    this.taskTypeSelect.addEventListener('change', () => this.handleTaskTypeChange());
+                    setupEventListeners() {
+                        // Open and Close Modal
+                        this.openTaskModalBtn.addEventListener('click', () => this.openModal());
+                        this.closeModalBtn.addEventListener('click', () => this.closeModal());
 
-                    // File upload handler
-                    this.taskImageFileInput.addEventListener('change', (event) => this.handleImageUpload(event));
+                        // Click outside the modal to close
+                        this.taskModal.addEventListener('click', (event) => {
+                            if (event.target === this.taskModal) {
+                                this.closeModal();
+                            }
+                        });
 
-                    // Tab filter event listeners
-                    const tabs = document.querySelectorAll('.tab');
-                    tabs.forEach(tab => {
-                        tab.addEventListener('click', (event) => this.handleTabChange(event));
-                    });
+                        // Task type change listener
+                        this.taskTypeSelect.addEventListener('change', () => this.handleTaskTypeChange());
 
-                    // Add task button event listener
-                    this.addTaskButton.addEventListener('click', () => this.addTask());
+                        // File upload handler
+                        this.taskImageFileInput.addEventListener('change', (event) => this.handleImageUpload(event));
 
-                    // Color selection
-                    this.colorOptions.forEach(option => {
-                        option.addEventListener('click', () => this.handleColorSelection(option));
-                    });
+                        // Tab filter event listeners
+                        const tabs = document.querySelectorAll('.tab');
+                        tabs.forEach(tab => {
+                            tab.addEventListener('click', (event) => this.handleTabChange(event));
+                        });
 
-                    // Add subtask
-                    this.addSubtaskBtn.addEventListener('click', () => this.addSubtask());
+                        // Add task button event listener
+                        this.addTaskButton.addEventListener('click', () => this.addTask());
 
-                    // Calendar week navigation
-                    this.prevWeekButton.addEventListener('click', () => this.changeWeek(-1));
-                    this.nextWeekButton.addEventListener('click', () => this.changeWeek(1));
+                        // Color selection
+                        this.colorOptions.forEach(option => {
+                            option.addEventListener('click', () => this.handleColorSelection(option));
+                        });
 
-                    // Search bar event listener
-                    this.searchTasksInput.addEventListener('input', () => this.handleSearch());
+                        // Add subtask
+                        this.addSubtaskBtn.addEventListener('click', () => this.addSubtask());
 
-                    // Settings modal event listeners
-                    this.openSettingsModalBtn.addEventListener('click', () => this.openSettingsModal());
-                    this.closeSettingsModalBtn.addEventListener('click', () => this.closeSettingsModal());
-                    this.backgroundFileInput.addEventListener('change', (event) => this.handleBackgroundUpload(event));
-                    this.saveSettingsBtn.addEventListener('click', () => this.saveSettings());
+                        // Calendar week navigation
+                        this.prevWeekButton.addEventListener('click', () => this.changeWeek(-1));
+                        this.nextWeekButton.addEventListener('click', () => this.changeWeek(1));
 
-                    this.settingsModal.addEventListener('click', (event) => {
-                        if (event.target === this.settingsModal) {
+                        // Search bar event listener
+                        this.searchTasksInput.addEventListener('input', () => this.handleSearch());
+
+                        // Settings modal event listeners
+                        this.openSettingsModalBtn.addEventListener('click', () => this.openSettingsModal());
+                        this.closeSettingsModalBtn.addEventListener('click', () => this.closeSettingsModal());
+                        this.backgroundFileInput.addEventListener('change', (event) => this.handleBackgroundUpload(event));
+                        this.saveSettingsBtn.addEventListener('click', () => this.saveSettings());
+
+                        this.settingsModal.addEventListener('click', (event) => {
+                            if (event.target === this.settingsModal) {
+                                this.closeSettingsModal();
+                            }
+                        });
+
+                        this.openTaskModalBtn.addEventListener('click', (e) => {
+                            // Create ripple effect
+                            const ripple = document.createElement('span');
+                            ripple.classList.add('ripple');
+
+                            const rect = this.openTaskModalBtn.getBoundingClientRect();
+                            const x = e.clientX - rect.left;
+                            const y = e.clientY - rect.top;
+                            ripple.style.left = `${x}px`;
+                            ripple.style.top = `${y}px`;
+
+                            this.openTaskModalBtn.appendChild(ripple);
+                            setTimeout(() => ripple.remove(), 600);
+
+                            this.openModal();
+                        });
+
+                        //remove background button
+                        this.removeBgBtn.addEventListener('click', () => this.removeBackground());
+
+                        // Add cancel button event listener
+                        document.querySelector('.close-settings-modal').addEventListener('click', () => {
                             this.closeSettingsModal();
-                        }
-                    });
-
-                    this.openTaskModalBtn.addEventListener('click', (e) => {
-                        // Create ripple effect
-                        const ripple = document.createElement('span');
-                        ripple.classList.add('ripple');
-
-                        const rect = this.openTaskModalBtn.getBoundingClientRect();
-                        const x = e.clientX - rect.left;
-                        const y = e.clientY - rect.top;
-                        ripple.style.left = `${x}px`;
-                        ripple.style.top = `${y}px`;
-
-                        this.openTaskModalBtn.appendChild(ripple);
-                        setTimeout(() => ripple.remove(), 600);
-
-                        this.openModal();
-                    });
-
-                    //remove background button
-                    this.removeBgBtn.addEventListener('click', () => this.removeBackground());
-
-                    // Add cancel button event listener
-                    document.querySelector('.close-settings-modal').addEventListener('click', () => {
-                        this.closeSettingsModal();
-                    });
-                    // Project modal event listeners
-                    this.projectList.addEventListener('click', (event) => this.handleProjectListClick(event));
-                    this.addProjectBtn.addEventListener('click', () => this.addProject());
+                        });
+                        // Project modal event listeners
+                        this.projectList.addEventListener('click', (event) => this.handleProjectListClick(event));
+                        this.addProjectBtn.addEventListener('click', () => this.addProject());
 
 
-                    // Handle custom recurrence input
-                    this.routineFrequencySelect.addEventListener('change', () => {
-                        if (this.routineFrequencySelect.value === 'custom') {
-                            this.customRecurrenceInput.style.display = 'block';
-                        } else {
-                            this.customRecurrenceInput.style.display = 'none';
-                        }
-                    });
+                        // Handle custom recurrence input
+                        this.routineFrequencySelect.addEventListener('change', () => {
+                            if (this.routineFrequencySelect.value === 'custom') {
+                                this.customRecurrenceInput.style.display = 'block';
+                            } else {
+                                this.customRecurrenceInput.style.display = 'none';
+                            }
+                        });
 
-                    // Date type selector listeners
-                    this.dateTypeButtons.forEach(btn => {
-                        btn.addEventListener('click', (e) => this.handleDateTypeChange(e));
-                    });
+                        // Date type selector listeners
+                        this.dateTypeButtons.forEach(btn => {
+                            btn.addEventListener('click', (e) => this.handleDateTypeChange(e));
+                        });
 
-                    // Add preset background listeners
-                    this.presetBgOptions.forEach(option => {
-                        option.addEventListener('click', () => this.handlePresetBackgroundSelect(option));
-                    });
-                }
-
-                // Initialize background
-                initializeBackground() {
-                    const savedBackground = localStorage.getItem('backgroundImage');
-                    if (savedBackground) {
-                        this.setBackground(savedBackground);
+                        // Add preset background listeners
+                        this.presetBgOptions.forEach(option => {
+                            option.addEventListener('click', () => this.handlePresetBackgroundSelect(option));
+                        });
                     }
-                }
 
-                handlePresetBackgroundSelect(selectedOption) {
-                    // Remove selection from all options
-                    this.presetBgOptions.forEach(option => option.classList.remove('selected'));
+                    // Initialize background
+                    initializeBackground() {
+                        const savedBackground = localStorage.getItem('backgroundImage');
+                        if (savedBackground) {
+                            this.setBackground(savedBackground);
+                        }
+                    }
 
-                    // Add selection to clicked option
-                    selectedOption.classList.add('selected');
+                    handlePresetBackgroundSelect(selectedOption) {
+                        // Remove selection from all options
+                        this.presetBgOptions.forEach(option => option.classList.remove('selected'));
 
-                    // Set the background
-                    const bgUrl = selectedOption.dataset.bg;
-                    this.setBackground(bgUrl);
+                        // Add selection to clicked option
+                        selectedOption.classList.add('selected');
 
-                    // Save to localStorage
-                    localStorage.setItem('backgroundImage', bgUrl);
+                        // Set the background
+                        const bgUrl = selectedOption.dataset.bg;
+                        this.setBackground(bgUrl);
 
-                    // Clear custom file input
-                    this.backgroundFileInput.value = '';
-                    this.backgroundFileName.textContent = 'No file chosen';
-                }
+                        // Save to localStorage
+                        localStorage.setItem('backgroundImage', bgUrl);
 
-                // Update clock widget
-                updateClock() {
-                    const now = new Date();
-                    let hours = now.getHours();
-                    const minutes = now.getMinutes().toString().padStart(2, '0');
-                    const seconds = now.getSeconds().toString().padStart(2, '0');
-                    const period = hours >= 12 ? 'PM' : 'AM';
+                        // Clear custom file input
+                        this.backgroundFileInput.value = '';
+                        this.backgroundFileName.textContent = 'No file chosen';
+                    }
 
-                    // Convert to 12-hour format
-                    hours = hours % 12;
-                    hours = hours ? hours : 12; // If hours is 0, set it to 12
-                    hours = hours.toString().padStart(2, '0');
+                    // Update clock widget
+                    updateClock() {
+                        const now = new Date();
+                        let hours = now.getHours();
+                        const minutes = now.getMinutes().toString().padStart(2, '0');
+                        const seconds = now.getSeconds().toString().padStart(2, '0');
+                        const period = hours >= 12 ? 'PM' : 'AM';
 
-                    this.clockWidget.innerHTML = `
+                        // Convert to 12-hour format
+                        hours = hours % 12;
+                        hours = hours ? hours : 12; // If hours is 0, set it to 12
+                        hours = hours.toString().padStart(2, '0');
+
+                        this.clockWidget.innerHTML = `
         <div class="time-group">
             <span class="hours">${hours}</span>
             <span class="time-separator">:</span>
@@ -3451,347 +3504,347 @@
         </div>
         <span class="period">${period}</span>
     `;
-                }
-
-                handleDateTypeChange(event) {
-                    this.dateTypeButtons.forEach(btn => btn.classList.remove('active'));
-                    event.target.classList.add('active');
-
-                    const dateType = event.target.dataset.type;
-                    if (dateType === 'range') {
-                        this.dateRangeInputs.style.display = 'block';
-                        this.singleDateInput.style.display = 'none';
-                    } else {
-                        this.dateRangeInputs.style.display = 'none';
-                        this.singleDateInput.style.display = 'block';
                     }
-                }
 
-                // Handle background image upload
-                handleBackgroundUpload(event) {
-                    const file = event.target.files[0];
-                    if (file) {
-                        this.backgroundFileName.textContent = file.name; // Update file name display
+                    handleDateTypeChange(event) {
+                        this.dateTypeButtons.forEach(btn => btn.classList.remove('active'));
+                        event.target.classList.add('active');
 
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            this.setBackground(e.target.result);
-                        };
-                        reader.readAsDataURL(file);
+                        const dateType = event.target.dataset.type;
+                        if (dateType === 'range') {
+                            this.dateRangeInputs.style.display = 'block';
+                            this.singleDateInput.style.display = 'none';
+                        } else {
+                            this.dateRangeInputs.style.display = 'none';
+                            this.singleDateInput.style.display = 'block';
+                        }
                     }
-                }
 
-                // Set background image
-                setBackground(imageData) {
-                    document.body.style.backgroundImage = `url(${imageData})`;
-                    document.body.style.backgroundSize = 'cover';
-                    document.body.style.backgroundPosition = 'center';
-                    document.body.style.backgroundRepeat = 'no-repeat';
-                    document.body.style.backgroundAttachment = 'fixed';
-                }
+                    // Handle background image upload
+                    handleBackgroundUpload(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            this.backgroundFileName.textContent = file.name; // Update file name display
 
-                // Save settings (currently only background image)
-                saveSettings() {
-                    const backgroundFile = this.backgroundFileInput.files[0];
-                    const selectedPreset = document.querySelector('.preset-bg-option.selected');
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                this.setBackground(e.target.result);
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    }
 
-                    if (backgroundFile) {
-                        // Handle custom file upload
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            localStorage.setItem('backgroundImage', e.target.result);
+                    // Set background image
+                    setBackground(imageData) {
+                        document.body.style.backgroundImage = `url(${imageData})`;
+                        document.body.style.backgroundSize = 'cover';
+                        document.body.style.backgroundPosition = 'center';
+                        document.body.style.backgroundRepeat = 'no-repeat';
+                        document.body.style.backgroundAttachment = 'fixed';
+                    }
+
+                    // Save settings (currently only background image)
+                    saveSettings() {
+                        const backgroundFile = this.backgroundFileInput.files[0];
+                        const selectedPreset = document.querySelector('.preset-bg-option.selected');
+
+                        if (backgroundFile) {
+                            // Handle custom file upload
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                localStorage.setItem('backgroundImage', e.target.result);
+                                this.closeSettingsModal();
+                                alert('Settings saved successfully!');
+                            };
+                            reader.readAsDataURL(backgroundFile);
+                        } else if (selectedPreset) {
+                            // Handle preset background
+                            localStorage.setItem('backgroundImage', selectedPreset.dataset.bg);
                             this.closeSettingsModal();
                             alert('Settings saved successfully!');
-                        };
-                        reader.readAsDataURL(backgroundFile);
-                    } else if (selectedPreset) {
-                        // Handle preset background
-                        localStorage.setItem('backgroundImage', selectedPreset.dataset.bg);
-                        this.closeSettingsModal();
-                        alert('Settings saved successfully!');
-                    } else {
-                        this.closeSettingsModal();
-                        alert('No background changes to save.');
+                        } else {
+                            this.closeSettingsModal();
+                            alert('No background changes to save.');
+                        }
                     }
-                }
 
-                removeBackground() {
-                    // Remove background image
-                    document.body.style.backgroundImage = 'none';
+                    removeBackground() {
+                        // Remove background image
+                        document.body.style.backgroundImage = 'none';
 
-                    // Clear from localStorage
-                    localStorage.removeItem('backgroundImage');
+                        // Clear from localStorage
+                        localStorage.removeItem('backgroundImage');
 
-                    // Reset file input and filename display
-                    this.backgroundFileInput.value = '';
-                    this.backgroundFileName.textContent = 'No file chosen';
+                        // Reset file input and filename display
+                        this.backgroundFileInput.value = '';
+                        this.backgroundFileName.textContent = 'No file chosen';
 
-                    // Show confirmation
-                    alert('Background image has been removed');
-                }
-
-                // Open settings modal
-                openSettingsModal() {
-                    this.settingsModal.style.display = 'flex';
-                }
-
-                // Close settings modal
-                closeSettingsModal() {
-                    this.settingsModal.style.display = 'none';
-                }
-
-                // Handle search
-                handleSearch() {
-                    const searchText = this.searchTasksInput.value.toLowerCase();
-                    const activeTab = document.querySelector('.tab.active').dataset.type;
-
-                    this.renderTasks(activeTab, searchText);
-                }
-
-
-
-                openModal() {
-                    this.taskModal.classList.add('active');
-                    this.taskModal.style.display = 'flex';
-                    this.loadProjectsIntoModal();
-                    this.loadTasksIntoDependenciesSelect();
-                }
-
-                closeModal() {
-                    this.taskModal.classList.add('closing');
-                    setTimeout(() => {
-                        this.taskModal.classList.remove('closing');
-                        this.taskModal.classList.remove('active');
-                        this.taskModal.style.display = 'none';
-                    }, 300); // ~ animation duration
-                    this.clearInputs();
-                }
-
-                handleTaskTypeChange() {
-                    const isRoutine = this.taskTypeSelect.value === 'routine';
-
-                    // Show/hide routine-specific fields
-                    this.routineFrequencyGroup.style.display = isRoutine ? 'block' : 'none';
-                    this.routineDateRange.style.display = isRoutine ? 'block' : 'none';
-
-                    // Show/hide standard task fields
-                    this.priorityGroup.style.display = isRoutine ? 'none' : 'flex';
-                    this.colorSelectorGroup.style.display = isRoutine ? 'none' : 'flex';
-                    this.dateTimeGroup.style.display = isRoutine ? 'none' : 'block';
-                    this.taskDependenciesGroup.style.display = isRoutine ? 'none' : 'block';
-                    this.reminderGroup.style.display = isRoutine ? 'none' : 'block';
-                    this.subtaskGroup.style.display = isRoutine ? 'none' : 'block';
-                    this.notesGroup.style.display = 'block'; // Always show notes
-
-                    // Reset date inputs when switching types
-                    if (isRoutine) {
-                        this.dateTypeButtons[0].click(); // Reset to range selection
-                        this.routineStartDate.value = '';
-                        this.routineEndDate.value = '';
-                        this.routineSingleDate.value = '';
+                        // Show confirmation
+                        alert('Background image has been removed');
                     }
-                }
 
-                handleImageUpload(event) {
-                    const file = event.target.files[0];
-                    if (file) {
-                        const reader = new FileReader();
-                        reader.onload = (e) => {
-                            this.taskImageUrlInput.value = e.target.result;
-                        };
-                        reader.readAsDataURL(file);
+                    // Open settings modal
+                    openSettingsModal() {
+                        this.settingsModal.style.display = 'flex';
                     }
-                }
 
-                handleTabChange(event) {
-                    // Remove active class from all tabs
-                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-
-                    // Add active class to clicked tab
-                    event.target.classList.add('active');
-
-                    // Filter tasks based on tab
-                    const filterType = event.target.dataset.type;
-                    if (filterType === 'projects') {
-                        this.taskList.style.display = 'none';
-                        this.calendarView.style.display = 'none';
-                        this.projectList.style.display = 'grid';
-                        this.renderProjects();
-                    } else if (filterType === 'routine') {
-                        this.taskList.style.display = 'none';
-                        this.projectList.style.display = 'none';
-                        this.calendarView.style.display = 'block';
-                        this.renderCalendar();
-                    } else {
-                        this.taskList.style.display = 'grid';
-                        this.projectList.style.display = 'none';
-                        this.calendarView.style.display = 'none';
-                        this.renderTasks(filterType);
+                    // Close settings modal
+                    closeSettingsModal() {
+                        this.settingsModal.style.display = 'none';
                     }
-                }
 
-                handleColorSelection(option) {
-                    this.colorOptions.forEach(opt => opt.classList.remove('selected'));
-                    option.classList.add('selected');
-                }
+                    // Handle search
+                    handleSearch() {
+                        const searchText = this.searchTasksInput.value.toLowerCase();
+                        const activeTab = document.querySelector('.tab.active').dataset.type;
 
-                addSubtask() {
-                    const subtaskItem = document.createElement('div');
-                    subtaskItem.className = 'subtask-item';
-                    subtaskItem.innerHTML = `
+                        this.renderTasks(activeTab, searchText);
+                    }
+
+
+
+                    openModal() {
+                        this.taskModal.classList.add('active');
+                        this.taskModal.style.display = 'flex';
+                        this.loadProjectsIntoModal();
+                        this.loadTasksIntoDependenciesSelect();
+                    }
+
+                    closeModal() {
+                        this.taskModal.classList.add('closing');
+                        setTimeout(() => {
+                            this.taskModal.classList.remove('closing');
+                            this.taskModal.classList.remove('active');
+                            this.taskModal.style.display = 'none';
+                        }, 300); // ~ animation duration
+                        this.clearInputs();
+                    }
+
+                    handleTaskTypeChange() {
+                        const isRoutine = this.taskTypeSelect.value === 'routine';
+
+                        // Show/hide routine-specific fields
+                        this.routineFrequencyGroup.style.display = isRoutine ? 'block' : 'none';
+                        this.routineDateRange.style.display = isRoutine ? 'block' : 'none';
+
+                        // Show/hide standard task fields
+                        this.priorityGroup.style.display = isRoutine ? 'none' : 'flex';
+                        this.colorSelectorGroup.style.display = isRoutine ? 'none' : 'flex';
+                        this.dateTimeGroup.style.display = isRoutine ? 'none' : 'block';
+                        this.taskDependenciesGroup.style.display = isRoutine ? 'none' : 'block';
+                        this.reminderGroup.style.display = isRoutine ? 'none' : 'block';
+                        this.subtaskGroup.style.display = isRoutine ? 'none' : 'block';
+                        this.notesGroup.style.display = 'block'; // Always show notes
+
+                        // Reset date inputs when switching types
+                        if (isRoutine) {
+                            this.dateTypeButtons[0].click(); // Reset to range selection
+                            this.routineStartDate.value = '';
+                            this.routineEndDate.value = '';
+                            this.routineSingleDate.value = '';
+                        }
+                    }
+
+                    handleImageUpload(event) {
+                        const file = event.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = (e) => {
+                                this.taskImageUrlInput.value = e.target.result;
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    }
+
+                    handleTabChange(event) {
+                        // Remove active class from all tabs
+                        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+                        // Add active class to clicked tab
+                        event.target.classList.add('active');
+
+                        // Filter tasks based on tab
+                        const filterType = event.target.dataset.type;
+                        if (filterType === 'projects') {
+                            this.taskList.style.display = 'none';
+                            this.calendarView.style.display = 'none';
+                            this.projectList.style.display = 'grid';
+                            this.renderProjects();
+                        } else if (filterType === 'routine') {
+                            this.taskList.style.display = 'none';
+                            this.projectList.style.display = 'none';
+                            this.calendarView.style.display = 'block';
+                            this.renderCalendar();
+                        } else {
+                            this.taskList.style.display = 'grid';
+                            this.projectList.style.display = 'none';
+                            this.calendarView.style.display = 'none';
+                            this.renderTasks(filterType);
+                        }
+                    }
+
+                    handleColorSelection(option) {
+                        this.colorOptions.forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                    }
+
+                    addSubtask() {
+                        const subtaskItem = document.createElement('div');
+                        subtaskItem.className = 'subtask-item';
+                        subtaskItem.innerHTML = `
                 <input type="text" class="subtask-input" placeholder="Enter subtask">
                 <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
                 `;
 
-                    // Remove subtask functionality
-                    subtaskItem.querySelector('button').addEventListener('click', () => {
-                        subtaskItem.remove();
-                    });
+                        // Remove subtask functionality
+                        subtaskItem.querySelector('button').addEventListener('click', () => {
+                            subtaskItem.remove();
+                        });
 
-                    this.subtaskContainer.appendChild(subtaskItem);
-                }
+                        this.subtaskContainer.appendChild(subtaskItem);
+                    }
 
-                renderProjects() {
-                    this.projectList.innerHTML = '';
+                    renderProjects() {
+                        this.projectList.innerHTML = '';
 
-                    const addProjectCard = document.createElement('div');
-                    addProjectCard.className = 'project-card add-project-card';
-                    addProjectCard.innerHTML = `
+                        const addProjectCard = document.createElement('div');
+                        addProjectCard.className = 'project-card add-project-card';
+                        addProjectCard.innerHTML = `
                         <div class="project-name add-project-name">
                              <i class="fas fa-plus"></i> Add New Project
                         </div>
                     `;
-                    this.projectList.appendChild(addProjectCard);
+                        this.projectList.appendChild(addProjectCard);
 
-                    for (const projectName in this.projects) {
-                        const projectCard = document.createElement('div');
-                        projectCard.className = 'project-card';
-                        projectCard.innerHTML = `
+                        for (const projectName in this.projects) {
+                            const projectCard = document.createElement('div');
+                            projectCard.className = 'project-card';
+                            projectCard.innerHTML = `
                             <div class="project-name">${projectName}</div>
                             <div class="project-tasks-count">${this.projects[projectName].length} tasks</div>
                          `;
 
-                        projectCard.addEventListener('click', () => {
-                            // Render tasks for the selected project
-                            this.renderTasks('all', null, projectName);
+                            projectCard.addEventListener('click', () => {
+                                // Render tasks for the selected project
+                                this.renderTasks('all', null, projectName);
 
-                            // Update active tab to "All Tasks" and switch display
-                            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                            document.querySelector('.tab[data-type="all"]').classList.add('active');
-                            this.taskList.style.display = 'grid';
-                            this.projectList.style.display = 'none';
-                            this.calendarView.style.display = 'none';
-                        });
+                                // Update active tab to "All Tasks" and switch display
+                                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                                document.querySelector('.tab[data-type="all"]').classList.add('active');
+                                this.taskList.style.display = 'grid';
+                                this.projectList.style.display = 'none';
+                                this.calendarView.style.display = 'none';
+                            });
 
-                        this.projectList.appendChild(projectCard);
-                    }
-                }
-
-
-                addProject() {
-                    const projectName = this.projectNameInput.value.trim();
-                    if (!projectName) {
-                        alert('Please enter a project name.');
-                        return;
+                            this.projectList.appendChild(projectCard);
+                        }
                     }
 
-                    if (this.projects[projectName]) {
-                        alert('Project with this name already exists.');
-                        return;
+
+                    addProject() {
+                        const projectName = this.projectNameInput.value.trim();
+                        if (!projectName) {
+                            alert('Please enter a project name.');
+                            return;
+                        }
+
+                        if (this.projects[projectName]) {
+                            alert('Project with this name already exists.');
+                            return;
+                        }
+
+                        this.projects[projectName] = [];
+                        this.saveProjects();
+                        this.renderProjects();
+
+                        this.closeModal();
+                        this.projectNameInput.value = '';
+
                     }
 
-                    this.projects[projectName] = [];
-                    this.saveProjects();
-                    this.renderProjects();
-
-                    this.closeModal();
-                    this.projectNameInput.value = '';
-
-                }
-
-                handleProjectListClick(event) {
-                    if (event.target.closest('.add-project-card')) {
-                        this.openProjectModal();
+                    handleProjectListClick(event) {
+                        if (event.target.closest('.add-project-card')) {
+                            this.openProjectModal();
+                        }
                     }
-                }
-                openProjectModal() {
-                    this.projectModal.classList.add('active');
-                    this.projectModal.style.display = 'flex';
-                }
-
-
-                loadProjectsIntoModal() {
-                    // Clear existing options
-                    this.projectSelect.innerHTML = '<option value="">No Project</option>';
-
-                    // Add projects to the dropdown
-                    for (const projectName in this.projects) {
-                        const option = document.createElement('option');
-                        option.value = projectName;
-                        option.text = projectName;
-                        this.projectSelect.appendChild(option);
+                    openProjectModal() {
+                        this.projectModal.classList.add('active');
+                        this.projectModal.style.display = 'flex';
                     }
-                }
 
-                loadTasksIntoDependenciesSelect() {
-                    // Clear existing options
-                    this.taskDependenciesSelect.innerHTML = '';
 
-                    // Add tasks to the dropdown
-                    this.tasks.forEach(task => {
-                        const option = document.createElement('option');
-                        option.value = task.id;
-                        option.text = task.name;
-                        this.taskDependenciesSelect.appendChild(option);
-                    });
-                }
+                    loadProjectsIntoModal() {
+                        // Clear existing options
+                        this.projectSelect.innerHTML = '<option value="">No Project</option>';
 
-                renderTasks(filterType = 'all', searchText = null, projectFilter = null) {
-                    // Clear existing task list
-                    this.taskList.innerHTML = '';
+                        // Add projects to the dropdown
+                        for (const projectName in this.projects) {
+                            const option = document.createElement('option');
+                            option.value = projectName;
+                            option.text = projectName;
+                            this.projectSelect.appendChild(option);
+                        }
+                    }
 
-                    // Filter tasks based on selected tab and search text
-                    let filteredTasks = this.tasks;
-                    if (filterType !== 'all') {
-                        filteredTasks = filteredTasks.filter(task => {
-                            if (filterType === 'priority') {
-                                return task.priority === 'high';
-                            } else if (filterType === 'projects' && projectFilter) {
-                                return task.project === projectFilter;
-                            } else {
-                                return task.type === filterType;
-                            }
+                    loadTasksIntoDependenciesSelect() {
+                        // Clear existing options
+                        this.taskDependenciesSelect.innerHTML = '';
+
+                        // Add tasks to the dropdown
+                        this.tasks.forEach(task => {
+                            const option = document.createElement('option');
+                            option.value = task.id;
+                            option.text = task.name;
+                            this.taskDependenciesSelect.appendChild(option);
                         });
                     }
 
-                    if (searchText) {
-                        filteredTasks = filteredTasks.filter(task => {
-                            const taskName = task.name.toLowerCase();
-                            const taskNotes = task.notes ? task.notes.toLowerCase() : '';
-                            const taskSubtasks = task.subtasks ? task.subtasks.join(' ').toLowerCase() : '';
-                            return taskName.includes(searchText) || taskNotes.includes(searchText) || taskSubtasks.includes(searchText);
+                    renderTasks(filterType = 'all', searchText = null, projectFilter = null) {
+                        // Clear existing task list
+                        this.taskList.innerHTML = '';
+
+                        // Filter tasks based on selected tab and search text
+                        let filteredTasks = this.tasks;
+                        if (filterType !== 'all') {
+                            filteredTasks = filteredTasks.filter(task => {
+                                if (filterType === 'priority') {
+                                    return task.priority === 'high';
+                                } else if (filterType === 'projects' && projectFilter) {
+                                    return task.project === projectFilter;
+                                } else {
+                                    return task.type === filterType;
+                                }
+                            });
+                        }
+
+                        if (searchText) {
+                            filteredTasks = filteredTasks.filter(task => {
+                                const taskName = task.name.toLowerCase();
+                                const taskNotes = task.notes ? task.notes.toLowerCase() : '';
+                                const taskSubtasks = task.subtasks ? task.subtasks.join(' ').toLowerCase() : '';
+                                return taskName.includes(searchText) || taskNotes.includes(searchText) || taskSubtasks.includes(searchText);
+                            });
+                        }
+
+                        // Sort tasks (priority first, then by date)
+                        filteredTasks.sort((a, b) => {
+                            // Sort by priority (high first)
+                            const priorityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
+                            const priorityComparison = (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
+                            if (priorityComparison !== 0) return priorityComparison;
+
+                            // Then sort by date if priority is the same
+                            return new Date(a.dateTime || 0) - new Date(b.dateTime || 0);
                         });
-                    }
 
-                    // Sort tasks (priority first, then by date)
-                    filteredTasks.sort((a, b) => {
-                        // Sort by priority (high first)
-                        const priorityOrder = { 'high': 3, 'medium': 2, 'low': 1 };
-                        const priorityComparison = (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
-                        if (priorityComparison !== 0) return priorityComparison;
+                        // Render each task
+                        filteredTasks.forEach(task => {
+                            try {
+                                const taskCard = document.createElement('div');
+                                taskCard.className = `task-card ${task.priority === 'high' ? 'priority' : ''} ${task.type}`;
 
-                        // Then sort by date if priority is the same
-                        return new Date(a.dateTime || 0) - new Date(b.dateTime || 0);
-                    });
-
-                    // Render each task
-                    filteredTasks.forEach(task => {
-                        try {
-                            const taskCard = document.createElement('div');
-                            taskCard.className = `task-card ${task.priority === 'high' ? 'priority' : ''} ${task.type}`;
-
-                            // Main content structure
-                            const mainContent = `
+                                // Main content structure
+                                const mainContent = `
                                 <div class="task-main-content">
                                     <div class="task-info">
                                         <div class="task-name">${task.name}</div>
@@ -3812,110 +3865,110 @@
                                 </div>
                             `;
 
-                            taskCard.innerHTML = mainContent;
+                                taskCard.innerHTML = mainContent;
 
-                            // Add action buttons
-                            const deleteBtn = this.createDeleteButton(task.id);
-                            const statusBtn = this.createStatusButton(task.status, task.id);
-                            taskCard.appendChild(deleteBtn);
-                            taskCard.appendChild(statusBtn);
+                                // Add action buttons
+                                const deleteBtn = this.createDeleteButton(task.id);
+                                const statusBtn = this.createStatusButton(task.status, task.id);
+                                taskCard.appendChild(deleteBtn);
+                                taskCard.appendChild(statusBtn);
 
-                            // Setup interaction
-                            this.setupTaskCardInteraction(taskCard);
+                                // Setup interaction
+                                this.setupTaskCardInteraction(taskCard);
 
-                            this.taskList.appendChild(taskCard);
-                        } catch (error) {
-                            console.error('Error rendering task:', task, error);
+                                this.taskList.appendChild(taskCard);
+                            } catch (error) {
+                                console.error('Error rendering task:', task, error);
+                            }
+                        });
+                    }
+
+                    generateTags(task) {
+                        let tags = [];
+
+                        // Add type tag
+                        tags.push(`<span class="tag tag-${task.type}">${task.type.toUpperCase()}</span>`);
+
+                        // Add priority tag if exists
+                        if (task.priority) {
+                            tags.push(`<span class="tag tag-${task.priority}">${task.priority.toUpperCase()}</span>`);
                         }
-                    });
-                }
 
-                generateTags(task) {
-                    let tags = [];
+                        // Add project tag if exists
+                        if (task.project) {
+                            tags.push(`<span class="tag tag-project">${task.project}</span>`);
+                        }
 
-                    // Add type tag
-                    tags.push(`<span class="tag tag-${task.type}">${task.type.toUpperCase()}</span>`);
+                        // Add date tag if exists
+                        if (task.dateTime && task.dateTime !== 'Invalid Date' && task.dateTime !== '') {
+                            try {
+                                const taskDate = new Date(task.dateTime);
+                                if (!isNaN(taskDate.getTime())) {  // Check if date is valid
+                                    const today = new Date();
+                                    const tomorrow = new Date(today);
+                                    tomorrow.setDate(tomorrow.getDate() + 1);
 
-                    // Add priority tag if exists
-                    if (task.priority) {
-                        tags.push(`<span class="tag tag-${task.priority}">${task.priority.toUpperCase()}</span>`);
-                    }
+                                    let dateClass = '';
+                                    let dateText = '';
 
-                    // Add project tag if exists
-                    if (task.project) {
-                        tags.push(`<span class="tag tag-project">${task.project}</span>`);
-                    }
+                                    if (taskDate < today) {
+                                        dateClass = 'overdue';
+                                        dateText = this.getRelativeTimeString(taskDate);
+                                    } else if (taskDate.toDateString() === today.toDateString()) {
+                                        dateClass = 'today';
+                                        dateText = 'Today';
+                                    } else if (taskDate.toDateString() === tomorrow.toDateString()) {
+                                        dateClass = 'tomorrow';
+                                        dateText = 'Tomorrow';
+                                    } else {
+                                        dateText = this.getSmartDateFormat(taskDate);
+                                    }
 
-                    // Add date tag if exists
-                    if (task.dateTime && task.dateTime !== 'Invalid Date' && task.dateTime !== '') {
-                        try {
-                            const taskDate = new Date(task.dateTime);
-                            if (!isNaN(taskDate.getTime())) {  // Check if date is valid
-                                const today = new Date();
-                                const tomorrow = new Date(today);
-                                tomorrow.setDate(tomorrow.getDate() + 1);
-
-                                let dateClass = '';
-                                let dateText = '';
-
-                                if (taskDate < today) {
-                                    dateClass = 'overdue';
-                                    dateText = this.getRelativeTimeString(taskDate);
-                                } else if (taskDate.toDateString() === today.toDateString()) {
-                                    dateClass = 'today';
-                                    dateText = 'Today';
-                                } else if (taskDate.toDateString() === tomorrow.toDateString()) {
-                                    dateClass = 'tomorrow';
-                                    dateText = 'Tomorrow';
-                                } else {
-                                    dateText = this.getSmartDateFormat(taskDate);
-                                }
-
-                                tags.push(`
+                                    tags.push(`
                     <span class="task-date ${dateClass}">
                         <i class="far fa-clock"></i>
                         ${dateText}
                     </span>
                 `);
+                                }
+                            } catch (error) {
+                                console.error('Error processing date:', error);
                             }
-                        } catch (error) {
-                            console.error('Error processing date:', error);
                         }
+
+                        // Add reminder tags if they exist
+                        if (task.reminders) {
+                            if (task.reminders.email) {
+                                tags.push('<span class="tag tag-reminder"><i class="fas fa-envelope"></i></span>');
+                            }
+                            if (task.reminders.desktop) {
+                                tags.push('<span class="tag tag-reminder"><i class="fas fa-bell"></i></span>');
+                            }
+                        }
+
+                        return tags.join('');
                     }
 
-                    // Add reminder tags if they exist
-                    if (task.reminders) {
-                        if (task.reminders.email) {
-                            tags.push('<span class="tag tag-reminder"><i class="fas fa-envelope"></i></span>');
-                        }
-                        if (task.reminders.desktop) {
-                            tags.push('<span class="tag tag-reminder"><i class="fas fa-bell"></i></span>');
-                        }
+                    // Add these helper methods
+                    getRelativeTimeString(date) {
+                        const diffDays = Math.round((new Date() - date) / (1000 * 60 * 60 * 24));
+                        if (diffDays === 1) return 'Yesterday';
+                        if (diffDays < 7) return `${diffDays}d ago`;
+                        return this.getSmartDateFormat(date);
                     }
 
-                    return tags.join('');
-                }
+                    getSmartDateFormat(date) {
+                        const now = new Date();
+                        const isThisYear = date.getFullYear() === now.getFullYear();
 
-                // Add these helper methods
-                getRelativeTimeString(date) {
-                    const diffDays = Math.round((new Date() - date) / (1000 * 60 * 60 * 24));
-                    if (diffDays === 1) return 'Yesterday';
-                    if (diffDays < 7) return `${diffDays}d ago`;
-                    return this.getSmartDateFormat(date);
-                }
+                        return isThisYear
+                            ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+                            : date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' });
+                    }
 
-                getSmartDateFormat(date) {
-                    const now = new Date();
-                    const isThisYear = date.getFullYear() === now.getFullYear();
-
-                    return isThisYear
-                        ? date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-                        : date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: '2-digit' });
-                }
-
-                generateAdditionalContent(task) {
-                    // Add dependency section
-                    const dependenciesContent = task.dependencies && task.dependencies.length > 0 ? `
+                    generateAdditionalContent(task) {
+                        // Add dependency section
+                        const dependenciesContent = task.dependencies && task.dependencies.length > 0 ? `
         <div class="task-dependencies">
             <div class="dependencies-header">
                 <i class="fas fa-link"></i>
@@ -3923,23 +3976,23 @@
             </div>
             <div class="dependency-chain">
                 ${task.dependencies.map((depId, index) => {
-                        const depTask = this.tasks.find(t => t.id === depId);
-                        if (!depTask) return '';
-                        const status = depTask.status || 'pending';
-                        return `
+                            const depTask = this.tasks.find(t => t.id === depId);
+                            if (!depTask) return '';
+                            const status = depTask.status || 'pending';
+                            return `
                         <div class="dependency-item ${status}">
                             <span class="dependency-status ${status}"></span>
                             ${depTask.name}
                         </div>
                         ${index < task.dependencies.length - 1
-                                ? '<span class="dependency-arrow"><i class="fas fa-chevron-right"></i></span>'
-                                : ''}
+                                    ? '<span class="dependency-arrow"><i class="fas fa-chevron-right"></i></span>'
+                                    : ''}
                     `;
-                    }).join('')}
+                        }).join('')}
             </div>
         </div>
     ` : '';
-                    return `
+                        return `
         <div class="task-additional-info">
             ${dependenciesContent}
             ${task.dateTime ? `
@@ -3977,325 +4030,325 @@
             ${dependenciesContent}
         </div>
     `;
-                }
+                    }
 
-                toggleTaskStatus(taskId) {
-                    const taskIndex = this.tasks.findIndex(task => task.id === taskId);
-                    if (taskIndex !== -1) {
-                        const task = this.tasks[taskIndex];
+                    toggleTaskStatus(taskId) {
+                        const taskIndex = this.tasks.findIndex(task => task.id === taskId);
+                        if (taskIndex !== -1) {
+                            const task = this.tasks[taskIndex];
 
-                        // Check for dependencies
-                        if (task.dependencies && task.dependencies.length > 0) {
-                            const dependenciesMet = task.dependencies.every(depId => {
-                                const depTask = this.tasks.find(t => t.id === depId);
-                                return depTask && depTask.status === 'completed';
-                            });
+                            // Check for dependencies
+                            if (task.dependencies && task.dependencies.length > 0) {
+                                const dependenciesMet = task.dependencies.every(depId => {
+                                    const depTask = this.tasks.find(t => t.id === depId);
+                                    return depTask && depTask.status === 'completed';
+                                });
 
-                            if (!dependenciesMet) {
-                                alert('This task has unmet dependencies. Complete dependent tasks first.');
+                                if (!dependenciesMet) {
+                                    alert('This task has unmet dependencies. Complete dependent tasks first.');
+                                    return;
+                                }
+                            }
+
+                            task.status = task.status === 'completed' ? 'pending' : 'completed';
+                            this.saveTasks();
+                            this.renderTasks(document.querySelector('.tab.active').dataset.type);
+                        }
+                    }
+
+                    addTask() {
+                        try {
+                            // Get input values and add validation
+                            if (!this.taskNameInput) {
+                                console.error('Task name input element not found');
                                 return;
                             }
-                        }
 
-                        task.status = task.status === 'completed' ? 'pending' : 'completed';
-                        this.saveTasks();
-                        this.renderTasks(document.querySelector('.tab.active').dataset.type);
-                    }
-                }
-
-                addTask() {
-                    try {
-                        // Get input values and add validation
-                        if (!this.taskNameInput) {
-                            console.error('Task name input element not found');
-                            return;
-                        }
-
-                        const taskName = this.taskNameInput.value?.trim() || '';
-                        const taskType = this.taskTypeSelect?.value || 'todo';
-                        const taskProject = this.projectSelect?.value || '';
-
-                        // Debug logging
-                        console.log('Adding task:', {
-                            name: taskName,
-                            type: taskType,
-                            project: taskProject
-                        });
-
-                        // Validate task name
-                        if (!taskName) {
-                            alert('Please enter a task name.');
-                            return;
-                        }
-
-                        let taskData = {
-                            id: Date.now(),
-                            name: taskName,
-                            type: taskType,
-                            status: 'pending',
-                            project: taskProject
-                        };
-
-                        if (taskType === 'routine') {
-                            const routineFrequency = this.routineFrequencySelect?.value || 'daily';
-                            const customRecurrence = this.customRecurrenceInput?.value?.trim() || '';
-                            const dateTypeBtn = document.querySelector('.date-type-btn.active');
-                            const dateType = dateTypeBtn?.dataset?.type || 'range';
-
-                            let startDate, endDate;
-
-                            if (dateType === 'single') {
-                                startDate = this.routineSingleDate?.value;
-                                endDate = startDate; // For single date, end date is same as start date
-
-                                if (!startDate) {
-                                    alert('Please select a date for the routine task.');
-                                    return;
-                                }
-                            } else {
-                                startDate = this.routineStartDate?.value;
-                                endDate = this.routineEndDate?.value;
-
-                                if (!startDate || !endDate) {
-                                    alert('Please select both start and end dates for the routine task.');
-                                    return;
-                                }
-
-                                if (new Date(startDate) > new Date(endDate)) {
-                                    alert('Start date must be before or equal to end date.');
-                                    return;
-                                }
-                            }
+                            const taskName = this.taskNameInput.value?.trim() || '';
+                            const taskType = this.taskTypeSelect?.value || 'todo';
+                            const taskProject = this.projectSelect?.value || '';
 
                             // Debug logging
-                            console.log('Adding routine task:', {
-                                dateType,
-                                startDate,
-                                endDate,
-                                isSingleDate: dateType === 'single'
+                            console.log('Adding task:', {
+                                name: taskName,
+                                type: taskType,
+                                project: taskProject
                             });
 
-                            taskData = {
-                                ...taskData,
-                                routineFrequency,
-                                customRecurrence,
-                                startDate,
-                                endDate,
-                                isSingleDate: dateType === 'single',
-                                image: this.taskImageUrlInput?.value?.trim() || '',
-                                notes: this.taskNotesInput?.value?.trim() || ''
-                            };
-                        } else {
-                            const selectedPriority = document.querySelector('input[name="priority"]:checked');
-                            const selectedColorOption = document.querySelector('.color-option.selected');
-                            const dateTimeValue = this.taskDateTimeInput?.value || '';
-                            const imageValue = this.taskImageUrlInput?.value?.trim() || '';
-
-                            taskData = {
-                                ...taskData,
-                                priority: selectedPriority?.value || 'low',
-                                color: selectedColorOption?.dataset?.color || null,
-                                dateTime: dateTimeValue ? new Date(dateTimeValue).toISOString() : '', // Properly format the date
-                                dependencies: Array.from(this.taskDependenciesSelect?.selectedOptions || [])
-                                    .map(option => Number(option.value)),
-                                subtasks: Array.from(this.subtaskContainer?.querySelectorAll('.subtask-input') || [])
-                                    .map(input => input.value?.trim())
-                                    .filter(Boolean),
-                                notes: this.taskNotesInput?.value?.trim() || '',
-                                reminders: {
-                                    email: document.getElementById('emailReminder')?.checked || false,
-                                    desktop: document.getElementById('desktopNotification')?.checked || false
-                                },
-                                image: imageValue
-                            };
-                        }
-
-                        // Validate the task data before saving
-                        if (!this.validateTaskData(taskData)) {
-                            throw new Error('Invalid task data');
-                        }
-
-                        // Add task to tasks array
-                        this.tasks.push(taskData);
-
-                        // Update project if selected
-                        if (taskProject) {
-                            if (!this.projects[taskProject]) {
-                                this.projects[taskProject] = [];
+                            // Validate task name
+                            if (!taskName) {
+                                alert('Please enter a task name.');
+                                return;
                             }
-                            this.projects[taskProject].push(taskData.id);
-                            this.saveProjects();
+
+                            let taskData = {
+                                id: Date.now(),
+                                name: taskName,
+                                type: taskType,
+                                status: 'pending',
+                                project: taskProject
+                            };
+
+                            if (taskType === 'routine') {
+                                const routineFrequency = this.routineFrequencySelect?.value || 'daily';
+                                const customRecurrence = this.customRecurrenceInput?.value?.trim() || '';
+                                const dateTypeBtn = document.querySelector('.date-type-btn.active');
+                                const dateType = dateTypeBtn?.dataset?.type || 'range';
+
+                                let startDate, endDate;
+
+                                if (dateType === 'single') {
+                                    startDate = this.routineSingleDate?.value;
+                                    endDate = startDate; // For single date, end date is same as start date
+
+                                    if (!startDate) {
+                                        alert('Please select a date for the routine task.');
+                                        return;
+                                    }
+                                } else {
+                                    startDate = this.routineStartDate?.value;
+                                    endDate = this.routineEndDate?.value;
+
+                                    if (!startDate || !endDate) {
+                                        alert('Please select both start and end dates for the routine task.');
+                                        return;
+                                    }
+
+                                    if (new Date(startDate) > new Date(endDate)) {
+                                        alert('Start date must be before or equal to end date.');
+                                        return;
+                                    }
+                                }
+
+                                // Debug logging
+                                console.log('Adding routine task:', {
+                                    dateType,
+                                    startDate,
+                                    endDate,
+                                    isSingleDate: dateType === 'single'
+                                });
+
+                                taskData = {
+                                    ...taskData,
+                                    routineFrequency,
+                                    customRecurrence,
+                                    startDate,
+                                    endDate,
+                                    isSingleDate: dateType === 'single',
+                                    image: this.taskImageUrlInput?.value?.trim() || '',
+                                    notes: this.taskNotesInput?.value?.trim() || ''
+                                };
+                            } else {
+                                const selectedPriority = document.querySelector('input[name="priority"]:checked');
+                                const selectedColorOption = document.querySelector('.color-option.selected');
+                                const dateTimeValue = this.taskDateTimeInput?.value || '';
+                                const imageValue = this.taskImageUrlInput?.value?.trim() || '';
+
+                                taskData = {
+                                    ...taskData,
+                                    priority: selectedPriority?.value || 'low',
+                                    color: selectedColorOption?.dataset?.color || null,
+                                    dateTime: dateTimeValue ? new Date(dateTimeValue).toISOString() : '', // Properly format the date
+                                    dependencies: Array.from(this.taskDependenciesSelect?.selectedOptions || [])
+                                        .map(option => Number(option.value)),
+                                    subtasks: Array.from(this.subtaskContainer?.querySelectorAll('.subtask-input') || [])
+                                        .map(input => input.value?.trim())
+                                        .filter(Boolean),
+                                    notes: this.taskNotesInput?.value?.trim() || '',
+                                    reminders: {
+                                        email: document.getElementById('emailReminder')?.checked || false,
+                                        desktop: document.getElementById('desktopNotification')?.checked || false
+                                    },
+                                    image: imageValue
+                                };
+                            }
+
+                            // Validate the task data before saving
+                            if (!this.validateTaskData(taskData)) {
+                                throw new Error('Invalid task data');
+                            }
+
+                            // Add task to tasks array
+                            this.tasks.push(taskData);
+
+                            // Update project if selected
+                            if (taskProject) {
+                                if (!this.projects[taskProject]) {
+                                    this.projects[taskProject] = [];
+                                }
+                                this.projects[taskProject].push(taskData.id);
+                                this.saveProjects();
+                            }
+
+                            // Save and render
+                            this.saveTasks();
+
+                            const activeTab = document.querySelector('.tab.active')?.dataset?.type;
+                            if (taskType === 'routine') {
+                                this.renderCalendar();
+                            } else {
+                                this.renderTasks(activeTab || 'all');
+                            }
+
+                            // Close modal
+                            this.closeModal();
+
+                        } catch (error) {
+                            console.error('Error adding task:', error);
+                            alert('There was an error adding the task. Please try again.');
+                        }
+                    }
+
+                    // Add this new method to validate task data
+                    validateTaskData(taskData) {
+                        if (!taskData || typeof taskData !== 'object') return false;
+                        if (!taskData.name || typeof taskData.name !== 'string') return false;
+                        if (!taskData.type || typeof taskData.type !== 'string') return false;
+                        if (taskData.dateTime && new Date(taskData.dateTime).toString() === 'Invalid Date') return false;
+
+                        return true;
+                    }
+
+                    saveTasks() {
+                        try {
+                            localStorage.setItem('tasks', JSON.stringify(this.tasks));
+                        } catch (error) {
+                            console.error('Error saving tasks to localStorage:', error);
+                        }
+                    }
+
+                    saveProjects() {
+                        try {
+                            localStorage.setItem('projects', JSON.stringify(this.projects));
+                        } catch (error) {
+                            console.error('Error saving projects to localStorage:', error);
+                        }
+                    }
+
+                    deleteTask(taskId) {
+                        // Remove task from tasks array
+                        const taskIndex = this.tasks.findIndex(task => task.id === taskId);
+                        if (taskIndex === -1) return; // Task not found
+
+                        const task = this.tasks[taskIndex];
+                        this.tasks.splice(taskIndex, 1);
+
+                        // Remove task ID from project if applicable
+                        if (task.project) {
+                            const projectTasks = this.projects[task.project];
+                            const taskIndexInProject = projectTasks.indexOf(taskId);
+                            if (taskIndexInProject !== -1) {
+                                projectTasks.splice(taskIndexInProject, 1);
+                                this.saveProjects();
+                            }
                         }
 
-                        // Save and render
+                        // Save updated tasks
                         this.saveTasks();
 
-                        const activeTab = document.querySelector('.tab.active')?.dataset?.type;
-                        if (taskType === 'routine') {
+                        // Re-render tasks (maintaining current filter)
+                        const activeTab = document.querySelector('.tab.active').dataset.type;
+                        if (activeTab === 'routine') {
                             this.renderCalendar();
                         } else {
-                            this.renderTasks(activeTab || 'all');
-                        }
-
-                        // Close modal
-                        this.closeModal();
-
-                    } catch (error) {
-                        console.error('Error adding task:', error);
-                        alert('There was an error adding the task. Please try again.');
-                    }
-                }
-
-                // Add this new method to validate task data
-                validateTaskData(taskData) {
-                    if (!taskData || typeof taskData !== 'object') return false;
-                    if (!taskData.name || typeof taskData.name !== 'string') return false;
-                    if (!taskData.type || typeof taskData.type !== 'string') return false;
-                    if (taskData.dateTime && new Date(taskData.dateTime).toString() === 'Invalid Date') return false;
-
-                    return true;
-                }
-
-                saveTasks() {
-                    try {
-                        localStorage.setItem('tasks', JSON.stringify(this.tasks));
-                    } catch (error) {
-                        console.error('Error saving tasks to localStorage:', error);
-                    }
-                }
-
-                saveProjects() {
-                    try {
-                        localStorage.setItem('projects', JSON.stringify(this.projects));
-                    } catch (error) {
-                        console.error('Error saving projects to localStorage:', error);
-                    }
-                }
-
-                deleteTask(taskId) {
-                    // Remove task from tasks array
-                    const taskIndex = this.tasks.findIndex(task => task.id === taskId);
-                    if (taskIndex === -1) return; // Task not found
-
-                    const task = this.tasks[taskIndex];
-                    this.tasks.splice(taskIndex, 1);
-
-                    // Remove task ID from project if applicable
-                    if (task.project) {
-                        const projectTasks = this.projects[task.project];
-                        const taskIndexInProject = projectTasks.indexOf(taskId);
-                        if (taskIndexInProject !== -1) {
-                            projectTasks.splice(taskIndexInProject, 1);
-                            this.saveProjects();
+                            this.renderTasks(activeTab);
                         }
                     }
 
-                    // Save updated tasks
-                    this.saveTasks();
-
-                    // Re-render tasks (maintaining current filter)
-                    const activeTab = document.querySelector('.tab.active').dataset.type;
-                    if (activeTab === 'routine') {
-                        this.renderCalendar();
-                    } else {
-                        this.renderTasks(activeTab);
-                    }
-                }
-
-                clearInputs() {
-                    // Reset all input fields
-                    this.taskNameInput.value = '';
-                    this.taskTypeSelect.value = 'todo';
-                    this.projectSelect.value = '';
-                    this.priorityGroup.style.display = 'flex';
-                    this.colorSelectorGroup.style.display = 'flex';
-                    this.dateTimeGroup.style.display = 'block';
-                    this.taskDependenciesGroup.style.display = 'block';
-                    this.reminderGroup.style.display = 'block';
-                    this.subtaskGroup.style.display = 'block';
-                    this.notesGroup.style.display = 'block';
-                    document.querySelector('input[name="priority"][value="low"]').checked = true;
-                    this.colorOptions.forEach(opt => opt.classList.remove('selected'));
-                    this.taskDateTimeInput.value = '';
-                    this.taskDependenciesSelect.selectedIndex = -1;
-                    this.subtaskContainer.innerHTML = `
+                    clearInputs() {
+                        // Reset all input fields
+                        this.taskNameInput.value = '';
+                        this.taskTypeSelect.value = 'todo';
+                        this.projectSelect.value = '';
+                        this.priorityGroup.style.display = 'flex';
+                        this.colorSelectorGroup.style.display = 'flex';
+                        this.dateTimeGroup.style.display = 'block';
+                        this.taskDependenciesGroup.style.display = 'block';
+                        this.reminderGroup.style.display = 'block';
+                        this.subtaskGroup.style.display = 'block';
+                        this.notesGroup.style.display = 'block';
+                        document.querySelector('input[name="priority"][value="low"]').checked = true;
+                        this.colorOptions.forEach(opt => opt.classList.remove('selected'));
+                        this.taskDateTimeInput.value = '';
+                        this.taskDependenciesSelect.selectedIndex = -1;
+                        this.subtaskContainer.innerHTML = `
 <div class="subtask-item">
 <input type="text" class="subtask-input" placeholder="Enter subtask">
 <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
 </div>
 `;
-                    this.taskNotesInput.value = '';
-                    document.getElementById('emailReminder').checked = false;
-                    document.getElementById('desktopNotification').checked = false;
-                    this.routineFrequencyGroup.style.display = 'none';
-                    this.customRecurrenceInput.style.display = 'none';
-                    this.routineDateRange.style.display = 'none';
-                    this.routineFrequencySelect.value = 'daily';
-                    this.customRecurrenceInput.value = '';
-                    this.routineStartDate.value = '';
-                    this.routineEndDate.value = '';
-                    this.taskImageUrlInput.value = '';
-                    this.taskImageFileInput.value = '';
-                    this.dateTypeButtons[0].click();
-                    this.routineSingleDate.value = '';
-                }
-                changeWeek(direction) {
-                    // Update current date by 7 days in either direction
-                    this.currentDate.setDate(this.currentDate.getDate() + (direction * 7));
-                    this.renderCalendar();
-                }
+                        this.taskNotesInput.value = '';
+                        document.getElementById('emailReminder').checked = false;
+                        document.getElementById('desktopNotification').checked = false;
+                        this.routineFrequencyGroup.style.display = 'none';
+                        this.customRecurrenceInput.style.display = 'none';
+                        this.routineDateRange.style.display = 'none';
+                        this.routineFrequencySelect.value = 'daily';
+                        this.customRecurrenceInput.value = '';
+                        this.routineStartDate.value = '';
+                        this.routineEndDate.value = '';
+                        this.taskImageUrlInput.value = '';
+                        this.taskImageFileInput.value = '';
+                        this.dateTypeButtons[0].click();
+                        this.routineSingleDate.value = '';
+                    }
+                    changeWeek(direction) {
+                        // Update current date by 7 days in either direction
+                        this.currentDate.setDate(this.currentDate.getDate() + (direction * 7));
+                        this.renderCalendar();
+                    }
 
-                renderCalendar() {
-                    // Get today's date
-                    const today = new Date();
+                    renderCalendar() {
+                        // Get today's date
+                        const today = new Date();
 
-                    // Calculate the start date (3 days before today)
-                    const firstDay = new Date(this.currentDate);
-                    firstDay.setDate(this.currentDate.getDate() - 3);
+                        // Calculate the start date (3 days before today)
+                        const firstDay = new Date(this.currentDate);
+                        firstDay.setDate(this.currentDate.getDate() - 3);
 
-                    // Calculate the end date (3 days after today)
-                    const lastDay = new Date(this.currentDate);
-                    lastDay.setDate(this.currentDate.getDate() + 3);
+                        // Calculate the end date (3 days after today)
+                        const lastDay = new Date(this.currentDate);
+                        lastDay.setDate(this.currentDate.getDate() + 3);
 
-                    // Set the current week display
-                    this.currentWeekElement.textContent = `${firstDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${lastDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
+                        // Set the current week display
+                        this.currentWeekElement.textContent = `${firstDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} - ${lastDay.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}`;
 
-                    // Clear previous calendar
-                    this.calendarElement.innerHTML = '';
+                        // Clear previous calendar
+                        this.calendarElement.innerHTML = '';
 
-                    // Generate 7 days (3 before today, today, and 3 after)
-                    for (let i = 0; i < 7; i++) {
-                        const day = new Date(firstDay);
-                        day.setDate(firstDay.getDate() + i);
+                        // Generate 7 days (3 before today, today, and 3 after)
+                        for (let i = 0; i < 7; i++) {
+                            const day = new Date(firstDay);
+                            day.setDate(firstDay.getDate() + i);
 
-                        const dayDiv = document.createElement('div');
-                        dayDiv.className = 'calendar-day';
+                            const dayDiv = document.createElement('div');
+                            dayDiv.className = 'calendar-day';
 
-                        // Add special class for today
-                        if (day.toDateString() === today.toDateString()) {
-                            dayDiv.classList.add('current-day');
-                        }
+                            // Add special class for today
+                            if (day.toDateString() === today.toDateString()) {
+                                dayDiv.classList.add('current-day');
+                            }
 
-                        dayDiv.innerHTML = `
+                            dayDiv.innerHTML = `
             <div class="calendar-day-header">
                 <span class="day-name">${day.toLocaleDateString('en-US', { weekday: 'short' })}</span>
                 <span class="day-date">${day.toLocaleDateString('en-US', { day: 'numeric', month: 'short' })}</span>
             </div>
         `;
 
-                        // Rest of your existing day rendering code...
-                        const dailyRoutines = this.tasks.filter(task => {
-                            if (task.type !== 'routine') return false;
-                            return this.isRoutineDay(task, day);
-                        }).sort((a, b) => a.name.localeCompare(b.name));
+                            // Rest of your existing day rendering code...
+                            const dailyRoutines = this.tasks.filter(task => {
+                                if (task.type !== 'routine') return false;
+                                return this.isRoutineDay(task, day);
+                            }).sort((a, b) => a.name.localeCompare(b.name));
 
-                        // Render routines for the day...
-                        dailyRoutines.forEach((task) => {
-                            const routineCard = document.createElement('div');
-                            routineCard.className = 'routine-card';
-                            routineCard.setAttribute('data-task-id', task.id);
+                            // Render routines for the day...
+                            dailyRoutines.forEach((task) => {
+                                const routineCard = document.createElement('div');
+                                routineCard.className = 'routine-card';
+                                routineCard.setAttribute('data-task-id', task.id);
 
-                            routineCard.innerHTML = `
+                                routineCard.innerHTML = `
         ${task.image ? `<img src="${task.image}" class="task-image" alt="${task.name}">` : ''}
         <div class="task-name">${task.name}</div>
         <div class="routine-meta">
@@ -4314,214 +4367,214 @@
         </button>
     `;
 
-                            // Add delete functionality
-                            const deleteBtn = routineCard.querySelector('.routine-delete-btn');
-                            deleteBtn.onclick = (e) => {
-                                e.stopPropagation();
-                                this.deleteRoutineTask(task.id);
+                                // Add delete functionality
+                                const deleteBtn = routineCard.querySelector('.routine-delete-btn');
+                                deleteBtn.onclick = (e) => {
+                                    e.stopPropagation();
+                                    this.deleteRoutineTask(task.id);
+                                };
+
+                                dayDiv.appendChild(routineCard);
+                            });
+
+                            this.calendarElement.appendChild(dayDiv);
+                        }
+                        // Scroll to center (today) after rendering
+                        requestAnimationFrame(() => {
+                            const currentDayElement = this.calendarElement.querySelector('.current-day');
+                            if (currentDayElement) {
+                                this.calendarElement.scrollTo({
+                                    left: currentDayElement.offsetLeft - (this.calendarElement.offsetWidth - currentDayElement.offsetWidth) / 2,
+                                    behavior: 'smooth'
+                                });
+                            }
+                        });
+                    }
+
+                    getFormattedTime(task) {
+                        // Example implementation - adjust based on your task data structure
+                        const time = new Date(task.startDate).toLocaleTimeString([], {
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                        return time;
+                    }
+
+                    getRoutineProgress(task) {
+                        // Example implementation - adjust based on your tracking needs
+                        const total = this.getRoutineOccurrences(task);
+                        const completed = this.getCompletedOccurrences(task);
+                        return (completed / total) * 100;
+                    }
+
+                    // New method to delete routine tasks
+                    deleteRoutineTask(taskId) {
+                        // Confirm deletion
+                        const confirmDelete = confirm('Are you sure you want to delete this routine task?');
+                        if (!confirmDelete) return;
+
+                        // Remove task from tasks array
+                        this.tasks = this.tasks.filter(task => task.id !== taskId);
+
+                        // Save updated tasks
+                        this.saveTasks();
+
+                        // Re-render calendar
+                        this.renderCalendar();
+                    }
+
+                    isRoutineDay(task, day) {
+                        try {
+                            const checkDate = new Date(day);
+                            const startDate = new Date(task.startDate);
+                            const endDate = new Date(task.endDate);
+
+                            // Normalize dates to compare only date parts
+                            const normalizeDate = (date) => {
+                                return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
                             };
 
-                            dayDiv.appendChild(routineCard);
-                        });
+                            const normalizedCheckDate = normalizeDate(checkDate);
+                            const normalizedStartDate = normalizeDate(startDate);
+                            const normalizedEndDate = normalizeDate(endDate);
 
-                        this.calendarElement.appendChild(dayDiv);
-                    }
-                    // Scroll to center (today) after rendering
-                    requestAnimationFrame(() => {
-                        const currentDayElement = this.calendarElement.querySelector('.current-day');
-                        if (currentDayElement) {
-                            this.calendarElement.scrollTo({
-                                left: currentDayElement.offsetLeft - (this.calendarElement.offsetWidth - currentDayElement.offsetWidth) / 2,
-                                behavior: 'smooth'
+                            // Debug logging
+                            console.log('Checking routine:', {
+                                taskName: task.name,
+                                isSingleDate: task.isSingleDate,
+                                checkDate: new Date(normalizedCheckDate).toISOString().split('T')[0],
+                                startDate: new Date(normalizedStartDate).toISOString().split('T')[0],
+                                endDate: new Date(normalizedEndDate).toISOString().split('T')[0]
                             });
-                        }
-                    });
-                }
 
-                getFormattedTime(task) {
-                    // Example implementation - adjust based on your task data structure
-                    const time = new Date(task.startDate).toLocaleTimeString([], {
-                        hour: '2-digit',
-                        minute: '2-digit'
-                    });
-                    return time;
-                }
+                            // Handle single date routine
+                            if (task.isSingleDate) {
+                                return normalizedCheckDate === normalizedStartDate;
+                            }
 
-                getRoutineProgress(task) {
-                    // Example implementation - adjust based on your tracking needs
-                    const total = this.getRoutineOccurrences(task);
-                    const completed = this.getCompletedOccurrences(task);
-                    return (completed / total) * 100;
-                }
+                            // Check date range
+                            if (normalizedCheckDate < normalizedStartDate || normalizedCheckDate > normalizedEndDate) {
+                                return false;
+                            }
 
-                // New method to delete routine tasks
-                deleteRoutineTask(taskId) {
-                    // Confirm deletion
-                    const confirmDelete = confirm('Are you sure you want to delete this routine task?');
-                    if (!confirmDelete) return;
-
-                    // Remove task from tasks array
-                    this.tasks = this.tasks.filter(task => task.id !== taskId);
-
-                    // Save updated tasks
-                    this.saveTasks();
-
-                    // Re-render calendar
-                    this.renderCalendar();
-                }
-
-                isRoutineDay(task, day) {
-                    try {
-                        const checkDate = new Date(day);
-                        const startDate = new Date(task.startDate);
-                        const endDate = new Date(task.endDate);
-
-                        // Normalize dates to compare only date parts
-                        const normalizeDate = (date) => {
-                            return new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
-                        };
-
-                        const normalizedCheckDate = normalizeDate(checkDate);
-                        const normalizedStartDate = normalizeDate(startDate);
-                        const normalizedEndDate = normalizeDate(endDate);
-
-                        // Debug logging
-                        console.log('Checking routine:', {
-                            taskName: task.name,
-                            isSingleDate: task.isSingleDate,
-                            checkDate: new Date(normalizedCheckDate).toISOString().split('T')[0],
-                            startDate: new Date(normalizedStartDate).toISOString().split('T')[0],
-                            endDate: new Date(normalizedEndDate).toISOString().split('T')[0]
-                        });
-
-                        // Handle single date routine
-                        if (task.isSingleDate) {
-                            return normalizedCheckDate === normalizedStartDate;
-                        }
-
-                        // Check date range
-                        if (normalizedCheckDate < normalizedStartDate || normalizedCheckDate > normalizedEndDate) {
+                            switch (task.routineFrequency) {
+                                case 'daily':
+                                    return true;
+                                case 'weekly':
+                                    return checkDate.getDay() === startDate.getDay();
+                                case 'monthly':
+                                    return checkDate.getDate() === startDate.getDate();
+                                case 'custom':
+                                    return this.handleCustomRoutine(task, checkDate, startDate);
+                                default:
+                                    return false;
+                            }
+                        } catch (error) {
+                            console.error('Error in isRoutineDay:', error);
                             return false;
                         }
-
-                        switch (task.routineFrequency) {
-                            case 'daily':
-                                return true;
-                            case 'weekly':
-                                return checkDate.getDay() === startDate.getDay();
-                            case 'monthly':
-                                return checkDate.getDate() === startDate.getDate();
-                            case 'custom':
-                                return this.handleCustomRoutine(task, checkDate, startDate);
-                            default:
-                                return false;
-                        }
-                    } catch (error) {
-                        console.error('Error in isRoutineDay:', error);
-                        return false;
                     }
                 }
-            }
 
-            // Initialize Task Manager when DOM is loaded
-            document.addEventListener('DOMContentLoaded', () => {
-                const currentPage = window.location.pathname.split('/').pop();
-                const navItems = document.querySelectorAll('.nav-item');
-                navItems.forEach(item => {
-                    const href = item.getAttribute('href');
-                    if (href === currentPage) {
-                        item.classList.add('active');
-                    } else {
-                        item.classList.remove('active');
-                    }
+                // Initialize Task Manager when DOM is loaded
+                document.addEventListener('DOMContentLoaded', () => {
+                    const currentPage = window.location.pathname.split('/').pop();
+                    const navItems = document.querySelectorAll('.nav-item');
+                    navItems.forEach(item => {
+                        const href = item.getAttribute('href');
+                        if (href === currentPage) {
+                            item.classList.add('active');
+                        } else {
+                            item.classList.remove('active');
+                        }
+                    });
+
+                    window.taskManager = new EnhancedTaskManager();
                 });
 
-                window.taskManager = new EnhancedTaskManager();
-            });
+                class HomepageManager {
+                    constructor() {
+                        this.modal = document.getElementById('homepageModal');
+                        this.setHomepageBtn = document.getElementById('setHomepageBtn');
+                        this.dismissHomepageBtn = document.getElementById('dismissHomepageBtn');
 
-            class HomepageManager {
-                constructor() {
-                    this.modal = document.getElementById('homepageModal');
-                    this.setHomepageBtn = document.getElementById('setHomepageBtn');
-                    this.dismissHomepageBtn = document.getElementById('dismissHomepageBtn');
-
-                    this.init();
-                }
-
-                init() {
-                    // Check if homepage is already set
-                    if (this.isHomepageSet()) {
-                        return;
+                        this.init();
                     }
 
-                    // Check if user has previously dismissed the prompt
-                    if (this.hasUserDismissedPrompt()) {
-                        return;
+                    init() {
+                        // Check if homepage is already set
+                        if (this.isHomepageSet()) {
+                            return;
+                        }
+
+                        // Check if user has previously dismissed the prompt
+                        if (this.hasUserDismissedPrompt()) {
+                            return;
+                        }
+
+                        // Show homepage setting modal
+                        this.showModal();
+
+                        // Setup event listeners
+                        this.setHomepageBtn.addEventListener('click', () => this.setHomepage());
+                        this.dismissHomepageBtn.addEventListener('click', () => this.dismissPrompt());
                     }
 
-                    // Show homepage setting modal
-                    this.showModal();
+                    isHomepageSet() {
+                        // This is a simplified check and might need browser-specific adjustments
+                        try {
+                            return localStorage.getItem('isHomepageSet') === 'true';
+                        } catch (error) {
+                            console.error('Error checking homepage status:', error);
+                            return false;
+                        }
+                    }
 
-                    // Setup event listeners
-                    this.setHomepageBtn.addEventListener('click', () => this.setHomepage());
-                    this.dismissHomepageBtn.addEventListener('click', () => this.dismissPrompt());
+                    hasUserDismissedPrompt() {
+                        try {
+                            return localStorage.getItem('homepagePromptDismissed') === 'true';
+                        } catch (error) {
+                            console.error('Error checking prompt dismissal:', error);
+                            return false;
+                        }
+                    }
+
+                    showModal() {
+                        this.modal.style.display = 'flex';
+                    }
+
+                    setHomepage() {
+                        try {
+                            // Note: This is a hint to the browser. Actual homepage setting
+                            // requires browser-specific methods or user manual settings
+                            localStorage.setItem('isHomepageSet', 'true');
+                            this.modal.style.display = 'none';
+                            alert('This hint has been saved. You may need to set the homepage manually in your browser settings.');
+                        } catch (error) {
+                            console.error('Error setting homepage:', error);
+                            alert('Could not set homepage. Please set it manually in your browser settings.');
+                        }
+                    }
+
+                    dismissPrompt() {
+                        try {
+                            localStorage.setItem('homepagePromptDismissed', 'true');
+                            this.modal.style.display = 'none';
+                        } catch (error) {
+                            console.error('Error dismissing homepage prompt:', error);
+                        }
+                    }
                 }
 
-                isHomepageSet() {
-                    // This is a simplified check and might need browser-specific adjustments
+                // Initialize Task Manager and Homepage Manager when DOM is loaded
+                document.addEventListener('DOMContentLoaded', () => {
                     try {
-                        return localStorage.getItem('isHomepageSet') === 'true';
+                        window.homepageManager = new HomepageManager();
                     } catch (error) {
-                        console.error('Error checking homepage status:', error);
-                        return false;
+                        console.error('Error initializing managers:', error);
                     }
-                }
-
-                hasUserDismissedPrompt() {
-                    try {
-                        return localStorage.getItem('homepagePromptDismissed') === 'true';
-                    } catch (error) {
-                        console.error('Error checking prompt dismissal:', error);
-                        return false;
-                    }
-                }
-
-                showModal() {
-                    this.modal.style.display = 'flex';
-                }
-
-                setHomepage() {
-                    try {
-                        // Note: This is a hint to the browser. Actual homepage setting
-                        // requires browser-specific methods or user manual settings
-                        localStorage.setItem('isHomepageSet', 'true');
-                        this.modal.style.display = 'none';
-                        alert('This hint has been saved. You may need to set the homepage manually in your browser settings.');
-                    } catch (error) {
-                        console.error('Error setting homepage:', error);
-                        alert('Could not set homepage. Please set it manually in your browser settings.');
-                    }
-                }
-
-                dismissPrompt() {
-                    try {
-                        localStorage.setItem('homepagePromptDismissed', 'true');
-                        this.modal.style.display = 'none';
-                    } catch (error) {
-                        console.error('Error dismissing homepage prompt:', error);
-                    }
-                }
-            }
-
-            // Initialize Task Manager and Homepage Manager when DOM is loaded
-            document.addEventListener('DOMContentLoaded', () => {
-                try {
-                    window.homepageManager = new HomepageManager();
-                } catch (error) {
-                    console.error('Error initializing managers:', error);
-                }
-            });
-        </script>
+                });
+            </script>
 </body>
 
 </html>
