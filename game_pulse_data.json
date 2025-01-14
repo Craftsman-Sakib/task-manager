@@ -3154,5 +3154,58 @@
     "details": "Cinnabunny in this charming adventure, players assume the role of a bunny managing a bakery in the delightful village of Sugar Creek Burrows. The game emphasizes activities such as baking, foraging, birdwatching, and community interaction, offering both single-player and local co-op modes.",
     "links": "https://rekystudios.com/games.html#/",
     "dlc": []
+  },
+  {
+    "id": 1736859528954,
+    "name": "Avowed",
+    "image": "https://4kwallpapers.com/images/wallpapers/avowed-official-2560x2560-14633.jpg",
+    "extraImages": [
+      "https://d1lss44hh2trtw.cloudfront.net/assets/article/2023/06/11/avowed-gameplay_feature.jpg",
+      "https://flowgames.gg/wp-content/uploads/2024/01/image-2024-01-23T113820.883.jpg",
+      "https://www.dexerto.com/cdn-image/wp-content/uploads/2024/12/17/best-games-2025-avowed-1024x576.jpg?width=1200&quality=75&format=auto",
+      "https://gameoll.com/wp-content/uploads/2025/01/Avowed-magical-weapon-abilities_1736075804-1024x473.jpg"
+    ],
+    "genre": [
+      "action",
+      "rpg",
+      "FPS",
+      "rpg"
+    ],
+    "releaseDate": {
+      "start": "2025-02-18",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Obsidian Entertainment",
+    "publisher": "Xbox Game Studios",
+    "specialQuote": "Pillars of Eternity's Epic Evolution",
+    "platform": [
+      "windows",
+      "xbox"
+    ],
+    "store": [
+      "steam",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [
+      "xbox-game-pass"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=AYvTNAaXMUA",
+    "price": 41.99,
+    "details": "Avowed set in the expansive world of Eora, first introduced in the \"Pillars of Eternity\" series, the game invites players to explore the mysterious Living Lands, a region filled with adventure and danger.",
+    "links": "https://www.obsidian.net/news/obsidian/avowed-pre-order",
+    "dlc": []
   }
 ]
