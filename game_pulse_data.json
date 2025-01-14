@@ -2934,5 +2934,59 @@
     "modLinks": [],
     "subscriptions": [],
     "dlc": []
+  },
+  {
+    "id": 1736848307539,
+    "name": "Monster Hunter Wilds",
+    "image": "https://static1.srcdn.com/wordpress/wp-content/uploads/sharedimages/2024/11/monster-hunter-wilds-tag-page-cover-art.jpg",
+    "extraImages": [
+      "https://cdn.alza.cz/Foto/ImgGalery/Image/monster-hunter-wilds-beta-test-2.jpg",
+      "https://www.wingamestore.com/images_screenshots/monster-hunter-wilds-128925.jpg"
+    ],
+    "genre": [
+      "action",
+      "rpg",
+      "Multiplayer",
+      "Co-op",
+      "hunting",
+      "Adventure",
+      "Open-world"
+    ],
+    "releaseDate": {
+      "start": "2025-02-28",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2024-11",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "2024-11",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Capcom",
+    "publisher": "Capcom",
+    "specialQuote": "The Wild Hunt Begins",
+    "platform": [
+      "windows",
+      "xbox",
+      "playstation"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "microsoft-store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=GCVThKH4Xkk",
+    "price": 69.99,
+    "details": "\"Monster Hunter Wilds\" aims to elevate the series with enhanced graphics, new gameplay mechanics, and expansive environments, providing both veteran hunters and newcomers with an immersive hunting experience.",
+    "links": "https://www.monsterhunter.com/wilds/",
+    "dlc": []
   }
 ]
