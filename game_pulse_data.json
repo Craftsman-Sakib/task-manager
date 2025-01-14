@@ -3098,5 +3098,61 @@
     "details": "\"Hyper Light Breaker\" aims to expand upon the universe established in \"Hyper Light Drifter,\" introducing new gameplay mechanics, cooperative multiplayer, and a dynamic world that evolves with each session. Players can look forward to exploring large-scale open biomes, engaging in intense combat, and uncovering the mysteries of the Overgrowth.",
     "links": "https://www.hyperlightbreaker.com/",
     "dlc": []
+  },
+  {
+    "id": 1736858548112,
+    "name": "Cinnabunny",
+    "image": "https://st.download.com.vn/data/image/2024/02/22/Cinnabunny-200.png",
+    "extraImages": [
+      "https://rekystudios.com/uploads/1/2/3/2/123265287/bakery2_orig.jpg",
+      "https://rekystudios.com/uploads/1/2/3/2/123265287/bakery4_orig.jpg",
+      "https://rekystudios.com/uploads/1/2/3/2/123265287/luminears_orig.png",
+      "https://rekystudios.com/uploads/1/2/3/2/123265287/dialogue3_orig.jpg",
+      "https://rekystudios.com/uploads/1/2/3/2/123265287/farming1_orig.png",
+      "https://rekystudios.com/uploads/1/2/3/2/123265287/landscape3_orig.png",
+      "https://rekystudios.com/uploads/1/2/3/2/123265287/mushroom_orig.png",
+      "https://rekystudios.com/uploads/1/2/3/2/123265287/bakery1_orig.png"
+    ],
+    "genre": [
+      "cozy",
+      "cute",
+      "rpg",
+      "rabbit",
+      "Life Simulation",
+      "Farming Simulation",
+      "Cooking"
+    ],
+    "releaseDate": {
+      "start": "2025-02-19",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Reky Studios",
+    "publisher": "Reky Studios",
+    "specialQuote": "Whisking Up Whimsy in Sugar Creek",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=gwVqrbQ9PJo",
+    "price": null,
+    "details": "Cinnabunny in this charming adventure, players assume the role of a bunny managing a bakery in the delightful village of Sugar Creek Burrows. The game emphasizes activities such as baking, foraging, birdwatching, and community interaction, offering both single-player and local co-op modes.",
+    "links": "https://rekystudios.com/games.html#/",
+    "dlc": []
   }
 ]
