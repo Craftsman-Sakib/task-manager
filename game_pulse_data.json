@@ -2995,5 +2995,58 @@
     "details": "\"Monster Hunter Wilds\" aims to elevate the series with enhanced graphics, new gameplay mechanics, and expansive environments, providing both veteran hunters and newcomers with an immersive hunting experience.",
     "links": "https://www.monsterhunter.com/wilds/",
     "dlc": []
+  },
+  {
+    "id": 1736856312901,
+    "name": "Anger Foot",
+    "image": "https://static.actugaming.net/media/2022/06/anger-foot-jaquette-e1654877964818.jpg",
+    "extraImages": [
+      "https://tuttop.com/uploads/posts/2022-06/1656485344_scr2.jpg",
+      "https://www.gamingtalker.it/wp-content/uploads/2022/06/anger-foot-scr-1.jpg",
+      "https://d1lss44hh2trtw.cloudfront.net/assets/article/2022/06/09/anger-foot-announcement-devolver-digital-2022_feature.jpg"
+    ],
+    "genre": [
+      "shooter",
+      "FPS",
+      "Fast-paced",
+      "Violent"
+    ],
+    "releaseDate": {
+      "start": "2024-07-11",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Free Lives",
+    "publisher": "Devolver Digital",
+    "specialQuote": "Foot Fury Unleashed",
+    "platform": [
+      "windows",
+      "linux",
+      "macos"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [
+      "https://www.azzamods.com/mods/anger-foot/",
+      "https://www.wemod.com/cheats/anger-foot-trainers"
+    ],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=7kJo0miz08g",
+    "price": 8.99,
+    "details": "\"Anger Foot\" is notable for its unique gameplay mechanics, focusing heavily on the use of kicking as a primary combat method, providing a fresh take on the first-person shooter genre.",
+    "links": "https://angerfoot.com/",
+    "dlc": []
   }
 ]
