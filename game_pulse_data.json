@@ -3207,5 +3207,58 @@
     "details": "Avowed set in the expansive world of Eora, first introduced in the \"Pillars of Eternity\" series, the game invites players to explore the mysterious Living Lands, a region filled with adventure and danger.",
     "links": "https://www.obsidian.net/news/obsidian/avowed-pre-order",
     "dlc": []
+  },
+  {
+    "id": 1736860778760,
+    "name": "Assassin's Creed Shadows",
+    "image": "https://static1.thegamerimages.com/wordpress/wp-content/uploads/sharedimages/2024/12/mixcollage-08-dec-2024-01-13-am-9091.jpg",
+    "extraImages": [
+      "https://game-experience.it/wp-content/uploads/2025/01/assassins-creed-shadows-ubisoft-ha-annunciato-lespansione-claws-of-awaji-ecco-durata-e-contenuti-1200x675.jpg",
+      "https://images.techeblog.com/wp-content/uploads/2024/06/10224524/assassins-creed-shadows-gameplay-trailer.jpg",
+      "https://list23.com/img/it-has-been-reported-that-assassins-creed-shadows-upcoming-expansion-has-prompted-an-additional-10-h.jpeg",
+      "https://www.allkeyshop.com/blog/wp-content/uploads/Assassins-Creed-Shadows-Release-Date.webp"
+    ],
+    "genre": [],
+    "releaseDate": {
+      "start": "2025-03-25",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Ubisoft Quebec",
+    "publisher": "Ubisoft",
+    "specialQuote": "The Way of the Shinobi",
+    "platform": [
+      "windows",
+      "macos",
+      "xbox",
+      "playstation",
+      "ipadOS"
+    ],
+    "store": [
+      "steam",
+      "epic",
+      "Ubisoft store",
+      "MAC App Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [
+      "ubisoft-plus"
+    ],
+    "trailerLink": "https://www.youtube.com/watch?v=vovkzbtYBC8",
+    "price": null,
+    "details": "As the fourteenth major installment in the Assassin's Creed series, it transports players to 16th-century Japan during the Azuchi-Momoyama period, a time marked by significant social upheaval and the unification of the country under powerful warlords.",
+    "links": "https://www.ubisoft.com/en-us/game/assassins-creed/shadows",
+    "dlc": []
   }
 ]
