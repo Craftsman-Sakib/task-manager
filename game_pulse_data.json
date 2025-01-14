@@ -3048,5 +3048,55 @@
     "details": "\"Anger Foot\" is notable for its unique gameplay mechanics, focusing heavily on the use of kicking as a primary combat method, providing a fresh take on the first-person shooter genre.",
     "links": "https://angerfoot.com/",
     "dlc": []
+  },
+  {
+    "id": 1736857070882,
+    "name": "Hyper Light Breaker",
+    "image": "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/Hyper_Light_Breaker_Cover_Art.webp/273px-Hyper_Light_Breaker_Cover_Art.webp.png",
+    "extraImages": [
+      "https://pbs.twimg.com/media/FrVGR4ZWAAEIct8.jpg",
+      "https://www.gaminginstincts.com/wp-content/uploads/2023/03/Hyper-Light-Breaker_2023_03-14-23_005-scaled.jpg",
+      "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2025/01/hyper-light-breaker-gliders.jpg",
+      "https://cibersistemas.pt/wp-content/uploads/2025/01/Trailer-de-Hyper-Light-Breaker-revela-herois-e-chefes-de-1280x720.jpeg"
+    ],
+    "genre": [
+      "action",
+      "co-op",
+      "rpg",
+      "3D",
+      "Roguelite"
+    ],
+    "releaseDate": {
+      "start": "",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "2025-01-14",
+      "end": ""
+    },
+    "developer": "Heart Machine",
+    "publisher": "Arc Games",
+    "specialQuote": "The Drifter's Legacy Reborn",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=ClJaGZI-P78",
+    "price": 0,
+    "details": "\"Hyper Light Breaker\" aims to expand upon the universe established in \"Hyper Light Drifter,\" introducing new gameplay mechanics, cooperative multiplayer, and a dynamic world that evolves with each session. Players can look forward to exploring large-scale open biomes, engaging in intense combat, and uncovering the mysteries of the Overgrowth.",
+    "links": "https://www.hyperlightbreaker.com/",
+    "dlc": []
   }
 ]
