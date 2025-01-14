@@ -3260,5 +3260,52 @@
     "details": "As the fourteenth major installment in the Assassin's Creed series, it transports players to 16th-century Japan during the Azuchi-Momoyama period, a time marked by significant social upheaval and the unification of the country under powerful warlords.",
     "links": "https://www.ubisoft.com/en-us/game/assassins-creed/shadows",
     "dlc": []
+  },
+  {
+    "id": 1736863705742,
+    "name": "The Blood of Dawnwalker",
+    "image": "https://storage.googleapis.com/zing-cz/media/images/1z420r3jh858p2g678538374e510151436357",
+    "extraImages": [
+      "https://pressakey.com/gamepix/8887/The-Blood-of-Dawnwalker-303469.jpg",
+      "https://pressakey.com/gamepix/8887/The-Blood-of-Dawnwalker-303468.jpg",
+      "https://www.dsogaming.com/wp-content/uploads/2025/01/The-Blood-of-Dawnwalker-feature-1038x576.jpg",
+      "https://assetsio.gnwcdn.com/blood-of-the-dawnwalker.jpg?width=1200&height=630&fit=crop&enable=upscale&auto=webp"
+    ],
+    "genre": [
+      "action",
+      "rpg"
+    ],
+    "releaseDate": {
+      "start": "2025",
+      "end": "2026"
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Rebel Wolves",
+    "publisher": "Bandai Namco Entertainment Europe",
+    "specialQuote": "Vampires Rise in Plague-Ridden Europe",
+    "platform": [
+      "windows",
+      "xbox",
+      "playstation"
+    ],
+    "store": [],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=MWsyV7yQIBQ",
+    "price": null,
+    "details": "Set in 14th-century plague-ridden Europe, the game introduces players to a world where vampires have emerged from the shadows to seize power amidst humanity's struggle for survival.",
+    "links": "https://dawnwalkergame.com/",
+    "dlc": []
   }
 ]
