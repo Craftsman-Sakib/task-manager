@@ -3307,5 +3307,60 @@
     "details": "Set in 14th-century plague-ridden Europe, the game introduces players to a world where vampires have emerged from the shadows to seize power amidst humanity's struggle for survival.",
     "links": "https://dawnwalkergame.com/",
     "dlc": []
+  },
+  {
+    "id": 1737043768354,
+    "name": "Big Helmet Heroes",
+    "image": "https://store-images.s-microsoft.com/image/apps.54288.14013102022440310.f057f41c-8451-4896-a39a-20f8776f51e1.4163a68c-4207-40e1-a0cf-42051158612a?q=90&w=177&h=265",
+    "extraImages": [
+      "https://canaltrece.com.co/wp-content/uploads/2025/01/big-helmet-heroes-pc-ps5-xbox-switch-2025-3-jpg.webp",
+      "https://psxbrasil.com.br/wp-content/uploads/2025/01/Big-Helmet-Heroes-Date_01-08-25-696x392.jpg",
+      "https://gpstatic.com/acache/74/27/1/us/s4-50ce3a510f4ae5059a4e419e46095885.jpg",
+      "https://gpstatic.com/acache/74/27/1/de/s6-e0e3a91be9cbf9292ce034a4e154143d.jpg",
+      "https://gpstatic.com/acache/74/27/1/de/s3-2b2a356f14dfd7ce20facd2c83a82444.jpg"
+    ],
+    "genre": [
+      "action",
+      "3D",
+      "adventure",
+      "3D Beat 'Em Up Action-Adventure"
+    ],
+    "releaseDate": {
+      "start": "2025-02-06",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Exalted Studio",
+    "publisher": "Dear Villagers",
+    "specialQuote": "Epic Battles, Tiny Heroes",
+    "platform": [
+      "windows",
+      "xbox",
+      "playstation",
+      "nintendo"
+    ],
+    "store": [
+      "steam",
+      "playstation-store",
+      "Microsoft Store"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=lDy2Lg0Wmss",
+    "price": 6.66,
+    "details": "\"Big Helmet Heroes\" aims to deliver a humorous and action-packed experience, combining charismatic heroes with unique powers, beautifully detailed animations, and a fresh twist on the 3D beat 'em up genre.",
+    "links": "https://bighelmetheroesgame.com/",
+    "dlc": []
   }
 ]
