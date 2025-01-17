@@ -3362,5 +3362,53 @@
     "details": "\"Big Helmet Heroes\" aims to deliver a humorous and action-packed experience, combining charismatic heroes with unique powers, beautifully detailed animations, and a fresh twist on the 3D beat 'em up genre.",
     "links": "https://bighelmetheroesgame.com/",
     "dlc": []
+  },
+  {
+    "id": 1737130171613,
+    "name": "Voices of the Void",
+    "image": "https://assetsio.reedpopcdn.com/co5qlp.jpg?width=1920&height=1920&fit=bounds&quality=80&format=jpg&auto=webp",
+    "extraImages": [
+      "https://static.tvtropes.org/pmwiki/pub/images/voices_of_the_void_c.png",
+      "https://media.moddb.com/images/mods/1/56/55917/Voices_of_the_Void_2022.11.12_1.1.jpg",
+      "https://small-games.info/s/f/v/voices_of_the_2.jpg",
+      "https://small-games.info/s/f/v/voices_of_the_5.jpg"
+    ],
+    "genre": [
+      "horror",
+      "Survival",
+      "Sandbox Elements"
+    ],
+    "releaseDate": {
+      "start": "",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "MrDrNose (EternityDev)",
+    "publisher": "MrDrNose (EternityDev)",
+    "specialQuote": "Nominated for \"Most Accessible Game\" in the 2024.",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "itchio"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=um4DmGSyCq8",
+    "price": null,
+    "details": "The game draws inspiration from \"Signal Simulator\" and pays homage to the Source Engine in its visuals, controls, and physics. It offers a blend of ambient horror and sandbox gameplay, with numerous secrets, mysteries, and easter eggs for players to discover.",
+    "links": "https://mrdrnose.itch.io/",
+    "dlc": []
   }
 ]
