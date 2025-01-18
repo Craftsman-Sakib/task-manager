@@ -217,7 +217,7 @@
   {
     "id": 1734880493479,
     "name": "Kingdom Come Deliverance",
-    "image": "https://th.bing.com/th/id/OIP.mjjdC5YKAHMsCO55FC-sFwHaEK?rs=1&pid=ImgDetMain",
+    "image": "https://www.mobygames.com/images/covers/l/472765-kingdom-come-deliverance-treasures-of-the-past-xbox-one-front-cover.png",
     "extraImages": [
       "https://th.bing.com/th/id/OIP.DIntPUmAN8jbgt_acIfQGAHaD_?rs=1&pid=ImgDetMain",
       "https://th.bing.com/th/id/OIP.EQL_lSA5ERh2VPe6ldbuFwHaDp?pid=ImgDet&w=474&h=233&rs=1",
@@ -225,12 +225,20 @@
       "https://assets.vg247.com/current/2017/10/kingdom_come_deliverance_Rattay02_logo_VG247.jpg"
     ],
     "genre": [
-      "action",
-      "role-playing"
+      "action"
     ],
-    "releaseDate": "2018-02-13",
-    "betaDate": "2016-03-04",
-    "earlyAccessDate": "",
+    "releaseDate": {
+      "start": "2018-02-13",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "2016-03-04",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
     "developer": "Warhorse Studios",
     "publisher": "Deep Silver",
     "releaseYear": "2018",
@@ -238,8 +246,7 @@
       "windows",
       "xbox",
       "playstation",
-      "nintendo",
-      "Amazon Luna"
+      "nintendo"
     ],
     "store": [
       "steam",
@@ -247,10 +254,7 @@
       "xbox-store",
       "playstation-store"
     ],
-    "modLinks": [
-      "https://www.nexusmods.com/kingdomcomedeliverance/mods/",
-      "https://www.moddb.com/games/kingdom-come-deliverance/mods"
-    ],
+    "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=_D48windowsFshHg",
     "price": 4.59,
@@ -287,7 +291,12 @@
         "price": 0,
         "image": ""
       }
-    ]
+    ],
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "specialQuote": "undefined"
   },
   {
     "id": 1734881900510,
