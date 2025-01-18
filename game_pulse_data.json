@@ -3410,5 +3410,68 @@
     "details": "The game draws inspiration from \"Signal Simulator\" and pays homage to the Source Engine in its visuals, controls, and physics. It offers a blend of ambient horror and sandbox gameplay, with numerous secrets, mysteries, and easter eggs for players to discover.",
     "links": "https://mrdrnose.itch.io/",
     "dlc": []
+  },
+  {
+    "id": 1737189930394,
+    "name": "Undertale",
+    "image": "https://tiermaker.com/images/templates/video-game-music-15215425/152154251658017736.jpg",
+    "extraImages": [
+      "https://d1lss44hh2trtw.cloudfront.net/assets/article/2019/06/26/undertale-1_feature.jpg",
+      "https://images.pushsquare.com/screenshots/84237/large.jpg",
+      "https://images.pushsquare.com/screenshots/84228/large.jpg"
+    ],
+    "genre": [
+      "rpg",
+      "2D",
+      "choices matter",
+      "comedy",
+      "cute",
+      "memes",
+      "retro",
+      "dark"
+    ],
+    "releaseDate": {
+      "start": "2015-09-15",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Toby Fox",
+    "publisher": "Toby Fox",
+    "specialQuote": "A Heartfelt Journey Through the Underground",
+    "platform": [
+      "windows",
+      "linux",
+      "xbox",
+      "playstation",
+      "nintendo",
+      "OS x"
+    ],
+    "store": [
+      "steam",
+      "gog",
+      "playstation-store",
+      "Microsoft Store",
+      "Nintendo eShop"
+    ],
+    "modLinks": [
+      "https://gamebanana.com/games/5506"
+    ],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=1Hojv0m3TqA",
+    "price": null,
+    "details": "In \"Undertale,\" players control a human child who has fallen into the Underground, a realm inhabited by monsters. The game features a unique combat system where players can choose to befriend or fight monsters, with choices affecting the story's outcome. The game offers multiple endings based on the player's decisions, including Neutral, Pacifist, and Genocide routes.",
+    "links": "https://undertale.com/",
+    "dlc": []
   }
 ]
