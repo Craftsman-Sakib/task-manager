@@ -358,7 +358,7 @@
   {
     "id": 1734885607229,
     "name": "Exodus",
-    "image": "https://assets.exodusgame.com/e_x_o_d_u_s__press-_release-_key_art_1280x720_with-logo-1701984034.jpg",
+    "image": "https://mlpnk72yciwc.i.optimole.com/cqhiHLc.IIZS~2ef73/w:auto/h:auto/q:75/https://bleedingcool.com/wp-content/uploads/2023/12/EXODUS-Key-Art.jpg",
     "extraImages": [
       "https://cdn.neowin.com/news/images/uploaded/2023/12/1701999538_exodus.jpg",
       "https://insider-gaming.com/wp-content/uploads/2023/12/Exodus-Main-Character-The-Game-Awards-Reveal.webp",
@@ -366,12 +366,20 @@
     ],
     "genre": [
       "sci-fi",
-      "rpg",
-      "Action-Adventure"
+      "rpg"
     ],
-    "releaseDate": "2026",
-    "betaDate": "",
-    "earlyAccessDate": "",
+    "releaseDate": {
+      "start": "2026",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
     "developer": "Archetype Entertainment",
     "publisher": "Wizards of the Coast",
     "releaseYear": "2026",
@@ -387,7 +395,12 @@
     "price": null,
     "details": "The game is set in a distant future where humanity has fled a dying Earth and found a new home in a hostile galaxy. Players take on the role of \"The Traveler,\" humanity's last hope, navigating through challenges in an uncharted cosmos. The game incorporates a time dilation mechanic, where days for the player can mean decades back home, affecting the game's narrative and player choices. Matthew McConaughey voices a character in the game.",
     "links": "https://www.exodusgame.com/en-US",
-    "dlc": []
+    "dlc": [],
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "specialQuote": "undefined"
   },
   {
     "id": 1734886264509,
