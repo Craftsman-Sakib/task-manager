@@ -1043,16 +1043,14 @@
   {
     "id": 1735426689584,
     "name": "Marathon",
-    "image": "https://th.bing.com/th/id/OIP.ZfeG6ef4FATtojggE3KfrAHaEK?rs=1&pid=ImgDetMain",
+    "image": "https://trackercdn.com/cdn/tracker.gg/boxart/marathon.jpg",
     "extraImages": [
       "https://www.xboxygen.com/IMG/jpg/marathon-fps-bungie.jpg",
       "https://www.xboxygen.com/IMG/jpg/marathon_goliath_hero_desktop_large.jpg"
     ],
     "genre": [
       "sci-fi",
-      "shooter",
-      "PvP",
-      "Extraction Shooter"
+      "shooter"
     ],
     "releaseDate": {
       "start": "2025",
@@ -1080,8 +1078,7 @@
     ],
     "store": [
       "steam",
-      "playstation-store",
-      "Microsoft Store"
+      "playstation-store"
     ],
     "modLinks": [],
     "subscriptions": [],
