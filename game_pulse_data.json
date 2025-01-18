@@ -292,7 +292,7 @@
   {
     "id": 1734881900510,
     "name": "Kingdom Come: Deliverance II",
-    "image": "https://gaming-cdn.com/images/products/8988/616x353/kingdom-come-deliverance-2-windows-game-cover.jpg?v=1666787433",
+    "image": "https://static1.dualshockersimages.com/wordpress/wp-content/uploads/sharedimages/2024/11/kingdom-come-deliverance-ii-tag-page-cover-art.jpg",
     "extraImages": [
       "https://nexushub.co.za/images/gallery/00015/15809_kc_4.jpg",
       "https://sm.ign.com/ign_in/photo/k/kingdom-co/kingdom-come-deliverance-2-announced-will-be-twice-as-big-as_1fm1.jpg",
@@ -311,10 +311,25 @@
     "platform": [],
     "store": [],
     "trailerLink": "",
-    "price": 0,
+    "price": null,
     "details": "\"Kingdom Come: Deliverance II\" aims to deliver an immersive medieval experience, focusing on authenticity and a rich narrative that continues the journey from the original game.",
     "links": "https://www.kingdomcomerpg.com/",
-    "specialQuote": "War is a nasty business."
+    "specialQuote": "War is a nasty business.",
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "modLinks": [],
+    "subscriptions": [],
+    "dlc": []
   },
   {
     "id": 1734883765254,
