@@ -3507,5 +3507,53 @@
     "details": "In \"Undertale,\" players control a human child who has fallen into the Underground, a realm inhabited by monsters. The game features a unique combat system where players can choose to befriend or fight monsters, with choices affecting the story's outcome. The game offers multiple endings based on the player's decisions, including Neutral, Pacifist, and Genocide routes.",
     "links": "https://undertale.com/",
     "dlc": []
+  },
+  {
+    "id": 1737313102733,
+    "name": "Tyrant's Realm",
+    "image": "https://static0.hardcoregamerimages.com/wordpress/wp-content/uploads/2025/01/tyrants-realm-hero-spalsh-art.jpg",
+    "extraImages": [
+      "https://img.itch.zone/aW1hZ2UvMTkyNDI3OS8xODEyMDA2Mi5wbmc=/original/fxWD21.png",
+      "https://img.itch.zone/aW1hZ2UvMTkyNDI3OS8xODEyMDA2Ny5wbmc=/original/oajxWu.png",
+      "https://img.itch.zone/aW1hZ2UvMTkyNDI3OS8xODEyMDA2OC5wbmc=/original/n3FHTN.png",
+      "https://img.itch.zone/aW1hZ2UvMTkyNDI3OS8xODEyMDA3My5wbmc=/original/VBKtPE.png"
+    ],
+    "genre": [
+      "action",
+      "Adventure",
+      "Roguelite"
+    ],
+    "releaseDate": {
+      "start": "2025-01-16",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Team Tyrant",
+    "publisher": "Skystone Games",
+    "specialQuote": "Conquer the Dark Fantasy",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=SeBA9Fhm1ik",
+    "price": 4.66,
+    "details": "In \"Tyrant's Realm,\" players embark on a journey through procedurally generated dark fantasy worlds, facing evolving dangers with each run. The game emphasizes gear acquisition, allowing players to unlock new weapons and armor, and discover hidden Skull Altars to upgrade their power. The combat system requires timing and skill, with each run presenting unique challenges due to the procedurally generated biomes and enemies.",
+    "links": "https://teamtyrant.itch.io/tyrants-realm?",
+    "dlc": []
   }
 ]
