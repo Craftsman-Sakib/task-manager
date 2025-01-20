@@ -3555,5 +3555,53 @@
     "details": "In \"Tyrant's Realm,\" players embark on a journey through procedurally generated dark fantasy worlds, facing evolving dangers with each run. The game emphasizes gear acquisition, allowing players to unlock new weapons and armor, and discover hidden Skull Altars to upgrade their power. The combat system requires timing and skill, with each run presenting unique challenges due to the procedurally generated biomes and enemies.",
     "links": "https://teamtyrant.itch.io/tyrants-realm?",
     "dlc": []
+  },
+  {
+    "id": 1737349629208,
+    "name": "TrickShot Simulator",
+    "image": "https://repacklab.com/wp-content/uploads/2025/01/TrickShot-Simulator-Video-Game-Free-Download-Repacklab-5-200x315.jpg.webp",
+    "extraImages": [
+      "https://att.3dmgame.com/att/forum/202501/18/155540yv771fvatzmwdfvt.jpg",
+      "https://repacklab.com/wp-content/uploads/2025/01/TrickShot-Simulator-Video-Game-Free-Download-Repacklab-1.jpg.webp",
+      "https://repacklab.com/wp-content/uploads/2025/01/TrickShot-Simulator-Video-Game-Free-Download-Repacklab-3.jpg.webp",
+      "https://repacklab.com/wp-content/uploads/2025/01/TrickShot-Simulator-Video-Game-Free-Download-Repacklab-4.jpg.webp"
+    ],
+    "genre": [
+      "Casual Simulation",
+      "indie",
+      "realistic"
+    ],
+    "releaseDate": {
+      "start": "2025-01-13",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "BeaTeb",
+    "publisher": "BeaTeb",
+    "specialQuote": "Master the Art of Precision",
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "",
+    "price": 3.14,
+    "details": "\"TrickShot Simulator\" challenges players to perform a variety of trick shots using realistic physics and simple mouse controls. The game emphasizes precision and patience, as even minor adjustments can significantly impact the outcome of a shot. Some stages are notably difficult, pushing players to refine their skills. Successful trick shots are recorded as replay videos, allowing players to share their accomplishments.",
+    "links": "",
+    "dlc": []
   }
 ]
