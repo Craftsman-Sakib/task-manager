@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Association Masters</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --success: #22c55e;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .game-container {
+            background: var(--card);
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 1000px;
+            overflow: hidden;
+        }
+
+        .game-header {
+            background: linear-gradient(to right, var(--primary-dark), var(--secondary));
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .game-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 1.5rem;
+            margin-top: 1.5rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .game-modes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            background: var(--background);
+        }
+
+        .mode-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .mode-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .mode-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .mode-card p {
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .game-content {
+            padding: 2rem;
+            background: var(--background);
+        }
+
+        .power-ups {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            justify-content: center;
+        }
+
+        .power-up {
+            background: white;
+            border: none;
+            border-radius: 1rem;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            color: var(--text);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .power-up:hover:not(.disabled) {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .power-up.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f1f5f9;
+        }
+
+        .power-up i {
+            font-size: 1.2rem;
+        }
+
+        .timer-bar {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .timer-progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            width: 100%;
+            transition: width 1s linear;
+        }
+
+        .word-display {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            padding: 2rem;
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .main-word {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .word-hint {
+            color: var(--text-light);
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .word-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.25rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            color: var(--text);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .word-card.selected {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.2);
+        }
+
+        .word-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 6px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .feedback {
+            text-align: center;
+            padding: 1.25rem;
+            margin: 1.5rem 0;
+            border-radius: 1rem;
+            animation: fadeIn 0.3s ease-in-out;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .feedback.success {
+            background: #dcfce7;
+            color: var(--success);
+        }
+
+        .feedback.error {
+            background: #fee2e2;
+            color: var(--error);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 2rem;
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary);
+        }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.25rem;
+            background: var(--background);
+            border-radius: 1rem;
+            margin: 1rem 0;
+            text-align: left;
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .category-indicator {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.75rem 1.5rem;
+            border-radius: 1rem;
+            font-size: 1.1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="game-container">
+        <div class="game-header">
+            <h1>Word Association Masters</h1>
+            <div class="category-indicator">Category: <span id="currentCategory">General</span></div>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <i class="fas fa-star"></i>
+                    <span id="score">0</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-clock"></i>
+                    <span id="timer">60</span>s
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-trophy"></i>
+                    <span id="highScore">0</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-fire"></i>
+                    <span id="multiplier">1x</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="gameStart" class="game-modes">
+            <div class="mode-card" onclick="startGame('classic')">
+                <i class="fas fa-brain mode-icon"></i>
+                <h3>Classic Mode</h3>
+                <p>Test your word association skills with varying categories and difficulty levels</p>
+            </div>
+            <div class="mode-card" onclick="startGame('time-attack')">
+                <i class="fas fa-bolt mode-icon"></i>
+                <h3>Time Attack</h3>
+                <p>Race against time with decreasing time limits and increasing rewards</p>
+            </div>
+            <div class="mode-card" onclick="startGame('endless')">
+                <i class="fas fa-infinity mode-icon"></i>
+                <h3>Endless Mode</h3>
+                <p>Play indefinitely with progressive difficulty and special challenges</p>
+            </div>
+            <div class="mode-card" onclick="startGame('zen')">
+                <i class="fas fa-peace mode-icon"></i>
+                <h3>Zen Mode</h3>
+                <p>Practice without time pressure and explore word relationships</p>
+            </div>
+        </div>
+
+        <div id="gameContent" class="game-content" style="display: none;">
+            <div class="power-ups">
+                <button class="power-up" onclick="usePowerUp('hint')" id="hintPowerUp">
+                    <i class="fas fa-lightbulb"></i> Hint (3)
+                </button>
+                <button class="power-up" onclick="usePowerUp('time')" id="timePowerUp">
+                    <i class="fas fa-clock"></i> +15s (2)
+                </button>
+                <button class="power-up" onclick="usePowerUp('shuffle')" id="shufflePowerUp">
+                    <i class="fas fa-random"></i> Shuffle (3)
+                </button>
+                <button class="power-up" onclick="usePowerUp('reveal')" id="revealPowerUp">
+                    <i class="fas fa-eye"></i> Reveal (1)
+                </button>
+            </div>
+
+            <div class="timer-bar">
+                <div id="timerProgress" class="timer-progress"></div>
+            </div>
+
+            <div class="word-display">
+                <div class="main-word" id="mainWord">LOADING...</div>
+                <div class="word-hint" id="wordHint"></div>
+            </div>
+
+            <div id="wordGrid" class="word-grid"></div>
+
+            <div id="feedback" class="feedback" style="display: none;"></div>
+
+            <div class="controls">
+                <button class="btn btn-primary" onclick="checkAnswers()">
+                    <i class="fas fa-check"></i> Submit
+                </button>
+                <button class="btn btn-outline" onclick="skipWord()">
+                    <i class="fas fa-forward"></i> Skip
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameOverModal" class="modal">
+        <div class="modal-content">
+            <h2>Game Over!</h2>
+            <p class="text-2xl mb-4">Final Score: <span id="finalScore">0</span></p>
+            <div class="achievements" id="achievements"></div>
+            <button class="btn btn-primary" onclick="restartGame()">
+                <i class="fas fa-redo"></i> Play Again
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced word sets with categories
+        const wordSets = {
+            nature: [
+                {
+                    mainWord: "FOREST",
+                    associations: ["TREE", "LEAF", "MOSS", "BIRD", "DEER", "CITY", "PHONE", "PIZZA"],
+                    correct: ["TREE", "LEAF", "MOSS", "BIRD", "DEER"]
+                },
+                {
+                    mainWord: "OCEAN",
+                    associations: ["WAVE", "FISH", "CORAL", "SAND", "SHELL", "BOOK", "CAR", "DESK"],
+                    correct: ["WAVE", "FISH", "CORAL", "SAND", "SHELL"]
+                }
+            ],
+            technology: [
+                {
+                    mainWord: "COMPUTER",
+                    associations: ["KEYBOARD", "MOUSE", "SCREEN", "CODE", "INTERNET", "TREE", "CLOUD", "DIGITAL"],
+                    correct: ["KEYBOARD", "MOUSE", "SCREEN", "CODE", "INTERNET", "CLOUD", "DIGITAL"]
+                },
+                {
+                    mainWord: "SMARTPHONE",
+                    associations: ["APP", "SCREEN", "CAMERA", "WIFI", "BATTERY", "BREAD", "LEAF", "TOUCH"],
+                    correct: ["APP", "SCREEN", "CAMERA", "WIFI", "BATTERY", "TOUCH"]
+                }
+            ],
+            food: [
+                {
+                    mainWord: "BREAKFAST",
+                    associations: ["EGGS", "BACON", "TOAST", "COFFEE", "CEREAL", "PHONE", "SHOE", "MILK"],
+                    correct: ["EGGS", "BACON", "TOAST", "COFFEE", "CEREAL", "MILK"]
+                },
+                {
+                    mainWord: "DINNER",
+                    associations: ["PASTA", "STEAK", "SALAD", "SOUP", "RICE", "CAR", "BOOK", "WINE"],
+                    correct: ["PASTA", "STEAK", "SALAD", "SOUP", "RICE", "WINE"]
+                }
+            ],
+            emotions: [
+                {
+                    mainWord: "HAPPINESS",
+                    associations: ["SMILE", "JOY", "LAUGH", "LOVE", "FUN", "TABLE", "PHONE", "PEACE"],
+                    correct: ["SMILE", "JOY", "LAUGH", "LOVE", "FUN", "PEACE"]
+                },
+                {
+                    mainWord: "SADNESS",
+                    associations: ["TEAR", "CRY", "GRIEF", "BLUE", "RAIN", "BOOK", "CHAIR", "LONELY"],
+                    correct: ["TEAR", "CRY", "GRIEF", "BLUE", "RAIN", "LONELY"]
+                }
+            ]
+        };
+
+        let currentMode = '';
+        let currentSet = null;
+        let selectedWords = [];
+        let score = 0;
+        let timer = 60;
+        let multiplier = 1;
+        let gameInterval;
+        let powerUps = {
+            hint: 3,
+            time: 2,
+            shuffle: 3,
+            reveal: 1
+        };
+        let streakCount = 0;
+        let currentCategory = '';
+        let currentLevel = 1;
+        let perfectRounds = 0;
+
+        function startGame(mode) {
+            currentMode = mode;
+            document.getElementById('gameStart').style.display = 'none';
+            document.getElementById('gameContent').style.display = 'block';
+
+            // Initialize game settings based on mode
+            switch (mode) {
+                case 'classic':
+                    timer = 60;
+                    multiplier = 1;
+                    break;
+                case 'time-attack':
+                    timer = 30;
+                    multiplier = 1.5;
+                    break;
+                case 'endless':
+                    timer = 45;
+                    multiplier = 1.2;
+                    break;
+                case 'zen':
+                    timer = Infinity;
+                    multiplier = 0.8;
+                    break;
+            }
+
+            // Reset game state
+            score = 0;
+            streakCount = 0;
+            currentLevel = 1;
+            perfectRounds = 0;
+            resetPowerUps();
+            updateStats();
+            loadNewWord();
+            startTimer();
+        }
+
+        function resetPowerUps() {
+            powerUps = {
+                hint: 3,
+                time: 2,
+                shuffle: 3,
+                reveal: 1
+            };
+            updatePowerUpDisplay();
+        }
+
+        function updatePowerUpDisplay() {
+            for (const [type, count] of Object.entries(powerUps)) {
+                const button = document.getElementById(`${type}PowerUp`);
+                button.innerHTML = `<i class="fas fa-${getPowerUpIcon(type)}"></i> ${type.charAt(0).toUpperCase() + type.slice(1)} (${count})`;
+                button.classList.toggle('disabled', count === 0);
+                button.disabled = count === 0;
+            }
+        }
+
+        function getPowerUpIcon(type) {
+            const icons = {
+                hint: 'lightbulb',
+                time: 'clock',
+                shuffle: 'random',
+                reveal: 'eye'
+            };
+            return icons[type] || 'star';
+        }
+
+        function loadNewWord() {
+            // Select random category
+            const categories = Object.keys(wordSets);
+            currentCategory = categories[Math.floor(Math.random() * categories.length)];
+            const categoryWords = wordSets[currentCategory];
+
+            // Select random word set from category
+            currentSet = categoryWords[Math.floor(Math.random() * categoryWords.length)];
+
+            // Update display
+            document.getElementById('mainWord').textContent = currentSet.mainWord;
+            document.getElementById('currentCategory').textContent = currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1);
+            document.getElementById('wordHint').textContent = '';
+
+            selectedWords = [];
+            updateWordGrid();
+        }
+
+        function updateWordGrid() {
+            const grid = document.getElementById('wordGrid');
+            grid.innerHTML = '';
+
+            // Shuffle associations for display
+            const shuffledWords = [...currentSet.associations].sort(() => Math.random() - 0.5);
+
+            shuffledWords.forEach(word => {
+                const card = document.createElement('div');
+                card.className = 'word-card';
+                card.textContent = word;
+                card.onclick = () => toggleWordSelection(word, card);
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleWordSelection(word, card) {
+            const index = selectedWords.indexOf(word);
+            if (index === -1) {
+                selectedWords.push(word);
+                card.classList.add('selected');
+            } else {
+                selectedWords.splice(index, 1);
+                card.classList.remove('selected');
+            }
+        }
+
+        function checkAnswers() {
+            const correctAnswers = selectedWords.filter(word =>
+                currentSet.correct.includes(word)
+            );
+            const incorrectAnswers = selectedWords.filter(word =>
+                !currentSet.correct.includes(word)
+            );
+
+            // Calculate base points
+            let points = correctAnswers.length * 10;
+            points -= incorrectAnswers.length * 5;
+
+            // Apply mode-specific multipliers
+            points *= multiplier;
+
+            // Apply streak bonus
+            if (correctAnswers.length === currentSet.correct.length && incorrectAnswers.length === 0) {
+                streakCount++;
+                perfectRounds++;
+                points *= (1 + (streakCount * 0.1)); // 10% bonus per streak
+
+                // Add time bonus for perfect rounds
+                if (currentMode !== 'zen') {
+                    timer += 5;
+                }
+            } else {
+                streakCount = 0;
+            }
+
+            // Add level bonus
+            points *= (1 + (currentLevel - 1) * 0.05); // 5% bonus per level
+
+            score += Math.round(points);
+            updateStats();
+            showFeedback(correctAnswers.length, incorrectAnswers.length, points);
+
+            // Progress level if conditions met
+            if (perfectRounds >= 3) {
+                currentLevel++;
+                perfectRounds = 0;
+                multiplier += 0.1;
+                showLevelUpMessage();
+            }
+
+            setTimeout(loadNewWord, 2000);
+        }
+
+        function showFeedback(correct, incorrect, points) {
+            const feedback = document.getElementById('feedback');
+            const total = currentSet.correct.length;
+
+            if (correct === total && incorrect === 0) {
+                feedback.className = 'feedback success';
+                feedback.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    Perfect! +${Math.round(points)} points 
+                    ${streakCount > 1 ? `<br>Streak bonus: x${(1 + (streakCount * 0.1)).toFixed(1)}` : ''}
+                `;
+            } else if (correct > incorrect) {
+                feedback.className = 'feedback success';
+                feedback.innerHTML = `
+                    <i class="fas fa-check"></i>
+                    Good job! Found ${correct} correct associations (+${Math.round(points)} points)
+                `;
+            } else {
+                feedback.className = 'feedback error';
+                feedback.innerHTML = `
+                    <i class="fas fa-times"></i>
+                    Try again! ${incorrect} incorrect selections
+                `;
+            }
+
+            feedback.style.display = 'block';
+            setTimeout(() => {
+                feedback.style.display = 'none';
+            }, 2000);
+        }
+
+        function showLevelUpMessage() {
+            const feedback = document.getElementById('feedback');
+            feedback.className = 'feedback success';
+            feedback.innerHTML = `
+                <i class="fas fa-level-up-alt"></i>
+                Level Up! Now at level ${currentLevel} (Multiplier: x${multiplier.toFixed(1)})
+            `;
+            feedback.style.display = 'block';
+            setTimeout(() => {
+                feedback.style.display = 'none';
+            }, 2000);
+        }
+
+        function startTimer() {
+            if (currentMode === 'zen') return;
+
+            clearInterval(gameInterval);
+            updateTimerBar();
+
+            gameInterval = setInterval(() => {
+                timer--;
+                updateStats();
+                updateTimerBar();
+
+                if (timer <= 0) {
+                    endGame();
+                }
+            }, 1000);
+        }
+
+        function updateTimerBar() {
+            if (currentMode === 'zen') {
+                document.querySelector('.timer-bar').style.display = 'none';
+                return;
+            }
+
+            const maxTime = currentMode === 'time-attack' ? 30 : 60;
+            const progress = (timer / maxTime) * 100;
+            document.getElementById('timerProgress').style.width = `${progress}%`;
+        }
+
+        function updateStats() {
+            document.getElementById('score').textContent = Math.floor(score);
+            document.getElementById('timer').textContent = currentMode === 'zen' ? '∞' : timer;
+            document.getElementById('multiplier').textContent = `${multiplier.toFixed(1)}x`;
+
+            // Update high score
+            const highScore = localStorage.getItem('wordAssociationHighScore') || 0;
+            if (score > highScore) {
+                localStorage.setItem('wordAssociationHighScore', score);
+                document.getElementById('highScore').textContent = Math.floor(score);
+            }
+        }
+
+        function usePowerUp(type) {
+            if (powerUps[type] <= 0) return;
+
+            powerUps[type]--;
+
+            switch (type) {
+                case 'hint':
+                    const unselectedCorrect = currentSet.correct.filter(word => !selectedWords.includes(word));
+                    if (unselectedCorrect.length > 0) {
+                        const hint = unselectedCorrect[Math.floor(Math.random() * unselectedCorrect.length)];
+                        document.getElementById('wordHint').textContent = `Hint: "${hint}" is correct`;
+                    }
+                    break;
+
+                case 'time':
+                    if (currentMode !== 'zen') {
+                        timer += 15;
+                        updateStats();
+                    }
+                    break;
+
+                case 'shuffle':
+                    updateWordGrid();
+                    break;
+
+                case 'reveal':
+                    const wordCards = document.querySelectorAll('.word-card');
+                    wordCards.forEach(card => {
+                        if (currentSet.correct.includes(card.textContent)) {
+                            card.style.border = '2px solid var(--success)';
+                            setTimeout(() => {
+                                card.style.border = '';
+                            }, 1000);
+                        }
+                    });
+                    break;
+            }
+
+            updatePowerUpDisplay();
+        }
+
+        function skipWord() {
+            score -= 5; // Small penalty for skipping
+            updateStats();
+            loadNewWord();
+        }
+
+        function endGame() {
+            clearInterval(gameInterval);
+            const modal = document.getElementById('gameOverModal');
+            const finalScore = document.getElementById('finalScore');
+            finalScore.textContent = Math.floor(score);
+
+            // Generate achievements
+            const achievements = document.getElementById('achievements');
+            achievements.innerHTML = '';
+
+            if (score > (localStorage.getItem('wordAssociationHighScore') || 0)) {
+                addAchievement('New High Score!', 'trophy', 'You\'ve set a new personal best!');
+            }
+
+            if (streakCount >= 5) {
+                addAchievement('Hot Streak!', 'fire', `Achieved a ${streakCount}x streak combo!`);
+            }
+
+            if (currentLevel >= 5) {
+                addAchievement('Level Master!', 'star', `Reached level ${currentLevel}!`);
+            }
+
+            if (perfectRounds >= 2) {
+                addAchievement('Perfectionist', 'check-circle', `${perfectRounds} perfect rounds in a row!`);
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function addAchievement(title, icon, description) {
+            const achievements = document.getElementById('achievements');
+            achievements.innerHTML += `
+                <div class="achievement">
+                    <i class="fas fa-${icon} achievement-icon"></i>
+                    <div>
+                        <h4>${title}</h4>
+                        <p>${description}</p>
+                    </div>
+                </div>
+            `;
+        }
+
+        function restartGame() {
+            document.getElementById('gameOverModal').style.display = 'none';
+            document.getElementById('gameContent').style.display = 'none';
+            document.getElementById('gameStart').style.display = 'grid';
+            resetPowerUps();
+            document.getElementById('wordHint').textContent = '';
+            // Reset game stats
+            score = 0;
+            timer = 60;
+            multiplier = 1;
+            streakCount = 0;
+            currentLevel = 1;
+            perfectRounds = 0;
+        }
+
+        // Add keyboard shortcuts and controls
+        document.addEventListener('keydown', (e) => {
+            if (document.getElementById('gameContent').style.display === 'none') return;
+
+            switch (e.code) {
+                case 'Space':
+                    e.preventDefault();
+                    checkAnswers();
+                    break;
+                case 'KeyS':
+                    skipWord();
+                    break;
+                case 'Digit1':
+                    usePowerUp('hint');
+                    break;
+                case 'Digit2':
+                    usePowerUp('time');
+                    break;
+                case 'Digit3':
+                    usePowerUp('shuffle');
+                    break;
+                case 'Digit4':
+                    usePowerUp('reveal');
+                    break;
+            }
+        });
+
+        // Initialize game settings
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load high score from local storage
+            const highScore = localStorage.getItem('wordAssociationHighScore') || 0;
+            document.getElementById('highScore').textContent = highScore;
+
+            // Add tooltip information for power-ups
+            addPowerUpTooltips();
+
+            // Add difficulty scaling for endless mode
+            if (currentMode === 'endless') {
+                setInterval(() => {
+                    if (timer > 0) {
+                        multiplier += 0.01; // Gradually increase difficulty
+                        updateStats();
+                    }
+                }, 10000); // Every 10 seconds
+            }
+        });
+
+        function addPowerUpTooltips() {
+            const tooltips = {
+                'hintPowerUp': 'Reveals one correct word (Press 1)',
+                'timePowerUp': 'Adds 15 seconds to timer (Press 2)',
+                'shufflePowerUp': 'Reshuffles word grid (Press 3)',
+                'revealPowerUp': 'Briefly highlights all correct words (Press 4)'
+            };
+
+            for (const [id, text] of Object.entries(tooltips)) {
+                const element = document.getElementById(id);
+                element.title = text;
+            }
+        }
+
+        // Add touch support for mobile devices
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            touchStartY = e.changedTouches[0].screenY;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].screenX;
+            const touchEndY = e.changedTouches[0].screenY;
+
+            const deltaX = touchEndX - touchStartX;
+            const deltaY = touchEndY - touchStartY;
+
+            // Swipe left to skip
+            if (deltaX < -50 && Math.abs(deltaY) < 30) {
+                skipWord();
+            }
+
+            // Swipe right to check answers
+            if (deltaX > 50 && Math.abs(deltaY) < 30) {
+                checkAnswers();
+            }
+        });
+
+        // Add special events for different game modes
+        function handleSpecialEvents() {
+            if (currentMode === 'time-attack') {
+                // Decrease timer faster as score increases
+                const timerDecrease = Math.floor(score / 1000) + 1;
+                timer -= timerDecrease;
+
+                // Add bonus time for quick answers
+                if (timer > 20) {
+                    score += Math.floor(timer / 10);
+                }
+            }
+
+            if (currentMode === 'endless') {
+                // Add random power-up every 5 perfect rounds
+                if (perfectRounds % 5 === 0 && perfectRounds > 0) {
+                    const powerUpTypes = ['hint', 'time', 'shuffle', 'reveal'];
+                    const randomPowerUp = powerUpTypes[Math.floor(Math.random() * powerUpTypes.length)];
+                    powerUps[randomPowerUp]++;
+                    updatePowerUpDisplay();
+
+                    showFeedback('bonus', `Bonus power-up: ${randomPowerUp}!`);
+                }
+            }
+        }
+
+        // Add accessibility features
+        function initializeAccessibility() {
+            // Add ARIA labels
+            document.querySelectorAll('.word-card').forEach(card => {
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-pressed', 'false');
+            });
+
+            // Update ARIA states on selection
+            document.querySelectorAll('.word-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    card.setAttribute('aria-pressed', card.classList.contains('selected'));
+                });
+            });
+
+            // Add keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    const focused = document.activeElement;
+                    if (focused.classList.contains('word-card')) {
+                        focused.click();
+                    }
+                }
+            });
+        }
+
+        // Initialize animations
+        function initializeAnimations() {
+            // Add score animation
+            const scoreElement = document.getElementById('score');
+            let currentDisplayScore = 0;
+
+            function updateScoreDisplay() {
+                if (currentDisplayScore < score) {
+                    currentDisplayScore = Math.min(currentDisplayScore + Math.ceil((score - currentDisplayScore) / 10), score);
+                    scoreElement.textContent = Math.floor(currentDisplayScore);
+                    requestAnimationFrame(updateScoreDisplay);
+                }
+            }
+
+            // Observer for score changes
+            let previousScore = score;
+            setInterval(() => {
+                if (previousScore !== score) {
+                    previousScore = score;
+                    updateScoreDisplay();
+                }
+            }, 100);
+        }
+
+        // Initialize the game with all features
+        function initializeGame() {
+            initializeAccessibility();
+            initializeAnimations();
+            addPowerUpTooltips();
+
+            // Add responsive design adjustments
+            window.addEventListener('resize', () => {
+                const gameContainer = document.querySelector('.game-container');
+                const windowHeight = window.innerHeight;
+
+                if (windowHeight < 600) {
+                    gameContainer.style.transform = `scale(${windowHeight / 600})`;
+                } else {
+                    gameContainer.style.transform = 'none';
+                }
+            });
+        }
+
+        // Start the game initialization
+        initializeGame();
+    </script>
+</body>
+
+</html>
