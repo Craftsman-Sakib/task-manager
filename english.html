@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EnglishPro - Your Learning Journey</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-dark: #3730a3;
+            --secondary: #818cf8;
+            --success: #22c55e;
+            --background: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --gradient-primary: linear-gradient(135deg, #4f46e5, #818cf8);
+            --gradient-secondary: linear-gradient(135deg, #3b82f6, #60a5fa);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            background-color: var(--card);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: bold;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .main-container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 2rem;
+        }
+
+        /* Utility classes */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .lesson-section-active {
+            display: none;
+        }
+
+        .lesson-section-active.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            /* Remove default link underline */
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(79, 70, 229, 0.2);
+        }
+
+        /* Dashboard Specific Styling */
+        #dashboard-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            /* Example Layout*/
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+
+        .dashboard-card {
+
+            margin-top: 1rem;
+
+        }
+
+        .dashboard-card>p {
+            margin: 0.6rem;
+
+        }
+
+        .dashboard-card-content>p {
+            margin: 0.3rem;
+            font-size: 0.9em;
+
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 0.4rem 0;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .dashboard-activity-card {
+            background: var(--card);
+            padding: 1rem;
+            border-radius: 0.75rem;
+            overflow: hidden;
+
+        }
+
+        .dashboard-activity-card h3 {
+            margin-bottom: 0.4rem;
+        }
+
+        .dashboard-task {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.3rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+
+        }
+
+        .dashboard-task input {
+            margin: 0;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #d1d5db;
+            border-radius: 0.2rem;
+            cursor: pointer;
+
+
+        }
+
+        .dashboard-task input:checked+label {
+            text-decoration: line-through;
+            opacity: 0.6;
+            color: var(--text-light)
+        }
+
+
+
+        /* Vocabulary Specific Styling */
+        #vocabulary-content .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .vocabulary-grid-item {
+            background: var(--card);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+
+
+        }
+
+        .vocabulary-grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .vocab-word {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .audio-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .audio-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+
+        /* Lessons Specific Styling */
+        #lessons-content .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .lesson-card {
+
+            border-left: 4px solid var(--primary);
+        }
+
+        .lesson-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .lesson-card-icon {
+            font-size: 1.4rem;
+            color: var(--primary)
+        }
+
+        .lesson-card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--text)
+        }
+
+        .lesson-details-content {
+
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .lesson-detail {
+            padding: 0.5rem;
+        }
+
+
+
+        .lesson-detail>p {
+            margin: 0.3rem;
+        }
+
+        .lesson-detail>ul {
+            margin: 0.4rem;
+            padding: 0.6rem;
+
+        }
+
+        .lesson-detail>ul li {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+
+
+        /* Practice Specific Styling */
+
+        #practice-content .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .practice-grid-item {
+
+            text-align: center;
+        }
+
+
+        .practice-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+
+
+        /* Profile Specific Styling */
+
+        #profile-content {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+
+        #profile-content img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid var(--primary);
+
+        }
+
+
+        #profile-content .profile-info {
+
+            width: 100%;
+            margin: 1rem 0;
+            padding: 0 0 0 1rem;
+        }
+
+        #profile-content .profile-stats {
+
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+
+        }
+
+        #profile-content .profile-stats>.stats-card {
+            text-align: center;
+        }
+
+        .stats-card h3 {
+            font-size: 1.5rem;
+        }
+
+
+        .settings-list {
+            width: 100%;
+            list-style-type: none;
+            padding: 0;
+
+        }
+
+        .settings-list li {
+            margin-bottom: 0.4rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+            padding: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+
+        /* Grammar Styling */
+        .grammar-content {
+            margin: 1rem 0;
+        }
+
+        .grammar-section {
+            background: var(--card);
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .grammar-section h3 {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .grammar-section .grammar-details {
+            padding: 1rem;
+        }
+
+        .grammar-section ul {
+            list-style-type: disc;
+            margin-left: 2rem;
+        }
+
+        .grammar-section p {
+            margin: 0.5rem 0;
+        }
+
+        .grammar-section ul li {
+            margin: 0.4rem;
+        }
+
+        .grammar-details .example-sentence {
+            font-style: italic;
+            margin: 0.4rem 0;
+            color: var(--text-light)
+        }
+
+        .grammar-details .sub-heading {
+            font-weight: 600;
+            margin: 0.5rem 0;
+            color: var(--text)
+        }
+
+        /* Lesson Detail Page Styling */
+        .lesson-detail-page {
+            padding: 2rem 0;
+        }
+
+        .lesson-detail-page-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .lesson-detail-page-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .lesson-detail-page .grammar-section {
+
+            margin-bottom: 1.5rem;
+        }
+
+        .lesson-detail-page .grammar-section h3 {
+            font-size: 1.5rem;
+            padding: 1.2rem;
+        }
+
+        .lesson-detail-page .grammar-details {
+            padding: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                EnglishPro
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active" onclick="showSection('dashboard')">Dashboard</a>
+                <a href="#" onclick="showSection('vocabulary')">Vocabulary</a>
+                <a href="#" onclick="showSection('lessons')">Lessons</a>
+                <a href="#" onclick="showSection('practice')">Practice</a>
+                <a href="#" onclick="showSection('profile')"><i class="fas fa-user"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!--Dashboard Section-->
+        <section id="dashboard" class="section active">
+            <h2 class="section-title">Dashboard</h2>
+            <div id="dashboard-content">
+
+                <div class="dashboard-card">
+                    <div class="card dashboard-card-content">
+                        <h2>Learning Progress Overview</h2>
+                        <div data-skill="overall"
+                            style="display: flex;align-items:center; justify-content: space-between">
+                            <p style="margin-right: 1rem; font-weight: 600;">Overall</p>
+                            <p class="progress-label">55%</p>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 55%"></div>
+                        </div>
+
+
+                        <div style="display: flex;align-items:center; justify-content: space-between"
+                            data-skill="grammar">
+                            <p style="margin-right: 1rem; font-weight: 600;">Grammar</p>
+                            <p class="progress-label">75%</p>
+
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%"></div>
+                        </div>
+                        <div style="display: flex;align-items:center; justify-content: space-between"
+                            data-skill="vocabulary">
+                            <p style="margin-right: 1rem; font-weight: 600;">Vocabulary</p>
+                            <p class="progress-label">35%</p>
+
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 35%"></div>
+                        </div>
+
+
+                        <div style="display: flex;align-items:center; justify-content: space-between"
+                            data-skill="speaking">
+                            <p style="margin-right: 1rem; font-weight: 600;">Speaking</p>
+                            <p class="progress-label">60%</p>
+
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 60%"></div>
+                        </div>
+                        <div style="display: flex;align-items:center; justify-content: space-between"
+                            data-skill="writing">
+                            <p style="margin-right: 1rem; font-weight: 600;">Writing</p>
+                            <p class="progress-label">80%</p>
+
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%"></div>
+                        </div>
+
+
+                    </div>
+                    <div class="card dashboard-card-content" style="margin-top: 1rem">
+
+                        <h2> Daily goals</h2>
+
+                        <div class="dashboard-task">
+                            <input type="checkbox" id="task1"> <label for="task1">Learn 5 new words </label>
+                        </div>
+
+                        <div class="dashboard-task"> <input type="checkbox" id="task2"> <label for="task2">Complete one
+                                grammar lesson </label>
+                        </div>
+                        <div class="dashboard-task"> <input type="checkbox" id="task3"> <label for="task3">Complete one
+                                speaking practice</label></div>
+
+
+                    </div>
+
+                </div>
+                <div class="card dashboard-activity-card">
+                    <h2>Recent Activity</h2>
+
+                    <div>
+                        <div class="dashboard-task"><label>Completed: Grammar: Present simple tense</label></div>
+
+                        <div class="dashboard-task"><label>Practice: Listning completed.</label></div>
+
+                        <div class="dashboard-task"><label>Learned : Ubiquitous.</label> </div>
+                    </div>
+
+
+
+                </div>
+                <div class="dashboard-card">
+                    <div class="card dashboard-card-content" style="height: 100%;">
+
+                        <h2> Quick links to Learning paths</h2>
+
+                        <p><a href="#" onclick="showSection('lessons')" class="btn"> Grammar Master</a> </p>
+
+                        <p><a href="#" onclick="showSection('lessons')" class="btn">Speaking skill</a></p>
+
+                        <p> <a href="#" onclick="showSection('lessons')" class="btn">Writing skills</a></p>
+
+                    </div>
+
+
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card dashboard-card-content" style="height: 100%;">
+
+                        <h2> Personalized Reccomendation</h2>
+                        <p>Based on your previous practice with present tense we recommend reviewing <a href="#"
+                                onclick="showSection('lessons')">articles on present continuous tense.</a> </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+        <!--Vocabulary section-->
+        <section id="vocabulary" class="section">
+            <h2 class="section-title">Daily Vocabulary Builder</h2>
+            <div id="vocabulary-content">
+                <div class="vocabulary-grid">
+                    <!-- Vocabulary cards will be inserted here -->
+
+                </div>
+            </div>
+
+        </section>
+        <!--Lessons section-->
+        <section id="lessons" class="section">
+            <h2 class="section-title">Lessons</h2>
+            <div id="lessons-content">
+
+                <div class="lessons-grid">
+
+                    <div class="lesson-card card" data-lesson="basic-sentence-structure">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-list lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Basic Sentence Structure</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Subject-Verb-Object, understanding clauses.</p>
+                            </div>
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"> <button
+                                    class="btn" onclick="showLessonContent('basic-sentence-structure')"> Start
+                                    Lesson</button></div>
+                        </div>
+                    </div>
+                    <div class="lesson-card card" data-lesson="nouns">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-file lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Nouns</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Countable and Uncountable Nouns, Singular and Plural Nouns, Possessive Nouns.</p>
+                            </div>
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"> <button
+                                    class="btn" onclick="showLessonContent('nouns')"> Start Lesson</button></div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="pronouns">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-user lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Pronouns</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Subject Pronouns, Object Pronouns, Possessive Pronouns, Reflexive Pronouns,
+                                    Demonstrative Pronouns.</p>
+                            </div>
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('pronouns')"> Start Lesson</button></div>
+                        </div>
+                    </div>
+
+
+                    <div class="lesson-card card" data-lesson="articles">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-edit lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Articles</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Definite (the) and Indefinite (a, an).</p>
+                            </div>
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('articles')"> Start Lesson</button></div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="lesson-card card" data-lesson="adjectives">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-palette lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Adjectives</h3>
+                        </div>
+
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Descriptive Adjectives, Comparative Adjectives, Superlative Adjectives, Order of
+                                    Adjectives.</p>
+                            </div>
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('adjectives')"> Start Lesson</button></div>
+
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="adverbs">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-running lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Adverbs</h3>
+                        </div>
+
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Adverbs of Manner, Adverbs of Place, Adverbs of Time, Adverbs of Frequency.</p>
+                            </div>
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('adverbs')"> Start Lesson</button></div>
+                        </div>
+
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="prepositions">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-map-marker-alt lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Prepositions</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p> focusing on prepositions of place, time, and movement (in, on, at, under, over,
+                                    etc.).</p>
+                            </div>
+
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('prepositions')"> Start Lesson</button></div>
+
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="conjunctions">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-link lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Conjunctions</h3>
+                        </div>
+
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Coordinating (and, but, or), Subordinating (because, although, if)</p>
+                            </div>
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('conjunctions')"> Start Lesson</button></div>
+
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="present-simple">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-book lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Present Simple Tense</h3>
+
+                        </div>
+                        <div class="lesson-details-content">
+
+                            <div class="lesson-detail">
+                                <p>The present simple tense is used to describe habits, general truths, and unchanging
+                                    situations. Example: "I walk to school every day." </p>
+                            </div>
+
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('present-simple')"> Start Lesson</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="past-continuous">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-headphones lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Past Continuous Tense</h3>
+
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p> The past continuous tense is used to describe an ongoing action that happened at a
+                                    specific point in the past. Example: "I was reading a book while he was playing
+                                    games."</p>
+
+                                <ul>
+                                    <li>Formation :was /were+base form +ing.
+                                    <li> I was watching TV all day yesterday .</li>
+
+                                    <li> It was raining yesterday evening.</li>
+                                </ul>
+
+                            </div>
+
+                            <div class="lesson-detail" style=" border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('past-continuous')"> Start Lesson</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="lesson-card card" data-lesson="future-simple">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-pencil lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Future Simple Tense</h3>
+                        </div>
+
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>The future simple tense is used to express future actions. Use 'will' or 'be going
+                                    to'. Example: I will visit my parents. It's going to rain. </p>
+                            </div>
+
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('future-simple')">Start Lesson</button>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="present-perfect">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-check lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Present Perfect Tense</h3>
+
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Actions connecting the past to the present.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('present-perfect')"> Start Lesson</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="past-perfect">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-history lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Past Perfect Tense</h3>
+                        </div>
+
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Actions completed before another point in the past</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('past-perfect')"> Start Lesson</button></div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="future-continuous">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-clock lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Future Continuous Tense</h3>
+
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Actions that will be in progress at a specific time in the future.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('future-continuous')"> Start Lesson</button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="lesson-card card" data-lesson="present-perfect-continuous">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-sync lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Present Perfect Continuous Tense</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Actions that started in the past and are still continuing.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('present-perfect-continuous')"> Start
+                                    Lesson</button></div>
+                        </div>
+                    </div>
+                    <div class="lesson-card card" data-lesson="past-perfect-continuous">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-hourglass-half lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Past Perfect Continuous Tense</h3>
+                        </div>
+
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Actions that were in progress before another point in the past.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('past-perfect-continuous')"> Start
+                                    Lesson</button></div>
+                        </div>
+
+                    </div>
+                    <div class="lesson-card card" data-lesson="future-perfect">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-calendar-check lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Future Perfect Tense</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p> Actions that will be completed before a specific time in the future.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('future-perfect')"> Start Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="future-perfect-continuous">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-calendar-plus lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Future Perfect Continuous Tense</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Actions that will have been in progress for a period of time before a specific point
+                                    in the future.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('future-perfect-continuous')"> Start
+                                    Lesson</button></div>
+                        </div>
+                    </div>
+                    <div class="lesson-card card" data-lesson="modal-verbs">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-tasks lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Modal Verbs</h3>
+
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>ability, permission, advice, obligation. (can, could, may, might, will, would, shall,
+                                    should, must)</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('modal-verbs')"> Start Lesson</button></div>
+                        </div>
+                    </div>
+                    <div class="lesson-card card" data-lesson="conditionals">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-code-branch lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Conditionals</h3>
+                        </div>
+
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Zero Conditional, First Conditional, Second Conditional, Third Conditional, Mixed
+                                    Conditionals.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('conditionals')"> Start Lesson</button></div>
+                        </div>
+
+                    </div>
+                    <div class="lesson-card card" data-lesson="passive-voice">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-volume-off lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Passive Voice</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p> Understanding and using the passive voice.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('passive-voice')"> Start Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="reported-speech">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-comment-dots lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Reported Speech</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Converting direct speech to indirect speech.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('reported-speech')"> Start Lesson</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lesson-card card" data-lesson="questions">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-question lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Questions</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Forming different types of questions (Yes/No, Wh- questions, Tag questions).</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('questions')"> Start Lesson</button></div>
+                        </div>
+
+                    </div>
+                    <div class="lesson-card card" data-lesson="clauses">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-code lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Clauses</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Main and subordinate clauses (noun, adjective, adverb clauses).</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('clauses')"> Start Lesson</button></div>
+
+                        </div>
+                    </div>
+
+                    <div class="lesson-card card" data-lesson="phrases">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-paragraph lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Phrases</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Noun phrases, verb phrases, adjective phrases, adverbial phrases, prepositional
+                                    phrases.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('phrases')"> Start Lesson</button></div>
+                        </div>
+
+                    </div>
+                    <div class="lesson-card card" data-lesson="determiners">
+                        <div class="lesson-card-header">
+                            <i class="fas fa-list-ol lesson-card-icon"></i>
+                            <h3 class="lesson-card-title">Determiners</h3>
+                        </div>
+                        <div class="lesson-details-content">
+                            <div class="lesson-detail">
+                                <p>Quantifiers, Demonstratives, Possessives.</p>
+                            </div>
+                            <div class="lesson-detail" style="border-top:1px solid rgba(0, 0, 0, 0.1);"><button
+                                    class="btn" onclick="showLessonContent('determiners')"> Start Lesson</button></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Lesson Detail Page Section-->
+        <section id="lesson-detail-page" class="lesson-section-active">
+            <div class="lesson-detail-page">
+                <div class="lesson-detail-page-content">
+                    <h2 class="lesson-detail-page-title" id="lesson-detail-title"></h2>
+                    <div id="lesson-detail-content">
+
+                    </div>
+
+                    <button class="btn" onclick="showSection('lessons')" style="margin-top: 1rem;">Go Back to
+                        Lessons</button>
+                </div>
+            </div>
+        </section>
+        <!--practice section-->
+
+        <section id="practice" class="section">
+            <h2 class="section-title">Practice & Exercises</h2>
+            <div id="practice-content">
+                <div class="practice-grid">
+
+                    <div class="practice-grid-item card">
+                        <i class="fas fa-puzzle-piece practice-icon"></i>
+                        <h3>Vocabulary Games</h3>
+                        <p>Fun word games to expand your vocabulary</p>
+                        <button class="btn">Start Playing</button>
+                    </div>
+
+                    <div class="practice-grid-item card">
+                        <i class="fas fa-headphones practice-icon"></i>
+                        <h3>Listening Practice</h3>
+                        <p>Improve your listening comprehension</p>
+                        <button class="btn">Start Listening</button>
+
+                    </div>
+
+                    <div class="practice-grid-item card">
+                        <i class="fas fa-keyboard practice-icon"></i>
+                        <h3>Writing Exercises</h3>
+                        <p>Practice writing in different styles</p>
+                        <button class="btn">Start Writing</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!--profile section-->
+        <section id="profile" class="section">
+            <h2 class="section-title">Profile</h2>
+            <div id="profile-content">
+
+                <img src="profile.jpg" alt="User profile">
+
+                <div class="profile-info card">
+                    <h3>Profile Info</h3>
+                    <p><strong>Name: </strong> john doe.</p>
+                    <p><strong> Email:</strong> user@example.com </p>
+
+                </div>
+                <div class="profile-stats card">
+                    <div class="stats-card">
+                        <h3> 55 </h3>
+                        <p>Lessons</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>44</h3>
+                        <p>Words</p>
+
+                    </div>
+                    <div class="stats-card">
+                        <h3>25</h3>
+                        <p>Practice</p>
+                    </div>
+
+                </div>
+
+
+                <div class="card">
+                    <ul class="settings-list">
+                        <li> Settings 1 <a href="#" style="text-decoration: none;"> Edit</a> </li>
+                        <li>Settings 2 <a href="#" style="text-decoration: none;"> Edit</a> </li>
+
+                        <li>Settings 3 <a href="#" style="text-decoration: none;">Edit</a> </li>
+
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+    <script>
+
+        // Function to show different sections
+        function showSection(sectionId) {
+
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.querySelectorAll('.lesson-section-active').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+
+
+            // Remove active class from all nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add active class to clicked link
+            const activeLink = document.querySelector(`.nav-links a[onclick="showSection('${sectionId}')"]`);
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+
+            // Update content based on section
+            if (sectionId === 'vocabulary') {
+                updateVocabularyDisplay();
+            }
+            // Reset Lesson view
+            if (sectionId === 'lessons') {
+                document.getElementById('lesson-detail-page').classList.remove('active');
+            }
+            // Add other section handlers as needed
+        }
+
+
+
+        // Function to show lesson specific content
+        function showLessonContent(lessonId) {
+            // Hide main sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Show lesson content page section
+            document.getElementById('lesson-detail-page').classList.add('active');
+            const lessonContent = document.getElementById('lesson-detail-content');
+            const lessonTitle = document.getElementById('lesson-detail-title')
+
+
+            // Populate content based on the lesson clicked
+            switch (lessonId) {
+                case 'basic-sentence-structure':
+                    lessonTitle.textContent = "Basic Sentence Structure"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                       <h3>Understanding Basic Sentence Structure</h3>
+                     <div class="grammar-details">
+                         <p>A basic sentence in English follows the Subject-Verb-Object (SVO) order. A clause is a group of words containing a subject and a verb.</p>
+                                 <p>
+                                      <strong>Subject:</strong> The person or thing performing the action.<br>
+                                     <strong>Verb:</strong> The action.<br>
+                                    <strong>Object:</strong> The person or thing receiving the action.
+                               </p>
+                                  <p class="sub-heading">Clauses</p>
+                                 <ul>
+                                     <li><strong>Main Clause:</strong> Expresses a complete thought and can stand alone as a sentence.</li>
+                                     <li><strong>Subordinate Clause:</strong> Cannot stand alone and adds additional information to the main clause.</li>
+                                 </ul>
+                                 <p class="example-sentence"> Example : The cat (Subject) chased (Verb) the mouse (Object).</p>
+                    </div>
+                    </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                        <p> Identify the subject, verb and object in the following sentence:</p>
+                             <p> 1. The dog barks loudly.</p>
+                                <p> 2. Children are playing football.</p>
+                       </div>
+                 </div>
+                `;
+                    break;
+                case 'nouns':
+                    lessonTitle.textContent = "Nouns"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                       <h3>Understanding Nouns</h3>
+                     <div class="grammar-details">
+                        <p class="sub-heading">Countable and Uncountable Nouns</p>
+                              <ul>
+                                     <li><strong>Countable Nouns:</strong> Nouns that can be counted and have a plural form (e.g., book, apple).</li>
+                                        <li><strong>Uncountable Nouns:</strong> Nouns that cannot be counted and do not have a plural form (e.g., water, information).</li>
+                                  </ul>
+                                  <p class="sub-heading">Singular and Plural Nouns</p>
+                                  <ul>
+                                    <li><strong>Regular Plural Nouns:</strong> Formed by adding "-s" or "-es" (e.g., cat - cats, box - boxes).</li>
+                                    <li><strong>Irregular Plural Nouns:</strong> Have different plural forms (e.g., child - children, man - men).</li>
+                                 </ul>
+                                 <p class="sub-heading">Possessive Nouns</p>
+                                  <ul>
+                                     <li>Formed by adding "'s" to singular nouns (e.g., the cat's toy) or an apostrophe after plural nouns (e.g., the cats' toys).</li>
+                                  </ul>
+                                  <p class="example-sentence">Example : One book, two books. (Countable). Some water (Uncountable)</p>
+                    </div>
+                    </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                       <p> Identify if following nouns are countable or uncountable</p>
+                             <p>1. rice </p>
+                                <p>2. house</p>
+                                 <p>3. music</p>
+                       </div>
+                 </div>
+                `;
+                    break;
+                case 'pronouns':
+                    lessonTitle.textContent = "Pronouns"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                       <h3>Understanding Pronouns</h3>
+                     <div class="grammar-details">
+                         <p class="sub-heading">Subject Pronouns</p>
+                                <ul>
+                                     <li>I, you, he, she, it, we, they</li>
+                                </ul>
+                                 <p class="sub-heading">Object Pronouns</p>
+                                 <ul>
+                                     <li>me, you, him, her, it, us, them</li>
+                                 </ul>
+                                  <p class="sub-heading">Possessive Pronouns</p>
+                                 <ul>
+                                    <li>mine, yours, his, hers, its, ours, theirs</li>
+                                </ul>
+                                  <p class="sub-heading">Reflexive Pronouns</p>
+                                  <ul>
+                                      <li>myself, yourself, himself, herself, itself, ourselves, themselves</li>
+                                 </ul>
+                                   <p class="sub-heading">Demonstrative Pronouns</p>
+                                   <ul>
+                                      <li>this, that, these, those</li>
+                                   </ul>
+                                 <p class="example-sentence">Example : She (Subject) gave it (Object) to him.</p>
+
+                    </div>
+                    </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                        <p> Identify the pronouns in the following sentences:</p>
+                        <p> 1. He likes his car.</p>
+                        <p>2. They went with us.</p>
+                      </div>
+                 </div>
+                `;
+                    break;
+                case 'articles':
+                    lessonTitle.textContent = "Articles"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                       <h3>Understanding Articles</h3>
+                     <div class="grammar-details">
+                         <p class="sub-heading">Definite Article</p>
+                                <ul>
+                                  <li>The (used for specific nouns)</li>
+                              </ul>
+                               <p class="sub-heading">Indefinite Articles</p>
+                                  <ul>
+                                     <li>A, an (used for non-specific nouns, 'an' before a vowel sound)</li>
+                                   </ul>
+
+                            <p class="example-sentence">Example : The dog is barking (Definite). A cat is sleeping (Indefinite)</p>
+                    </div>
+                    </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                        <p> Fill the blanks with a or the:</p>
+                             <p>1.  I saw ____ elephant in zoo.</p>
+                                 <p>2.   _____ moon is shinning tonight</p>
+                       </div>
+                 </div>
+                `;
+                    break;
+                case 'adjectives':
+                    lessonTitle.textContent = "Adjectives"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                       <h3>Understanding Adjectives</h3>
+                     <div class="grammar-details">
+                        <p class="sub-heading">Descriptive Adjectives</p>
+                                <ul>
+                                   <li>Used to describe the characteristics of nouns (e.g., big, blue, happy)</li>
+                                </ul>
+                                <p class="sub-heading">Comparative Adjectives</p>
+                                 <ul>
+                                    <li>Used to compare two things (e.g., better, taller, smaller)</li>
+                                 </ul>
+                                 <p class="sub-heading">Superlative Adjectives</p>
+                                  <ul>
+                                     <li>Used to compare more than two things (e.g., best, tallest, smallest)</li>
+                                  </ul>
+                                     <p class="sub-heading">Order of Adjectives</p>
+                                       <ul>
+                                          <li>Opinion, size, age, shape, color, origin, material, type, purpose</li>
+                                    </ul>
+                                 <p class="example-sentence">Example : A tall (size) man. The bigger (comparative) house is better (comparative) than the smaller one.</p>
+
+                    </div>
+                    </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                       <p> identify the adjective in the following sentence:</p>
+                        <p> 1. She has a big car.</p>
+                        <p> 2. He is a very happy person.</p>
+                       </div>
+                 </div>
+                `;
+                    break;
+                case 'adverbs':
+                    lessonTitle.textContent = "Adverbs"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                       <h3>Understanding Adverbs</h3>
+                     <div class="grammar-details">
+                             <p class="sub-heading">Adverbs of Manner</p>
+                       <ul>
+                            <li>Describe how an action is performed (e.g., quickly, slowly)</li>
+                       </ul>
+                        <p class="sub-heading">Adverbs of Place</p>
+                       <ul>
+                           <li>Indicate where an action occurs (e.g., here, there)</li>
+                       </ul>
+                        <p class="sub-heading">Adverbs of Time</p>
+                       <ul>
+                          <li>Indicate when an action occurs (e.g., now, later)</li>
+                       </ul>
+                        <p class="sub-heading">Adverbs of Frequency</p>
+                       <ul>
+                           <li>Describe how often an action occurs (e.g., often, always)</li>
+                     </ul>
+                         <p class="example-sentence">Example : He ran quickly (manner). I am here (place). They will come later (time). I often (frequency) go swimming.</p>
+                    </div>
+                    </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                           <p> identify the adverbs in the following sentence:</p>
+                            <p> 1. They walked slowly.</p>
+                             <p>2.  She goes often to the mall.</p>
+                       </div>
+                 </div>
+                `;
+                    break;
+                case 'prepositions':
+                    lessonTitle.textContent = "Prepositions"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                       <h3>Understanding Prepositions</h3>
+                     <div class="grammar-details">
+                       <p>Words that show the relationship between a noun/pronoun and other words in the sentence. Focus on prepositions of place, time, and movement (e.g., in, on, at, under, over).</p>
+                              <p class="sub-heading">Prepositions of Place</p>
+                             <ul>
+                                 <li>in, on, at, under, over, beside, behind, etc.</li>
+                              </ul>
+                                <p class="sub-heading">Prepositions of Time</p>
+                                 <ul>
+                                   <li>in, on, at, before, after, during, etc.</li>
+                                  </ul>
+                                     <p class="sub-heading">Prepositions of Movement</p>
+                                 <ul>
+                                       <li>to, from, into, out of, through, etc.</li>
+                                 </ul>
+                             <p class="example-sentence">Example : The book is on the table (place). We met at 5 PM (time). He drove to the city (movement).</p>
+
+                    </div>
+                    </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                           <p> Choose a correct preposition from given option.</p>
+                         <p> 1. He lives _______ (on, in, at) Canada.</p>
+                         <p> 2. They came _______ (from, to, in) London.</p>
+                       </div>
+                 </div>
+                `;
+                    break;
+                case 'conjunctions':
+                    lessonTitle.textContent = "Conjunctions"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                       <h3>Understanding Conjunctions</h3>
+                     <div class="grammar-details">
+                        <p class="sub-heading">Coordinating Conjunctions</p>
+                           <ul>
+                                 <li>Connect words, phrases, or clauses of equal rank (e.g., and, but, or).</li>
+                           </ul>
+                         <p class="sub-heading">Subordinating Conjunctions</p>
+                           <ul>
+                             <li>Introduce subordinate clauses and show a relationship to the main clause (e.g., because, although, if)</li>
+                           </ul>
+
+                           <p class="example-sentence">Example : She is clever and kind (Coordinating). I left because I was tired (Subordinating).</p>
+                    </div>
+                    </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                       <p> Identify if following are coordinating or subordinating conjunctions:</p>
+                         <p> 1. and </p>
+                         <p> 2. because</p>
+                       </div>
+                 </div>
+                `;
+                    break;
+                case 'present-simple':
+                    lessonTitle.textContent = "Present Simple Tense"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                       <h3>Understanding Present Simple Tense</h3>
+                     <div class="grammar-details">
+                         <p> The present simple tense is used to describe habits, general truths, and unchanging situations.</p>
+                         <p class="sub-heading"> Formation </p>
+                         <p>  Base form of the verb (for I, you, we, they) or base form + -s or -es (for he, she, it). </p>
+
+                         <p class="sub-heading"> Usage </p>
+                         <ul>
+                            <li>Habits: Actions that happen regularly. Example: I walk to school every day.</li>
+                            <li>General Truths: Things that are always true. Example: The sun rises in the east.</li>
+                             <li>Unchanging Situations: Things that are always or usually the case.  Example: She works at the bank.</li>
+                         </ul>
+                        <p class="example-sentence"> Example : She walks to school every day.</p>
+                    </div>
+                    </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                        <p> Fill the blanks with the correct form of present simple.</p>
+                           <p>1. I ______ (go) to the gym three times a week.</p>
+                        <p>2. They _____ (play) football every Sunday</p>
+                        <p>3. She ______ (live) in new york.</p>
+                     </div>
+                 </div>
+                `;
+                    break;
+
+                case 'past-continuous':
+                    lessonTitle.textContent = "Past Continuous Tense"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                        <h3>Understanding Past Continuous Tense</h3>
+                    <div class="grammar-details">
+                        <p>The past continuous tense is used to describe an ongoing action that happened at a specific point in the past.</p>
+                               <p class="sub-heading">Formation:</p>
+                               <p> was / were + base form of verb + ing.</p>
+                               <p class="sub-heading">Usage:</p>
+                              <ul>
+                               <li>Actions in Progress in the past :
+                                        Actions happening at specific points in the past.Example:  I was reading a book at 8 PM last night.</li>
+                                 <li>Simultaneous Actions: Actions occurring at the same time in the past. Example : I was studying while he was listening to music.</li>
+                                 </ul>
+                              <p class="example-sentence">Example : While I was watching TV, he was cooking.</p>
+                     </div>
+
+                 </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                          <p>Fill the blanks with the correct form of past continuous.</p>
+                          <p>1.  I _______(read) a book while she  ______ (listen) to music</p>
+                          <p>2.   They ______ (play) in the park when it started to rain.</p>
+                            <p>3.  What  _______ (you/do) at 5 PM yesterday?</p>
+                     </div>
+                 </div>
+                `;
+                    break;
+
+                case 'future-simple':
+                    lessonTitle.textContent = "Future Simple Tense"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                    <h3>Understanding Future Simple Tense</h3>
+                     <div class="grammar-details">
+                            <p>The future simple tense is used to express future actions. Use 'will' or 'be going to' .</p>
+                               <p class="sub-heading">Formation </p>
+                                <ul>
+                                 <li> Using 'will'  : will + base form of verb.</li>
+                                   <li> Using 'be going to' : be + going to + base form of verb.</li>
+                                </ul>
+                             <p class="sub-heading">Usage</p>
+                              <ul>
+                                   <li> Future Predictions : Predictions about future events. Example :  It will rain tomorrow.</li>
+                                    <li>Future Intentions:  Plans made for the future. Example:  I am going to travel to Paris next year.</li>
+                                </ul>
+                              <p class="example-sentence"> Example : She will travel to Europe soon. I am going to study tonight.</p>
+                     </div>
+                 </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                        <p>Fill the blanks with the correct form of future simple tense. </p>
+                        <p>1. I  _____ (visit) my grandmother next week.</p>
+                         <p> 2. They _____ (go) to the beach tomorrow. </p>
+                         <p> 3. The weather _____ (be) cloudy tomorrow.</p>
+
+                     </div>
+                 </div>
+                `
+                    break;
+                case 'present-perfect':
+                    lessonTitle.textContent = "Present Perfect Tense"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                    <h3>Understanding Present Perfect Tense</h3>
+                     <div class="grammar-details">
+                            <p>The present perfect tense is used to express past actions that have a connection to the present.</p>
+                               <p class="sub-heading">Formation </p>
+                                <ul>
+                                 <li> have / has + past participle of verb.</li>
+                                </ul>
+                             <p class="sub-heading">Usage</p>
+                              <ul>
+                                   <li> Actions that started in past and continue in present : Example :  I have lived here for five years.</li>
+                                    <li> Past experiences: Example:  I have visited New York once</li>
+                                     <li>Actions completed in the past with results in present : Example :  I have lost my keys, I cannot get in the car.</li>
+                                </ul>
+                              <p class="example-sentence"> Example : She has traveled to many countries. They have completed the project.</p>
+                     </div>
+                 </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                        <p>Fill the blanks with the correct form of present perfect tense. </p>
+                        <p>1. I _____ (read) this book before.</p>
+                         <p> 2. They _____ (finish) the job. </p>
+                         <p> 3. She _____ (watch) that movie before.</p>
+
+                     </div>
+                 </div>
+                `
+                    break;
+
+                case 'past-perfect':
+                    lessonTitle.textContent = "Past Perfect Tense"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                    <h3>Understanding Past Perfect Tense</h3>
+                     <div class="grammar-details">
+                            <p>The past perfect tense is used to express actions that were completed before a specific time in the past or before another past action.</p>
+                               <p class="sub-heading">Formation </p>
+                                <ul>
+                                 <li> had + past participle of verb.</li>
+                                </ul>
+                             <p class="sub-heading">Usage</p>
+                              <ul>
+                                  <li> An action that completed before a specific time in the past. Example: By the time we arrived, the movie had already started.</li>
+                                   <li>An action completed before another action in past : Example: He had finished the work before they arrived.</li>
+                                </ul>
+                              <p class="example-sentence"> Example :  I had visited that place before they arrived.</p>
+                     </div>
+                 </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                        <p>Fill the blanks with the correct form of past perfect tense. </p>
+                        <p>1. They _____ (eat)  before I arrived. </p>
+                         <p> 2. She ______ (study)  before the test. </p>
+                         <p> 3. I _______ (complete) all the tasks before they asked</p>
+
+                     </div>
+                 </div>
+                `
+                    break;
+                case 'future-continuous':
+                    lessonTitle.textContent = "Future Continuous Tense"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                    <h3>Understanding Future Continuous Tense</h3>
+                     <div class="grammar-details">
+                            <p>The future continuous tense is used to describe actions that will be ongoing at a specific time in the future.</p>
+                               <p class="sub-heading">Formation </p>
+                                <ul>
+                                 <li> will be + base form of verb + ing.</li>
+                                </ul>
+                             <p class="sub-heading">Usage</p>
+                              <ul>
+                                   <li>Actions that will be in progress at a specific point of time in future. Example : I will be watching Tv at 5 PM tomorrow.</li>
+                                </ul>
+                              <p class="example-sentence"> Example : She will be studying tomorrow. They will be playing when we arrive. </p>
+                     </div>
+                 </div>
+                 <div class="grammar-section">
+                     <h3> Practice Exercises</h3>
+                      <div class="grammar-details">
+                        <p>Fill the blanks with the correct form of future continuous tense. </p>
+                         <p>1. I  ______ (wait) you at the station tomorrow at 6.</p>
+                        <p> 2. They  _____ (play) at the park this afternoon. </p>
+
+                     </div>
+                 </div>
+                `
+                    break;
+                case 'present-perfect-continuous':
+                    lessonTitle.textContent = "Present Perfect Continuous Tense"
+                    lessonContent.innerHTML = `
+                 <div class="grammar-section">
+                    <h3>Understanding Present Perfect Continuous Tense</h3>
+                     <div class="grammar-details">
+                            <p>The present perfect continuous tense is used to express actions that started in the past, are continuing, and may continue in the future.</p>
+                               <p class="sub-heading">Formation </p>
+                                <ul>
+                                 <li> has / have + been + base form of verb + ing.</li>
+                                </ul>
+                             <p class="sub-heading">Usage</p>
+                              <ul>
+                                  <li>Actions that started in the past, are continuing, and may continue in future.  Example :   I have been waiting here for two hours.</li>
+                                   <li>Emphasis on duration of an activity:  Example: She has been studying all day.</li>
+
+                                </ul>
+                                                                  <p class="example-sentence"> Example : I have been walking for an hour . They have been playing since morning. </p>
+                         </div>
+                     </div>
+                     <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                            <p>Fill the blanks with the correct form of present perfect continuous tense. </p>
+                             <p>1. They  ______ (play) for two hours</p>
+                             <p> 2.  She  ______ (study) since morning</p>
+
+                         </div>
+                     </div>
+                    `
+                    break;
+                case 'past-perfect-continuous':
+                    lessonTitle.textContent = "Past Perfect Continuous Tense"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Past Perfect Continuous Tense</h3>
+                         <div class="grammar-details">
+                                <p>The past perfect continuous tense is used to describe actions that were in progress for a duration before another point in the past.</p>
+                                   <p class="sub-heading">Formation </p>
+                                    <ul>
+                                     <li> had + been + base form of verb + ing.</li>
+                                    </ul>
+                                 <p class="sub-heading">Usage</p>
+                                  <ul>
+                                       <li>Actions that were in progress before another point in the past:  Example :  I had been waiting for the bus when it finally arrived.</li>
+                                        <li> Emphasis on duration of activity before a specific time in past. Example: She had been studying for three hours before she went to bed.</li>
+                                    </ul>
+                                  <p class="example-sentence"> Example :  They had been running when it started to rain.</p>
+                         </div>
+                     </div>
+                     <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                            <p>Fill the blanks with the correct form of past perfect continuous tense. </p>
+                             <p> 1. She _______ (work) all day when they arrived. </p>
+                            <p> 2. They _______ (travel) for hours when they finally reached the hotel.</p>
+                         </div>
+                     </div>
+                    `
+                    break;
+                case 'future-perfect':
+                    lessonTitle.textContent = "Future Perfect Tense"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Future Perfect Tense</h3>
+                         <div class="grammar-details">
+                                <p>The future perfect tense is used to express actions that will be completed before a specific time in the future or before another future event.</p>
+                                   <p class="sub-heading">Formation </p>
+                                    <ul>
+                                     <li> will + have +  past participle of verb.</li>
+                                    </ul>
+                                 <p class="sub-heading">Usage</p>
+                                  <ul>
+                                       <li> Actions that will be completed before a specific point in the future. Example :  I will have completed my homework by 7PM tonight.</li>
+                                     <li>Actions that will be completed before another action in future.  Example:   She will have finished working by the time you arrive.</li>
+
+                                    </ul>
+                                  <p class="example-sentence"> Example :  They will have finished the job before the deadline.</p>
+                         </div>
+                     </div>
+                     <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                            <p>Fill the blanks with the correct form of future perfect tense. </p>
+                            <p>1. I   _______ (finish) my work by then.</p>
+                            <p> 2. She ______ (arrive) before the movie begins.</p>
+
+                         </div>
+                     </div>
+                    `
+                    break;
+                case 'future-perfect-continuous':
+                    lessonTitle.textContent = "Future Perfect Continuous Tense"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Future Perfect Continuous Tense</h3>
+                         <div class="grammar-details">
+                                <p>The future perfect continuous tense is used to express actions that will have been in progress for a duration before a specific point in the future.</p>
+                                   <p class="sub-heading">Formation </p>
+                                    <ul>
+                                     <li> will have been + base form of verb + ing.</li>
+                                    </ul>
+                                 <p class="sub-heading">Usage</p>
+                                  <ul>
+                                      <li>Actions that will be in progress before a specific time in the future or before another event in future.  Example:  I will have been waiting for three hours when you arrive.</li>
+                                      <li> Emphasis on a duration of time before a point in future.  Example: They will have been driving for five hours when they reach the destination.</li>
+                                    </ul>
+                                  <p class="example-sentence"> Example : She will have been studying for hours when she goes to bed . They will have been running before the race begins. </p>
+                         </div>
+                     </div>
+                     <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                            <p>Fill the blanks with the correct form of future perfect continuous tense. </p>
+                            <p>1. I _______ (wait)  for the bus for two hours by then.  </p>
+                             <p> 2. She  _____ (work) for 10 years by the time she retires.</p>
+
+
+                         </div>
+                     </div>
+                    `
+                    break;
+                case 'modal-verbs':
+                    lessonTitle.textContent = "Modal Verbs"
+                    lessonContent.innerHTML = `
+                    <div class="grammar-section">
+                        <h3>Understanding Modal Verbs</h3>
+                        <div class="grammar-details">
+                            <p>Modal verbs express possibility, necessity, or permission. Focusing on ability, permission, advice, obligation (e.g., can, could, may, might, will, would, shall, should, must)</p>
+                                <ul>
+                                   <li><strong>can: </strong> ability, permission. </li>
+                                     <li><strong>could: </strong> past ability, possibility, request.</li>
+                                       <li><strong>may: </strong> permission, possibility.</li>
+                                       <li><strong>might: </strong> possibility.</li>
+                                        <li><strong>will: </strong> future intention, certainty.</li>
+                                          <li><strong>would: </strong> polite request, conditional.</li>
+                                          <li><strong>shall: </strong> suggestion, future intent (formal).</li>
+                                           <li><strong>should: </strong> advice, obligation.</li>
+                                            <li><strong>must: </strong> obligation, strong necessity.</li>
+                                 </ul>
+                               <p class="example-sentence">Example : I can swim (ability). You may go (permission). You should study (advice). I must leave now (obligation)</p>
+                      </div>
+                    </div>
+                    <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                              <p> Choose a modal verbs from options</p>
+                              <p> 1.  _____ (can/must) you help me ?</p>
+                            <p> 2. You  _____ (can/should) study well for the exam.</p>
+                         </div>
+                     </div>
+                    `;
+                    break;
+                case 'conditionals':
+                    lessonTitle.textContent = "Conditionals"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Conditionals</h3>
+                         <div class="grammar-details">
+                             <p class="sub-heading">Zero Conditional</p>
+                           <ul>
+                               <li>Real and factual situations (e.g., If you heat water, it boils)</li>
+                           </ul>
+                             <p class="sub-heading">First Conditional</p>
+                           <ul>
+                             <li>Likely future situations (e.g., If it rains, I will stay home)</li>
+                           </ul>
+                            <p class="sub-heading">Second Conditional</p>
+                           <ul>
+                               <li>Unlikely/imaginary future situations (e.g., If I won the lottery, I would buy a mansion)</li>
+                            </ul>
+                             <p class="sub-heading">Third Conditional</p>
+                           <ul>
+                               <li>Imaginary past situations (e.g., If I had studied, I would have passed)</li>
+                           </ul>
+                            <p class="sub-heading">Mixed Conditionals</p>
+                           <ul>
+                            <li>Combines different types of conditional clauses</li>
+                           </ul>
+
+                           <p class="example-sentence">Example : If you press that button the light goes on (Zero
+                                Conditional). If I had studied, I would have the ability to answer it (mixed)</p>
+                      </div>
+                     </div>
+                     <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                             <p> Identify the conditional types in following sentences: </p>
+                              <p> 1. If you eat too much, you get fat </p>
+                            <p> 2. If i won lottery, I would travel the world. </p>
+
+                           </div>
+                     </div>
+                    `;
+                    break;
+                case 'passive-voice':
+                    lessonTitle.textContent = "Passive Voice"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Passive Voice</h3>
+                         <div class="grammar-details">
+                                 <p>Used when the focus is on the action rather than the actor (e.g., The cake was eaten by John).</p>
+                                  <p class="sub-heading">Understanding Passive Voice</p>
+                                     <ul>
+                                         <li>Subject is being acted upon.</li>
+                                        <li>Formed using 'be' + past participle of verb.</li>
+                                    </ul>
+
+                                  <p class="example-sentence">Example : The ball was kicked (Passive)</p>
+                         </div>
+                     </div>
+                     <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                              <p> Choose which sentences is in passive voice:</p>
+                              <p> 1.  She wrote a book.</p>
+                                  <p> 2. The book was written by her.</p>
+                         </div>
+                     </div>
+                    `;
+                    break;
+                case 'reported-speech':
+                    lessonTitle.textContent = "Reported Speech"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Reported Speech</h3>
+                         <div class="grammar-details">
+                               <p>Converting direct speech to indirect speech (e.g., He said, "I am happy" becomes He said that he was happy).</p>
+                                   <p class="sub-heading">Converting Direct Speech</p>
+                                   <ul>
+                                      <li>Changes in pronouns, verb tenses, and time/place adverbs.</li>
+                                    </ul>
+                                <p class="example-sentence">Example : He said "I will go to the market tomorrow"  - (direct) --- > He said he would go to the market the following day.  (Indirect)</p>
+                        </div>
+                     </div>
+                     <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                            <p> convert the following sentences in reported speech:</p>
+                                 <p> 1. She said," I am going to gym now".</p>
+
+                           </div>
+                     </div>
+                    `;
+                    break;
+                case 'questions':
+                    lessonTitle.textContent = "Questions"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Questions</h3>
+                         <div class="grammar-details">
+                                 <p class="sub-heading">Yes/No Questions</p>
+                                   <ul>
+                                      <li>Answerable with 'yes' or 'no' (e.g., Is she coming?).</li>
+                                   </ul>
+                                  <p class="sub-heading">Wh- questions</p>
+                                 <ul>
+                                        <li>Begin with 'wh' words (e.g., What, where, why, when, who, how?).</li>
+                                  </ul>
+                                    <p class="sub-heading">Tag questions</p>
+                                     <ul>
+                                          <li>Short questions added at the end of statements (e.g., She is happy, isn't she?).</li>
+                                    </ul>
+                                 <p class="example-sentence">Example : Do you like tea?(yes/no question). Where are you going (Wh-question)? You are coming, aren't you? (tag question) </p>
+                        </div>
+                     </div>
+                     <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                            <p> Identify what type of question it is: </p>
+                            <p> 1. What are you doing?</p>
+                            <p> 2. Are you coming ?</p>
+                            <p> 3.  They are going to the party, aren't they? </p>
+                           </div>
+                     </div>
+                    `;
+                    break;
+                case 'clauses':
+                    lessonTitle.textContent = "Clauses"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Clauses</h3>
+                         <div class="grammar-details">
+                                 <p class="sub-heading">Main Clause</p>
+                                  <ul>
+                                     <li>Can stand alone as a complete sentence</li>
+                                  </ul>
+                                   <p class="sub-heading">Subordinate Clause</p>
+                                  <ul>
+                                         <li>Dependent on the main clause and adds more information. (noun, adjective, adverb clauses)</li>
+                                  </ul>
+                                  <p class="example-sentence">Example :  She walked  (main clause) because she was late. (subordinate clause.)</p>
+                        </div>
+                     </div>
+                      <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                           <p> Identify main and subordinate clauses:</p>
+                            <p> 1. Although it rained, they went to the park. </p>
+
+                           </div>
+                     </div>
+                    `;
+                    break;
+                case 'phrases':
+                    lessonTitle.textContent = "Phrases"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Phrases</h3>
+                         <div class="grammar-details">
+                            <p class="sub-heading">Noun Phrases</p>
+                                <ul>
+                                    <li>Group of words acting as a noun (e.g., the big red car)</li>
+                                 </ul>
+                            <p class="sub-heading">Verb Phrases</p>
+                             <ul>
+                               <li>Group of words acting as a verb (e.g., is walking)</li>
+                               </ul>
+                            <p class="sub-heading">Adjective Phrases</p>
+                                <ul>
+                                  <li>Group of words acting as an adjective (e.g., very beautiful)</li>
+                                 </ul>
+                            <p class="sub-heading">Adverbial Phrases</p>
+                                <ul>
+                                  <li>Group of words acting as an adverb (e.g., very quickly)</li>
+                               </ul>
+                              <p class="sub-heading">Prepositional Phrases</p>
+                             <ul>
+                                    <li>Group of words starting with a preposition (e.g., in the garden)</li>
+                               </ul>
+                               <p class="example-sentence">Example : The book on the table is heavy (Noun phrase). He is walking very quickly (adverb phrase).</p>
+                        </div>
+                     </div>
+                     <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                            <p> Identify phrases:</p>
+                                <p>1. A very beautiful flower.</p>
+                                 <p>2. Running very quickly.</p>
+                           </div>
+                     </div>
+                    `;
+                    break;
+                case 'determiners':
+                    lessonTitle.textContent = "Determiners"
+                    lessonContent.innerHTML = `
+                     <div class="grammar-section">
+                        <h3>Understanding Determiners</h3>
+                         <div class="grammar-details">
+                              <p class="sub-heading">Quantifiers</p>
+                                  <ul>
+                                      <li>Indicate quantity (e.g., some, any, many, much, few, a lot of)</li>
+                                  </ul>
+                                  <p class="sub-heading">Demonstratives</p>
+                                  <ul>
+                                        <li>Point to a noun (e.g., this, that, these, those)</li>
+                                   </ul>
+                                     <p class="sub-heading">Possessives</p>
+                                  <ul>
+                                      <li>Indicate ownership (e.g., my, your, his)</li>
+                                   </ul>
+                                 <p class="example-sentence">Example : I have some books (Quantifier). This is my friend (Demonstrative, possessive.)</p>
+
+                        </div>
+                     </div>
+                      <div class="grammar-section">
+                         <h3> Practice Exercises</h3>
+                          <div class="grammar-details">
+                             <p> Identify which determiner is used:</p>
+                             <p> 1.  I have a few books. </p>
+                            <p> 2. This is my pen.</p>
+                           </div>
+                     </div>
+                    `;
+                    break;
+                default:
+                    lessonTitle.textContent = "Error: Lesson not found"
+                    lessonContent.innerHTML = "<p>Sorry, content for this lesson was not found.</p>";
+            }
+        }
+        // Enhanced vocabulary database
+        const vocabularyDatabase = {
+            beginner: [
+                {
+                    word: "Serendipity",
+                    definition: "The occurrence and development of events by chance in a happy or beneficial way",
+                    example: "Finding this book was pure serendipity.",
+                    contextSentence: "The serendipity of meeting her old friend at the airport made her day.",
+                    synonyms: ["fate", "chance", "luck", "fortuity"],
+                    level: "Beginner"
+                },
+                {
+                    word: "Ephemeral",
+                    definition: "Lasting for a very short time",
+                    example: "The beauty of cherry blossoms is ephemeral.",
+                    contextSentence: "Social media trends are often ephemeral, lasting only a few days.",
+                    synonyms: ["fleeting", "temporary", "transient", "momentary"],
+                    level: "Beginner"
+                },
+                {
+                    word: "Resilient",
+                    definition: "Able to recover quickly from difficulties",
+                    example: "She is a resilient person who never gives up.",
+                    contextSentence: "Plants are resilient and can often survive harsh conditions.",
+                    synonyms: ["tough", "hardy", "adaptable", "strong"],
+                    level: "Beginner"
+                }
+            ],
+            intermediate: [
+                {
+                    word: "Surreptitious",
+                    definition: "Kept secret, especially because it would not be approved of",
+                    example: "He made a surreptitious attempt to leave the party early.",
+                    contextSentence: "The detective conducted a surreptitious investigation.",
+                    synonyms: ["secret", "stealthy", "covert", "clandestine"],
+                    level: "Intermediate"
+                },
+                {
+                    word: "Paradigm",
+                    definition: "A typical example or pattern of something",
+                    example: "This discovery is a paradigm shift in scientific thinking.",
+                    contextSentence: "The company created a new paradigm for customer service.",
+                    synonyms: ["model", "pattern", "example", "standard"],
+                    level: "Intermediate"
+                }
+            ],
+            advanced: [
+                {
+                    word: "Perspicacious",
+                    definition: "Having a ready insight into and understanding of things",
+                    example: "She made perspicacious observations about the economy.",
+                    contextSentence: "A perspicacious investor can spot market trends early.",
+                    synonyms: ["astute", "perceptive", "shrewd", "discerning"],
+                    level: "Advanced"
+                },
+                {
+                    word: "Ubiquitous",
+                    definition: "Present, appearing, or found everywhere",
+                    example: "Smartphones have become ubiquitous in modern life.",
+                    contextSentence: "Coffee shops are ubiquitous in urban areas.",
+                    synonyms: ["omnipresent", "ever-present", "universal", "pervasive"],
+                    level: "Advanced"
+                }
+            ]
+        };
+
+
+        // Function to get random vocabulary words
+        function getRandomVocabulary(count = 3) {
+            const allWords = [
+                ...vocabularyDatabase.beginner,
+                ...vocabularyDatabase.intermediate,
+                ...vocabularyDatabase.advanced
+            ];
+            const shuffled = allWords.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+        // Function to create vocabulary card HTML
+        function createVocabCard(wordData) {
+            return `
+                  <div class="vocabulary-grid-item">
+                     <div class="vocab-word">
+                          ${wordData.word}
+                             <button class="audio-button" onclick="playPronunciation('${wordData.word}')">
+                                 <i class="fas fa-volume-up"></i>
+                               </button>
+                          </div>
+                          <p><strong>Level:</strong> ${wordData.level}</p>
+                        <p>${wordData.definition}</p>
+                          <div style="margin-top: 1rem;">
+                                 <p><strong>Example:</strong> ${wordData.example}</p>
+                             <p><strong>Context:</strong> ${wordData.contextSentence}</p>
+                             <p><strong>Synonyms:</strong> ${wordData.synonyms.join(', ')}</p>
+                             </div>
+                         </div>
+              `;
+        }
+
+
+        // Function to update vocabulary display
+        function updateVocabularyDisplay() {
+            const container = document.querySelector('#vocabulary-content .vocabulary-grid');
+            const dailyWords = getRandomVocabulary(3);
+            container.innerHTML = dailyWords.map(word => createVocabCard(word)).join('');
+        }
+
+
+
+        // Audio pronunciation functionality using Web Speech API
+        function playPronunciation(word) {
+            const utterance = new SpeechSynthesisUtterance(word);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.9; // Slightly slower for clarity
+            speechSynthesis.speak(utterance);
+        }
+
+        // Learning progress tracking
+        const learningProgress = {
+            overall: 55,
+            grammar: 75,
+            speaking: 60,
+            writing: 80,
+            vocabulary: 35
+        };
+
+
+        // Function to update progress bars
+        function updateProgress() {
+            Object.entries(learningProgress).forEach(([skill, progress]) => {
+                const progressBar = document.querySelector(`[data-skill="${skill}"] .progress`);
+                if (progressBar) {
+                    progressBar.style.width = `${progress}%`;
+                }
+
+                const progressLabel = document.querySelector(`[data-skill="${skill}"] .progress-label`);
+                if (progressLabel) {
+                    progressLabel.textContent = `${progress}%`
+
+                }
+
+
+                const progressBar2 = document.querySelector(`.dashboard-card-content  [data-skill="${skill}"]  ~ .progress-bar  .progress`);
+
+                if (progressBar2) {
+                    progressBar2.style.width = `${progress}%`
+                }
+
+                const progressLabel2 = document.querySelector(`.dashboard-card-content  [data-skill="${skill}"] ~  .progress-bar ~ .progress-label `)
+                if (progressLabel2) {
+
+                    progressLabel2.textContent = `${progress}%`;
+
+                }
+
+            });
+
+        }
+        // Flash card system for vocabulary practice
+        class FlashCardSystem {
+            constructor(words) {
+                this.words = words;
+                this.currentIndex = 0;
+                this.correctAnswers = 0;
+            }
+            getCurrentWord() {
+                return this.words[this.currentIndex];
+            }
+
+            checkAnswer(userAnswer) {
+                const currentWord = this.getCurrentWord();
+                const isCorrect = userAnswer.toLowerCase() === currentWord.word.toLowerCase();
+                if (isCorrect) this.correctAnswers++;
+                return isCorrect;
+            }
+            nextWord() {
+                if (this.currentIndex < this.words.length - 1) {
+                    this.currentIndex++;
+                    return true;
+                }
+                return false;
+            }
+
+            getScore() {
+                return (this.correctAnswers / this.words.length) * 100;
+            }
+        }
+        // Initialize practice session
+        function initPracticeSession() {
+            const words = getRandomVocabulary(10);
+            return new FlashCardSystem(words);
+        }
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            showSection('dashboard');
+            updateProgress();
+            updateVocabularyDisplay();
+            // Refresh vocabulary daily
+            const lastUpdate = localStorage.getItem('lastVocabUpdate');
+            const today = new Date().toDateString();
+
+            if (lastUpdate !== today) {
+                updateVocabularyDisplay();
+                localStorage.setItem('lastVocabUpdate', today);
+            }
+            // Add event listeners for practice buttons
+            document.querySelectorAll('#practice-content .practice-grid-item .btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const practiceType = e.target.closest('.practice-grid-item').querySelector('h3').textContent;
+                    startPractice(practiceType);
+                });
+            });
+
+        });
+        // Function to start practice session
+        function startPractice(type) {
+            switch (type) {
+                case 'Vocabulary Games':
+                    initVocabularyGame();
+                    break;
+                case 'Listening Practice':
+                    initListeningPractice();
+                    break;
+                case 'Writing Exercises':
+                    initWritingExercise();
+                    break;
+            }
+        }
+
+        // Initialize vocabulary game
+        function initVocabularyGame() {
+            const flashCardSystem = initPracticeSession();
+            // Implement vocabulary game UI and logic
+            console.log('Vocabulary game initialized');
+        }
+
+        // Initialize listening practice
+        function initListeningPractice() {
+            // Implement listening practice functionality
+            console.log('Listening practice initialized');
+        }
+
+        // Initialize writing exercise
+        function initWritingExercise() {
+            // Implement writing exercise functionality
+            console.log('Writing exercise initialized');
+        }
+    </script>
+</body>
+
+</html>
