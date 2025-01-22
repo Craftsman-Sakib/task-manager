@@ -3603,5 +3603,46 @@
     "details": "\"TrickShot Simulator\" challenges players to perform a variety of trick shots using realistic physics and simple mouse controls. The game emphasizes precision and patience, as even minor adjustments can significantly impact the outcome of a shot. Some stages are notably difficult, pushing players to refine their skills. Successful trick shots are recorded as replay videos, allowing players to share their accomplishments.",
     "links": "",
     "dlc": []
+  },
+  {
+    "id": 1737526212456,
+    "name": "Phantom Blade Zero",
+    "image": "https://www.allkeyshop.com/blog/wp-content/uploads/buy-phantom-blade-zero-compare-prices.webp",
+    "extraImages": [
+      "https://mp1st.com/wp-content/uploads/2023/05/phantom-blade-zero-5.jpg",
+      "https://www.alwaysforkeyboard.com/wp-content/uploads/2023/05/phantom_blade_zero_1-scaled.jpg",
+      "https://cdn.mos.cms.futurecdn.net/bbFgC2VSyxTYunBQAWSjdb-1200-80.jpg",
+      "https://onemoregame.ph/wp-content/uploads/2025/01/phantom-blade-zero-year-of-the-snake-trailer-screenshot-4-750x422.jpg",
+      "https://onemoregame.ph/wp-content/uploads/2025/01/phantom-blade-zero-year-of-the-snake-trailer-screenshot-2-1024x576.jpg"
+    ],
+    "genre": [],
+    "releaseDate": {
+      "start": "2026",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "S-GAME",
+    "publisher": "S-GAME",
+    "specialQuote": "Irresponsibly fast action RPG",
+    "platform": [],
+    "store": [],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=pueXBkFMK7Q",
+    "price": null,
+    "details": "Phantom Blade Zero aims to deliver a fast-paced, combo-heavy combat experience inspired by Chinese Wuxia martial arts, setting it apart from traditional Soulslike games.",
+    "links": "https://pbz.s-game.com/",
+    "dlc": []
   }
 ]
