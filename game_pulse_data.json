@@ -3615,7 +3615,11 @@
       "https://onemoregame.ph/wp-content/uploads/2025/01/phantom-blade-zero-year-of-the-snake-trailer-screenshot-4-750x422.jpg",
       "https://onemoregame.ph/wp-content/uploads/2025/01/phantom-blade-zero-year-of-the-snake-trailer-screenshot-2-1024x576.jpg"
     ],
-    "genre": [],
+    "genre": [
+      "action",
+      "hack-and-slash",
+      "role-playing"
+    ],
     "releaseDate": {
       "start": "2026",
       "end": ""
@@ -3635,8 +3639,13 @@
     "developer": "S-GAME",
     "publisher": "S-GAME",
     "specialQuote": "Irresponsibly fast action RPG",
-    "platform": [],
-    "store": [],
+    "platform": [
+      "windows",
+      "playstation"
+    ],
+    "store": [
+      "playstation-store"
+    ],
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=pueXBkFMK7Q",
