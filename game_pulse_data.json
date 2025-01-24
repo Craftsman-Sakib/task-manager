@@ -3653,5 +3653,42 @@
     "details": "Phantom Blade Zero aims to deliver a fast-paced, combo-heavy combat experience inspired by Chinese Wuxia martial arts, setting it apart from traditional Soulslike games.",
     "links": "https://pbz.s-game.com/",
     "dlc": []
+  },
+  {
+    "id": 1737698361865,
+    "name": "I Have No Change",
+    "image": "https://cdn.dekudeals.com/images/794b4e7ba1e5d55705416b617b215762d676dddc/w500.jpg",
+    "extraImages": [
+      "https://pcgames.ro/wp-content/uploads/2025/01/i-have-no-change.jpg"
+    ],
+    "genre": [],
+    "releaseDate": {
+      "start": "",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Studio Rassvet",
+    "publisher": "Studio Rassvet",
+    "specialQuote": "A Night Kiosk Dramedy",
+    "platform": [],
+    "store": [],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=lU9VQeHpFzg&t=120s",
+    "price": null,
+    "details": "\"I Have No Change\" offers players a unique experience, combining a variety of visual styles, a philosophical dramedy plot, and diverse gameplay elements, all set within the solitary confines of a night kiosk during the festive winter season.",
+    "links": "",
+    "dlc": []
   }
 ]
