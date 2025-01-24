@@ -3712,7 +3712,12 @@
       "https://www.megacrit.com/images/sts2_screenshot3.jpg",
       "https://www.megacrit.com/images/sts2_screenshot1.jpg"
     ],
-    "genre": [],
+    "genre": [
+      "strategy",
+      "Roguelike",
+      "deck-building",
+      "Card game"
+    ],
     "releaseDate": {
       "start": "2025",
       "end": ""
@@ -3732,8 +3737,14 @@
     "developer": "Mega Crit",
     "publisher": "Mega Crit",
     "specialQuote": "The iconic roguelike deck builder returns",
-    "platform": [],
-    "store": [],
+    "platform": [
+      "windows",
+      "linux",
+      "macos"
+    ],
+    "store": [
+      "steam"
+    ],
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=ttVtllHkb4E",
