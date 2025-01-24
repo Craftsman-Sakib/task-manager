@@ -3752,5 +3752,46 @@
     "details": "\"Slay the Spire 2\" introduces new slayers, each with unique card sets, mechanics, and personalities. Players can expect to encounter new enemies, events, and treasures as they navigate the spire. The game is being developed using the Godot engine, promising enhanced visuals and quality of life improvements over its predecessor.",
     "links": "https://www.megacrit.com/press-kits/slay-the-spire-2/",
     "dlc": []
+  },
+  {
+    "id": 1737727515222,
+    "name": "Space Engineers 2",
+    "image": "https://img.game8.co/4087592/3403b68f1ef1c879da223733c9369b7b.png/show",
+    "extraImages": [
+      "https://2.spaceengineersgame.com/wp-content/uploads/2021/01/12.png",
+      "https://2.spaceengineersgame.com/wp-content/uploads/2021/01/15.png",
+      "https://2.spaceengineersgame.com/wp-content/uploads/2021/01/16.png",
+      "https://2.spaceengineersgame.com/wp-content/uploads/2021/01/19.png",
+      "https://2.spaceengineersgame.com/wp-content/uploads/2021/01/Fractures-1.png"
+    ],
+    "genre": [],
+    "releaseDate": {
+      "start": "2025-01-27",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Keen Software House",
+    "publisher": "Keen Software House",
+    "specialQuote": "Revolutionary next chapter in space simulation gaming",
+    "platform": [],
+    "store": [],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=Qw-I-uzT5KY",
+    "price": null,
+    "details": "\"Space Engineers 2\" introduces several notable features, including a unified 25cm grid system, enhanced blueprint building tools, improved physics with dynamic fractures and debris, and advanced visual enhancements like ray tracing and global illumination. The game is powered by the new VRAGE3 engine, promising better performance and future optimization potential.",
+    "links": "https://2.spaceengineersgame.com/game/space-engineers2/",
+    "dlc": []
   }
 ]
