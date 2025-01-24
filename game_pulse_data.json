@@ -3700,5 +3700,46 @@
     "details": "\"I Have No Change\" offers players a unique experience, combining a variety of visual styles, a philosophical dramedy plot, and diverse gameplay elements, all set within the solitary confines of a night kiosk during the festive winter season.",
     "links": "",
     "dlc": []
+  },
+  {
+    "id": 1737719228157,
+    "name": "Slay the Spire 2",
+    "image": "https://www.megacrit.com/images/k2_vertical_capsule_748x896.png",
+    "extraImages": [
+      "https://www.megacrit.com/images/sts2_screenshot6.jpg",
+      "https://www.megacrit.com/images/sts2_screenshot4.jpg",
+      "https://www.megacrit.com/images/sts2_screenshot2.jpg",
+      "https://www.megacrit.com/images/sts2_screenshot3.jpg",
+      "https://www.megacrit.com/images/sts2_screenshot1.jpg"
+    ],
+    "genre": [],
+    "releaseDate": {
+      "start": "2025",
+      "end": ""
+    },
+    "betaDate": {
+      "start": "",
+      "end": ""
+    },
+    "alphaDate": {
+      "start": "",
+      "end": ""
+    },
+    "earlyAccessDate": {
+      "start": "",
+      "end": ""
+    },
+    "developer": "Mega Crit",
+    "publisher": "Mega Crit",
+    "specialQuote": "The iconic roguelike deck builder returns",
+    "platform": [],
+    "store": [],
+    "modLinks": [],
+    "subscriptions": [],
+    "trailerLink": "https://www.youtube.com/watch?v=ttVtllHkb4E",
+    "price": null,
+    "details": "\"Slay the Spire 2\" introduces new slayers, each with unique card sets, mechanics, and personalities. Players can expect to encounter new enemies, events, and treasures as they navigate the spire. The game is being developed using the Godot engine, promising enhanced visuals and quality of life improvements over its predecessor.",
+    "links": "https://www.megacrit.com/press-kits/slay-the-spire-2/",
+    "dlc": []
   }
 ]
