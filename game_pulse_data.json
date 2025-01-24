@@ -3764,7 +3764,11 @@
       "https://2.spaceengineersgame.com/wp-content/uploads/2021/01/19.png",
       "https://2.spaceengineersgame.com/wp-content/uploads/2021/01/Fractures-1.png"
     ],
-    "genre": [],
+    "genre": [
+      "Open-world",
+      "sandbox",
+      "simulation"
+    ],
     "releaseDate": {
       "start": "2025-01-27",
       "end": ""
@@ -3784,8 +3788,12 @@
     "developer": "Keen Software House",
     "publisher": "Keen Software House",
     "specialQuote": "Revolutionary next chapter in space simulation gaming",
-    "platform": [],
-    "store": [],
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=Qw-I-uzT5KY",
