@@ -3661,7 +3661,13 @@
     "extraImages": [
       "https://pcgames.ro/wp-content/uploads/2025/01/i-have-no-change.jpg"
     ],
-    "genre": [],
+    "genre": [
+      "FPS",
+      "narrative-driven simulation",
+      "Dark",
+      "Indie",
+      "Adventure"
+    ],
     "releaseDate": {
       "start": "",
       "end": ""
@@ -3681,8 +3687,12 @@
     "developer": "Studio Rassvet",
     "publisher": "Studio Rassvet",
     "specialQuote": "A Night Kiosk Dramedy",
-    "platform": [],
-    "store": [],
+    "platform": [
+      "windows"
+    ],
+    "store": [
+      "steam"
+    ],
     "modLinks": [],
     "subscriptions": [],
     "trailerLink": "https://www.youtube.com/watch?v=lU9VQeHpFzg&t=120s",
